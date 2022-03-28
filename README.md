@@ -1,24 +1,36 @@
-# README
+# <Worldtrip>
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## サイト概要
+「Worldtrip」では旅好きな方、世界に興味がある人が新しい発見をする為のサイトです。  
+現地の人からの最新情報、さらに現地の人や実際に訪れた方のおすすめスポット等役立つ情報をお届けします。
 
-Things you may want to cover:
+### サイトテーマ
+旅の情報共有・記録
 
-* Ruby version
+### テーマを選んだ理由
+私は旅が大好きでよく旅に行きます。そこで友人からよく「どこの国が一番よかった?」など質問されたり、私自身同じ質問をする時が多々ありました。
+そこで、訪れた国の記録はもちろん、皆んなの訪れた国のランキングや思い出を共有できるアプリがあれば面白いなと思いこのテーマにしました。
 
-* System dependencies
+また、昨今コロナ禍ということもあり、旅に行くのが難しい状況だと思います。
+そんな中、どのくらい隔離をしたら行けるのか、現地の状況はどうなのかなど不安があると思います。
+そこで現地の人や実際に直近で訪れた人などから最新情報や経験等共有できるような場所があればいいなと思い作成しました。
 
-* Configuration
+### ターゲットユーザ
+旅好きな人・海外旅行を考えてる人・世界に興味がある人
 
-* Database creation
+### 主な利用シーン
+自分が訪れた国や思い出を共有したい時や、海外旅行を考えてる人、次にどこに行こうかと迷われてる人など。
+また、旅を通して交流の場として活用できます。
 
-* Database initialization
+## 設計書
+coming soon
 
-* How to run the test suite
+## チャレンジ要素一覧
+https://docs.google.com/spreadsheets/d/1CGITiSSKdYp3SMT6GuNixTrHT2Ss6Fr3erHjLTXNLL0/edit#gid=0
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## 開発環境
+- OS：Linux(CentOS)
+- 言語：HTML,CSS,JavaScript,Ruby,SQL
+- フレームワーク：Ruby on Rails
+- JSライブラリ：jQuery
+- IDE：Cloud9
