@@ -1,7 +1,7 @@
 # <Worldtrip>
 
 ## サイト概要
-「Worldtrip」では旅好きな方、世界に興味がある人が新しい発見をする為のサイトです。  
+「Worldtrip」では旅好きな方、世界に興味がある人が新しい発見をする為のサイトです。
 現地の人からの最新情報、さらに現地の人や実際に訪れた方のおすすめスポット等役立つ情報をお届けします。
 
 ### サイトテーマ
@@ -25,8 +25,8 @@
 ## 設計書
 coming soon
 
-## チャレンジ要素一覧
-https://docs.google.com/spreadsheets/d/1CGITiSSKdYp3SMT6GuNixTrHT2Ss6Fr3erHjLTXNLL0/edit#gid=0
+<!--## チャレンジ要素一覧-->
+<!--https://docs.google.com/spreadsheets/d/1CGITiSSKdYp3SMT6GuNixTrHT2Ss6Fr3erHjLTXNLL0/edit#gid=0-->
 
 ## 開発環境
 - OS：Linux(CentOS)
