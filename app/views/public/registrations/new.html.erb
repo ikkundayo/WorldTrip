@@ -4,6 +4,27 @@
   <%= render "public/shared/error_messages", resource: resource %>
 
   <div class="field">
+    <%= f.label :user_name %><br />
+    <%= f.text_field :user_name %>
+  </div>
+
+  <div>
+    <%= f.label :motherland, "母国" %><br />
+    <%= f.text_field :motherland %>
+  </div>
+
+  <div>
+    <%= f.radio_button :gender, "男" %>男
+    <%= f.radio_button :gender, "女" %>女
+    <%= f.radio_button :gender, "その他" %>その他
+  </div>
+
+  <div>
+    <%= f.label :birth_date, "年齢" %>
+    <%=f.date_select :birth_date, use_month_numbers: true,start_year: 1930, end_year: (Time.now.year - 10), default: Date.new(1989, 1, 1) %>
+  </div>
+
+  <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
