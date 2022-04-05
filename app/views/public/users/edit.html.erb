@@ -1,2 +1,22 @@
-<h1>Public::Users#edit</h1>
-<p>Find me in app/views/public/users/edit.html.erb</p>
+<%= render 'layouts/errors', obj: @user %>
+
+<h1>プロフィール編集</h1>
+<%= form_with model: @user, url: user_path, method: :PATCH do |f| %>
+  <div>
+    <%= f.label :user_image, "変更" %>
+    <%= f.file_field :user_image, accept: "image/*" %>
+  </div>
+  <div>
+    <%= f.label :user_name, "User name" %>
+    <%= f.text_field :user_name %>
+  </div>
+
+  <div>
+    <%= f.label :introduction, "紹介文" %>
+    <%= f.text_area :introduction %>
+  </div>
+
+  <%= f.submit "編集内容を保存する", class: "btn btn-sm btn-primary text-light col-md-3" %>
+
+
+<% end %>
