@@ -24,7 +24,7 @@
   </table>
 
   <div class='row'>
-    <% if @user.id == current_user.id %>
+    <% if @user == current_user %>
       <%= link_to 'Edit', edit_user_path(current_user) %>
     <% end %>
   </div>
