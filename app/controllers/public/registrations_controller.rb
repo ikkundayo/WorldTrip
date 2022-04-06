@@ -61,7 +61,7 @@ class Public::RegistrationsController < Devise::RegistrationsController
   #   super(resource)
   # end
   def configure_sign_up_params
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:email, :encrypted_password, :user_name, :motherland, :gender, :birth_date])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:country_code, :email, :encrypted_password, :user_name, :motherland, :gender, :birth_date])
   end
 
   def after_sign_up_path_for(resource)

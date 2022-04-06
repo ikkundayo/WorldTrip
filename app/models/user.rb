@@ -14,4 +14,8 @@ class User < ApplicationRecord
     end
       user_image.variant(resize_to_limit: [width, height]).processed
   end
+
+  def country
+    Carmen::Country.coded(country_code)
+  end
 end

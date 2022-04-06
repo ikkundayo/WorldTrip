@@ -56,7 +56,7 @@ ActiveRecord::Schema.define(version: 2022_04_05_160637) do
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "user_name", null: false
-    t.string "motherland", null: false
+    t.string "country_code", default: "JP", null: false
     t.string "gender", null: false
     t.date "birth_date", null: false
     t.text "introduction"

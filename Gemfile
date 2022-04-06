@@ -56,3 +56,5 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'devise'
 gem 'image_processing', '~>1.2'
+gem 'carmen-rails', '~> 1.0.0'
+gem 'country_select', require: 'country_select_without_sort_alphabetical'
