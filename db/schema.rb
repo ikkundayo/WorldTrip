@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_06_133555) do
+ActiveRecord::Schema.define(version: 2022_04_07_043906) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -56,6 +56,25 @@ ActiveRecord::Schema.define(version: 2022_04_06_133555) do
     t.integer "user_id", null: false
     t.string "country_code", null: false
     t.text "memory_contents", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.boolean "season", null: false
+    t.string "country_code", null: false
+    t.float "amusement_rate", null: false
+    t.string "amusement_voice"
+    t.float "gourmet_rate", null: false
+    t.string "gourmet_voice"
+    t.float "security_rate", null: false
+    t.string "security_voice"
+    t.float "recommend_rate", null: false
+    t.string "recommend_voice"
+    t.string "original_category"
+    t.float "original_rate"
+    t.string "original_voice"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
