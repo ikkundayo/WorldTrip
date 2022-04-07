@@ -4,6 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  has_many :memories, dependent: :destroy
+
   has_one_attached :user_image
 
 
@@ -15,7 +17,4 @@ class User < ApplicationRecord
       user_image.variant(resize_to_limit: [width, height]).processed
   end
 
-  def country
-    Carmen::Country.coded(country_code)
-  end
 end
