@@ -1,2 +1,28 @@
-<h1>Public::Memories#index</h1>
-<p>Find me in app/views/public/memories/index.html.erb</p>
+<div class='container'>
+  <div class='row'>
+    <div class='col-md-9'>
+      <%= link_to "新規登録",new_memory_path %>
+      <% @memory.each do |memory| %>
+    		<table class='table'>
+    		  <tr>
+            <td>
+              <%= link_to user_path(memory.user_id) do %>
+                <%= image_tag memory.user.get_user_image(50,50) %><br>
+                <%= memory.user.user_name %>
+              <% end %>
+            </td>
+            <td>
+              渡航国:<%= memory.country.name %><br>
+              <%= link_to memory_path(memory.id) do %>
+                <%= memory.memory_contents %><br>
+                <% if memory.memory_image.present?%>
+                  <%= image_tag memory.get_memory_image(1000,1000) %>
+                <% end %>
+              <% end %>
+            </td>
+          </tr>
+        </table>
+      <% end %>
+    </div>
+  </div>
+</div>

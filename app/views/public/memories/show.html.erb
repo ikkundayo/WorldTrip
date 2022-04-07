@@ -1,2 +1,23 @@
-<h1>Public::Memories#show</h1>
-<p>Find me in app/views/public/memories/show.html.erb</p>
+<table class='table'>
+  <tr>
+    <td>
+      <%= link_to user_path(@memory.user_id) do %>
+        <%= image_tag @memory.user.get_user_image(50,50) %><br>
+        <%= @memory.user.user_name %>
+      <% end %>
+    </td>
+    <td>
+      渡航国:<%= @memory.country_code %><br><br>
+      <%= @memory.memory_contents %><br>
+      <% if @memory.memory_image.present?%>
+        <%= image_tag @memory.get_memory_image(1000,1000) %>
+      <% end %>
+    </td>
+
+    <% if @memory.user_id == current_user.id %>
+      <td>
+        <%= link_to "Destroy", memory_path, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger" %>
+      </td>
+    <% end %>
+  </tr>
+</table>
