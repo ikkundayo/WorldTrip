@@ -10,7 +10,7 @@
           </tr>
           <tr>
             <td>総合評価<br>
-            <%= reviews.review_average %>
+            <%= reviews.review_average.round(1) %>
             <div id="average-rate<%= reviews.id%>"></div>
             </td>
           </tr>
