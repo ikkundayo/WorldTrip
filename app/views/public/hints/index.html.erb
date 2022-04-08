@@ -2,6 +2,12 @@
   <div class='row'>
     <div class='col-md-9'>
       <%= link_to "新規登録", new_hint_path %>
+
+      <% @hints.each do |tag|%>
+      <%= render 'public/hints/tag_list', tag_list: tag.tag_list %>
+      <% end %>
+
+
       <% @hints.each do |hint| %>
 	    <table class='table'>
     	  <tr>
@@ -13,6 +19,7 @@
             </td>
             <td>
               対象国:<%= hint.country.name %><br>
+              ジャンル:<%= render 'public/hints/tag_list', tag_list: hint.tag_list %><br>
               <%= link_to hint_path(hint.id) do %>
                 <%= hint.hint_contents %><br>
                 <% if hint.hint_image.present?%>

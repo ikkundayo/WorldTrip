@@ -2,6 +2,7 @@ class Hint < ApplicationRecord
   belongs_to :user
 
   has_one_attached :hint_image
+  acts_as_taggable
 
   def get_hint_image(width, height)
     if hint_image.present?
