@@ -16,9 +16,10 @@
               <%= link_to memory_path(memory.id) do %>
                 <%= memory.memory_contents %><br>
                 <% if memory.memory_image.present?%>
-                  <%= image_tag memory.get_memory_image(1000,1000) %>
+                  <%= image_tag memory.get_memory_image(1000,1000) %><br>
                 <% end %>
               <% end %>
+              <%= time_ago_in_words(memory.created_at) %> ago
             </td>
           </tr>
         </table>

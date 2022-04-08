@@ -1,2 +1,26 @@
-<h1>Public::Hints#show</h1>
-<p>Find me in app/views/public/hints/show.html.erb</p>
+<table class='table'>
+  <tr>
+    <td>
+      <%= link_to user_path(@hint.user_id) do %>
+        <%= image_tag @hint.user.get_user_image(50,50) %><br>
+        <%= @hint.user.user_name %>
+      <% end %>
+    </td>
+    <td>
+      対象国:<%= @hint.country_code %><br><br>
+      <%= @hint.hint_contents %><br>
+      <% if @hint.hint_image.present?%>
+        <%= image_tag @hint.get_hint_image(500,500) %><br>
+      <% end %>
+      <%= time_ago_in_words(@hint.created_at) %> ago
+    </td>
+    <% if user_signed_in? %>
+        <% if @hint.user_id == current_user.id %>
+          <td>
+            <%= link_to "Destroy", hint_path, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger" %>
+          </td>
+        <% end %>
+    <% end %>
+
+  </tr>
+</table>
