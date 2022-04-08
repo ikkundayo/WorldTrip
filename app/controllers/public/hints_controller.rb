@@ -1,6 +1,9 @@
 class Public::HintsController < ApplicationController
   def index
     @hints = Hint.all
+    if params[:tag_name]
+      @hints = Hint.tagged_with("#{params[:tag_name]}")
+    end
   end
 
   def show
@@ -35,6 +38,6 @@ class Public::HintsController < ApplicationController
   private
 
   def hint_params
-    params.require(:hint).permit(:hint_image, :user_id, :country_code, :hint_contents)
+    params.require(:hint).permit(:tag_list, :hint_image, :user_id, :country_code, :hint_contents)
   end
 end
