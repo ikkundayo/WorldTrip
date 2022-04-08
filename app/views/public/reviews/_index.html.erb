@@ -52,21 +52,23 @@
           </tr>
           <% end %>
         </table>
-        <% if reviews.user_id == current_user.id %>
-          <td>
-            <%= link_to "Destroy", review_path(reviews), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger" %>
-          </td>
-          <script>
-            $('#original-rate<%= reviews.id%>').raty({
-              size      : 36,
-              starOff   : '<%= asset_path('star-off.png') %>',
-              starOn    : '<%= asset_path('star-on.png') %>',
-              starHalf : '<%= asset_path('star-half.png') %>',
-              half      : true,
-              readOnly: true,
-              score: <%= reviews.original_rate %>,
-            });
-          </script>
+        <% if user_signed_in? %>
+          <% if reviews.user_id == current_user.id %>
+            <td>
+              <%= link_to "Destroy", review_path(reviews), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger" %>
+            </td>
+            <script>
+              $('#original-rate<%= reviews.id%>').raty({
+                size      : 36,
+                starOff   : '<%= asset_path('star-off.png') %>',
+                starOn    : '<%= asset_path('star-on.png') %>',
+                starHalf : '<%= asset_path('star-half.png') %>',
+                half      : true,
+                readOnly: true,
+                score: <%= reviews.original_rate %>,
+              });
+            </script>
+          <% end %>
         <% end %>
 
 

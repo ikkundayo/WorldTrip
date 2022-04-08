@@ -1,2 +1,29 @@
-<h1>Public::Hints#index</h1>
-<p>Find me in app/views/public/hints/index.html.erb</p>
+<div class='container'>
+  <div class='row'>
+    <div class='col-md-9'>
+      <%= link_to "新規登録", new_hint_path %>
+      <% @hints.each do |hint| %>
+	    <table class='table'>
+    	  <tr>
+            <td>
+              <%= link_to user_path(hint.user_id) do %>
+                <%= image_tag hint.user.get_user_image(50,50) %><br>
+                <%= hint.user.user_name %>
+              <% end %>
+            </td>
+            <td>
+              対象国:<%= hint.country.name %><br>
+              <%= link_to hint_path(hint.id) do %>
+                <%= hint.hint_contents %><br>
+                <% if hint.hint_image.present?%>
+                  <%= image_tag hint.get_hint_image(500,500) %><br>
+                <% end %>
+              <% end %>
+              <%= time_ago_in_words(hint.created_at) %> ago
+            </td>
+          </tr>
+        </table>
+      <% end %>
+    </div>
+  </div>
+</div>

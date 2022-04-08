@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
   has_many :memories, dependent: :destroy
   has_many :reviews, dependent: :destroy
+  has_many :hints, dependent: :destroy
 
   has_one_attached :user_image
 
