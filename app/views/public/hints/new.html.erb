@@ -17,7 +17,8 @@
          <div class="form-group row mt-5">
            <%= f.label :"Genre", class:"col-md-4 col-form-label text-md-right fw-bold" %>
            <div class="col-md-6 px-md-0">
-             <%= f.text_field :tag_list, value: @hint.tag_list %>
+             <%#= f.text_field :tag_list, value: @hint.tag_list %>
+             <%= f.collection_select(:tag_list, @tags, :name, :name) %>
            </div>
          </div>
 

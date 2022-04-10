@@ -10,4 +10,6 @@ class Hint < ApplicationRecord
     end
   end
 
+  validates :hint_contents, presence: true
+
 end

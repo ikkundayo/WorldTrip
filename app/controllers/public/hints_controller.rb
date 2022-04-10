@@ -1,5 +1,6 @@
 class Public::HintsController < ApplicationController
   def index
+    @tags = ActsAsTaggableOn::Tag.order(id: "ASC").pluck(:name)
     @hints = Hint.all
     if params[:tag_name]
       @hints = Hint.tagged_with("#{params[:tag_name]}")
@@ -13,6 +14,7 @@ class Public::HintsController < ApplicationController
   def new
     if user_signed_in?
       @hint = Hint.new
+      @tags = ActsAsTaggableOn::Tag.all
     else
       flash[:notice] = "お手数おかけしますがご投稿いただく際はログインまたは新規登録をお願いします。"
       redirect_to new_user_registration_path

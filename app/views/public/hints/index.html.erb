@@ -3,9 +3,7 @@
     <div class='col-md-9'>
       <%= link_to "新規登録", new_hint_path %>
 
-      <% @hints.each do |tag|%>
-      <%= render 'public/hints/tag_list', tag_list: tag.tag_list %>
-      <% end %>
+      <%= render 'public/hints/tag_list', tag_list: @tags %>
 
 
       <% @hints.each do |hint| %>
