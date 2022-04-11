@@ -9,6 +9,7 @@ class Public::HintsController < ApplicationController
 
   def show
     @hint = Hint.find(params[:id])
+    @hint_comment = Comment.new
   end
 
   def new

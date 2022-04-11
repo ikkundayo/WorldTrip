@@ -13,10 +13,11 @@
       <% if @hint.hint_image.present?%>
         <%= image_tag @hint.get_hint_image(500,500) %><br>
       <% end %>
-      <%= time_ago_in_words(@hint.created_at) %> ago
+      <%= @hint.comments.count %>コメント
       <p class="hint_like_<%= @hint.id %>">
         <%= render "public/hint_likes/like", hint: @hint %>
       </p>
+      <%= time_ago_in_words(@hint.created_at) %> ago
     </td>
     <% if user_signed_in? %>
         <% if @hint.user_id == current_user.id %>
@@ -25,6 +26,25 @@
           </td>
         <% end %>
     <% end %>
-
   </tr>
 </table>
+<div>
+  <p>コメント件数：<%= @hint.comments.count %></p>
+  <% @hint.comments.each do |hint_comment| %>
+    <%= link_to user_path(hint_comment.user_id) do %>
+      <%= image_tag hint_comment.user.get_user_image(50,50) %><br>
+      <%= hint_comment.user.user_name %><br>
+    <% end %>
+    <%= hint_comment.comment %><br>
+    <%= time_ago_in_words(hint_comment.created_at) %> ago<br>
+    <% if hint_comment.user == current_user %>
+    <%= link_to "削除", hint_hint_comment_path(hint_comment.hint_id, hint_comment), method: :delete, data: { confirm: '本当に消しますか？' } %>
+    <% end %><br><br>
+  <% end %>
+</div>
+<div>
+  <%= form_with model: [@hint, @hint_comment], url: hint_hint_comments_path(@hint.id)  do |f| %>
+    <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
+    <%= f.submit "送信する" %>
+  <% end %>
+</div>

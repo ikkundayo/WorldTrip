@@ -5,6 +5,7 @@ class Public::MemoriesController < ApplicationController
 
   def show
     @memory = Memory.find(params[:id])
+    @memory_comment = Comment.new
   end
 
   def new

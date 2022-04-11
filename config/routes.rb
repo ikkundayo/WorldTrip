@@ -26,12 +26,12 @@ Rails.application.routes.draw do
     resources :users, only: [:show, :edit, :update]
     resources :memories, only: [:index, :show, :new, :create, :destroy] do
       resource :memory_likes, only: [:create, :destroy]
+      resources :memory_comments, only: [:create, :destroy]
     end
     resources :hints, only: [:index, :show, :new, :create, :destroy] do
       resource :hint_likes, only: [:create, :destroy]
+      resources :hint_comments, only: [:create, :destroy]
     end
-    resources :favorites, only: [:create, :destroy]
-    resources :comments, only: [:create, :destroy]
     resources :categories, only: [:create]
     resources :reviews, only: [:index, :show, :new, :create, :destroy]
   end

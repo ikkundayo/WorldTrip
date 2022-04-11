@@ -18,12 +18,12 @@
                 <% if memory.memory_image.present?%>
                   <%= image_tag memory.get_memory_image(1000,1000) %><br>
                 <% end %>
+                <%= memory.comments.count%>コメント
               <% end %>
-              <%= time_ago_in_words(memory.created_at) %> ago
               <p class="memory_like_<%= memory.id %>">
                 <%= render "public/memory_likes/like", memory: memory %>
               </p>
-
+              <%= time_ago_in_words(memory.created_at) %> ago
             </td>
           </tr>
         </table>

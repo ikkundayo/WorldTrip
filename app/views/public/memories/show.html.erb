@@ -12,10 +12,10 @@
       <% if @memory.memory_image.present?%>
         <%= image_tag @memory.get_memory_image(1000,1000) %><br>
       <% end %>
-      <%= time_ago_in_words(@memory.created_at) %> ago
       <p class="memory_like_<%= @memory.id %>">
         <%= render "public/memory_likes/like", memory: @memory %>
       </p>
+      <%= time_ago_in_words(@memory.created_at) %> ago
     </td>
 
     <% if user_signed_in? %>
@@ -25,6 +25,25 @@
         </td>
       <% end %>
     <% end %>
-
   </tr>
 </table>
+<div>
+  <p>コメント件数：<%= @memory.comments.count %></p>
+  <% @memory.comments.each do |memory_comment| %>
+    <%= link_to user_path(memory_comment.user_id) do %>
+      <%= image_tag memory_comment.user.get_user_image(50,50) %><br>
+      <%= memory_comment.user.user_name %><br>
+    <% end %>
+    <%= memory_comment.comment %><br>
+    <%= time_ago_in_words(memory_comment.created_at) %> ago<br>
+    <% if memory_comment.user == current_user %>
+    <%= link_to "削除", memory_memory_comment_path(memory_comment.memory_id, memory_comment), method: :delete, data: { confirm: '本当に消しますか？' } %>
+    <% end %><br><br>
+  <% end %>
+</div>
+<div>
+  <%= form_with model: [@memory, @memory_comment], url: memory_memory_comments_path(@memory.id)  do |f| %>
+    <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
+    <%= f.submit "送信する" %>
+  <% end %>
+</div>
