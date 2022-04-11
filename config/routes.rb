@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
-  
+
   devise_for :admins, skip: [:registrations, :passwords], controllers: {
   sessions: 'admin/sessions'
   }
-  
+
   namespace :admin do
     resources :users, only: [:index, :update]
     resources :countries, except: [:show ]
@@ -25,7 +25,7 @@ Rails.application.routes.draw do
     get '/about' => 'homes#about'
     resources :users, only: [:show, :edit, :update]
     resources :memories, only: [:index, :show, :new, :create, :destroy] do
-      resources :likes, only: [:create, :destroy]
+      resource :likes, only: [:create, :destroy]
     end
     resources :hints, only: [:index, :show, :new, :create, :destroy]
     resources :favorites, only: [:create, :destroy]

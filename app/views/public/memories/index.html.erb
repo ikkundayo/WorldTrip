@@ -20,18 +20,10 @@
                 <% end %>
               <% end %>
               <%= time_ago_in_words(memory.created_at) %> ago
-              <!--<div id="likes_buttons<%= memory.id %>">-->
-              <!--  <%#= render partial: 'public/likes/like', locals: { post: memory, like: memory} %>-->
-              <!--</div>-->
-              <% if memory.liked_by?(current_user) %>
-                <%= link_to memory_like_path(memory_id: memory.id, id: memory.likes[0].id), method: :delete, remote: true do %>
-                ♥<%= memory.likes.count %> いいね
-                <% end %>
-              <% else %>
-                <%= link_to memory_likes_path(memory.id), method: :post, remote: true do %>
-                  ♡<%= memory.likes.count %>いいね
-                <% end %>
-              <% end %>
+              
+              <div id="memory_like_<%= memory.id %>">
+                <%= render "public/likes/like", memory: memory %>
+              </div>
             </td>
           </tr>
         </table>
