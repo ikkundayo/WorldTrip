@@ -7,7 +7,6 @@ class Public::MemoryCommentsController < ApplicationController
       comment = current_user.comments.new(memory_comment_params)
       comment.memory_id = @memory.id
       if comment.save
-        redirect_to memory_path(@memory)
       else
         flash[:notice] = "空白では投稿できません"
         redirect_to memory_path(@memory)
@@ -20,7 +19,6 @@ class Public::MemoryCommentsController < ApplicationController
 
   def destroy
     Comment.find(params[:id]).destroy
-    redirect_to memory_path(@memory)
   end
 
   private

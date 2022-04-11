@@ -1,0 +1,4 @@
+<%= form_with model: [memory, memory_comment], url: memory_memory_comments_path(memory.id), local: false  do |f| %>
+  <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに", class: "textarea"  %>
+  <%= f.submit "送信する" %>
+<% end %>

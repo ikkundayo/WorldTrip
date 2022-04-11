@@ -6,7 +6,6 @@ before_action :hint_find
       comment = current_user.comments.new(hint_comment_params)
       comment.hint_id = @hint.id
       if comment.save
-        redirect_to hint_path(@hint)
       else
         flash[:notice] = "空白では投稿できません"
         redirect_to hint_path(@hint)
@@ -19,7 +18,6 @@ before_action :hint_find
 
   def destroy
     Comment.find(params[:id]).destroy
-    redirect_to hint_path(@hint)
   end
 
   private

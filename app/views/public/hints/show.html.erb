@@ -29,22 +29,13 @@
   </tr>
 </table>
 <div>
-  <p>コメント件数：<%= @hint.comments.count %></p>
-  <% @hint.comments.each do |hint_comment| %>
-    <%= link_to user_path(hint_comment.user_id) do %>
-      <%= image_tag hint_comment.user.get_user_image(50,50) %><br>
-      <%= hint_comment.user.user_name %><br>
-    <% end %>
-    <%= hint_comment.comment %><br>
-    <%= time_ago_in_words(hint_comment.created_at) %> ago<br>
-    <% if hint_comment.user == current_user %>
-    <%= link_to "削除", hint_hint_comment_path(hint_comment.hint_id, hint_comment), method: :delete, data: { confirm: '本当に消しますか？' } %>
-    <% end %><br><br>
-  <% end %>
+  <p class="comment-count">
+    <%= render "public/hint_comments/count", hint: @hint %>
+  </p>
+  <div class="comment-index">
+    <%= render "public/hint_comments/index", hint: @hint %>
+  </div>
 </div>
 <div>
-  <%= form_with model: [@hint, @hint_comment], url: hint_hint_comments_path(@hint.id)  do |f| %>
-    <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
-    <%= f.submit "送信する" %>
-  <% end %>
+  <%= render "public/hint_comments/form", hint: @hint, hint_comment: @hint_comment %>
 </div>

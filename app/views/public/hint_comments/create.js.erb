@@ -1,0 +1,3 @@
+$('.textarea').val("")
+$('.comment-count').html("<%= j(render 'public/hint_comments/count', hint: @hint) %>")
+$('.comment-index').html("<%= j(render 'public/hint_comments/index', hint: @hint) %>")
