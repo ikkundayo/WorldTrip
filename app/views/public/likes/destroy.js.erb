@@ -1,0 +1,1 @@
+$('#likes_buttons<%= @memory.id %>').html("<%= j(render partial: 'public/likes/like', locals: {memory: @memory, like: @memory}) %>");
