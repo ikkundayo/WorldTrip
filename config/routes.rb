@@ -25,9 +25,11 @@ Rails.application.routes.draw do
     get '/about' => 'homes#about'
     resources :users, only: [:show, :edit, :update]
     resources :memories, only: [:index, :show, :new, :create, :destroy] do
-      resource :likes, only: [:create, :destroy]
+      resource :memory_likes, only: [:create, :destroy]
     end
-    resources :hints, only: [:index, :show, :new, :create, :destroy]
+    resources :hints, only: [:index, :show, :new, :create, :destroy] do
+      resource :hint_likes, only: [:create, :destroy]
+    end
     resources :favorites, only: [:create, :destroy]
     resources :comments, only: [:create, :destroy]
     resources :categories, only: [:create]

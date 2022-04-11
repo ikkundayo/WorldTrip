@@ -1,9 +1,0 @@
-<% if memory.liked_by?(current_user) %>
-  <%= link_to memory_likes_path(memory.id), method: :delete, remote: true do %>
-  ♥<%= memory.likes.count %> いいね
-  <% end %>
-<% else %>
-  <%= link_to memory_likes_path(memory.id), method: :post, remote: true do %>
-    ♡<%= memory.likes.count %>いいね
-  <% end %>
-<% end %>

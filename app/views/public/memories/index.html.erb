@@ -20,10 +20,10 @@
                 <% end %>
               <% end %>
               <%= time_ago_in_words(memory.created_at) %> ago
-              
-              <div id="memory_like_<%= memory.id %>">
-                <%= render "public/likes/like", memory: memory %>
-              </div>
+              <p class="memory_like_<%= memory.id %>">
+                <%= render "public/memory_likes/like", memory: memory %>
+              </p>
+
             </td>
           </tr>
         </table>

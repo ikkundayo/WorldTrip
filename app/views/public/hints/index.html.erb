@@ -25,6 +25,9 @@
                 <% end %>
               <% end %>
               <%= time_ago_in_words(hint.created_at) %> ago
+              <p class="hint_like_<%= hint.id %>">
+                <%= render "public/hint_likes/like", hint: hint %>
+              </p>
             </td>
           </tr>
         </table>

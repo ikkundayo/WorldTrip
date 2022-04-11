@@ -1,8 +1,13 @@
 class Hint < ApplicationRecord
   belongs_to :user
+  has_many :likes, dependent: :destroy
 
   has_one_attached :hint_image
   acts_as_taggable
+
+  def liked_by?(user)
+    likes.exists?(user_id: user.id)
+  end
 
   def get_hint_image(width, height)
     if hint_image.present?

@@ -13,6 +13,9 @@
         <%= image_tag @memory.get_memory_image(1000,1000) %><br>
       <% end %>
       <%= time_ago_in_words(@memory.created_at) %> ago
+      <p class="memory_like_<%= @memory.id %>">
+        <%= render "public/memory_likes/like", memory: @memory %>
+      </p>
     </td>
 
     <% if user_signed_in? %>
