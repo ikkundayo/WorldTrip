@@ -1,0 +1,130 @@
+<div class="row justify-content-center">
+  <div class="col-md-6">
+    <h2 class="text-center">マイレビュー一覧</h2>
+    <%=link_to "レビュー登録", new_review_path %>
+    <% reviews.each do |reviews| %>
+      <table class='table'>
+        <tr>
+          <td>国image<br>
+            <%= reviews.country.name %>
+          </td>
+        </tr>
+        <tr>
+          <td>総合評価 <%= reviews.review_average.round(1) %><br>
+          <div id="average-rate<%= reviews.id%>"></div>
+          </td>
+        </tr>
+        <tr>
+          <td>楽しさ・娯楽<br>
+            <span id="amusement-rate<%= reviews.id%>"></span>
+            <%= reviews.amusement_rate %><br>
+            <%= reviews.amusement_voice %>
+          </td>
+        </tr>
+        <tr>
+          <td>グルメ<br>
+            <span id="gourmet-rate<%= reviews.id%>"></span>
+            <%= reviews.gourmet_rate %><br>
+            <%= reviews.gourmet_voice %>
+          </td>
+        </tr>
+        <tr>
+          <td>治安<br>
+            <span id="security-rate<%= reviews.id%>"></span>
+            <%= reviews.security_rate %><br>
+            <%= reviews.security_voice %>
+          </td>
+        </tr>
+        <tr>
+          <td>おすすめ度<br>
+            <span id="recommend-rate<%= reviews.id%>"></span>
+            <%= reviews.recommend_rate %><br>
+            <%= reviews.recommend_voice %>
+          </td>
+        </tr>
+        <% if reviews.original_category.present?%>
+        <tr>
+          <td><%= reviews.original_category %><br>
+            <span id="original-rate<%= reviews.id%>"></span>
+            <%= reviews.original_rate %><br>
+            <%= reviews.original_voice %>
+          </td>
+        </tr>
+        <% end %>
+      </table>
+      <%= time_ago_in_words(reviews.created_at) %> ago<br>
+      <% if user_signed_in? %>
+        <% if reviews.user_id == current_user.id %>
+          <td>
+            <%= link_to "Destroy", review_path(reviews), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger" %>
+          </td>
+          <script>
+            $('#original-rate<%= reviews.id%>').raty({
+              size      : 36,
+              starOff   : '<%= asset_path('star-off.png') %>',
+              starOn    : '<%= asset_path('star-on.png') %>',
+              starHalf : '<%= asset_path('star-half.png') %>',
+              half      : true,
+              readOnly: true,
+              score: <%= reviews.original_rate %>,
+            });
+          </script>
+        <% end %>
+      <% end %>
+
+
+      <script>
+        $('#average-rate<%= reviews.id%>').raty({
+        size      : 36,
+        starOff   : '<%= asset_path('star-off.png') %>',
+        starOn    : '<%= asset_path('star-on.png') %>',
+        starHalf : '<%= asset_path('star-half.png') %>',
+        half      : true,
+        readOnly: true,
+        score: <%= reviews.review_average %>,
+        });
+
+
+        $('#amusement-rate<%= reviews.id%>').raty({
+          size      : 36,
+          starOff   : '<%= asset_path('star-off.png') %>',
+          starOn    : '<%= asset_path('star-on.png') %>',
+          starHalf : '<%= asset_path('star-half.png') %>',
+          half      : true,
+          readOnly: true,
+          score: <%= reviews.amusement_rate %>,
+        });
+
+        $('#gourmet-rate<%= reviews.id%>').raty({
+          size      : 36,
+          starOff   : '<%= asset_path('star-off.png') %>',
+          starOn    : '<%= asset_path('star-on.png') %>',
+          starHalf : '<%= asset_path('star-half.png') %>',
+          half      : true,
+          readOnly: true,
+          score: <%= reviews.gourmet_rate %>,
+        });
+
+        $('#security-rate<%= reviews.id%>').raty({
+          size      : 36,
+          starOff   : '<%= asset_path('star-off.png') %>',
+          starOn    : '<%= asset_path('star-on.png') %>',
+          starHalf : '<%= asset_path('star-half.png') %>',
+          half      : true,
+          readOnly: true,
+          score: <%= reviews.security_rate %>,
+        });
+
+        $('#recommend-rate<%= reviews.id%>').raty({
+          size      : 36,
+          starOff   : '<%= asset_path('star-off.png') %>',
+          starOn    : '<%= asset_path('star-on.png') %>',
+          starHalf : '<%= asset_path('star-half.png') %>',
+          half      : true,
+          readOnly: true,
+          score: <%= reviews.recommend_rate %>,
+        });
+      </script>
+    <% end %>
+  </div>
+</div>

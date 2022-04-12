@@ -101,6 +101,7 @@ ActiveRecord::Schema.define(version: 2022_04_11_111802) do
     t.string "original_category"
     t.float "original_rate"
     t.string "original_voice"
+    t.float "review_average"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

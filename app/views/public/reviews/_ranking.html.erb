@@ -1,0 +1,19 @@
+<h2 class="text-center"><%= user.user_name %>さんのベスト3!</h2>
+<% ranking.each.with_index(1) do |reviews, index| %>
+  <table class='table'>
+    <tr>
+      <th><%= index %>位 <%= reviews.country.name %> <span class="review_average<%= reviews.id%>"></span><%= reviews.review_average.round(1) %> </th>
+    </tr>
+  </table>
+  <script>
+    $('.review_average<%= reviews.id%>').raty({
+    size      : 36,
+    starOff   : '<%= asset_path('star-off.png') %>',
+    starOn    : '<%= asset_path('star-on.png') %>',
+    starHalf : '<%= asset_path('star-half.png') %>',
+    half      : true,
+    readOnly: true,
+    score: <%= reviews.review_average %>,
+    });
+  </script>
+<% end %>

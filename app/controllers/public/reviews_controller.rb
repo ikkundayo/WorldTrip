@@ -17,6 +17,8 @@ class Public::ReviewsController < ApplicationController
   def create
     @review = Review.new(review_params)
     @review.user_id = current_user.id
+    @total = @review.review_averages
+    @review.review_average = @total
     if @review.save
       redirect_to user_path(current_user)
     else

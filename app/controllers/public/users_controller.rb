@@ -2,7 +2,15 @@ class Public::UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @user_age = (Date.today.strftime("%Y%m%d").to_i - @user.birth_date.strftime("%Y%m%d").to_i)/10000
+    @ranking = @user.reviews.order(review_average: :desc).limit(3)
     @reviews = @user.reviews
+
+    @memory = @user.memories
+    
+    @hint = @user.hints
+    if params[:tag_name]
+      @hint = Hint.tagged_with("#{params[:tag_name]}")
+    end
 
 
     # @amusement = @reviews.average(:amusement_rate)

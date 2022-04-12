@@ -1,0 +1,29 @@
+<div class='row justify-content-center'>
+    <div class='col-md-6'>
+      <h2 class="text-center">思い出一覧</h2>
+      <% memory.each do |memory| %>
+    		<table class='table'>
+    		  <tr>
+            <td>
+              <%= image_tag memory.user.get_user_image(50,50) %><br>
+              <%= memory.user.user_name %>
+            </td>
+            <td>
+              渡航国:<%= memory.country.name %><br>
+              <%= link_to memory_path(memory.id) do %>
+                <%= memory.memory_contents %><br>
+                <% if memory.memory_image.present?%>
+                  <%= image_tag memory.get_memory_image(1000,1000) %><br>
+                <% end %>
+                <%= memory.comments.count%>コメント
+              <% end %>
+              <p class="memory_like_<%= memory.id %>">
+                <%= render "public/memory_likes/like", memory: memory %>
+              </p>
+              <%= time_ago_in_words(memory.created_at) %> ago
+            </td>
+          </tr>
+        </table>
+      <% end %>
+    </div>
+  </div>

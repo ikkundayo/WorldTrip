@@ -16,6 +16,8 @@ class CreateReviews < ActiveRecord::Migration[6.1]
       t.string :original_category
       t.float  :original_rate
       t.string :original_voice
+      t.float  :review_average
+
 
       t.timestamps
     end

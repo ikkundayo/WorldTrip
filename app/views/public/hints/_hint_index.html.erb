@@ -1,0 +1,30 @@
+<div class='row justify-content-center'>
+  <div class='col-md-6'>
+    <h2 class="text-center">ヒント一覧</h2>
+    <% hint.each do |hint| %>
+	    <table class='table'>
+    	  <tr>
+          <td>
+            <%= image_tag hint.user.get_user_image(50,50) %><br>
+            <%= hint.user.user_name %>
+          </td>
+          <td>
+            対象国:<%= hint.country.name %><br>
+            ジャンル:<%= render 'public/hints/tag_list', tag_list: hint.tag_list %><br>
+            <%= link_to hint_path(hint.id) do %>
+              <%= hint.hint_contents %><br>
+              <% if hint.hint_image.present?%>
+                <%= image_tag hint.get_hint_image(500,500) %><br>
+              <% end %>
+              <%= hint.comments.count%>コメント
+            <% end %>
+            <p class="hint_like_<%= hint.id %>">
+              <%= render "public/hint_likes/like", hint: hint %>
+            </p>
+            <%= time_ago_in_words(hint.created_at) %> ago
+          </td>
+        </tr>
+      </table>
+    <% end %>
+  </div>
+</div>
