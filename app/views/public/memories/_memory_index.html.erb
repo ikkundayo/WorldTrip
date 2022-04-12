@@ -9,7 +9,7 @@
               <%= memory.user.user_name %>
             </td>
             <td>
-              渡航国:<%= memory.country.name %><br>
+              渡航国:<%= memory.country_code %><br>
               <%= link_to memory_path(memory.id) do %>
                 <%= memory.memory_contents %><br>
                 <% if memory.memory_image.present?%>

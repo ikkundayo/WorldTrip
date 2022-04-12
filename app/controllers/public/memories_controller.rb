@@ -11,6 +11,7 @@ class Public::MemoriesController < ApplicationController
   def new
     if user_signed_in?
       @memory = Memory.new
+      @review = current_user.reviews
     else
       flash[:notice] = "お手数おかけしますがご投稿いただく際はログインまたは新規登録をお願いします。"
       redirect_to new_user_registration_path

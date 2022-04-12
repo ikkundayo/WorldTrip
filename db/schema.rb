@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_11_111802) do
+ActiveRecord::Schema.define(version: 2022_04_12_123754) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -61,6 +61,12 @@ ActiveRecord::Schema.define(version: 2022_04_11_111802) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "countries", force: :cascade do |t|
+    t.string "country_name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "hints", force: :cascade do |t|
     t.integer "user_id", null: false
     t.string "country_code", null: false
@@ -72,10 +78,10 @@ ActiveRecord::Schema.define(version: 2022_04_11_111802) do
   create_table "likes", force: :cascade do |t|
     t.integer "memory_id"
     t.integer "user_id"
+    t.integer "hint_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "hint_id"
-    t.index ["user_id", "memory_id"], name: "index_likes_on_user_id_and_memory_id", unique: true
+    t.index ["user_id", "memory_id", "hint_id"], name: "index_likes_on_user_id_and_memory_id_and_hint_id", unique: true
   end
 
   create_table "memories", force: :cascade do |t|

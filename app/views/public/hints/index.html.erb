@@ -16,7 +16,7 @@
               <% end %>
             </td>
             <td>
-              対象国:<%= hint.country.name %><br>
+              対象国:<%= hint.country_code %><br>
               ジャンル:<%= render 'public/hints/tag_list', tag_list: hint.tag_list %><br>
               <%= link_to hint_path(hint.id) do %>
                 <%= hint.hint_contents %><br>

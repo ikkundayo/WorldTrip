@@ -3,9 +3,10 @@ class CreateLikes < ActiveRecord::Migration[6.1]
     create_table :likes do |t|
       t.integer :memory_id
       t.integer :user_id
+      t.integer :hint_id
 
       t.timestamps
-      t.index [:user_id, :memory_id], unique: true
+      t.index [:user_id, :memory_id, :hint_id], unique: true
     end
   end
 end

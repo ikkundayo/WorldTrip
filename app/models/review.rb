@@ -2,7 +2,7 @@ class Review < ApplicationRecord
   belongs_to :user
 
   validates :season, inclusion: { in: [true, false] }
-  validates :country_code, uniqueness: true
+  validates :country_code, uniqueness: { scope: [:country_code, :user_id] }
 
   def review_averages
     if original_rate == nil

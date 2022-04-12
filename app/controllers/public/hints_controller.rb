@@ -16,6 +16,7 @@ class Public::HintsController < ApplicationController
     if user_signed_in?
       @hint = Hint.new
       @tags = ActsAsTaggableOn::Tag.all
+      @country = Country.all
     else
       flash[:notice] = "お手数おかけしますがご投稿いただく際はログインまたは新規登録をお願いします。"
       redirect_to new_user_registration_path
