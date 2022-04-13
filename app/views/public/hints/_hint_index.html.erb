@@ -10,7 +10,11 @@
             <%= hint.user.user_name %>
           </td>
           <td>
-            対象国:<%= hint.country_code %><br>
+            対象国:<%= hint.country_code %>
+
+            <% country = Country.find_by(name_jp: hint.country_code) %>
+              <i class="flag-icon flag-icon-<%= country.code.downcase %>"></i><br>
+
             ジャンル:<%= render 'public/hints/tag_list', tag_list: hint.tag_list %><br>
             <%= link_to hint_path(hint.id) do %>
               <%= hint.hint_contents %><br>

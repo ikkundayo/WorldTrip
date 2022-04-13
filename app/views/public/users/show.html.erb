@@ -3,7 +3,9 @@
     <div class="col-md-5">
       <h1>マイページ</h1>
       <table class='table'>
-        <tr><%= image_tag @user.get_user_image(100,100) %></tr>
+        <tr><%= image_tag @user.get_user_image(100,100) %><br>
+          <i class="flag-icon flag-icon-<%= @user_logo.code.downcase %>"></i>
+        </tr>
         <tr>
       	  <th>name</th>
       	  <th><%= @user.user_name %></th>

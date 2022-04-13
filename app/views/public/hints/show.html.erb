@@ -4,10 +4,12 @@
       <%= link_to user_path(@hint.user_id) do %>
         <%= image_tag @hint.user.get_user_image(50,50) %><br>
         <%= @hint.user.user_name %>
+        <i class="flag-icon flag-icon-<%= @country_user_logo.code.downcase %>"></i>
       <% end %>
     </td>
     <td>
-      対象国:<%= @hint.country_code %><br>
+      対象国:<%= @hint.country_code %>
+      <i class="flag-icon flag-icon-<%= @country_logo.code.downcase %>"></i><br>
       ジャンル:<%= @hint.tag_list %><br><br>
       <%= @hint.hint_contents %><br>
       <% if @hint.hint_image.present?%>

@@ -6,7 +6,10 @@
     <% reviews.each do |reviews| %>
       <table class='table'>
         <tr>
-          <td>国image<br>
+
+          <% country = Country.find_by(name_jp: reviews.country_code) %>
+          <td><i class="flag-icon flag-icon-<%= country.code.downcase %>"></i><br>
+
             <%= reviews.country_code %>
           </td>
         </tr>

@@ -1,7 +1,11 @@
 class CreateCountries < ActiveRecord::Migration[6.1]
   def change
     create_table :countries do |t|
-      t.string :country_name
+      t.string :code
+      t.string :name_en
+      t.string :name_jp
+      t.string :area
+
       # t.string :asia
       # t.string :oceania
       # t.string :north_america

@@ -19,22 +19,7 @@
          <div class="form-group row mt-5">
            <%= f.label :"Country", class:"col-md-3 col-form-label text-md-right fw-bold" %>
            <div class="col-md-6 px-md-0">
-             <%= f.label :"Country" %>
-             <%= f.collection_select(:country_code, Country.all, :country_name, :country_name, selected: "日本") %>
-             <%#= f.label :"Asia" %>
-             <%#= f.collection_select(:country_code, @country, :asia, :asia, prompt: "") %>
-             <%#= f.label :"Oceania" %>
-             <%#= f.collection_select(:country_code, @country, :oceania, :oceania) %>
-             <%#= f.label :"North America" %>
-             <%#= f.collection_select(:country_code, @country, :north_america, :north_america) %>
-             <%#= f.label :"Latin America" %>
-             <%#= f.collection_select(:country_code, @country, :latin_america, :latin_america) %>
-             <%#= f.label :"Europe" %>
-             <%#= f.collection_select(:country_code, @country, :europe, :europe) %>
-             <%#= f.label :"Middle East" %>
-             <%#= f.collection_select(:country_code, @country, :middle_east, :middle_east) %>
-             <%#= f.label :"Africa" %>
-             <%#= f.collection_select(:country_code, @country, :africa, :africa) %>
+             <%= f.collection_select(:country_code, Country.all, :name_jp, :name_jp, selected: "日本") %>
            </div>
          </div>
 

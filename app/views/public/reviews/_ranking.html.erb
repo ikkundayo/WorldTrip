@@ -2,7 +2,8 @@
 <% ranking.each.with_index(1) do |reviews, index| %>
   <table class='table'>
     <tr>
-      <th><%= index %>位 <%= reviews.country_code %> <span class="review_average<%= reviews.id%>"></span><%= reviews.review_average.round(1) %> </th>
+      <% country = Country.find_by(name_jp: reviews.country_code) %>
+      <th><%= index %>位  <i class="flag-icon flag-icon-<%= country.code.downcase %>"></i><%= reviews.country_code %> <span class="review_average<%= reviews.id%>"></span><%= reviews.review_average.round(1) %> </th>
     </tr>
   </table>
   <script>

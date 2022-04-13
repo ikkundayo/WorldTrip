@@ -9,6 +9,8 @@ class Public::HintsController < ApplicationController
 
   def show
     @hint = Hint.find(params[:id])
+    @country_logo = Country.find_by(name_jp: @hint.country_code)
+    @country_user_logo = Country.find_by(name_jp: @hint.user.country_code)
     @hint_comment = Comment.new
   end
 
@@ -16,7 +18,6 @@ class Public::HintsController < ApplicationController
     if user_signed_in?
       @hint = Hint.new
       @tags = ActsAsTaggableOn::Tag.all
-      @country = Country.all
     else
       flash[:notice] = "お手数おかけしますがご投稿いただく際はログインまたは新規登録をお願いします。"
       redirect_to new_user_registration_path

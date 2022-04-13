@@ -10,7 +10,7 @@
          <div class="form-group row mt-5">
            <%= f.label :"Country", class:"col-md-4 col-form-label text-md-right fw-bold" %>
            <div class="col-md-6 px-md-0">
-             <%= f.collection_select(:country_code, @country, :country_name, :country_name, selected: "日本") %>
+             <%= f.collection_select(:country_code, Country.all, :name_jp, :name_jp, selected: "日本") %>
            </div>
          </div>
 

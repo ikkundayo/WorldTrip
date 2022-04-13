@@ -43,3 +43,9 @@
   box-shadow: 0 4px 7px 0 rgba(0, 0, 0, 0.5);
   transform: translateY(-1px);
 }
+
+.flag-icon {
+      font-size: 25px;
+      border: solid 1px  black;
+      }
+

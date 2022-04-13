@@ -5,6 +5,8 @@ class Public::MemoriesController < ApplicationController
 
   def show
     @memory = Memory.find(params[:id])
+    @country_logo = Country.find_by(name_jp: @memory.country_code)
+    @country_user_logo = Country.find_by(name_jp: @memory.user.country_code)
     @memory_comment = Comment.new
   end
 

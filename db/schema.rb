@@ -62,7 +62,10 @@ ActiveRecord::Schema.define(version: 2022_04_12_123754) do
   end
 
   create_table "countries", force: :cascade do |t|
-    t.string "country_name"
+    t.string "code"
+    t.string "name_en"
+    t.string "name_jp"
+    t.string "area"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

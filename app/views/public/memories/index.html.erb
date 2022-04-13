@@ -9,10 +9,16 @@
               <%= link_to user_path(memory.user_id) do %>
                 <%= image_tag memory.user.get_user_image(50,50) %><br>
                 <%= memory.user.user_name %>
+                <% country = Country.find_by(name_jp: memory.user.country_code) %>
+                <i class="flag-icon flag-icon-<%= country.code.downcase %>"></i>
               <% end %>
             </td>
             <td>
-              渡航国:<%= memory.country_code %><br>
+              渡航国:<%= memory.country_code %>
+
+              <% country = Country.find_by(name_jp: memory.country_code) %>
+              <i class="flag-icon flag-icon-<%= country.code.downcase %>"></i><br>
+
               <%= link_to memory_path(memory.id) do %>
                 <%= memory.memory_contents %><br>
                 <% if memory.memory_image.present?%>

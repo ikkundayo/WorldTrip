@@ -10,7 +10,11 @@
               <%= memory.user.user_name %>
             </td>
             <td>
-              渡航国:<%= memory.country_code %><br>
+              渡航国:<%= memory.country_code %>
+             
+              <% country = Country.find_by(name_jp: memory.country_code) %>
+              <i class="flag-icon flag-icon-<%= country.code.downcase %>"></i><br>
+              
               <%= link_to memory_path(memory.id) do %>
                 <%= memory.memory_contents %><br>
                 <% if memory.memory_image.present?%>
