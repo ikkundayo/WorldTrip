@@ -37,15 +37,48 @@
   </div>
 </div>
 
-
 <div class="container">
-  <%= render 'public/memories/memory_index', memory: @memory %>
+  <div class="row justify-content-center">
+    <div class="col-md-10">
+      <ul class="tab-list list-unstyled">
+        <li class="tab tab-active">
+          レビュー
+        </li>
+        <li class="tab">
+          思い出
+        </li>
+        <li class="tab">
+          ヒント
+        </li>
+      </ul>
+    </div>
+  </div>
 </div>
 
-<div class="container">
-  <%= render 'public/reviews/review_index', reviews: @reviews %>
+<div class="tabbox-contents">
+  <div class="tabbox box-show">
+    <%= render 'public/reviews/review_index', reviews: @reviews %>
+  </div>
+
+  <div class="tabbox">
+    <%= render 'public/memories/memory_index', memory: @memory %>
+  </div>
+
+  <div class="tabbox">
+    <%= render 'public/hints/hint_index', hint: @hint %>
+  </div>
 </div>
 
-<div class="container">
-  <%= render 'public/hints/hint_index', hint: @hint %>
-</div>
+<script>
+  $(document).on('turbolinks:load', function() {
+    $(function() {
+      $('.tab').click(function(){
+        $('.tab-active').removeClass('tab-active');
+        $(this).addClass('tab-active');
+        $('.box-show').removeClass('box-show');
+        const index = $(this).index();
+        $('.tabbox').eq(index).addClass('box-show');
+      });
+    });
+  });
+</script>
