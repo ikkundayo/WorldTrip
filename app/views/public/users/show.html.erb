@@ -1,7 +1,12 @@
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-md-5">
-      <h1>マイページ</h1>
+      <% if @user == current_user %>
+        <h1>マイページ</h1>
+      <% else %>
+        <h1><%= @user.user_name %>さんのページ</h1>
+      <% end %>
+
       <table class='table'>
         <tr><%= image_tag @user.get_user_image(100,100) %><br>
           <i class="flag-icon flag-icon-<%= @user_logo.code.downcase %>"></i>
@@ -26,6 +31,32 @@
       	  <th>Introduction</th>
       	  <th><%= @user.introduction %></th>
         </tr>
+
+        <% if user_signed_in? %>
+          <% if @user != current_user %>
+          <tr>
+        	  <th>
+        	    <% if @user.is_followed_by?(current_user) %>
+                <%= link_to user_relationships_path(@user), method: :delete do %>
+                  <putton class="btn btn-danger">フォローを外す</putton>
+                <% end %>
+              <% else %>
+                <%= link_to user_relationships_path(@user), method: :post do %>
+                  <putton class="btn btn-primary">フォロー</putton>
+                <% end %>
+              <% end %>
+            </th>
+          </tr>
+          <% end %>
+        <% end %>
+
+          <tr>
+            <th>follows</th>
+            <th><%= link_to @user.followers.count, followers_user_path(@user) %></th>
+            <th>followed</th>
+            <th><%= link_to @user.followeds.count, followed_user_path(@user) %></th>
+          </tr>
+
       </table>
       <div>
         <% if @user == current_user %>

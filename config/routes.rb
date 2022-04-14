@@ -23,7 +23,12 @@ Rails.application.routes.draw do
   scope module: :public do
     root 'homes#top'
     get '/about' => 'homes#about'
-    resources :users, only: [:show, :edit, :update]
+    resources :users, only: [:show, :edit, :update] do
+      resource :relationships, only: [:create, :destroy]
+      get :followers, on: :member
+      get :followed, on: :member
+    end
+      
     resources :memories, only: [:index, :show, :new, :create, :destroy] do
       resource :memory_likes, only: [:create, :destroy]
       resources :memory_comments, only: [:create, :destroy]
