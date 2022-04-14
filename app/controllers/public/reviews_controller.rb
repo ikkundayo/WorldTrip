@@ -17,6 +17,7 @@ class Public::ReviewsController < ApplicationController
   def create
     @review = Review.new(review_params)
     @review.user_id = current_user.id
+    @review.country_code = Country.find(params[:review][:country_id]).name_jp
     @total = @review.review_averages
     @review.review_average = @total
     if @review.save
@@ -35,7 +36,7 @@ class Public::ReviewsController < ApplicationController
   def review_params
     params.require(:review).permit(
       :user_id,
-      :country_code,
+      :country_id,
       :amusement_rate,
       :amusement_voice,
       :gourmet_rate,

@@ -15,14 +15,8 @@ class Public::UsersController < ApplicationController
       @hint = Hint.tagged_with("#{params[:tag_name]}")
     end
 
+    @map = @user.reviews
 
-    # @amusement = @reviews.average(:amusement_rate)
-    # @gourmet = @reviews.average(:gourmet_rate)
-    # @security = @reviews.average(:security_rate)
-    # @recommend = @reviews.average(:recommend_rate)
-    # @original = @reviews.average(:original_rate)
-
-    # @average = (@amusement + @gourmet + @security + @recommend + @original) / 5
 
 
   end

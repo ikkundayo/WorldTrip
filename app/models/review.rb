@@ -1,5 +1,6 @@
 class Review < ApplicationRecord
   belongs_to :user
+  belongs_to :country
 
   validates :season, inclusion: { in: [true, false] }
   validates :country_code, uniqueness: { scope: [:country_code, :user_id] }

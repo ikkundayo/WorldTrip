@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-10">
+      <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+          <script type="text/javascript">
+            google.charts.load('current', {
+              'packages':['geochart'],
+              'mapsApiKey': 'AIzaSyCmkRT6Jq9wnHLusWz2s5b_Gx9dgMlO2kU'
+            });
+            google.charts.setOnLoadCallback(drawRegionsMap);
+
+            function drawRegionsMap() {
+
+              const country = [
+                <% if @map.present? %>
+                  <% @map.each do |v| %>
+                    ['Country', 'Name_JP'],
+                    ['<%= v.country.name_en %>', '<%= v.country.name_jp %>'],
+                  <% end %>
+                <% else %>
+                  ['Country']
+                <% end %>
+                  ];
+
+              const data = google.visualization.arrayToDataTable(country);
+              //描画オプション：描画地域などを設定できる。
+              const options = {};
+              //地図を描画するための要素を指定する。
+              const chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
+              //地図を描画する
+              chart.draw(data, options);
+            }
+          </script>
+          <div id="regions_div"></div>
+        </div>
+  </div>
+</div>
+
