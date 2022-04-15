@@ -1,44 +1,11 @@
 <div class='container'>
-  <div class='row'>
+  <div class='row justify-content-center'>
     <div class='col-md-9'>
       <%= link_to "新規登録", new_hint_path %>
 
       <%= render 'public/hints/tag_list', tag_list: @tags %>
 
-
-      <% @hints.each do |hint| %>
-	    <table class='table'>
-    	  <tr>
-            <td>
-              <%= link_to user_path(hint.user_id) do %>
-                <%= image_tag hint.user.get_user_image(50,50) %><br>
-                <%= hint.user.user_name %>
-                <% country = Country.find_by(name_jp: hint.user.country_code) %>
-                <i class="flag-icon flag-icon-<%= country.code.downcase %>"></i>
-              <% end %>
-            </td>
-            <td>
-              対象国:<%= hint.country_code %>
-
-              <% country = Country.find_by(name_jp: hint.country_code) %>
-              <i class="flag-icon flag-icon-<%= country.code.downcase %>"></i><br>
-
-              ジャンル:<%= render 'public/hints/tag_list', tag_list: hint.tag_list %><br>
-              <%= link_to hint_path(hint.id) do %>
-                <%= hint.hint_contents %><br>
-                <% if hint.hint_image.present?%>
-                  <%= image_tag hint.get_hint_image(500,500) %><br>
-                <% end %>
-                <%= hint.comments.count%>コメント
-              <% end %>
-              <p class="hint_like_<%= hint.id %>">
-                <%= render "public/hint_likes/like", hint: hint %>
-              </p>
-              <%= time_ago_in_words(hint.created_at) %> ago
-            </td>
-          </tr>
-        </table>
-      <% end %>
+      <%= render 'public/hints/hint_index', hint: @hints %>
     </div>
   </div>
 </div>

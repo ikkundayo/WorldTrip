@@ -1,39 +1,8 @@
 <div class='container'>
-  <div class='row'>
+  <div class='row justify-content-center'>
     <div class='col-md-9'>
       <%= link_to "新規登録",new_memory_path %>
-      <% @memory.each do |memory| %>
-    		<table class='table'>
-    		  <tr>
-            <td>
-              <%= link_to user_path(memory.user_id) do %>
-                <%= image_tag memory.user.get_user_image(50,50) %><br>
-                <%= memory.user.user_name %>
-                <% country = Country.find_by(name_jp: memory.user.country_code) %>
-                <i class="flag-icon flag-icon-<%= country.code.downcase %>"></i>
-              <% end %>
-            </td>
-            <td>
-              渡航国:<%= memory.country_code %>
-
-              <% country = Country.find_by(name_jp: memory.country_code) %>
-              <i class="flag-icon flag-icon-<%= country.code.downcase %>"></i><br>
-
-              <%= link_to memory_path(memory.id) do %>
-                <%= memory.memory_contents %><br>
-                <% if memory.memory_image.present?%>
-                  <%= image_tag memory.get_memory_image(1000,1000) %><br>
-                <% end %>
-                <%= memory.comments.count%>コメント
-              <% end %>
-              <p class="memory_like_<%= memory.id %>">
-                <%= render "public/memory_likes/like", memory: memory %>
-              </p>
-              <%= time_ago_in_words(memory.created_at) %> ago
-            </td>
-          </tr>
-        </table>
-      <% end %>
+      <%= render 'public/memories/memory_index', memory: @memory %>
     </div>
   </div>
 </div>

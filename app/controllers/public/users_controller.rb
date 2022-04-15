@@ -4,13 +4,14 @@ class Public::UsersController < ApplicationController
     @user_logo = Country.find_by(name_jp: @user.country_code)
     @user_age = (Date.today.strftime("%Y%m%d").to_i - @user.birth_date.strftime("%Y%m%d").to_i)/10000
     @ranking = @user.reviews.order(review_average: :desc).limit(3)
-    @reviews = @user.reviews
+    @reviews = @user.reviews.page(params[:page]).per(10)
+    @country_progress = (@reviews.count.to_f / 260.to_f) * 100.to_f
 
     # @country_logo = Country.find_by(name_jp: @reviews.country_code)
 
-    @memory = @user.memories
+    @memory = @user.memories.page(params[:page]).per(10)
 
-    @hint = @user.hints
+    @hint = @user.hints.page(params[:page]).per(10)
     if params[:tag_name]
       @hint = Hint.tagged_with("#{params[:tag_name]}")
     end

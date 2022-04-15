@@ -10,7 +10,7 @@
 
   <div>
     <%= f.label :motherland, "母国" %><br />
-    <%= f.collection_select(:country_code, Country.all, :name_jp, :name_jp, selected: "日本") %>
+    <%= f.collection_select(:country_code, Country.order(:name_jp), :name_jp, :name_jp, selected: "日本") %>
   </div>
 
   <div>

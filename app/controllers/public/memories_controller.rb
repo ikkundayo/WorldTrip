@@ -1,6 +1,6 @@
 class Public::MemoriesController < ApplicationController
   def index
-    @memory = Memory.all
+    @memory = Memory.page(params[:page]).per(10)
   end
 
   def show

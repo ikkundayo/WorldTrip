@@ -1,2 +1,58 @@
-<h1>Public::Reviews#index</h1>
-<p>Find me in app/views/public/reviews/index.html.erb</p>
+<div class='container'>
+  <div class='row justify-content-center'>
+    <div class='col-md-2'>
+      <table class='table'>
+        <tr>
+          <th>ランキング一覧</th>
+        </tr>
+        <tr>
+          <td>と工数</td>
+        </tr>
+        <tr>
+          <td>総合評価
+          </td>
+        </tr>
+        <tr>
+          <td>--
+          </td>
+        </tr>
+        <tr>
+          <td>--
+          </td>
+        </tr>
+        <tr>
+          <td>--
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div class='col-md-8 country-list jscroll_contry'>
+      <% @country.each do |country| %>
+        <div>
+        	<h3><%= country.name_jp %></h3>
+          <table class='table'>
+            <tr>
+              <th><みんなのレビュー></th>
+            </tr>
+            <% @review.each do |review| %>
+              <tr>
+                <td><%= review.review_average %></td>
+              </tr>
+            <% end%>
+          </table>
+        </div>
+      <% end %>
+      <%= paginate @country %>
+    </div>
+  </div>
+</div>
+
+  <script>
+    $(function() {
+      $('.jscroll_contry').jscroll({
+        contentSelector: '.country-list',
+        nextSelector: 'span.next:last a'
+      });
+    });
+
+  </script>

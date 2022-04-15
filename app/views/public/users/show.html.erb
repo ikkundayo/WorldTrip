@@ -1,11 +1,10 @@
 
   <%= render 'public/users/map' %>
 
-
-
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-md-5">
+      <h3>World <%= @country_progress.round(1) %>%<h3>
       <% if @user == current_user %>
         <h1>マイページ</h1>
       <% else %>
@@ -95,17 +94,37 @@
 
 <div class="tabbox-contents">
   <div class="tabbox box-show">
-    <%= render 'public/reviews/review_index', reviews: @reviews %>
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-6">
+          <h2 class="text-center">マイレビュー一覧</h2>
+          <%= render 'public/reviews/review_index', reviews: @reviews %>
+        </div>
+      </div>
+    </div>
   </div>
 
   <div class="tabbox">
-    <%= render 'public/memories/memory_index', memory: @memory %>
+    <div class="container">
+      <div class='row justify-content-center'>
+        <div class='col-md-6'>
+          <h2 class="text-center">思い出一覧</h2>
+          <%= render 'public/memories/memory_index', memory: @memory %>
+        </div>
+      </div>
+    </div>
   </div>
 
   <div class="tabbox">
-    <%= render 'public/hints/hint_index', hint: @hint %>
+    <div class="container">
+      <div class='row justify-content-center'>
+        <div class='col-md-6'>
+          <h2 class="text-center">ヒント一覧</h2>
+          <%= render 'public/hints/hint_index', hint: @hint %>
+        </div>
+      </div>
+    </div>
   </div>
-</div>
 
 <script>
   $(document).on('turbolinks:load', function() {

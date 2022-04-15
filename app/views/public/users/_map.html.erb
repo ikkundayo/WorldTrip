@@ -15,7 +15,7 @@
                 <% if @map.present? %>
                   <% @map.each do |v| %>
                     ['Country', 'Name_JP'],
-                    ['<%= v.country.name_en %>', '<%= v.country.name_jp %>'],
+                    ['<%= v.country.code %>', '<%= v.country.name_jp %>'],
                   <% end %>
                 <% else %>
                   ['Country']
@@ -35,4 +35,3 @@
         </div>
   </div>
 </div>
-

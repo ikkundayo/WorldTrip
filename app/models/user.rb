@@ -13,7 +13,7 @@ class User < ApplicationRecord
 
   has_many :relationships, foreign_key: :follower_id, dependent: :destroy
   has_many :followers, through: :relationships, source: :followed
-  
+
   has_many :reverse_of_relationships, class_name: 'Relationship', foreign_key: :followed_id, dependent: :destroy
   has_many :followeds, through: :reverse_of_relationships, source: :follower
 
@@ -32,5 +32,7 @@ end
     end
       user_image.variant(resize_to_limit: [width, height]).processed
   end
+
+
 
 end

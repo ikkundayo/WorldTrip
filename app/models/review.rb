@@ -12,4 +12,5 @@ class Review < ApplicationRecord
       (amusement_rate + gourmet_rate + security_rate + recommend_rate + original_rate) / 5
     end
   end
+
 end

@@ -1,5 +1,8 @@
 class Public::ReviewsController < ApplicationController
   def index
+    @country = Country.page(params[:page]).per(10)
+    @review = Review.all.limit(3)
+    # find_by(country_id: @country.name_jp)
   end
 
   def show

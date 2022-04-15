@@ -1,7 +1,7 @@
 class Public::HintsController < ApplicationController
   def index
     @tags = ActsAsTaggableOn::Tag.order(id: "ASC").pluck(:name)
-    @hints = Hint.all
+    @hints = Hint.page(params[:page]).per(10)
     if params[:tag_name]
       @hints = Hint.tagged_with("#{params[:tag_name]}")
     end
