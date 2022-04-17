@@ -26,7 +26,7 @@
         </tr>
       </table>
     </div>
-    <div class='col-md-8 country-list jscroll_contry'>
+    <div class='col-md-8 list jscroll'>
       <% @country.each do |country| %>
         <div>
         	<h3><%= country.name_jp %></h3>
@@ -49,10 +49,9 @@
 
   <script>
     $(function() {
-      $('.jscroll_contry').jscroll({
-        contentSelector: '.country-list',
+      $('.jscroll').jscroll({
+        contentSelector: '.list',
         nextSelector: 'span.next:last a'
       });
     });
-
   </script>

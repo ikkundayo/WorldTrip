@@ -1,4 +1,4 @@
-<div class='hint-list jscroll_hint'>
+<div class='list jscroll'>
   <% hint.each do |hint| %>
     <table class='table'>
   	  <tr>
@@ -34,8 +34,8 @@
 
 <script>
   $(function() {
-    $('.jscroll_hint').jscroll({
-      contentSelector: '.hint-list',
+    $('.jscroll').jscroll({
+      contentSelector: '.list',
       nextSelector: 'span.next:last a'
     });
   });

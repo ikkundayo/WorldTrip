@@ -1,4 +1,4 @@
-<div class='memory-list jscroll_memory'>
+<div class='list jscroll'>
   <% memory.each do |memory| %>
   	<table class='table'>
   	  <tr>
@@ -27,14 +27,16 @@
       </tr>
     </table>
   <% end %>
+<div class="paginate-memory">
   <%= paginate memory %>
+</div>
 </div>
 
 <script>
   $(function() {
-    $('.jscroll_memory').jscroll({
-      contentSelector: '.memory-list',
-      nextSelector: 'span.next:last a'
+    $('.jscroll').jscroll({
+      contentSelector: '.list',
+      nextSelector: 'span.next:last a',
     });
-  });
+  })
 </script>
