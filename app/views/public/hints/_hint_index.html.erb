@@ -3,8 +3,13 @@
     <table class='table'>
   	  <tr>
         <td>
-          <%= image_tag hint.user.get_user_image(50,50) %><br>
-          <%= hint.user.user_name %>
+          <%= link_to user_path(hint.user_id) do %>
+            <%= image_tag hint.user.get_user_image(50,50) %><br>
+            <%= hint.user.user_name %>
+
+            <% country = Country.find_by(name_jp: hint.user.country_code) %>
+            <i class="flag-icon flag-icon-<%= country.code.downcase %>"></i>
+          <% end %>
         </td>
         <td>
           対象国:<%= hint.country_code %>

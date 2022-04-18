@@ -28,7 +28,7 @@ Rails.application.routes.draw do
       get :followers, on: :member
       get :followed, on: :member
     end
-      
+
     resources :memories, only: [:index, :show, :new, :create, :destroy] do
       resource :memory_likes, only: [:create, :destroy]
       resources :memory_comments, only: [:create, :destroy]

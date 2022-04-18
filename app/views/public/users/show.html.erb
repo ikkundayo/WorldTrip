@@ -77,7 +77,7 @@
   <div class="row justify-content-center">
     <div class="col-md-10">
       <%= link_to 'レビュー',user_path(@user, {'type': 'review'}) %><br>
-      <%= link_to '思い出',user_path(@user, {'type': 'memory'}) %><br>
+      <%= link_to '思い出',user_path(@user, {'type': 'memory'}), anchor: 'test' %><br>
       <%= link_to 'ヒント',user_path(@user, {'type': 'hint'}) %>
     </div>
   </div>
@@ -90,7 +90,7 @@
         <h2 class="text-center">マイレビュー一覧</h2>
         <%= render 'public/reviews/review_index', reviews: @review %>
       <% elsif params[:type] == 'memory' %>
-        <h2 class="text-center">思い出一覧</h2>
+        <h2 class="text-center" id="test">思い出一覧</h2>
         <%= render 'public/memories/memory_index', memory: @memory %>
       <% else %>
         <h2 class="text-center">ヒント一覧</h2>

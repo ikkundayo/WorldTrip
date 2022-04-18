@@ -1,11 +1,20 @@
 class Public::ReviewsController < ApplicationController
   def index
-    @country = Country.page(params[:page]).per(10)
+    @country = Country.order(:name_jp).page(params[:page]).per(10)
     @review = Review.all.limit(3)
-    # find_by(country_id: @country.name_jp)
+
+    # @test = Review.group(:country_code).average(:review_average)
+    
+    # @test2 = Review.find(Review.group(:country_id).order('avg(review_average)').pluck(:country_id))
+    # Review.group(:country_code).order('count_country_code DESC').count(:country_code)
+    #上記のようにcountryからじゃなくてreviewからランキングを出すといい?
+
   end
 
   def show
+    @country = Country.find(params[:id])
+    @review = @country.reviews
+
   end
 
   def new

@@ -1,3 +1,3 @@
 class Country < ApplicationRecord
-  has_one :review
+  has_many :reviews
 end

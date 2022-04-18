@@ -13,4 +13,13 @@ class Review < ApplicationRecord
     end
   end
 
+  def decimal
+    if Review == nil or 1
+      pass
+    else
+      self.round(1)
+    end
+  end
+
+
 end
