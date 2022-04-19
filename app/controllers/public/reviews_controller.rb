@@ -1,11 +1,11 @@
 class Public::ReviewsController < ApplicationController
   def index
-    @average = Review.select('AVG(review_average) as avg ,country_code, country_id').group(:country_code).order(avg: :DESC).page(params[:page]).per(10)
-    @amusement = Review.select('AVG(amusement_rate) as avg ,country_code, country_id').group(:country_code).order(avg: :DESC).page(params[:page]).per(10)
-    @gourmet = Review.select('AVG(gourmet_rate) as avg ,country_code, country_id').group(:country_code).order(avg: :DESC).page(params[:page]).per(10)
-    @security = Review.select('AVG(security_rate) as avg ,country_code, country_id').group(:country_code).order(avg: :DESC).page(params[:page]).per(10)
-    @recommend = Review.select('AVG(recommend_rate) as avg ,country_code, country_id').group(:country_code).order(avg: :DESC).page(params[:page]).per(10)
-    @original = Review.select('AVG(original_rate) as avg ,country_code, country_id').group(:country_code).order(avg: :DESC).page(params[:page]).per(10)
+    @average = Review.select('AVG(review_average) as avg ,country_code, country_id').group(:country_code).order(avg: :DESC).page(params[:page]).per(20)
+    @amusement = Review.select('AVG(amusement_rate) as avg ,country_code, country_id').group(:country_code).order(avg: :DESC).page(params[:page]).per(20)
+    @gourmet = Review.select('AVG(gourmet_rate) as avg ,country_code, country_id').group(:country_code).order(avg: :DESC).page(params[:page]).per(20)
+    @security = Review.select('AVG(security_rate) as avg ,country_code, country_id').group(:country_code).order(avg: :DESC).page(params[:page]).per(20)
+    @recommend = Review.select('AVG(recommend_rate) as avg ,country_code, country_id').group(:country_code).order(avg: :DESC).page(params[:page]).per(20)
+    @original = Review.select('AVG(original_rate) as avg ,country_code, country_id').group(:country_code).order(avg: :DESC).page(params[:page]).per(20)
 
   end
 

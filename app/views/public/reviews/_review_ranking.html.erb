@@ -1,4 +1,5 @@
-<div class='list jscroll'>
+<!--<div class='list jscroll'>-->
+<div>
   <% reviews.each do |review| %>
     <table class='table'>
       <tr>
@@ -7,15 +8,18 @@
   	        <% country = Country.find_by(name_jp: review.country_code) %>
   	          <i class="flag-icon flag-icon-<%= country.code.downcase %>"></i><br>
     	      <%= review.country_code %><br>
-    	      <%= review.avg %><br>
+    	      <% if review.avg.nil?  %>
+    	      <% else %>
+    	        <%= review.avg.round(1) %><br>
+    	      <% end %>
+
             <span id="average-rate<%= review.country_id %>"></span>
-            <% count = Review.where(country_id: review.country_id).count %>
-              (<%= count %>)
+            <% counts = Review.where(country_id: review.country_id).count %>
+              (<%= counts %>)
           <% end %>
   	    </td>
   	  </tr>
     </table>
-
     <script>
       $('#average-rate<%= review.country_id %>').raty({
         size      : 36,
@@ -40,3 +44,47 @@
     });
   });
 </script>
+
+<!--  <%# end %>-->
+<!--<%#= paginate reviews %>-->
+<!--</div>-->
+
+<!--<script>-->
+<!--  <%# reviews[0..9].each do |review| %>-->
+<!--    $('#average-rate<%#= review.country_id %>').empty;-->
+<!--    $('#average-rate<%#= review.country_id %>').raty({-->
+<!--      size      : 36,-->
+<!--      starOff   : '<%#= asset_path('star-off.png') %>',-->
+<!--      starOn    : '<%#= asset_path('star-on.png') %>',-->
+<!--      starHalf : '<%#= asset_path('star-half.png') %>',-->
+<!--      half      : true,-->
+<!--      readOnly: true,-->
+<!--      return :1,-->
+<!--      score: <%#= review.avg %>-->
+<!--    });-->
+<!--  <%# end %>-->
+
+<!--  // $(document).on('turbolinks:load', function() {-->
+<!--    $('.jscroll').jscroll({-->
+<!--    contentSelector: '.list',-->
+<!--    nextSelector: 'span.next a',-->
+<!--    // callback: function(data) {-->
+      <%# if reviews.count > 9 %>
+        <%# reviews[10..].each do |review| %>
+          <!--// $('#average-rate<%#= review.country_id %>').empty;-->
+          <!--// $('#average-rate<%#= review.country_id %>').raty({-->
+<!--          //   size      : 36,-->
+          <!--//   starOff   : '<%#= asset_path('star-off.png') %>',-->
+          <!--//   starOn    : '<%#= asset_path('star-on.png') %>',-->
+          <!--//   starHalf : '<%#= asset_path('star-half.png') %>',-->
+<!--          //   half      : true,-->
+<!--          //   readOnly: true,-->
+<!--          //   return :1,-->
+          <!--//   score: <%#= review.avg %>-->
+<!--          });-->
+        <%# end %>
+      <%# end %>
+<!--  //   }-->
+<!--  //   });-->
+<!--  // });-->
+<!--</script>-->

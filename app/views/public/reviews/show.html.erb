@@ -9,42 +9,50 @@
           </td>
         </tr>
         <tr>
-          <td>総合評価 <%= @reviews.average(:review_average) %><br>
+          <td>総合評価 <%= @reviews.average(:review_average).round(1) %><br>
           <div id="average-rate"></div>
           </td>
         </tr>
         <tr>
-          <td>楽しさ・娯楽 <%= @reviews.average(:amusement_rate) %><br>
+          <td>楽しさ・娯楽 <%= @reviews.average(:amusement_rate).round(1) %><br>
             <span id="amusement-rate"></span>
             (<%= @reviews.count(:amusement_rate) %>)
           </td>
         </tr>
         <tr>
-          <td>グルメ <%= @reviews.average(:gourmet_rate) %><br>
+          <td>グルメ <%= @reviews.average(:gourmet_rate).round(1) %><br>
             <span id="gourmet-rate"></span>
             (<%= @reviews.count(:gourmet_rate) %>)
           </td>
         </tr>
         <tr>
-          <td>治安 <%= @reviews.average(:security_rate) %><br>
+          <td>治安 <%= @reviews.average(:security_rate).round(1) %><br>
             <span id="security-rate"></span>
             (<%= @reviews.count(:security_rate) %>)
           </td>
         </tr>
         <tr>
-          <td>おすすめ度 <%= @reviews.average(:recommend_rate) %><br>
+          <td>おすすめ度 <%= @reviews.average(:recommend_rate).round(1) %><br>
             <span id="recommend-rate"></span>
             (<%= @reviews.count(:recommend_rate) %>)
           </td>
         </tr>
 
-        <%# if reviews.original_category.present?%>
-        <tr>
-          <td>オリジナルカテゴリー <%= @reviews.average(:original_rate).presence || "0" %><br>
-            <span id="original-rate"></span>
-            (<%= @reviews.count(:original_rate) %>)
-          </td>
-        </tr>
+        <% if @reviews.average(:original_rate).nil? %>
+          <tr>
+            <td>オリジナルカテゴリー <br>
+              <span id="original-rate0"></span>
+              (<%= @reviews.count(:original_rate) %>)
+            </td>
+          </tr>
+        <% else %>
+          <tr>
+            <td>オリジナルカテゴリー <%= @reviews.average(:original_rate).round(1) %><br>
+              <span id="original-rate"></span>
+              (<%= @reviews.count(:original_rate) %>)
+            </td>
+          </tr>
+        <% end %>
       </table>
     </div>
 
@@ -95,6 +103,13 @@
                     <%= f.recommend_rate %>
                     <%= f.recommend_voice %>
                   </td>
+              <% elsif params[:type] == 'original' %>
+                  <td>
+                    <span id="original-rate<%= f.id %>"></span>
+                    <%= f.original_category %>
+                    <%= f.original_rate %>
+                    <%= f.original_voice %>
+                  </td>
               <% else %>
                   <td>
                     <span id="amusement-rate<%= f.id %>"></span>
@@ -121,7 +136,7 @@
               starHalf : '<%= asset_path('star-half.png') %>',
               half      : true,
               readOnly: true,
-              score: <%= f.amusement_rate %>
+              score: <%= f.gourmet_rate %>
             });
             $('#security-rate<%= f.id %>').raty({
               size      : 36,
@@ -130,7 +145,7 @@
               starHalf : '<%= asset_path('star-half.png') %>',
               half      : true,
               readOnly: true,
-              score: <%= f.amusement_rate %>
+              score: <%= f.security_rate %>
             });
             $('#recommend-rate<%= f.id %>').raty({
               size      : 36,
@@ -139,8 +154,20 @@
               starHalf : '<%= asset_path('star-half.png') %>',
               half      : true,
               readOnly: true,
-              score: <%= f.amusement_rate %>
+              score: <%= f.recommend_rate %>
             });
+            <% if f.original_rate.nil?  %>
+    	      <% else %>
+              $('#original-rate<%= f.id %>').raty({
+                size      : 36,
+                starOff   : '<%= asset_path('star-off.png') %>',
+                starOn    : '<%= asset_path('star-on.png') %>',
+                starHalf : '<%= asset_path('star-half.png') %>',
+                half      : true,
+                readOnly: true,
+                score: <%= f.original_rate %>
+              });
+            <% end %>
           </script>
         <% end %>
       <%= paginate @reviews %>
@@ -200,6 +227,17 @@
     score: <%= @reviews.average(:recommend_rate) %>
   });
 
+  <% if @reviews.average(:original_rate).nil? %>
+  $('#original-rate0').raty({
+    size      : 36,
+    starOff   : '<%= asset_path('star-off.png') %>',
+    starOn    : '<%= asset_path('star-on.png') %>',
+    starHalf : '<%= asset_path('star-half.png') %>',
+    half      : true,
+    readOnly: true,
+    score: 0
+  });
+  <% else %>
   $('#original-rate').raty({
     size      : 36,
     starOff   : '<%= asset_path('star-off.png') %>',
@@ -207,8 +245,9 @@
     starHalf : '<%= asset_path('star-half.png') %>',
     half      : true,
     readOnly: true,
-    score: <%= @reviews.average(:original_rate).presence || "0" %>
+    score: <%= @reviews.average(:original_rate) %>
   });
+  <% end %>
 
 </script>
 <script>
