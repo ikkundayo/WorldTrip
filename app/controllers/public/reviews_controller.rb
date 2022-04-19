@@ -6,14 +6,14 @@ class Public::ReviewsController < ApplicationController
     @security = Review.select('AVG(security_rate) as avg ,country_code, country_id').group(:country_code).order(avg: :DESC).page(params[:page]).per(10)
     @recommend = Review.select('AVG(recommend_rate) as avg ,country_code, country_id').group(:country_code).order(avg: :DESC).page(params[:page]).per(10)
     @original = Review.select('AVG(original_rate) as avg ,country_code, country_id').group(:country_code).order(avg: :DESC).page(params[:page]).per(10)
-    
+
   end
 
 
   def show
     @country = Country.find(params[:id])
 
-    @reviews = Review.where(country_id: params[:id])
+    @reviews = Review.where(country_id: params[:id]).page(params[:page]).per(10)
     # if @reviews = blank?
     #   @reviews.review_average = 0
     # end

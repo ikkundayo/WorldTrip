@@ -1,33 +1,42 @@
-<% reviews.each do |review| %>
-        <div class='row justify-content-center'>
-          <div class='col-md-10'>
-            <table class='table'>
-              <tr>
-          	    <td>
-          	      <%= link_to review_path(review.country_id) do %>
-          	        <% country = Country.find_by(name_jp: review.country_code) %>
-          	          <i class="flag-icon flag-icon-<%= country.code.downcase %>"></i><br>
-            	      <%= review.country_code %><br>
-            	      <%= review.avg %><br>
-                    <span id="average-rate<%= review.country_id %>"></span>
-                    <% count = Review.where(country_id: review.country_id).count %>
-                      (<%= count %>)
-                  <% end %>
-          	    </td>
-          	  </tr>
-            </table>
-          </div>
+<div class='list jscroll'>
+  <% reviews.each do |review| %>
+    <table class='table'>
+      <tr>
+  	    <td>
+  	      <%= link_to review_path(review.country_id) do %>
+  	        <% country = Country.find_by(name_jp: review.country_code) %>
+  	          <i class="flag-icon flag-icon-<%= country.code.downcase %>"></i><br>
+    	      <%= review.country_code %><br>
+    	      <%= review.avg %><br>
+            <span id="average-rate<%= review.country_id %>"></span>
+            <% count = Review.where(country_id: review.country_id).count %>
+              (<%= count %>)
+          <% end %>
+  	    </td>
+  	  </tr>
+    </table>
 
-        <script>
-          $('#average-rate<%= review.country_id %>').raty({
-            size      : 36,
-            starOff   : '<%= asset_path('star-off.png') %>',
-            starOn    : '<%= asset_path('star-on.png') %>',
-            starHalf : '<%= asset_path('star-half.png') %>',
-            half      : true,
-            readOnly: true,
-            return :1,
-            score: <%= review.avg %>
-          });
-        </script>
-      <% end %>
+    <script>
+      $('#average-rate<%= review.country_id %>').raty({
+        size      : 36,
+        starOff   : '<%= asset_path('star-off.png') %>',
+        starOn    : '<%= asset_path('star-on.png') %>',
+        starHalf : '<%= asset_path('star-half.png') %>',
+        half      : true,
+        readOnly: true,
+        return :1,
+        score: <%= review.avg %>
+      });
+    </script>
+  <% end %>
+<%= paginate reviews %>
+</div>
+
+<script>
+  $(function() {
+    $('.jscroll').jscroll({
+      contentSelector: '.list',
+      nextSelector: 'span.next:last a'
+    });
+  });
+</script>

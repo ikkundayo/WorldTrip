@@ -59,89 +59,92 @@
       </div>
       <h3><みんなのレビュー></h3>
 
-      <% @reviews.each do |f| %>
-        <table class='table'>
-          <tr>
-            <td>
-              <%= link_to user_path(f.user_id) do %>
-                <%= image_tag f.user.get_user_image(50,50) %>
-                <%= f.user.user_name %>さんのレビュー
+      <div class='list jscroll'>
+        <% @reviews.each do |f| %>
+          <table class='table'>
+            <tr>
+              <td>
+                <%= link_to user_path(f.user_id) do %>
+                  <%= image_tag f.user.get_user_image(50,50) %>
+                  <%= f.user.user_name %>さんのレビュー
+                <% end %>
+              </td>
+            </tr>
+            <tr>
+              <% if params[:type] == 'amusement' %>
+                  <td>
+                    <span id="amusement-rate<%= f.id %>"></span>
+                    <%= f.amusement_rate %>
+                    <%= f.amusement_voice %>
+                  </td>
+              <% elsif params[:type] == 'gourmet' %>
+                  <td>
+                    <span id="gourmet-rate<%= f.id %>"></span>
+                    <%= f.gourmet_rate %>
+                    <%= f.gourmet_voice %>
+                  </td>
+              <% elsif params[:type] == 'security' %>
+                  <td>
+                    <span id="security-rate<%= f.id %>"></span>
+                    <%= f.security_rate %>
+                    <%= f.security_voice %>
+                  </td>
+              <% elsif params[:type] == 'recommend' %>
+                  <td>
+                    <span id="recommend-rate<%= f.id %>"></span>
+                    <%= f.recommend_rate %>
+                    <%= f.recommend_voice %>
+                  </td>
+              <% else %>
+                  <td>
+                    <span id="amusement-rate<%= f.id %>"></span>
+                    <%= f.amusement_rate %>
+                    <%= f.amusement_voice %>
+                  </td>
               <% end %>
-            </td>
-          </tr>
-          <tr>
-            <% if params[:type] == 'amusement' %>
-                <td>
-                  <span id="amusement-rate<%= f.id %>"></span>
-                  <%= f.amusement_rate %>
-                  <%= f.amusement_voice %>
-                </td>
-            <% elsif params[:type] == 'gourmet' %>
-                <td>
-                  <span id="gourmet-rate<%= f.id %>"></span>
-                  <%= f.gourmet_rate %>
-                  <%= f.gourmet_voice %>
-                </td>
-            <% elsif params[:type] == 'security' %>
-                <td>
-                  <span id="security-rate<%= f.id %>"></span>
-                  <%= f.security_rate %>
-                  <%= f.security_voice %>
-                </td>
-            <% elsif params[:type] == 'recommend' %>
-                <td>
-                  <span id="recommend-rate<%= f.id %>"></span>
-                  <%= f.recommend_rate %>
-                  <%= f.recommend_voice %>
-                </td>
-            <% else %>
-                <td>
-                  <span id="amusement-rate<%= f.id %>"></span>
-                  <%= f.amusement_rate %>
-                  <%= f.amusement_voice %>
-                </td>
-            <% end %>
-          </tr>
-        </table>
-        <script>
-          $('#amusement-rate<%= f.id %>').raty({
-            size      : 36,
-            starOff   : '<%= asset_path('star-off.png') %>',
-            starOn    : '<%= asset_path('star-on.png') %>',
-            starHalf : '<%= asset_path('star-half.png') %>',
-            half      : true,
-            readOnly: true,
-            score: <%= f.amusement_rate %>
-          });
-          $('#gourmet-rate<%= f.id %>').raty({
-            size      : 36,
-            starOff   : '<%= asset_path('star-off.png') %>',
-            starOn    : '<%= asset_path('star-on.png') %>',
-            starHalf : '<%= asset_path('star-half.png') %>',
-            half      : true,
-            readOnly: true,
-            score: <%= f.amusement_rate %>
-          });
-          $('#security-rate<%= f.id %>').raty({
-            size      : 36,
-            starOff   : '<%= asset_path('star-off.png') %>',
-            starOn    : '<%= asset_path('star-on.png') %>',
-            starHalf : '<%= asset_path('star-half.png') %>',
-            half      : true,
-            readOnly: true,
-            score: <%= f.amusement_rate %>
-          });
-          $('#recommend-rate<%= f.id %>').raty({
-            size      : 36,
-            starOff   : '<%= asset_path('star-off.png') %>',
-            starOn    : '<%= asset_path('star-on.png') %>',
-            starHalf : '<%= asset_path('star-half.png') %>',
-            half      : true,
-            readOnly: true,
-            score: <%= f.amusement_rate %>
-          });
-        </script>
-      <% end %>
+            </tr>
+          </table>
+          <script>
+            $('#amusement-rate<%= f.id %>').raty({
+              size      : 36,
+              starOff   : '<%= asset_path('star-off.png') %>',
+              starOn    : '<%= asset_path('star-on.png') %>',
+              starHalf : '<%= asset_path('star-half.png') %>',
+              half      : true,
+              readOnly: true,
+              score: <%= f.amusement_rate %>
+            });
+            $('#gourmet-rate<%= f.id %>').raty({
+              size      : 36,
+              starOff   : '<%= asset_path('star-off.png') %>',
+              starOn    : '<%= asset_path('star-on.png') %>',
+              starHalf : '<%= asset_path('star-half.png') %>',
+              half      : true,
+              readOnly: true,
+              score: <%= f.amusement_rate %>
+            });
+            $('#security-rate<%= f.id %>').raty({
+              size      : 36,
+              starOff   : '<%= asset_path('star-off.png') %>',
+              starOn    : '<%= asset_path('star-on.png') %>',
+              starHalf : '<%= asset_path('star-half.png') %>',
+              half      : true,
+              readOnly: true,
+              score: <%= f.amusement_rate %>
+            });
+            $('#recommend-rate<%= f.id %>').raty({
+              size      : 36,
+              starOff   : '<%= asset_path('star-off.png') %>',
+              starOn    : '<%= asset_path('star-on.png') %>',
+              starHalf : '<%= asset_path('star-half.png') %>',
+              half      : true,
+              readOnly: true,
+              score: <%= f.amusement_rate %>
+            });
+          </script>
+        <% end %>
+      <%= paginate @reviews %>
+      </div>
     </div>
   </div>
 </div>
@@ -207,4 +210,12 @@
     score: <%= @reviews.average(:original_rate).presence || "0" %>
   });
 
+</script>
+<script>
+  $(function() {
+    $('.jscroll').jscroll({
+      contentSelector: '.list',
+      nextSelector: 'span.next:last a'
+    });
+  });
 </script>
