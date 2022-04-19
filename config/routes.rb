@@ -39,6 +39,8 @@ Rails.application.routes.draw do
     end
     resources :categories, only: [:create]
     resources :reviews, only: [:index, :show, :new, :create, :destroy]
+
+    resources :notifications, only: :index
   end
 
 

@@ -6,9 +6,13 @@
         <%= link_to 'about', about_path %>
         <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %><br>
         <%= link_to 'ランキング一覧', reviews_path %>
-        <%= link_to 'タイムライン', memories_path %>
+        <%= link_to '思い出', memories_path %>
         <%= link_to 'ヒント', hints_path %>
         <%= link_to 'マイページ', user_path(current_user) %>
+        <% if unchecked_notifications.any? %>
+          <i class="fa-solid fa-circle" style='color: gold;'></i>
+        <% end %>
+        <%= link_to 'NOTICE', notifications_path %>
       <% elsif admin_signed_in? %>
         <%= link_to 'about', about_path %>
         <%= link_to '国一覧',  admin_countries_path %>

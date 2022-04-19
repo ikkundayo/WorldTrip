@@ -1,10 +1,11 @@
 class Public::HintCommentsController < ApplicationController
-before_action :hint_find
 
   def create
     if user_signed_in?
+      @hint = Hint.find(params[:hint_id])
       comment = current_user.comments.new(hint_comment_params)
       comment.hint_id = @hint.id
+        @hint.create_notification_comment!(current_user, comment.id)
       if comment.save
       else
         flash[:notice] = "空白では投稿できません"
@@ -17,6 +18,7 @@ before_action :hint_find
   end
 
   def destroy
+    @hint = Hint.find(params[:hint_id])
     Comment.find(params[:id]).destroy
   end
 

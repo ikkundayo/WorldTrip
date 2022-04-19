@@ -4,6 +4,9 @@ class Public::RelationshipsController < ApplicationController
   def create
     follower = current_user.relationships.build(followed_id: params[:user_id])
     follower.save
+    
+    @user = User.find(params[:user_id])
+    @user.create_notification_follow!(current_user)
     redirect_to request.referrer || root_path
   end
 
