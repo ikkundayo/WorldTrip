@@ -5,95 +5,52 @@
         <tr>
           <th>ランキング一覧</th>
         </tr>
-        <!--<%# @test.each do |t| %>-->
         <!--<tr>-->
-        <!--  <td>-->
-        <!--    <%#= t %>-->
-
-        <!--  </td>-->
+        <!--  <td>渡航数</td>-->
         <!--</tr>-->
-        <!-- <%# end %>-->
         <tr>
-          <td>渡航数</td>
+          <td><%= link_to '総合評価', reviews_path('type': 'average') %></td>
         </tr>
         <tr>
-          <td>総合評価</td>
+          <td><%= link_to '楽しさ・娯楽', reviews_path('type': 'amusement') %></td>
         </tr>
         <tr>
-          <td>楽しさ・娯楽</td>
+          <td><%= link_to 'グルメ', reviews_path('type': 'gourmet') %></td>
         </tr>
         <tr>
-          <td>グルメ</td>
+          <td><%= link_to '治安', reviews_path('type': 'security') %></td>
         </tr>
         <tr>
-          <td>治安</td>
+          <td><%= link_to 'おすすめ度', reviews_path('type': 'recommend') %></td>
         </tr>
         <tr>
-          <td>おすすめ度</td>
-        </tr>
-        <tr>
-          <td>オリジナル</td>
+          <td><%= link_to 'オリジナル・その他', reviews_path('type': 'original') %></td>
         </tr>
       </table>
     </div>
     <div class='col-md-8 list jscroll'>
-      <% @country.each do |c| %>
-        <div class='row justify-content-center'>
-          <div class='col-md-3'>
-            <table class='table'>
-              <tr>
-          	    <td>
-          	      <%= link_to review_path(c.id) do %>
-            	      <%= c.name_jp %><br>
-            	      <%= c.reviews.average(:review_average) %><br>
-                    <span id="average-rate"></span>
-                    (<%= c.reviews.count(:review_average) %>)
-                  <% end %>
-          	    </td>
-          	  </tr>
-            </table>
-          </div>
-          <div class='col-md-7'>
-            <table class='table'>
-              <tr>
-          	    <th><みんなのレビュー></th>
-          	  </tr>
-              <% c.reviews.shuffle.first(3).each do |r| %>
-                <tr>
-                  <td>
-                    <%= image_tag r.user.get_user_image(50,50) %><br>
-                    <%= r.user.user_name %>
-                  </td>
-                </tr>
-              <% end %>
-            </table>
-
-          </div>
-
-
-        <script>
-          $('#average-rate').raty({
-            size      : 36,
-            starOff   : '<%= asset_path('star-off.png') %>',
-            starOn    : '<%= asset_path('star-on.png') %>',
-            starHalf : '<%= asset_path('star-half.png') %>',
-            half      : true,
-            readOnly: true,
-            return :1,
-            score: <%= c.reviews.average(:review_average) %>
-          });
-        </script>
+      <% if params[:type] == 'amusement' %>
+        <%= render 'public/reviews/review_ranking', reviews: @amusement %>
+      <% elsif params[:type] == 'gourmet' %>
+        <%= render 'public/reviews/review_ranking', reviews: @gourmet %>
+      <% elsif params[:type] == 'security' %>
+        <%= render 'public/reviews/review_ranking', reviews: @security %>
+      <% elsif params[:type] == 'recommend' %>
+        <%= render 'public/reviews/review_ranking', reviews: @recommend %>
+      <% elsif params[:type] == 'original' %>
+        <%= render 'public/reviews/review_ranking', reviews: @original %>
+      <% else %>
+        <%= render 'public/reviews/review_ranking', reviews: @average %>
       <% end %>
-      <%= paginate @country %>
     </div>
   </div>
 </div>
 
-  <script>
-    $(function() {
-      $('.jscroll').jscroll({
-        contentSelector: '.list',
-        nextSelector: 'span.next:last a'
-      });
+<script>
+  $(function() {
+    $('.jscroll').jscroll({
+      contentSelector: '.list',
+      nextSelector: 'span.next:last a'
     });
-  </script>
+  });
+</script>

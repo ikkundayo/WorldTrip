@@ -1,19 +1,24 @@
 class Public::ReviewsController < ApplicationController
   def index
-    @country = Country.order(:name_jp).page(params[:page]).per(10)
-    @review = Review.all.limit(3)
-
-    # @test = Review.group(:country_code).average(:review_average)
+    @average = Review.select('AVG(review_average) as avg ,country_code, country_id').group(:country_code).order(avg: :DESC).page(params[:page]).per(10)
+    @amusement = Review.select('AVG(amusement_rate) as avg ,country_code, country_id').group(:country_code).order(avg: :DESC).page(params[:page]).per(10)
+    @gourmet = Review.select('AVG(gourmet_rate) as avg ,country_code, country_id').group(:country_code).order(avg: :DESC).page(params[:page]).per(10)
+    @security = Review.select('AVG(security_rate) as avg ,country_code, country_id').group(:country_code).order(avg: :DESC).page(params[:page]).per(10)
+    @recommend = Review.select('AVG(recommend_rate) as avg ,country_code, country_id').group(:country_code).order(avg: :DESC).page(params[:page]).per(10)
+    @original = Review.select('AVG(original_rate) as avg ,country_code, country_id').group(:country_code).order(avg: :DESC).page(params[:page]).per(10)
     
-    # @test2 = Review.find(Review.group(:country_id).order('avg(review_average)').pluck(:country_id))
-    # Review.group(:country_code).order('count_country_code DESC').count(:country_code)
-    #上記のようにcountryからじゃなくてreviewからランキングを出すといい?
-
   end
+
 
   def show
     @country = Country.find(params[:id])
-    @review = @country.reviews
+
+    @reviews = Review.where(country_id: params[:id])
+    # if @reviews = blank?
+    #   @reviews.review_average = 0
+    # end
+    # .presence || "0"
+
 
   end
 

@@ -20,3 +20,38 @@ array.each{ |tag|
   tag_list.name = tag
   tag_list.save
 }
+
+User.create!(
+  [
+    {
+      email: 'aaa@a',
+      password: '111111',
+      user_name: 'ルフィ',
+      country_code: 'アメリカ',
+      gender: '男',
+      birth_date: '2000-05-06',
+      introduction: '俺は海賊王になる',
+      is_deleted: 'true'
+    },
+    {
+      email: 'aaa@aa',
+      password: '111111',
+      user_name: 'ゾロ',
+      country_code: '日本',
+      gender: '男',
+      birth_date: '1996-10-06',
+      introduction: '世界一の大剣豪',
+      is_deleted: 'true'
+    },
+    {
+      email: 'a@a',
+      password: '111111',
+      user_name: 'ナミ',
+      country_code: 'ルーマニア',
+      gender: '女',
+      birth_date: '2000-01-01',
+      introduction: '泥棒猫',
+      is_deleted: 'true'
+    }
+  ]
+)
