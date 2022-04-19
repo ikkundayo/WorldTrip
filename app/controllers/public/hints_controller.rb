@@ -3,7 +3,7 @@ class Public::HintsController < ApplicationController
     @tags = ActsAsTaggableOn::Tag.order(id: "ASC").pluck(:name)
     @hints = Hint.page(params[:page]).per(10)
     if params[:tag_name]
-      @hints = Hint.tagged_with("#{params[:tag_name]}")
+      @hints = Hint.tagged_with("#{params[:tag_name]}").page(params[:page]).per(10)
     end
   end
 
