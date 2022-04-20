@@ -1,4 +1,5 @@
 class Public::ReviewsController < ApplicationController
+
   def index
     @average = Review.select('AVG(review_average) as avg ,country_code, country_id').group(:country_code).order(avg: :DESC).page(params[:page]).per(20)
     @amusement = Review.select('AVG(amusement_rate) as avg ,country_code, country_id').group(:country_code).order(avg: :DESC).page(params[:page]).per(20)
@@ -7,6 +8,15 @@ class Public::ReviewsController < ApplicationController
     @recommend = Review.select('AVG(recommend_rate) as avg ,country_code, country_id').group(:country_code).order(avg: :DESC).page(params[:page]).per(20)
     @original = Review.select('AVG(original_rate) as avg ,country_code, country_id').group(:country_code).order(avg: :DESC).page(params[:page]).per(20)
 
+    @country = Country.select(:area).distinct
+    @q = Review.ransack(params[:q])
+    # if @q.blank?
+    #   @review = Review.all
+    # else
+    #   @review = @q.result(distinct: true)
+    # end
+    @review = @q.result(distinct: true)
+    @search = @review.select('AVG(review_average) as avg ,country_code, country_id').group(:country_code).order(avg: :DESC).page(params[:page]).per(20)
   end
 
 
@@ -35,6 +45,7 @@ class Public::ReviewsController < ApplicationController
     @review = Review.new(review_params)
     @review.user_id = current_user.id
     @review.country_code = Country.find(params[:review][:country_id]).name_jp
+    @review.area = Country.find(params[:review][:country_id]).area
     @total = @review.review_averages
     @review.review_average = @total
     if @review.save
@@ -49,6 +60,9 @@ class Public::ReviewsController < ApplicationController
     @review.destroy
     redirect_to user_path(current_user)
   end
+
+  private
+
 
   def review_params
     params.require(:review).permit(

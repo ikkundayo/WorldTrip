@@ -5,6 +5,8 @@ class Public::HintsController < ApplicationController
     if params[:tag_name]
       @hints = Hint.tagged_with("#{params[:tag_name]}").page(params[:page]).per(10)
     end
+    @q = Hint.ransack(params[:q])
+    @search = @q.result(distinct: true).page(params[:page]).per(10)
   end
 
   def show

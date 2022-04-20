@@ -1,5 +1,10 @@
 <div class='container'>
   <div class='row justify-content-center'>
+    <%= search_form_for @q, url: reviews_path, class:"search-form" do |f| %>
+      <%= f.collection_select :area_eq, @country, :area, :area, include_blank: "地域の選択", class:"search-select-box"  %>
+      <%= f.search_field :country_code_cont, placeholder: '国名から探す', class:'input-box' %>
+      <%= f.button type: "submit", class:"search-button" %>
+    <% end %>
     <div class='col-md-2'>
       <table class='table'>
         <tr>
@@ -41,8 +46,16 @@
             <%= render 'public/reviews/review_ranking', reviews: @recommend %>
           <% elsif params[:type] == 'original' %>
             <%= render 'public/reviews/review_ranking', reviews: @original %>
-          <% else %>
+          <% elsif params[:type] == 'link' %>
             <%= render 'public/reviews/review_ranking', reviews: @average %>
+          <% elsif params[:type] == 'average' %>
+            <%= render 'public/reviews/review_ranking', reviews: @average %>
+          <% else %>
+            <% if @search.blank? %>
+              <p>まだレビューがありません</p>
+            <% else %>
+              <%= render 'public/reviews/review_ranking', reviews: @search %>
+            <% end %>
           <% end %>
         </div>
       </div>

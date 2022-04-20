@@ -1,6 +1,8 @@
 class Public::MemoriesController < ApplicationController
   def index
     @memory = Memory.page(params[:page]).per(10)
+    @q = Memory.ransack(params[:q])
+    @search = @q.result(distinct: true).page(params[:page]).per(10)
   end
 
   def show

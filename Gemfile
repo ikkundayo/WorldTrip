@@ -69,3 +69,4 @@ gem 'jquery-rails'
 gem 'flag_icon_css_rails'
 
 gem 'kaminari'
+gem 'ransack'

@@ -2,7 +2,21 @@
   <div class='row justify-content-center'>
     <div class='col-md-9'>
       <%= link_to "新規登録",new_memory_path %>
-      <%= render 'public/memories/memory_index', memory: @memory %>
+
+      <%= search_form_for @q, url: memories_path, class:"search-form" do |f| %>
+        <%= f.search_field :country_code_cont, placeholder: '国名から探す', class:'input-box' %>
+        <%= f.button type: "submit", class:"search-button" %>
+      <% end %>
+
+      <% if params[:type] == 'link' %>
+        <%= render 'public/memories/memory_index', memory: @memory %>
+      <% else %>
+        <% if @search.blank? %>
+          <p>まだ投稿がありません</p>
+        <% else %>
+          <%= render 'public/memories/memory_index', memory: @search %>
+        <% end %>
+      <% end %>
     </div>
   </div>
 </div>
