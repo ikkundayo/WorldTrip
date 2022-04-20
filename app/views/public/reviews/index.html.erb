@@ -17,7 +17,7 @@
           <td><%= link_to '総合評価', reviews_path('type': 'average') %></td>
         </tr>
         <tr>
-          <td><%= link_to '楽しさ・娯楽', reviews_path('type': 'amusement') %></td>
+          <td><%= link_to '楽しさ・娯楽', reviews_path('type': 'amusement' && @q.area) %></td>
         </tr>
         <tr>
           <td><%= link_to 'グルメ', reviews_path('type': 'gourmet') %></td>

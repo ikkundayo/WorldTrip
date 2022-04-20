@@ -1,6 +1,8 @@
 class Public::ReviewsController < ApplicationController
 
   def index
+    @q = Review.ransack(params[:q])
+
     @average = Review.select('AVG(review_average) as avg ,country_code, country_id').group(:country_code).order(avg: :DESC).page(params[:page]).per(20)
     @amusement = Review.select('AVG(amusement_rate) as avg ,country_code, country_id').group(:country_code).order(avg: :DESC).page(params[:page]).per(20)
     @gourmet = Review.select('AVG(gourmet_rate) as avg ,country_code, country_id').group(:country_code).order(avg: :DESC).page(params[:page]).per(20)
@@ -9,25 +11,26 @@ class Public::ReviewsController < ApplicationController
     @original = Review.select('AVG(original_rate) as avg ,country_code, country_id').group(:country_code).order(avg: :DESC).page(params[:page]).per(20)
 
     @country = Country.select(:area).distinct
-    @q = Review.ransack(params[:q])
+    @review = @q.result(distinct: true)
+    @search = @review.select('AVG(review_average) as avg ,country_code, country_id').group(:country_code).order(avg: :DESC).page(params[:page]).per(20)
+
     # if @q.blank?
     #   @review = Review.all
     # else
     #   @review = @q.result(distinct: true)
     # end
-    @review = @q.result(distinct: true)
-    @search = @review.select('AVG(review_average) as avg ,country_code, country_id').group(:country_code).order(avg: :DESC).page(params[:page]).per(20)
   end
 
 
   def show
-    @country = Country.find(params[:id])
+    if params[:id] =~ /\A[0-9]+\z/
+      @country = Country.find(params[:id])
+      @reviews = Review.where(country_id: params[:id]).page(params[:page]).per(10)
+    else
+      @country = Country.find_by(code: params[:id])
+      @reviews = Review.where(code: params[:id]).page(params[:page]).per(10)
+    end
 
-    @reviews = Review.where(country_id: params[:id]).page(params[:page]).per(10)
-    # if @reviews = blank?
-    #   @reviews.review_average = 0
-    # end
-    # .presence || "0"
 
 
   end
@@ -46,6 +49,7 @@ class Public::ReviewsController < ApplicationController
     @review.user_id = current_user.id
     @review.country_code = Country.find(params[:review][:country_id]).name_jp
     @review.area = Country.find(params[:review][:country_id]).area
+    @review.code = Country.find(params[:review][:country_id]).code
     @total = @review.review_averages
     @review.review_average = @total
     if @review.save

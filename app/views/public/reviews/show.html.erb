@@ -4,57 +4,63 @@
       <table class='table'>
         <tr>
           <td>
+
             <i class="flag-icon flag-icon-<%= @country.code.downcase %>"></i>
             <%= @country.name_jp %>
           </td>
         </tr>
-        <tr>
-          <td>総合評価 <%= @reviews.average(:review_average).round(1) %><br>
-          <div id="average-rate"></div>
-          </td>
-        </tr>
-        <tr>
-          <td>楽しさ・娯楽 <%= @reviews.average(:amusement_rate).round(1) %><br>
-            <span id="amusement-rate"></span>
-            (<%= @reviews.count(:amusement_rate) %>)
-          </td>
-        </tr>
-        <tr>
-          <td>グルメ <%= @reviews.average(:gourmet_rate).round(1) %><br>
-            <span id="gourmet-rate"></span>
-            (<%= @reviews.count(:gourmet_rate) %>)
-          </td>
-        </tr>
-        <tr>
-          <td>治安 <%= @reviews.average(:security_rate).round(1) %><br>
-            <span id="security-rate"></span>
-            (<%= @reviews.count(:security_rate) %>)
-          </td>
-        </tr>
-        <tr>
-          <td>おすすめ度 <%= @reviews.average(:recommend_rate).round(1) %><br>
-            <span id="recommend-rate"></span>
-            (<%= @reviews.count(:recommend_rate) %>)
-          </td>
-        </tr>
-
-        <% if @reviews.average(:original_rate).nil? %>
+        <% if @reviews.blank? %>
           <tr>
-            <td>オリジナルカテゴリー <br>
-              <span id="original-rate0"></span>
-              (<%= @reviews.count(:original_rate) %>)
-            </td>
+            <td><p>まだレビューがありません</p></td>
           </tr>
         <% else %>
           <tr>
-            <td>オリジナルカテゴリー <%= @reviews.average(:original_rate).round(1) %><br>
-              <span id="original-rate"></span>
-              (<%= @reviews.count(:original_rate) %>)
+            <td>総合評価 <%= @reviews.average(:review_average).round(1) %><br>
+            <div id="average-rate"></div>
             </td>
           </tr>
-        <% end %>
-      </table>
-    </div>
+          <tr>
+            <td>楽しさ・娯楽 <%= @reviews.average(:amusement_rate).round(1) %><br>
+              <span id="amusement-rate"></span>
+              (<%= @reviews.count(:amusement_rate) %>)
+            </td>
+          </tr>
+          <tr>
+            <td>グルメ <%= @reviews.average(:gourmet_rate).round(1) %><br>
+              <span id="gourmet-rate"></span>
+              (<%= @reviews.count(:gourmet_rate) %>)
+            </td>
+          </tr>
+          <tr>
+            <td>治安 <%= @reviews.average(:security_rate).round(1) %><br>
+              <span id="security-rate"></span>
+              (<%= @reviews.count(:security_rate) %>)
+            </td>
+          </tr>
+          <tr>
+            <td>おすすめ度 <%= @reviews.average(:recommend_rate).round(1) %><br>
+              <span id="recommend-rate"></span>
+              (<%= @reviews.count(:recommend_rate) %>)
+            </td>
+          </tr>
+
+          <% if @reviews.average(:original_rate).nil? %>
+            <tr>
+              <td>オリジナルカテゴリー <br>
+                <span id="original-rate0"></span>
+                (<%= @reviews.count(:original_rate) %>)
+              </td>
+            </tr>
+          <% else %>
+            <tr>
+              <td>オリジナルカテゴリー <%= @reviews.average(:original_rate).round(1) %><br>
+                <span id="original-rate"></span>
+                (<%= @reviews.count(:original_rate) %>)
+              </td>
+            </tr>
+          <% end %>
+        </table>
+      </div>
 
 
     <div class='col-md-7'>
@@ -258,3 +264,5 @@
     });
   });
 </script>
+
+<% end %>
