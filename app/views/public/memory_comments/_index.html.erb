@@ -1,7 +1,9 @@
 <% memory.comments.each do |memory_comment| %>
   <%= link_to user_path(memory_comment.user_id) do %>
     <%= image_tag memory_comment.user.get_user_image(50,50) %><br>
-    <%= memory_comment.user.user_name %><br>
+    <%= memory_comment.user.user_name %>
+    <% country = Country.find_by(name_jp: memory_comment.user.country_code) %>
+    <i class="flag-icon flag-icon-<%= country.code.downcase %>"></i><br>
   <% end %>
   <%= memory_comment.comment %><br>
   <%= time_ago_in_words(memory_comment.created_at) %> ago<br>

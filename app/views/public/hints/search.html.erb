@@ -1,0 +1,15 @@
+<div class='container'>
+  <div class='row justify-content-center'>
+    <div class='col-md-9'>
+      <%= link_to "新規登録", new_hint_path %>
+      <%= link_to "全体表示", hints_path %>
+      <%= render 'public/hints/tag_list', tag_list: @tags %>
+      <% if @hints.blank? %>
+        <h3>まだ投稿がありません</h3>
+      <% else %>
+        <h5><%= @test.country_code %>の投稿一覧</h5>
+        <%= render 'public/hints/hint_index', hint: @hints %>
+      <% end %>
+    </div>
+  </div>
+</div>

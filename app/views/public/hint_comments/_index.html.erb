@@ -2,6 +2,8 @@
   <%= link_to user_path(hint_comment.user_id) do %>
     <%= image_tag hint_comment.user.get_user_image(50,50) %><br>
     <%= hint_comment.user.user_name %>
+    <% country = Country.find_by(name_jp: hint_comment.user.country_code) %>
+    <i class="flag-icon flag-icon-<%= country.code.downcase %>"></i>
     <br>
   <% end %>
   <%= hint_comment.comment %><br>

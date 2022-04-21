@@ -47,6 +47,16 @@ class Public::HintsController < ApplicationController
     redirect_to hints_path
   end
 
+  def search
+    @tags = ActsAsTaggableOn::Tag.order(id: "ASC").pluck(:name)
+    @country = Country.find(params[:hint_id])
+    @hints = Hint.where(country_code: @country.name_jp).page(params[:page]).per(10)
+    if params[:tag_name]
+      @hints = @hint.tagged_with("#{params[:tag_name]}").page(params[:page]).per(10)
+    end
+    @test = Hint.find_by(country_code: @country.name_jp)
+  end
+
   private
 
   def hint_params

@@ -41,6 +41,12 @@ class Public::MemoriesController < ApplicationController
     redirect_to memories_path
   end
 
+  def search
+    @country = Country.find(params[:memory_id])
+    @memory = Memory.where(country_code: @country.name_jp).page(params[:page]).per(10)
+    @memorys = Memory.find_by(country_code: @country.name_jp)
+  end
+
 
   private
 

@@ -4,7 +4,6 @@
     <table class='table'>
       <tr>
   	    <td>
-
   	      <%= link_to review_path(review.country_id) do %>
   	        <% country = Country.find_by(name_jp: review.country_code) %>
   	          <i class="flag-icon flag-icon-<%= country.code.downcase %>"></i><br>
@@ -24,12 +23,10 @@
             <% if @experience.exists?(country_code: review.country_code)%>
               <i class="fas fa-shoe-prints"></i><br>
             <% else %>
-              <p class="review_like_<%= review.country_code %>">
+              <p id="review_like_<%= review.country_code %>">
                 <%= render "public/review_likes/like", review: review, like: @like %>
               </p>
             <% end %>
-          <% else %>
-            <i class="fas fa-plane">
           <% end %>
 
 

@@ -34,10 +34,12 @@ Rails.application.routes.draw do
     end
 
     resources :memories, only: [:index, :show, :new, :create, :destroy] do
+      get :search
       resource :memory_likes, only: [:create, :destroy]
       resources :memory_comments, only: [:create, :destroy]
     end
     resources :hints, only: [:index, :show, :new, :create, :destroy] do
+      get :search
       resource :hint_likes, only: [:create, :destroy]
       resources :hint_comments, only: [:create, :destroy]
     end

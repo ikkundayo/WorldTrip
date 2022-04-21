@@ -12,12 +12,10 @@
               <% if @experience.exists?(country_code: @country.name_jp)%>
       	        <i class="fas fa-shoe-prints"></i><br>
       	      <% else %>
-      	        <p class="review_like">
+      	        <p class="show_like">
                   <%= render "public/review_likes/like_show", review: @country, like: @like %>
                 </p>
               <% end %>
-            <% else %>
-              <i class="fas fa-plane">
             <% end %>
 
           </td>
@@ -73,6 +71,16 @@
             </tr>
           <% end %>
         </table>
+
+        <%= link_to memory_search_path(@country) do %>
+          <p><%= @country.name_jp %>の思い出投稿(<%= @memory_count.count%>)</p>
+        <% end %>
+        <%= link_to hint_search_path(@country) do %>
+          <p><%= @country.name_jp %>のヒント投稿(<%= @hint_count.count%>)</p>
+        <% end %>
+        <p>総渡航数(<%= @travel_count.count%>)</p>
+        <p>行きたい合計数(<%= @wish_count.count%>)</p>
+
       </div>
 
 

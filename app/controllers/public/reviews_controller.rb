@@ -41,6 +41,11 @@ class Public::ReviewsController < ApplicationController
       @like = Like.where(user_id: current_user.id)
     end
 
+    @memory_count = Memory.where(country_code: @country.name_jp)
+    @hint_count = Hint.where(country_code: @country.name_jp)
+    @travel_count = Review.where(country_code: @country.name_jp)
+    @wish_count = Like.where(review_id: @country.name_jp)
+
 
 
   end
@@ -62,7 +67,12 @@ class Public::ReviewsController < ApplicationController
     @review.code = Country.find(params[:review][:country_id]).code
     @total = @review.review_averages
     @review.review_average = @total
+    @like = Like.find_by(user_id: current_user.id, review_id: @review.country_code)
+    if @review.country_code == @like.review_id
+      @like.destroy
+    end
     if @review.save
+
       redirect_to user_path(current_user)
     else
       render 'new'

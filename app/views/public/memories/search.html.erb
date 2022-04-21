@@ -1,0 +1,17 @@
+<div class='container'>
+  <div class='row justify-content-center'>
+    <div class='col-md-9'>
+      <%= link_to "新規登録", new_memory_path %>
+      <%= link_to "全体表示", memories_path %>
+
+
+      <% if @memory.blank? %>
+        <h3>まだ投稿がありません</h3>
+      <% else %>
+      <%# binding.pry %>
+        <h5><%= @memorys.country_code %>の投稿一覧</h5>
+        <%= render 'public/memories/memory_index', memory: @memory %>
+      <% end %>
+    </div>
+  </div>
+</div>
