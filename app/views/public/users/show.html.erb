@@ -80,7 +80,8 @@
     <div class="col-md-10">
       <%= link_to 'レビュー',user_path(@user, {'type': 'review'}) %><br>
       <%= link_to '思い出',user_path(@user, {'type': 'memory'}), anchor: 'test' %><br>
-      <%= link_to 'ヒント',user_path(@user, {'type': 'hint'}) %>
+      <%= link_to 'ヒント',user_path(@user, {'type': 'hint'}) %><br>
+      <%= link_to 'いきたい',user_path(@user, {'type': 'like'}) %>
     </div>
   </div>
 </div>
@@ -88,15 +89,18 @@
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-md-6">
-      <% if params[:type] == 'review' %>
-        <h2 class="text-center">マイレビュー一覧</h2>
-        <%= render 'public/reviews/review_index', reviews: @review %>
+      <% if params[:type] == 'hint' %>
+        <h2 class="text-center">ヒント一覧</h2>
+        <%= render 'public/hints/hint_index', hint: @hint %>
       <% elsif params[:type] == 'memory' %>
         <h2 class="text-center" id="test">思い出一覧</h2>
         <%= render 'public/memories/memory_index', memory: @memory %>
+      <% elsif params[:type] == 'like' %>
+        <h2 class="text-center">いきたい</h2>
+        <%= render 'public/users/like', like: @like %>
       <% else %>
-        <h2 class="text-center">ヒント一覧</h2>
-        <%= render 'public/hints/hint_index', hint: @hint %>
+        <h2 class="text-center">マイレビュー一覧</h2>
+        <%= render 'public/reviews/review_index', reviews: @review %>
       <% end %>
     </div>
   </div>

@@ -3,7 +3,9 @@
   <table class='table'>
     <tr>
       <% country = Country.find_by(name_jp: reviews.country_code) %>
-      <th><%= index %>位  <i class="flag-icon flag-icon-<%= country.code.downcase %>"></i><%= reviews.country_code %> <span class="review_average<%= reviews.id%>"></span><%= reviews.review_average.round(1) %> </th>
+
+      <th><%= index %>位  <%= link_to user_path(user, {'type': 'review'}) do %><i class="flag-icon flag-icon-<%= country.code.downcase %>"></i><% end %><%= reviews.country_code %> <span class="review_average<%= reviews.id%>"></span><%= reviews.review_average.round(1) %> </th>
+
     </tr>
   </table>
   <script>

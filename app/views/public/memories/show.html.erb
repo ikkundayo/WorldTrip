@@ -9,7 +9,7 @@
     </td>
     <td>
       渡航国:<%= @memory.country_code %>
-      <i class="flag-icon flag-icon-<%= @country_logo.code.downcase %>"></i><br><br>
+      <%= link_to review_path(@country_logo.id) do %><i class="flag-icon flag-icon-<%= @country_logo.code.downcase %>"></i><% end %><br><br>
       <%= @memory.memory_contents %><br>
       <% if @memory.memory_image.present?%>
         <%= image_tag @memory.get_memory_image(1000,1000) %><br>

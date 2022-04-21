@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  namespace :public do
+    get 'review_likes/create'
+    get 'review_likes/destroy'
+  end
   devise_for :admins, skip: [:registrations, :passwords], controllers: {
   sessions: 'admin/sessions'
   }
@@ -38,7 +42,9 @@ Rails.application.routes.draw do
       resources :hint_comments, only: [:create, :destroy]
     end
     resources :categories, only: [:create]
-    resources :reviews, only: [:index, :show, :new, :create, :destroy]
+    resources :reviews, only: [:index, :show, :new, :create, :destroy] do
+      resource :review_likes, only: [:create, :destroy]
+    end
 
     resources :notifications, only: :index
   end

@@ -14,7 +14,7 @@
           渡航国:<%= memory.country_code %>
 
           <% country = Country.find_by(name_jp: memory.country_code) %>
-          <i class="flag-icon flag-icon-<%= country.code.downcase %>"></i><br>
+          <%= link_to review_path(country.id) do %><i class="flag-icon flag-icon-<%= country.code.downcase %>"></i><% end %><br>
 
           <%= link_to memory_path(memory.id) do %>
             <%= memory.memory_contents %><br>

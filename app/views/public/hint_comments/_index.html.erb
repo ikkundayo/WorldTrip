@@ -1,7 +1,8 @@
 <% hint.comments.each do |hint_comment| %>
   <%= link_to user_path(hint_comment.user_id) do %>
     <%= image_tag hint_comment.user.get_user_image(50,50) %><br>
-    <%= hint_comment.user.user_name %><br>
+    <%= hint_comment.user.user_name %>
+    <br>
   <% end %>
   <%= hint_comment.comment %><br>
   <%= time_ago_in_words(hint_comment.created_at) %> ago<br>

@@ -1,0 +1,26 @@
+<div class='list jscroll'>
+  <% like.each do |like| %>
+    <% if like.review_id.present? %>
+      <table class='table'>
+        <th>
+          <% country = Country.find_by(name_jp: like.review_id) %>
+          <%= link_to review_path(country.id) do %>
+            <i class="flag-icon flag-icon-<%= country.code.downcase %>"></i><br>
+            <%= like.review_id %>
+          <% end %>
+        </th>
+      </table>
+    <% end %>
+  <% end %>
+<%= paginate like %>
+</div>
+
+
+<script>
+  $(function() {
+    $('.jscroll').jscroll({
+      contentSelector: '.list',
+      nextSelector: 'span.next:last a'
+    });
+  });
+</script>

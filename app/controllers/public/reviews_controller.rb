@@ -16,6 +16,7 @@ class Public::ReviewsController < ApplicationController
 
     if user_signed_in?
       @experience = Review.where(user_id: current_user.id)
+      @like = Like.where(user_id: current_user.id)
     end
 
     # if @q.blank?
@@ -37,6 +38,7 @@ class Public::ReviewsController < ApplicationController
 
     if user_signed_in?
       @experience = Review.where(user_id: current_user.id)
+      @like = Like.where(user_id: current_user.id)
     end
 
 

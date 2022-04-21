@@ -4,7 +4,7 @@
       <tr>
 
         <% country = Country.find_by(name_jp: reviews.country_code) %>
-        <td><i class="flag-icon flag-icon-<%= country.code.downcase %>"></i><br>
+        <td><%= link_to review_path(country.id) do %><i class="flag-icon flag-icon-<%= country.code.downcase %>"></i><% end %><br>
 
           <%= reviews.country_code %>
         </td>

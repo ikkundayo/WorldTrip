@@ -1,0 +1,2 @@
+$('.review_like_<%= review.country_code %>').html("<%= j(render 'public/review_likes/like', review: review, like: @like) %>");
+$('.review_like %>').html("<%= j(render 'public/review_likes/like_show', review: @country, like: @like) %>");

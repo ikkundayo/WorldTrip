@@ -9,7 +9,7 @@
     </td>
     <td>
       対象国:<%= @hint.country_code %>
-      <i class="flag-icon flag-icon-<%= @country_logo.code.downcase %>"></i><br>
+      <%= link_to review_path(@country_logo.id) do %><i class="flag-icon flag-icon-<%= @country_logo.code.downcase %>"></i><% end %><br>
       ジャンル:<%= @hint.tag_list %><br><br>
       <%= @hint.hint_contents %><br>
       <% if @hint.hint_image.present?%>
@@ -35,7 +35,7 @@
     <%= render "public/hint_comments/count", hint: @hint %>
   </p>
   <div class="comment-index">
-    <%= render "public/hint_comments/index", hint: @hint %>
+    <%= render "public/hint_comments/index", hint: @hint, country_logo: @country_logo %>
   </div>
 </div>
 <div>

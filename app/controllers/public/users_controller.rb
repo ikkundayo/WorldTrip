@@ -1,7 +1,7 @@
 class Public::UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
-    @review = @user.reviews.page(params[:page]).per(10)
+    @review = @user.reviews.order(review_average: :desc).page(params[:page]).per(10)
     @memory = @user.memories.page(params[:page]).per(10)
     @hint = @user.hints.page(params[:page]).per(10)
     if params[:tag_name]
@@ -14,6 +14,7 @@ class Public::UsersController < ApplicationController
     @country_progress = (@reviews.count.to_f / 260.to_f) * 100.to_f
     @map = @user.reviews
 
+    @like = Like.where(user_id: params[:id]).page(params[:page]).per(10)
 
 
   end

@@ -82,6 +82,7 @@ ActiveRecord::Schema.define(version: 2022_04_20_100410) do
     t.integer "memory_id"
     t.integer "user_id"
     t.integer "hint_id"
+    t.string "review_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id", "memory_id", "hint_id"], name: "index_likes_on_user_id_and_memory_id_and_hint_id", unique: true
