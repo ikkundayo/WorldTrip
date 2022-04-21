@@ -7,6 +7,15 @@
 
             <i class="flag-icon flag-icon-<%= @country.code.downcase %>"></i>
             <%= @country.name_jp %>
+            <% if user_signed_in? %>
+
+            <% if @experience.exists?(country_code: @country.name_jp)%>
+    	        <i class="fas fa-shoe-prints"></i><br>
+    	      <% else %>
+    	        <i class="fal fa-plane"></i><br>
+    	      <% end %>
+
+      	    <% end %>
           </td>
         </tr>
         <% if @reviews.blank? %>

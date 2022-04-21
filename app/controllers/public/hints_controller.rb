@@ -2,7 +2,9 @@ class Public::HintsController < ApplicationController
   def index
     @tags = ActsAsTaggableOn::Tag.order(id: "ASC").pluck(:name)
     @hints = Hint.page(params[:page]).per(10)
-    @following = Hint.where(user_id: [current_user.id,*current_user.follower_ids]).page(params[:page]).per(10)
+    if user_signed_in?
+      @following = Hint.where(user_id: [current_user.id,*current_user.follower_ids]).page(params[:page]).per(10)
+    end
 
     if params[:tag_name]
       @hints = Hint.tagged_with("#{params[:tag_name]}").page(params[:page]).per(10)

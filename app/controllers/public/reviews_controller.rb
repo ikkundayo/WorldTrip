@@ -14,6 +14,10 @@ class Public::ReviewsController < ApplicationController
     @review = @q.result(distinct: true)
     @search = @review.select('AVG(review_average) as avg ,country_code, country_id').group(:country_code).order(avg: :DESC).page(params[:page]).per(20)
 
+    if user_signed_in?
+      @experience = Review.where(user_id: current_user.id)
+    end
+
     # if @q.blank?
     #   @review = Review.all
     # else
@@ -29,6 +33,10 @@ class Public::ReviewsController < ApplicationController
     else
       @country = Country.find_by(code: params[:id])
       @reviews = Review.where(code: params[:id]).page(params[:page]).per(10)
+    end
+
+    if user_signed_in?
+      @experience = Review.where(user_id: current_user.id)
     end
 
 
