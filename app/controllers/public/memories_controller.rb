@@ -1,6 +1,7 @@
 class Public::MemoriesController < ApplicationController
   def index
     @memory = Memory.page(params[:page]).per(10)
+    @following = Memory.where(user_id: [current_user.id,*current_user.follower_ids]).page(params[:page]).per(10)
     @q = Memory.ransack(params[:q])
     @search = @q.result(distinct: true).page(params[:page]).per(10)
   end

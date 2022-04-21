@@ -2,6 +2,7 @@
   <div class='row justify-content-center'>
     <div class='col-md-9'>
       <%= link_to "新規登録",new_memory_path %>
+      <%= link_to "フォローのみ表示", memories_path('type': 'follwing') %>
 
       <%= search_form_for @q, url: memories_path, class:"search-form" do |f| %>
         <%= f.search_field :country_code_cont, placeholder: '国名から探す', class:'input-box' %>
@@ -10,6 +11,8 @@
 
       <% if params[:type] == 'link' %>
         <%= render 'public/memories/memory_index', memory: @memory %>
+      <% elsif params[:type] == 'follwing' %>
+        <%= render 'public/memories/memory_index', memory: @following %>
       <% else %>
         <% if @search.blank? %>
           <p>まだ投稿がありません</p>

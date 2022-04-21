@@ -2,20 +2,22 @@
   <div class='row justify-content-center'>
     <div class='col-md-9'>
       <%= link_to "新規登録", new_hint_path %>
+      <%= link_to "フォローのみ表示", hints_path('type': 'follwing') %>
+
       <%= search_form_for @q, url: hints_path, class:"search-form" do |f| %>
         <%= f.search_field :country_code_cont, placeholder: '国名から探す', class:'input-box' %>
         <%= f.button type: "submit", class:"search-button" %>
       <% end %>
 
-
+      <%= render 'public/hints/tag_list', tag_list: @tags %>
       <% if params[:type] == 'link' || params[:tag_name] == 'アドバイス' || params[:tag_name] == '現地の声' || params[:tag_name] == '体験談' || params[:tag_name] == '質問' || params[:tag_name] == '新型コロナウイルスについて' || params[:tag_name] == 'その他' %>
-        <%= render 'public/hints/tag_list', tag_list: @tags %>
         <%= render 'public/hints/hint_index', hint: @hints %>
+      <% elsif params[:type] == 'follwing' %>
+        <%= render 'public/hints/hint_index', hint: @following %>
       <% else %>
         <% if @search.blank? %>
           <p>まだ投稿がありません</p>
         <% else %>
-          <%= render 'public/hints/tag_list', tag_list: @tags %>
           <%= render 'public/hints/hint_index', hint: @search %>
         <% end %>
       <% end %>
