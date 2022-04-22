@@ -13,6 +13,8 @@
  *= require_tree .
  *= require_self
  */
+@import "slick-theme";
+@import "slick";
  .tab {
   width: 100%;
   padding: 10px;
@@ -51,4 +53,23 @@
 
 nav.pagination {
   display: none;
+}
 
+.slider img{
+    height: 650px;
+}
+
+.nav_list{
+  color: white;
+
+}
+
+.hed_link {
+  text-decoration: none;
+  color: white;
+}
+
+.toppage_icon {
+  font-size: 150px;
+  border: solid 1px  black;
+}

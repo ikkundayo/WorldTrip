@@ -68,8 +68,10 @@ class Public::ReviewsController < ApplicationController
     @total = @review.review_averages
     @review.review_average = @total
     @like = Like.find_by(user_id: current_user.id, review_id: @review.country_code)
-    if @review.country_code == @like.review_id
-      @like.destroy
+    if @like.present?
+      if @review.country_code == @like.review_id
+        @like.destroy
+      end
     end
     if @review.save
 

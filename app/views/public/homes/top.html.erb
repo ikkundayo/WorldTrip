@@ -1,3 +1,56 @@
-<h1>Public::Homes#top</h1>
-<p>Find me in app/views/public/homes/top.html.erb</p>
-    
+<div class='slider'>
+  <%= image_tag 'top.jpg' %>
+  <%= image_tag 'japan.jpg' %>
+  <%= image_tag 'korea.jpg' %>
+  <%= image_tag 'new.zealand.jpg' %>
+  <%= image_tag 'philippines.jpg' %>
+  <%= image_tag 'switzerland.jpg' %>
+  <%= image_tag 'usa.jpg' %>
+  <%= image_tag 'costarica.jpg' %>
+</div>
+
+<div class='container mt-4'>
+  <div class='row justify-content-center'>
+    <div class='col-md-10 '>
+      <h3 class='text-center'>過去1ヶ月渡航人気ランキング</h3>
+      <div class='nav justify-content-between'>
+        <% @reviews.each.with_index(1) do |review, i| %>
+          <div class='mx-5 text-center'>
+            <h4>No.<%= i %></h4>
+            <% country = Country.find_by(name_jp: review.country_code) %>
+            <%= link_to review_path(country) do %>
+              <i class="flag-icon flag-icon-<%= country.code.downcase %> toppage_icon"></i><br>
+              <h5 class='mt-2'><%= review.country_code %></h5>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+      <%= link_to reviews_path do %><p class='mt-1 text-end' >その他ランキングはこち</p><% end %>
+
+      <h3 class='text-center'>旅の思い出</h3>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+<script>
+  $(function() {
+    $('.slider').slick({
+        // centerMode: true, //スライド画面に次のスライドが表示される
+        // centerPadding: '5%', //次のスライドの幅
+        // dots: true, //スライドの下にドットのナビゲーションを表示
+        autoplay: true, //自動再生オン
+        autoplaySpeed: 5000, //再生スピード
+        fade:true,
+        speed:3500,
+        infinite: true //スライドが終了したら最初に戻る
+    });
+  });
+</script>

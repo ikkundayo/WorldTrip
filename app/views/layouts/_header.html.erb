@@ -1,34 +1,34 @@
 <header>
-  <nav class="navbar navbar-default bg-info">
-    <div class="container">
-      <%= link_to 'Worldtrip', root_path, class: "h2 text-dark" %>
+  <nav class="navbar navbar-default bg-dark ">
+    <div class="container nav_list ">
+      <%= link_to 'Worldtrip', root_path, class: "h2 hed_link" %>
       <% if user_signed_in? %>
-        <%= link_to 'about', about_path %>
-        <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %><br>
-        <%= link_to 'ランキング一覧', reviews_path('type': 'link') %>
-        <%= link_to '思い出', memories_path('type': 'link') %>
-        <%= link_to 'ヒント', hints_path('type': 'link') %>
-        <%= link_to 'マイページ', user_path(current_user) %>
+        <%= link_to 'about', about_path, class: "hed_link" %>
+        <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "hed_link" %><br>
+        <%= link_to 'ランキング一覧', reviews_path('type': 'link'), class: "hed_link" %>
+        <%= link_to '思い出', memories_path('type': 'link'), class: "hed_link" %>
+        <%= link_to 'ヒント', hints_path('type': 'link'), class: "hed_link" %>
+        <%= link_to 'マイページ', user_path(current_user), class: "hed_link" %>
         <% if unchecked_notifications.any? %>
           <i class="fa-solid fa-circle" style='color: gold;'></i>
         <% end %>
-        <%= link_to 'NOTICE', notifications_path %>
+        <%= link_to 'NOTICE', notifications_path, class: "hed_link" %>
       <% elsif admin_signed_in? %>
-        <%= link_to 'about', about_path %>
-        <%= link_to '国一覧',  admin_countries_path %>
-        <%= link_to '会員一覧', admin_users_path %>
-        <%= link_to 'ログアウト', destroy_admin_session_path, method: :delete %><br>
-        <%= link_to 'ランキング一覧', reviews_path('type': 'link') %>
-        <%= link_to '思い出', memories_pat('type': 'link') %>
-        <%= link_to 'ヒント', hints_path('type': 'link') %>
+        <%= link_to 'about', about_path, class: "hed_link" %>
+        <%= link_to '国一覧',  admin_countries_path, class: "hed_link" %>
+        <%= link_to '会員一覧', admin_users_path, class: "hed_link" %>
+        <%= link_to 'ログアウト', destroy_admin_session_path, method: :delete, class: "hed_link" %><br>
+        <%= link_to 'ランキング一覧', reviews_path('type': 'link'), class: "hed_link" %>
+        <%= link_to '思い出', memories_pat('type': 'link'), class: "hed_link" %>
+        <%= link_to 'ヒント', hints_path('type': 'link'), class: "hed_link" %>
       <% else %>
-        <%= link_to 'about', about_path %>
-        <%= link_to 'Join', new_user_registration_path %>
-        <%= link_to 'Log-in', new_user_session_path %><br>
-        <%= link_to 'ランキング一覧', reviews_path('type': 'link') %>
-        <%= link_to '思い出', memories_path('type': 'link') %>
-        <%= link_to 'ヒント', hints_path('type': 'link') %><br>
-        <%= link_to '管理者ログイン(今だけ)', new_admin_session_path %>
+        <%= link_to 'about', about_path, class: "hed_link" %>
+        <%= link_to 'Join', new_user_registration_path, class: "hed_link" %>
+        <%= link_to 'Log-in', new_user_session_path, class: "hed_link" %><br>
+        <%= link_to 'ランキング一覧', reviews_path('type': 'link'), class: "hed_link" %>
+        <%= link_to '思い出', memories_path('type': 'link'), class: "hed_link" %>
+        <%= link_to 'ヒント', hints_path('type': 'link'), class: "hed_link" %><br>
+        <%= link_to '管理者ログイン(今だけ)', new_admin_session_path, class: "hed_link" %>
       <% end %>
     </div>
   </nav>
