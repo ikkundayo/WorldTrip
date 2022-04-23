@@ -21,11 +21,11 @@
     </td>
 
     <% if user_signed_in? %>
-      <% if @memory.user_id == current_user.id %>
-        <td>
-          <%= link_to "Destroy", memory_path, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger" %>
-        </td>
+      <% if @memory.user_id == current_user.id  %>
+        <td><%= link_to "Destroy", memory_path, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger" %></td>
       <% end %>
+    <% elsif admin_signed_in? %>
+      <td><%= link_to "Destroy", memory_path, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger" %></td>
     <% end %>
   </tr>
 </table>

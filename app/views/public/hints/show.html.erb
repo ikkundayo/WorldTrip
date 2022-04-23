@@ -22,11 +22,11 @@
       <%= time_ago_in_words(@hint.created_at) %> ago
     </td>
     <% if user_signed_in? %>
-        <% if @hint.user_id == current_user.id %>
-          <td>
-            <%= link_to "Destroy", hint_path, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger" %>
-          </td>
-        <% end %>
+      <% if @hint.user_id == current_user.id %>
+        <td><%= link_to "Destroy", hint_path, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger" %></td>
+      <% end %>
+    <% elsif admin_signed_in? %>
+      <td><%= link_to "Destroy", hint_path, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger" %></td>
     <% end %>
   </tr>
 </table>

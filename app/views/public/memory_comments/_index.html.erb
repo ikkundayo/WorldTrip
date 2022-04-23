@@ -7,7 +7,7 @@
   <% end %>
   <%= memory_comment.comment %><br>
   <%= time_ago_in_words(memory_comment.created_at) %> ago<br>
-  <% if memory_comment.user == current_user %>
+  <% if memory_comment.user == current_user or admin_signed_in? %>
   <%= link_to "削除", memory_memory_comment_path(memory_comment.memory_id, memory_comment), method: :delete, remote: true, data: { confirm: '本当に消しますか？' } %>
   <% end %><br><br>
 <% end %>

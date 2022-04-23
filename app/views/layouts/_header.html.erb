@@ -3,7 +3,6 @@
     <div class="container nav_list ">
       <%= link_to 'Worldtrip', root_path, class: "h2 hed_link" %>
       <% if user_signed_in? %>
-        <%= link_to 'about', about_path, class: "hed_link" %>
         <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "hed_link" %><br>
         <%= link_to 'ランキング一覧', reviews_path('type': 'link'), class: "hed_link" %>
         <%= link_to '思い出', memories_path('type': 'link'), class: "hed_link" %>
@@ -14,15 +13,12 @@
         <% end %>
         <%= link_to 'NOTICE', notifications_path, class: "hed_link" %>
       <% elsif admin_signed_in? %>
-        <%= link_to 'about', about_path, class: "hed_link" %>
-        <%= link_to '国一覧',  admin_countries_path, class: "hed_link" %>
         <%= link_to '会員一覧', admin_users_path, class: "hed_link" %>
         <%= link_to 'ログアウト', destroy_admin_session_path, method: :delete, class: "hed_link" %><br>
         <%= link_to 'ランキング一覧', reviews_path('type': 'link'), class: "hed_link" %>
-        <%= link_to '思い出', memories_pat('type': 'link'), class: "hed_link" %>
+        <%= link_to '思い出', memories_path('type': 'link'), class: "hed_link" %>
         <%= link_to 'ヒント', hints_path('type': 'link'), class: "hed_link" %>
       <% else %>
-        <%= link_to 'about', about_path, class: "hed_link" %>
         <%= link_to 'Join', new_user_registration_path, class: "hed_link" %>
         <%= link_to 'Log-in', new_user_session_path, class: "hed_link" %><br>
         <%= link_to 'ランキング一覧', reviews_path('type': 'link'), class: "hed_link" %>

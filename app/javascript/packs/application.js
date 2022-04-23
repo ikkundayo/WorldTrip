@@ -9,16 +9,8 @@ import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 import "jquery"
+
 require('packs/raty')
-require('packs/slick')
-//= require jquery
-//= require jquery_ujs
-
-//= require rails-ujs
-//= require activestorage
-
-//= require_tree .
-
 
 Rails.start()
 Turbolinks.start()
@@ -26,4 +18,17 @@ ActiveStorage.start()
 
 window.$ = window.jQuery = require('jquery');
 
+import Swiper from 'swiper/swiper-bundle.min'
+import 'swiper/swiper.min'
+
+$(document).on('turbolinks:load', function() {
+  new Swiper('.swiper', {
+    loop: true,
+    speed: 2800,
+    effect: 'fade',
+    autoplay: {
+      delay: 5500
+    }
+  })
+})
 
