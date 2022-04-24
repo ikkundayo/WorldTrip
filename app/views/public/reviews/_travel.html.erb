@@ -1,0 +1,45 @@
+<div>
+  <% reviews.each do |review| %>
+    <table class='table'>
+      <tr>
+  	    <td>
+  	      <%= link_to review_path(review.country_id) do %>
+  	        <% country = Country.find_by(name_jp: review.country_code) %>
+  	          <i class="flag-icon flag-icon-<%= country.code.downcase %>"></i><br>
+    	      <%= review.country_code %><br>
+
+            <% if params[:type] == 'total-travel' %>
+              <% counts = Review.where(country_id: review.country_id).count %>
+            <% elsif params[:type] == 'month-travel' %>
+              <% counts = Review.where(season: true, created_at: Time.current.all_month, country_id: review.country_id).count %>
+            <% else %>
+              <% counts = Review.where(season: true, created_at: Time.current.all_week, country_id: review.country_id).count %>
+            <% end %>
+            <h3><%= counts %></h3>
+          <% end %>
+
+          <br>
+          <% if user_signed_in? %>
+            <% if @experience.exists?(country_code: review.country_code)%>
+              <i class="fas fa-shoe-prints"></i><br>
+            <% else %>
+              <p id="review_like_<%= review.country_code %>">
+                <%= render "public/review_likes/like", review: review, like: @like %>
+              </p>
+            <% end %>
+          <% end %>
+  	    </td>
+  	  </tr>
+    </table>
+  <% end %>
+<%= paginate reviews %>
+</div>
+
+<script>
+  $(function() {
+    $('.jscroll').jscroll({
+      contentSelector: '.list',
+      nextSelector: 'span.next:last a'
+    });
+  });
+</script>

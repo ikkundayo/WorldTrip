@@ -1,23 +1,60 @@
 <div class='container'>
   <div class='row justify-content-center'>
-    <%= search_form_for @q, url: reviews_path, class:"search-form" do |f| %>
-      <%= f.collection_select :area_eq, @country, :area, :area, include_blank: "地域の選択", class:"search-select-box"  %>
-      <%= f.search_field :country_code_cont, placeholder: '国名から探す', class:'input-box' %>
-      <%= f.button type: "submit", class:"search-button" %>
+    <span class="text-end mt-2">
+      <%= search_form_for @q, url: reviews_path, class:"search-form" do |f| %>
+        <%= f.search_field :country_code_cont, placeholder: '国名から探す', class:'input-box' %>
+        <%= f.button type: "submit", class:"search-button" %>
+      <% end %>
+    </span>
+    <% if params[:type] == 'amusement' %>
+      <h4 class="text-center">~楽しさ・娯楽ランキング~</h4>
+    <% elsif params[:type] == 'gourmet' %>
+      <h4 class="text-center">~グルメランキング~</h4>
+    <% elsif params[:type] == 'security' %>
+      <h4 class="text-center">~治安ランキング~</h4>
+    <% elsif params[:type] == 'recommend' %>
+      <h4 class="text-center">~おすすめ度ランキング~</h4>
+    <% elsif params[:type] == 'total-travel' %>
+      <h4 class="text-center">~Total渡航数ランキング~</h4>
+      <div class="text-center">
+        <%= link_to 'Total', reviews_path('type': 'total-travel') %> |
+        <%= link_to 'Month', reviews_path('type': 'month-travel') %> |
+        <%= link_to 'Week', reviews_path('type': 'week-travel') %>
+      </div>
+    <% elsif params[:type] == 'month-travel' %>
+       <h4 class="text-center">~Month渡航数ランキング~</h4>
+       <div class="text-center">
+         <%= link_to 'Total', reviews_path('type': 'total-travel') %> |
+         <%= link_to 'Month', reviews_path('type': 'month-travel') %> |
+         <%= link_to 'Week', reviews_path('type': 'week-travel') %>
+       </div>
+    <% elsif params[:type] == 'week-travel' %>
+       <h4 class="text-center">~Week渡航数ランキング~</h4>
+       <div class="text-center">
+         <%= link_to 'Total', reviews_path('type': 'total-travel') %> |
+         <%= link_to 'Month', reviews_path('type': 'month-travel') %> |
+         <%= link_to 'Week', reviews_path('type': 'week-travel') %>
+       </div>
+    <% elsif params[:type] == 'original' %>
+      <h4 class="text-center">~オリジナルランキング~</h4>
+    <% elsif params[:type] == 'link' %>
+      <h4 class="text-center">~総合評価ランキング~</h4>
+    <% elsif params[:type] == 'average' %>
+      <h4 class="text-center">~総合評価ランキング~</h4>
+    <% else %>
+      <h4 class="text-center">~総合評価ランキング~</h4>
     <% end %>
+
     <div class='col-md-2'>
       <table class='table'>
         <tr>
-          <th>ランキング一覧</th>
+          <th>カテゴリー別</th>
         </tr>
-        <!--<tr>-->
-        <!--  <td>渡航数</td>-->
-        <!--</tr>-->
         <tr>
           <td><%= link_to '総合評価', reviews_path('type': 'average') %></td>
         </tr>
         <tr>
-          <td><%= link_to '楽しさ・娯楽', reviews_path('type': 'amusement' && @q.area) %></td>
+          <td><%= link_to '楽しさ・娯楽', reviews_path('type': 'amusement') %></td>
         </tr>
         <tr>
           <td><%= link_to 'グルメ', reviews_path('type': 'gourmet') %></td>
@@ -29,9 +66,52 @@
           <td><%= link_to 'おすすめ度', reviews_path('type': 'recommend') %></td>
         </tr>
         <tr>
+          <td><%= link_to '渡航数', reviews_path('type': 'total-travel') %></td>
+        </tr>
+        <tr>
           <td><%= link_to 'オリジナル・その他', reviews_path('type': 'original') %></td>
         </tr>
       </table>
+      <table class='table mt-2'>
+        <tr>
+          <th>地域別</th>
+        </tr>
+        <tr>
+          <td><%= link_to 'アジア', review_search_path(:アジア) %></td>
+        </tr>
+        <tr>
+          <td><%= link_to 'アフリカ', review_search_path(:アフリカ) %></td>
+        </tr>
+        <tr>
+          <td><%= link_to 'オセアニア', review_search_path(:オセアニア) %></td>
+        </tr>
+        <tr>
+          <td><%= link_to '欧州', review_search_path(:欧州) %></td>
+        </tr>
+        <tr>
+          <td><%= link_to '中南米', review_search_path(:中南米) %></td>
+        </tr>
+        <tr>
+          <td><%= link_to '中央アジア', review_search_path(:中央アジア) %></td>
+        </tr>
+        <tr>
+          <td><%= link_to '中米', review_search_path(:中米) %></td>
+        </tr>
+        <tr>
+          <td><%= link_to '中近東', review_search_path(:中近東) %></td>
+        </tr>
+        <tr>
+          <td><%= link_to '東欧', review_search_path(:東欧) %></td>
+        </tr>
+        <tr>
+          <td><%= link_to '北米', review_search_path(:北米) %></td>
+        </tr>
+        <tr>
+          <td><%= link_to 'その他', review_search_path(:その他) %></td>
+        </tr>
+      </table>
+
+
     </div>
     <div class='col-md-8'>
       <div class='row justify-content-center'>
@@ -44,6 +124,8 @@
             <%= render 'public/reviews/review_ranking', reviews: @security %>
           <% elsif params[:type] == 'recommend' %>
             <%= render 'public/reviews/review_ranking', reviews: @recommend %>
+          <% elsif params[:type] == 'total-travel' || params[:type] == "month-travel" || params[:type] == "week-travel" %>
+            <%= render 'public/reviews/travel', reviews: @travel %>
           <% elsif params[:type] == 'original' %>
             <%= render 'public/reviews/review_ranking', reviews: @original %>
           <% elsif params[:type] == 'link' %>
@@ -62,12 +144,3 @@
     </div>
   </div>
 </div>
-
-<script>
-  $(function() {
-    $('.jscroll').jscroll({
-      contentSelector: '.list',
-      nextSelector: 'span.next:last a'
-    });
-  });
-</script>

@@ -45,6 +45,7 @@ Rails.application.routes.draw do
     end
     resources :categories, only: [:create]
     resources :reviews, only: [:index, :show, :new, :create, :destroy] do
+      get :search
       resource :review_likes, only: [:create, :destroy]
     end
 

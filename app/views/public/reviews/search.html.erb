@@ -1,0 +1,96 @@
+<div class='container'>
+  <div class='row justify-content-center'>
+    <% if @link.present? %>
+      <% if params[:type] == 'amusement' %>
+        <h4 class="text-center mt-3">楽しさ・娯楽ランキング</h4>
+      <% elsif params[:type] == 'gourmet' %>
+        <h4 class="text-center mt-3">グルメランキング</h4>
+      <% elsif params[:type] == 'security' %>
+        <h4 class="text-center mt-3">治安ランキング</h4>
+      <% elsif params[:type] == 'recommend' %>
+        <h4 class="text-center mt-3">おすすめ度ランキング</h4>
+      <% elsif params[:type] == 'total-travel' %>
+        <h4 class="text-center mt-3">~Total渡航数ランキング~</h4>
+      <% elsif params[:type] == 'month-travel' %>
+         <h4 class="text-center mt-3">~Month渡航数ランキング~</h4>
+      <% elsif params[:type] == 'week-travel' %>
+         <h4 class="text-center mt-3">~Week渡航数ランキング~</h4>
+      <% elsif params[:type] == 'original' %>
+        <h4 class="text-center mt-3">オリジナルランキング</h4>
+      <% elsif params[:type] == 'average' %>
+        <h4 class="text-center mt-3">総合評価ランキング</h4>
+      <% else %>
+        <h4 class="text-center mt-3">総合評価ランキング</h4>
+      <% end %>
+      <h4 class="text-center mt-1">「<%= @link.area %>」</h4>
+      <% if params[:type] == "total-travel" || params[:type] == "month-travel" || params[:type] == "week-travel"%>
+        <div class="text-center">
+          <%= link_to 'Total', review_search_path(@link.area, {'type': 'total-travel'}) %> |
+          <%= link_to 'Month', review_search_path(@link.area, {'type': 'month-travel'}) %> |
+          <%= link_to 'Week', review_search_path(@link.area, {'type': 'week-travel'}) %>
+        </div>
+      <% end %>
+
+
+      <div class='col-md-2'>
+        <table class='table'>
+          <tr>
+            <th>ランキング一覧</th>
+          </tr>
+          <tr>
+            <td><%= link_to '総合評価', review_search_path(@link.area, {'type': 'average'}) %></td>
+          </tr>
+          <tr>
+            <td><%= link_to '楽しさ・娯楽', review_search_path(@link.area, {'type': 'amusement'}) %></td>
+          </tr>
+          <tr>
+            <td><%= link_to 'グルメ', review_search_path(@link.area, {'type': 'gourmet'}) %></td>
+          </tr>
+          <tr>
+            <td><%= link_to '治安', review_search_path(@link.area, {'type': 'security'}) %></td>
+          </tr>
+          <tr>
+            <td><%= link_to 'おすすめ度', review_search_path(@link.area, {'type': 'recommend'}) %></td>
+          </tr>
+          <tr>
+          <td><%= link_to '渡航数', review_search_path(@link.area, {'type': 'total-travel'}) %></td>
+          </tr>
+          <tr>
+            <td><%= link_to 'オリジナル・その他', review_search_path(@link.area, {'type': 'original'}) %></td>
+          </tr>
+        </table>
+        <%= link_to "全体へ戻る", reviews_path, class: "mx-2" %>
+      </div>
+    <% else %>
+      <div class="text-center mt-3">
+        <h4>まだレビューがありません。</h4>
+        <%= link_to "全体へ戻る", reviews_path, class: "mx-2" %>
+      </div>
+    <% end %>
+
+    <div class='col-md-8'>
+      <div class='row justify-content-center'>
+        <div class='col-md-10 '>
+          <% if params[:type] == 'amusement' %>
+            <%= render 'public/reviews/review_ranking', reviews: @amusement %>
+          <% elsif params[:type] == 'average' %>
+            <%= render 'public/reviews/review_ranking', reviews: @average %>
+          <% elsif params[:type] == 'gourmet' %>
+            <%= render 'public/reviews/review_ranking', reviews: @gourmet %>
+          <% elsif params[:type] == 'security' %>
+            <%= render 'public/reviews/review_ranking', reviews: @security %>
+          <% elsif params[:type] == 'recommend' %>
+            <%= render 'public/reviews/review_ranking', reviews: @recommend %>
+          <% elsif params[:type] == "total-travel" || params[:type] == "month-travel" || params[:type] == "week-travel" %>
+            <%= render 'public/reviews/travel', reviews: @travel %>
+          <% elsif params[:type] == 'original' %>
+            <%= render 'public/reviews/review_ranking', reviews: @original %>
+          <% else %>
+            <%= render 'public/reviews/review_ranking', reviews: @average %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

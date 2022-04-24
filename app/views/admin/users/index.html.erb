@@ -1,42 +1,24 @@
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-lg-8">
+      <div class="mt-2">
+        <%= search_form_for @q, url: admin_users_path, class:"search-form" do |f| %>
+          <%= f.search_field :user_name_cont, placeholder: 'ユーザーを探す', class:'input-box' %>
+          <%= f.button type: "submit", class:"search-button" %>
+        <% end %>
+      </div>
+
       <h4 class="mt-3">会員一覧</h4>
-      <table class="table">
-  <tr>
-    <th class="table-active">ID</th>
-    <th class="table-active">User Name</th>
-    <th class="table-active">Mail</th>
-    <th class="table-active">Status</th>
-    <th class="table-active"></th>
-  </tr>
-  <%#=binding.pry%>
-  <% @users.each do |user| %>
-    <tr>
-      <td>
-        <%= user.id %>
-      </td>
-      <td>
-        <%= link_to user.user_name, user_path(user), class: "text-dark" %>
-      </td>
-      <td>
-        <%= user.email %>
-      </td>
-      <% if user.is_deleted == true %>
-        <td class="text-success fw-bold">有効</td>
+      <% if params[:type] == 'link' %>
+        <%= render 'admin/users/index', users: @users %>
       <% else %>
-        <td class="text-danger fw-bold">退会済</td>
+        <% if @search.blank? %>
+          <p>ユーザーが見つかりませんでした</p>
+        <% else %>
+          <%= render 'admin/users/index', users: @search %>
+        <% end %>
       <% end %>
 
-      <% if user.is_deleted == true %>
-        <td><%= link_to "退会", admin_user_path(user), method: :patch, class: "btn btn-danger", "data-confirm" => "本当によろしいですか？" %></td>
-      <% else %>
-        <td><%= link_to "有効", admin_user_path(user), method: :patch, class: "btn btn-primary", "data-confirm" => "本当によろしいですか？" %></td>
-      <% end %>
-    </tr>
-  <% end %>
-</table>
-<%= paginate @users %>
     </div>
   </div>
 </div>

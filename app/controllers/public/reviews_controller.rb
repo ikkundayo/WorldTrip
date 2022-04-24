@@ -19,11 +19,7 @@ class Public::ReviewsController < ApplicationController
       @like = Like.where(user_id: current_user.id)
     end
 
-    # if @q.blank?
-    #   @review = Review.all
-    # else
-    #   @review = @q.result(distinct: true)
-    # end
+    @travel = Review.group(:country_code).order('count(country_code) desc').page(params[:page]).per(20)
   end
 
 
@@ -85,6 +81,22 @@ class Public::ReviewsController < ApplicationController
     @review = Review.find(params[:id])
     @review.destroy
     redirect_to user_path(current_user)
+  end
+
+  def search
+    @link = Review.find_by(area: params[:review_id])
+    @area = Review.where(area: params[:review_id])
+    @average = @area.select('AVG(review_average) as avg ,country_code, country_id').group(:country_code).order(avg: :DESC).page(params[:page]).per(20)
+    @amusement = @area.select('AVG(amusement_rate) as avg ,country_code, country_id').group(:country_code).order(avg: :DESC).page(params[:page]).per(20)
+    @gourmet = @area.select('AVG(gourmet_rate) as avg ,country_code, country_id').group(:country_code).order(avg: :DESC).page(params[:page]).per(20)
+    @security = @area.select('AVG(security_rate) as avg ,country_code, country_id').group(:country_code).order(avg: :DESC).page(params[:page]).per(20)
+    @recommend = @area.select('AVG(recommend_rate) as avg ,country_code, country_id').group(:country_code).order(avg: :DESC).page(params[:page]).per(20)
+    @original = @area.select('AVG(original_rate) as avg ,country_code, country_id').group(:country_code).order(avg: :DESC).page(params[:page]).per(20)
+    @travel = @area.group(:country_code).order('count(country_code) desc').page(params[:page]).per(20)
+    if user_signed_in?
+      @experience = Review.where(user_id: current_user.id)
+      @like = Like.where(user_id: current_user.id)
+    end
   end
 
   private

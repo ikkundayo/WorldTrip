@@ -13,7 +13,7 @@
         <% end %>
         <%= link_to 'NOTICE', notifications_path, class: "hed_link" %>
       <% elsif admin_signed_in? %>
-        <%= link_to '会員一覧', admin_users_path, class: "hed_link" %>
+        <%= link_to '会員一覧', admin_users_path('type': 'link'), class: "hed_link" %>
         <%= link_to 'ログアウト', destroy_admin_session_path, method: :delete, class: "hed_link" %><br>
         <%= link_to 'ランキング一覧', reviews_path('type': 'link'), class: "hed_link" %>
         <%= link_to '思い出', memories_path('type': 'link'), class: "hed_link" %>
