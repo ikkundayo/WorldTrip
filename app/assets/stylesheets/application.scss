@@ -65,6 +65,7 @@ nav.pagination {
 .hed_link {
   text-decoration: none;
   color: white;
+  margin-left: 40px;
 }
 
 .toppage_icon {
@@ -94,4 +95,55 @@ nav.pagination {
 
 .swiper {
   height: 650px;
+}
+
+.crown-one {
+  position: absolute;
+  font-size: 60px;
+  color: gold;
+  top: 800px;
+  left: 295px;
+  position: absolute;
+}
+.crown-two {
+  position: absolute;
+  font-size: 60px;
+  color: silver;
+  top: 800px;
+  left: 686px;
+  position: absolute;
+}
+.crown-three {
+  position: absolute;
+  font-size: 60px;
+  color: #815a2b;
+  top: 800px;
+  left: 1077px;
+  position: absolute;
+}
+.no-one {
+  position: absolute;
+  top: 828px;
+  left: 309px;
+}
+.no-two {
+  position: absolute;
+  top: 828px;
+  left: 699px;
+}
+.no-three {
+  position: absolute;
+  top: 828px;
+  left: 1090px;
+}
+
+.index-ranking-icon {
+  font-size: 130px;
+  border: solid 1px  black;
+}
+
+.card-memory {
+  height: 380px;
+  width: 260px;
+  padding: 15px;
 }

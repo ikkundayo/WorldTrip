@@ -1,41 +1,10 @@
 <div class='container'>
   <div class='row justify-content-center'>
     <% if @link.present? %>
-      <% if params[:type] == 'amusement' %>
-        <h4 class="text-center mt-3">楽しさ・娯楽ランキング</h4>
-      <% elsif params[:type] == 'gourmet' %>
-        <h4 class="text-center mt-3">グルメランキング</h4>
-      <% elsif params[:type] == 'security' %>
-        <h4 class="text-center mt-3">治安ランキング</h4>
-      <% elsif params[:type] == 'recommend' %>
-        <h4 class="text-center mt-3">おすすめ度ランキング</h4>
-      <% elsif params[:type] == 'total-travel' %>
-        <h4 class="text-center mt-3">~Total渡航数ランキング~</h4>
-      <% elsif params[:type] == 'month-travel' %>
-         <h4 class="text-center mt-3">~Month渡航数ランキング~</h4>
-      <% elsif params[:type] == 'week-travel' %>
-         <h4 class="text-center mt-3">~Week渡航数ランキング~</h4>
-      <% elsif params[:type] == 'original' %>
-        <h4 class="text-center mt-3">オリジナルランキング</h4>
-      <% elsif params[:type] == 'average' %>
-        <h4 class="text-center mt-3">総合評価ランキング</h4>
-      <% else %>
-        <h4 class="text-center mt-3">総合評価ランキング</h4>
-      <% end %>
-      <h4 class="text-center mt-1">「<%= @link.area %>」</h4>
-      <% if params[:type] == "total-travel" || params[:type] == "month-travel" || params[:type] == "week-travel"%>
-        <div class="text-center">
-          <%= link_to 'Total', review_search_path(@link.area, {'type': 'total-travel'}) %> |
-          <%= link_to 'Month', review_search_path(@link.area, {'type': 'month-travel'}) %> |
-          <%= link_to 'Week', review_search_path(@link.area, {'type': 'week-travel'}) %>
-        </div>
-      <% end %>
-
-
-      <div class='col-md-2'>
+      <div class='col-md-2 mt-4'>
         <table class='table'>
           <tr>
-            <th>ランキング一覧</th>
+            <th class="table-active">カテゴリー別</th>
           </tr>
           <tr>
             <td><%= link_to '総合評価', review_search_path(@link.area, {'type': 'average'}) %></td>
@@ -70,7 +39,40 @@
 
     <div class='col-md-8'>
       <div class='row justify-content-center'>
-        <div class='col-md-10 '>
+        <div class='col-md-8 text-center '>
+          <% if @link.present? %>
+            <% if params[:type] == 'amusement' %>
+              <h4 class="text-center mt-3">楽しさ・娯楽ランキング</h4>
+            <% elsif params[:type] == 'gourmet' %>
+              <h4 class="text-center mt-3">グルメランキング</h4>
+            <% elsif params[:type] == 'security' %>
+              <h4 class="text-center mt-3">治安ランキング</h4>
+            <% elsif params[:type] == 'recommend' %>
+              <h4 class="text-center mt-3">おすすめ度ランキング</h4>
+            <% elsif params[:type] == 'total-travel' %>
+              <h4 class="text-center mt-3">~Total渡航数ランキング~</h4>
+            <% elsif params[:type] == 'month-travel' %>
+               <h4 class="text-center mt-3">~Month渡航数ランキング~</h4>
+            <% elsif params[:type] == 'week-travel' %>
+               <h4 class="text-center mt-3">~Week渡航数ランキング~</h4>
+            <% elsif params[:type] == 'original' %>
+              <h4 class="text-center mt-3">オリジナルランキング</h4>
+            <% elsif params[:type] == 'average' %>
+              <h4 class="text-center mt-3">総合評価ランキング</h4>
+            <% else %>
+              <h4 class="text-center mt-3">総合評価ランキング</h4>
+            <% end %>
+            <h4 class="text-center mt-1">「<%= @link.area %>」</h4>
+            <% if params[:type] == "total-travel" || params[:type] == "month-travel" || params[:type] == "week-travel"%>
+              <div class="text-center">
+                <%= link_to 'Total', review_search_path(@link.area, {'type': 'total-travel'}) %> |
+                <%= link_to 'Month', review_search_path(@link.area, {'type': 'month-travel'}) %> |
+                <%= link_to 'Week', review_search_path(@link.area, {'type': 'week-travel'}) %>
+              </div>
+            <% end %>
+          <% end %>
+
+
           <% if params[:type] == 'amusement' %>
             <%= render 'public/reviews/review_ranking', reviews: @amusement %>
           <% elsif params[:type] == 'average' %>

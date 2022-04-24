@@ -16,11 +16,10 @@
 <div class='container mt-5'>
   <div class='row justify-content-center'>
     <div class='col-md-10 '>
-      <h3 class='text-center'>過去1ヶ月渡航人気ランキング</h3>
+      <h3 class='text-center'>過去1ヶ月渡航人気ランキング</h3><br><br>
       <div class='nav mt-3 justify-content-between'>
-        <% @reviews.each.with_index(1) do |review, i| %>
+        <% @reviews.each do |review| %>
           <div class='mx-5 text-center'>
-            <h4>No.<%= i %></h4>
             <%= link_to review_path(review.country), class: 'top_content' do %>
               <i class="flag-icon flag-icon-<%= review.country.code.downcase %> toppage_icon"></i><br>
               <h5 class='mt-2'><%= review.country_code %></h5>
@@ -28,22 +27,40 @@
           </div>
         <% end %>
       </div>
+     <i class="fa-solid fa-crown crown-one"></i><i class="fa-solid fa-crown crown-two"></i><i class="fa-solid fa-crown crown-three"></i>
+     <h5 class="no-one">No.1</h5><h5 class="no-two">No.2</h5><h5 class="no-three">No.3</h5>
+
       <%= link_to reviews_path do %><p class='mt-1 text-end' >その他ランキングはこちら</p><% end %>
 
       <h3 class='text-center mt-5'>旅の思い出</h3>
       <div class='nav mt-3 justify-content-between'>
         <% @memories.each do |memory| %>
-          <div class='mx-5 text-center'>
-            <h6>渡航国:<%= memory.country_code %></h6>
+          <div class='mx-5 text-center card card-memory'>
             <%= link_to memory_path(memory),class: 'top_content' do %>
               <% if memory.memory_image.present?%>
                 <%= image_tag memory.get_memory_image(230,230) %>
               <% end %>
-              <h6 class='mt-2'><%= memory.memory_contents.truncate(15) %></h6>
+              <h6 class="mt-4 mb-5">渡航国:<%= memory.country_code %></h6>
+             <h6><%= memory.memory_contents.truncate(30) %></h6>
             <% end %>
           </div>
         <% end %>
       </div>
+
+      <!--<h3 class='text-center mt-5'>旅の思い出</h3>-->
+      <!--<div class='nav mt-3 justify-content-between'>-->
+      <!--  <%# @memories.each do |memory| %>-->
+      <!--    <div class='mx-5 text-center'>-->
+      <!--      <h6>渡航国:<%#= memory.country_code %></h6>-->
+      <!--      <%#= link_to memory_path(memory),class: 'top_content' do %>-->
+      <!--        <%# if memory.memory_image.present?%>-->
+      <!--          <%#= image_tag memory.get_memory_image(230,230) %>-->
+      <!--        <%# end %>-->
+      <!--        <h6 class='mt-2'><%#= memory.memory_contents.truncate(15) %></h6>-->
+      <!--      <%# end %>-->
+      <!--    </div>-->
+      <!--  <%# end %>-->
+      <!--</div>-->
       <%= link_to memories_path do %><p class='mt-1 text-end' >その他思い出はこちら</p><% end %>
 
       <h3 class='text-center mt-5'>ヒント</h3>

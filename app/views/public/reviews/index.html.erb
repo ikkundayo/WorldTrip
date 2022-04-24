@@ -6,49 +6,11 @@
         <%= f.button type: "submit", class:"search-button" %>
       <% end %>
     </span>
-    <% if params[:type] == 'amusement' %>
-      <h4 class="text-center">~楽しさ・娯楽ランキング~</h4>
-    <% elsif params[:type] == 'gourmet' %>
-      <h4 class="text-center">~グルメランキング~</h4>
-    <% elsif params[:type] == 'security' %>
-      <h4 class="text-center">~治安ランキング~</h4>
-    <% elsif params[:type] == 'recommend' %>
-      <h4 class="text-center">~おすすめ度ランキング~</h4>
-    <% elsif params[:type] == 'total-travel' %>
-      <h4 class="text-center">~Total渡航数ランキング~</h4>
-      <div class="text-center">
-        <%= link_to 'Total', reviews_path('type': 'total-travel') %> |
-        <%= link_to 'Month', reviews_path('type': 'month-travel') %> |
-        <%= link_to 'Week', reviews_path('type': 'week-travel') %>
-      </div>
-    <% elsif params[:type] == 'month-travel' %>
-       <h4 class="text-center">~Month渡航数ランキング~</h4>
-       <div class="text-center">
-         <%= link_to 'Total', reviews_path('type': 'total-travel') %> |
-         <%= link_to 'Month', reviews_path('type': 'month-travel') %> |
-         <%= link_to 'Week', reviews_path('type': 'week-travel') %>
-       </div>
-    <% elsif params[:type] == 'week-travel' %>
-       <h4 class="text-center">~Week渡航数ランキング~</h4>
-       <div class="text-center">
-         <%= link_to 'Total', reviews_path('type': 'total-travel') %> |
-         <%= link_to 'Month', reviews_path('type': 'month-travel') %> |
-         <%= link_to 'Week', reviews_path('type': 'week-travel') %>
-       </div>
-    <% elsif params[:type] == 'original' %>
-      <h4 class="text-center">~オリジナルランキング~</h4>
-    <% elsif params[:type] == 'link' %>
-      <h4 class="text-center">~総合評価ランキング~</h4>
-    <% elsif params[:type] == 'average' %>
-      <h4 class="text-center">~総合評価ランキング~</h4>
-    <% else %>
-      <h4 class="text-center">~総合評価ランキング~</h4>
-    <% end %>
 
     <div class='col-md-2'>
       <table class='table'>
         <tr>
-          <th>カテゴリー別</th>
+          <th class="table-active">カテゴリー別</th>
         </tr>
         <tr>
           <td><%= link_to '総合評価', reviews_path('type': 'average') %></td>
@@ -74,7 +36,7 @@
       </table>
       <table class='table mt-2'>
         <tr>
-          <th>地域別</th>
+          <th class="table-active">地域別</th>
         </tr>
         <tr>
           <td><%= link_to 'アジア', review_search_path(:アジア) %></td>
@@ -115,7 +77,46 @@
     </div>
     <div class='col-md-8'>
       <div class='row justify-content-center'>
-        <div class='col-md-10 '>
+        <div class='col-md-8 text-center '>
+          <% if params[:type] == 'amusement' %>
+            <h4 class="text-center">~楽しさ・娯楽ランキング~</h4>
+          <% elsif params[:type] == 'gourmet' %>
+            <h4 class="text-center">~グルメランキング~</h4>
+          <% elsif params[:type] == 'security' %>
+            <h4 class="text-center">~治安ランキング~</h4>
+          <% elsif params[:type] == 'recommend' %>
+            <h4 class="text-center">~おすすめ度ランキング~</h4>
+          <% elsif params[:type] == 'total-travel' %>
+            <h4 class="text-center">~Total渡航数ランキング~</h4>
+            <div class="text-center">
+              <%= link_to 'Total', reviews_path('type': 'total-travel') %> |
+              <%= link_to 'Month', reviews_path('type': 'month-travel') %> |
+              <%= link_to 'Week', reviews_path('type': 'week-travel') %>
+            </div>
+          <% elsif params[:type] == 'month-travel' %>
+             <h4 class="text-center">~Month渡航数ランキング~</h4>
+             <div class="text-center">
+               <%= link_to 'Total', reviews_path('type': 'total-travel') %> |
+               <%= link_to 'Month', reviews_path('type': 'month-travel') %> |
+               <%= link_to 'Week', reviews_path('type': 'week-travel') %>
+             </div>
+          <% elsif params[:type] == 'week-travel' %>
+             <h4 class="text-center">~Week渡航数ランキング~</h4>
+             <div class="text-center">
+               <%= link_to 'Total', reviews_path('type': 'total-travel') %> |
+               <%= link_to 'Month', reviews_path('type': 'month-travel') %> |
+               <%= link_to 'Week', reviews_path('type': 'week-travel') %>
+             </div>
+          <% elsif params[:type] == 'original' %>
+            <h4 class="text-center">~オリジナルランキング~</h4>
+          <% elsif params[:type] == 'link' %>
+            <h4 class="text-center">~総合評価ランキング~</h4>
+          <% elsif params[:type] == 'average' %>
+            <h4 class="text-center">~総合評価ランキング~</h4>
+          <% else %>
+            <h4 class="text-center">~総合評価ランキング~</h4>
+          <% end %>
+
           <% if params[:type] == 'amusement' %>
             <%= render 'public/reviews/review_ranking', reviews: @amusement %>
           <% elsif params[:type] == 'gourmet' %>
