@@ -3,13 +3,20 @@
     <div class='col-md-9'>
       <%= link_to "新規登録", new_hint_path %>
       <%= link_to "全体表示", hints_path %>
-      <%= render 'public/hints/tag_list', tag_list: @tags %>
-      <% if @hints.blank? %>
-        <h3>まだ投稿がありません</h3>
-      <% else %>
-        <h5><%= @test.country_code %>の投稿一覧</h5>
-        <%= render 'public/hints/hint_index', hint: @hints %>
+      <% @tags.each do |tag| %>
+        <%= link_to tag, hint_search_path(@country, {tag_name: tag}) %>
       <% end %>
+
+        <% if @hints.blank? %>
+          <h5>まだ投稿がありません😭</h5>
+        <% else %>
+          <% if params[:type] == 'country' %>
+            <h5><%= @country_name.country_code %>の投稿一覧</h5>
+          <% else %>
+            <h5><%= @q.country_code_cont%>の投稿一覧</h5>
+          <% end %>
+            <%= render 'public/hints/hint_index', hint: @hints %>
+        <% end %>
     </div>
   </div>
 </div>

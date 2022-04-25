@@ -5,9 +5,20 @@
   	    <td>
   	      <%= link_to review_path(review.country_id) do %>
   	        <% country = Country.find_by(name_jp: review.country_code) %>
-  	          <i class="flag-icon flag-icon-<%= country.code.downcase %>"></i><br>
-    	      <%= review.country_code %><br>
+  	          <i class="flag-icon flag-icon-<%= country.code.downcase %> index-ranking-icon"></i><br>
+    	      <span class="ranking-country-name"><%= review.country_code %></span>
+    	    <% end %>
 
+  	     <% if user_signed_in? %>
+          <% if @experience.exists?(country_code: review.country_code)%>
+            <i class="fas fa-shoe-prints ranking-shoe"></i><br>
+          <% else %>
+            <i id="review_like_<%= review.country_code %>">
+              <%= render "public/review_likes/like", review: review, like: @like %>
+            </i>
+          <% end %>
+
+          <div class="mt-1">
             <% if params[:type] == 'total-travel' %>
               <% counts = Review.where(country_id: review.country_id).count %>
             <% elsif params[:type] == 'month-travel' %>
@@ -15,19 +26,9 @@
             <% else %>
               <% counts = Review.where(season: true, created_at: Time.current.all_week, country_id: review.country_id).count %>
             <% end %>
-            <h3><%= counts %></h3>
-          <% end %>
-
-          <br>
-          <% if user_signed_in? %>
-            <% if @experience.exists?(country_code: review.country_code)%>
-              <i class="fas fa-shoe-prints"></i><br>
-            <% else %>
-              <p id="review_like_<%= review.country_code %>">
-                <%= render "public/review_likes/like", review: review, like: @like %>
-              </p>
-            <% end %>
-          <% end %>
+            <div class="seach-count"><%= counts %></div>
+        <% end %>
+          </div>
   	    </td>
   	  </tr>
     </table>

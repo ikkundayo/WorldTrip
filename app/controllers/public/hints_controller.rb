@@ -48,13 +48,22 @@ class Public::HintsController < ApplicationController
   end
 
   def search
+    @q = Hint.ransack(params[:q])
     @tags = ActsAsTaggableOn::Tag.order(id: "ASC").pluck(:name)
-    @country = Country.find(params[:hint_id])
-    @hints = Hint.where(country_code: @country.name_jp).page(params[:page]).per(10)
+
+    # if params[:hint_id] =~ /\A[0-9]+\z/
+      @country = Country.find(params[:hint_id])
+      @hints = Hint.where(country_code: @country.name_jp).page(params[:page]).per(10)
+      @country_name = Hint.find_by(country_code: @country.name_jp)
+    # else
+    #   @search = @q.result(distinct: true).pluck(:country_code)
+    #   @country = Country.where(name_jp: @search)
+    #   @hints = Hint.where(country_code: @search).page(params[:page]).per(10)
+    # end
+
     if params[:tag_name]
-      @hints = @hint.tagged_with("#{params[:tag_name]}").page(params[:page]).per(10)
+      @hints = @hints.tagged_with("#{params[:tag_name]}").page(params[:page]).per(10)
     end
-    @test = Hint.find_by(country_code: @country.name_jp)
   end
 
   private

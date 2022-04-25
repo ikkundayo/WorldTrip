@@ -46,9 +46,9 @@
 }
 
 .flag-icon {
-      font-size: 25px;
-      border: solid 1px  black;
-      }
+  font-size: 25px;
+  border: solid 1px  black;
+}
 
 nav.pagination {
   display: none;
@@ -140,10 +140,218 @@ nav.pagination {
 .index-ranking-icon {
   font-size: 130px;
   border: solid 1px  black;
+  margin-bottom: 3px;
+}
+.show-ranking-icon {
+  font-size: 170px;
+  border: solid 1px  black;
+  margin-bottom: 15px;
 }
 
-.card-memory {
-  height: 380px;
-  width: 260px;
-  padding: 15px;
+// .card-memory {
+//   height: 380px;
+//   width: 260px;
+//   padding: 15px;
+// }
+ .top-memory-box {
+   height: 380px;
+   width: 260px;
+   margin-top: 10px;
+   border-radius: 5px;
+  background-color: #F5F6F6;
+ }
+
+.tranking-plane1 {
+  font-size: 17px;
+  background-color: #ff9501;
+  color: white;
+  padding: 5px;
+  margin-left: 4px;
+  border-radius: 7px;
 }
+.tranking-plane2 {
+  font-size: 17px;
+  background-color: #ff6666;
+  color: white;
+  padding: 5px;
+  margin-left: 4px;
+  border-radius: 7px;
+}
+.ranking-show-plane {
+  font-size: 16px;
+  background-color: #ff6666;
+  color: white;
+  padding: 5px;
+  margin-top: 2px;
+  border-radius: 7px;
+}
+.ranking-shoe {
+  font-size: 20px;
+  margin-left: 4px;
+}
+.ranking-show-shoe {
+  font-size: 18px;
+  margin-top: 7px;
+}
+
+.ranking-crown-one {
+  position: absolute;
+  font-size: 60px;
+  color: gold;
+  top: 170px;
+  left: 630px;
+  position: absolute;
+}
+.ranking-crown-two {
+  position: absolute;
+  font-size: 60px;
+  color: silver;
+  top: 400px;
+  left: 630px;
+  position: absolute;
+}
+.ranking-crown-three {
+  position: absolute;
+  font-size: 60px;
+  color: #815a2b;
+  top: 615px;
+  left: 630px;
+  position: absolute;
+}
+.ranking-no-one {
+  position: absolute;
+  top: 199px;
+  left: 644px;
+}
+.ranking-no-two {
+  position: absolute;
+  top: 430px;
+  left: 643px;
+}
+.ranking-no-three {
+  position: absolute;
+  top: 645px;
+  left: 643px;
+}
+
+.search-crown-one {
+  position: absolute;
+  font-size: 60px;
+  color: gold;
+  top: 193px;
+  left: 630px;
+  position: absolute;
+}
+.search-crown-two {
+  position: absolute;
+  font-size: 60px;
+  color: silver;
+  top: 423px;
+  left: 630px;
+  position: absolute;
+}
+.search-crown-three {
+  position: absolute;
+  font-size: 60px;
+  color: #815a2b;
+  top: 638px;
+  left: 630px;
+  position: absolute;
+}
+.search-no-one {
+  position: absolute;
+  top: 223px;
+  left: 644px;
+}
+.search-no-two {
+  position: absolute;
+  top: 454px;
+  left: 643px;
+}
+.search-no-three {
+  position: absolute;
+  top: 669px;
+  left: 643px;
+}
+
+
+.side_link {
+  text-decoration: none;
+  color: black;
+  display: block;
+}
+.ranking-country-name {
+  margin-left: 23px;
+}
+.ranking-show-country-name {
+  margin-left: 23px;
+  font-size: 20px;
+}
+
+.seach-count {
+  font-size: 20px;
+}
+
+.total-content {
+  font-size: 16px;
+}
+.onother-content {
+  font-size: 14px;
+}
+
+.icon-button {
+  width: 60px;
+  height: 52px;
+  border: solid 1px  black;
+  border-radius: 7px;
+  background-color: turquoise;
+}
+
+.ranking-show-camera {
+  font-size: 22px;
+  color: black;
+  margin-top: 2px;
+}
+.ranking-show-light {
+  font-size: 22px;
+  color: yellow;
+  margin-top: 2px;
+}
+
+.top-memory-img {
+  padding-top: 20px;
+  height: 230px;
+  width: auto;
+}
+.top-memory-content {
+    height: 100px;
+    margin: 13px;
+    border-radius: 7px;
+    background-color: ghostwhite;
+    padding-top: 30px;
+}
+
+.nav-item {
+  width: 130px;
+}
+
+.user-img {
+  border-radius: 50%;
+  width: 55px;
+  height: 55px;
+  border: 2px solid #dbbaba;
+  margin: 5px;
+  position: relative;
+  text-decoration: none;
+  color: white;
+}
+.user-icon {
+  top: 42px;
+  font-size: 20px;
+  right: 69px;
+}
+
+.ranking-original-category {
+  font-size: 13px;
+}
+

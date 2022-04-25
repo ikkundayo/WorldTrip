@@ -6,7 +6,7 @@
         <%= link_to "フォローのみ表示", hints_path('type': 'follwing') %>
       <% end %>
 
-      <%= search_form_for @q, url: hints_path, class:"search-form" do |f| %>
+      <%= search_form_for @q, url: hint_search_path(:hoge), class:"search-form" do |f| %>
         <%= f.search_field :country_code_cont, placeholder: '国名から探す', class:'input-box' %>
         <%= f.button type: "submit", class:"search-button" %>
       <% end %>
@@ -23,9 +23,6 @@
           <%= render 'public/hints/hint_index', hint: @search %>
         <% end %>
       <% end %>
-
-
-
 
     </div>
   </div>

@@ -1,20 +1,32 @@
 <div class='container'>
   <div class='row justify-content-center'>
-    <div class='col-md-9'>
-      <%= link_to "新規登録",new_memory_path %>
-      <% if user_signed_in? %>
-        <%= link_to "フォローのみ表示", memories_path('type': 'follwing') %>
-      <% end %>
-
+    <div class="text-end mt-2">
       <%= search_form_for @q, url: memories_path, class:"search-form" do |f| %>
         <%= f.search_field :country_code_cont, placeholder: '国名から探す', class:'input-box' %>
         <%= f.button type: "submit", class:"search-button" %>
       <% end %>
+    </div>
+
+    <div class='col-md-9'>
+
+      <%= link_to "新規登録",new_memory_path %>
+      <% if user_signed_in? %>
+        <%= link_to "フォローのみ表示", memories_path('type': 'follwing') %>
+        <%= link_to "渡航ずみ表示", memories_path('type': 'traveled') %>
+        <%= link_to "行きたいリスト", memories_path('type': 'want') %>
+      <% end %>
+
+
+
 
       <% if params[:type] == 'link' %>
         <%= render 'public/memories/memory_index', memory: @memory %>
       <% elsif params[:type] == 'follwing' %>
         <%= render 'public/memories/memory_index', memory: @following %>
+      <% elsif params[:type] == 'traveled' %>
+        <%= render 'public/memories/memory_index', memory: @traveled %>
+      <% elsif params[:type] == 'want' %>
+        <%= render 'public/memories/memory_index', memory: @want %>
       <% else %>
         <% if @search.blank? %>
           <p>まだ投稿がありません</p>

@@ -1,9 +1,9 @@
 <% if like.exists?(review_id: review.name_jp) %>
   <%= link_to review_review_likes_path(review.name_jp), method: :delete, remote: true do %>
-    ❤︎
+    <i class="fa-solid fa-plane tranking-plane1"></i><br>
   <% end %>
 <% else %>
   <%= link_to review_review_likes_path(review.name_jp), method: :post, remote: true do %>
-    ♡
+    <i class="fa-solid fa-plane tranking-plane2"></i><br>
   <% end %>
 <% end %>

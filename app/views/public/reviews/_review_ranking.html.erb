@@ -1,5 +1,4 @@
 <!--<div class='list jscroll'>-->
-
 <div>
   <% reviews.each do |review| %>
     <table class='table'>
@@ -8,29 +7,28 @@
   	      <%= link_to review_path(review.country_id) do %>
   	        <% country = Country.find_by(name_jp: review.country_code) %>
   	          <i class="flag-icon flag-icon-<%= country.code.downcase %> index-ranking-icon"></i><br>
-    	      <%= review.country_code %><br>
 
-    	      <% if review.avg.nil?  %>
-    	      <% else %>
-    	        <%= review.avg.round(1) %>
-    	      <% end %>
-
-    	      <% if user_signed_in? %>
+    	      <span class="ranking-country-name"><%= review.country_code %></span>
+    	    <% end %>
+  	        <% if user_signed_in? %>
               <% if @experience.exists?(country_code: review.country_code)%>
-                <i class="fas fa-shoe-prints"></i><br>
+                <i class="fas fa-shoe-prints ranking-shoe"></i><br>
               <% else %>
-                <p id="review_like_<%= review.country_code %>">
+                <i id="review_like_<%= review.country_code %>">
                   <%= render "public/review_likes/like", review: review, like: @like %>
-                </p>
+                </i>
               <% end %>
             <% end %>
 
-            <span id="average-rate<%= review.country_id %>"></span>
+           <div class="mt-1">
+             <span id="average-rate<%= review.country_id %>"></span>
+           <% if review.avg.nil?  %>
+    	      <% else %>
+    	        <%= review.avg.round(1) %>
+    	      <% end %>
             <% counts = Review.where(country_id: review.country_id).count %>
               (<%= counts %>)
-          <% end %>
-
-          <br>
+            </div>
 
   	    </td>
   	  </tr>
@@ -59,6 +57,7 @@
     });
   });
 </script>
+
 
 <!--  <%# end %>-->
 <!--<%#= paginate reviews %>-->

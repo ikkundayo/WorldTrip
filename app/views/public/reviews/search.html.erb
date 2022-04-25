@@ -1,31 +1,31 @@
 <div class='container'>
   <div class='row justify-content-center'>
     <% if @link.present? %>
-      <div class='col-md-2 mt-4'>
+      <div class='col-md-2 mt-5'>
         <table class='table'>
           <tr>
             <th class="table-active">カテゴリー別</th>
           </tr>
           <tr>
-            <td><%= link_to '総合評価', review_search_path(@link.area, {'type': 'average'}) %></td>
+            <td><%= link_to '総合評価', review_search_path(@link.area, {'type': 'average'}), class: "side_link" %></td>
           </tr>
           <tr>
-            <td><%= link_to '楽しさ・娯楽', review_search_path(@link.area, {'type': 'amusement'}) %></td>
+            <td><%= link_to '楽しさ・娯楽', review_search_path(@link.area, {'type': 'amusement'}), class: "side_link" %></td>
           </tr>
           <tr>
-            <td><%= link_to 'グルメ', review_search_path(@link.area, {'type': 'gourmet'}) %></td>
+            <td><%= link_to 'グルメ', review_search_path(@link.area, {'type': 'gourmet'}), class: "side_link" %></td>
           </tr>
           <tr>
-            <td><%= link_to '治安', review_search_path(@link.area, {'type': 'security'}) %></td>
+            <td><%= link_to '治安', review_search_path(@link.area, {'type': 'security'}), class: "side_link" %></td>
           </tr>
           <tr>
-            <td><%= link_to 'おすすめ度', review_search_path(@link.area, {'type': 'recommend'}) %></td>
+            <td><%= link_to 'おすすめ度', review_search_path(@link.area, {'type': 'recommend'}), class: "side_link" %></td>
           </tr>
           <tr>
-          <td><%= link_to '渡航数', review_search_path(@link.area, {'type': 'total-travel'}) %></td>
+          <td><%= link_to '渡航数', review_search_path(@link.area, {'type': 'total-travel'}), class: "side_link" %></td>
           </tr>
           <tr>
-            <td><%= link_to 'オリジナル・その他', review_search_path(@link.area, {'type': 'original'}) %></td>
+            <td><%= link_to 'オリジナル・その他', review_search_path(@link.area, {'type': 'original'}), class: "side_link" %></td>
           </tr>
         </table>
         <%= link_to "全体へ戻る", reviews_path, class: "mx-2" %>
@@ -37,18 +37,21 @@
       </div>
     <% end %>
 
-    <div class='col-md-8'>
+    <div class='col-md-7'>
       <div class='row justify-content-center'>
-        <div class='col-md-8 text-center '>
+        <div class='col-md-7 text-center '>
+          <i class="fa-solid fa-crown search-crown-one"></i><i class="fa-solid fa-crown search-crown-two"></i><i class="fa-solid fa-crown search-crown-three"></i>
+          <h5 class="search-no-one">No.1</h5><h5 class="search-no-two">No.2</h5><h5 class="search-no-three">No.3</h5>
+
           <% if @link.present? %>
             <% if params[:type] == 'amusement' %>
-              <h4 class="text-center mt-3">楽しさ・娯楽ランキング</h4>
+              <h4 class="text-center mt-3">~楽しさ・娯楽ランキング~</h4>
             <% elsif params[:type] == 'gourmet' %>
-              <h4 class="text-center mt-3">グルメランキング</h4>
+              <h4 class="text-center mt-3">~グルメランキング~</h4>
             <% elsif params[:type] == 'security' %>
-              <h4 class="text-center mt-3">治安ランキング</h4>
+              <h4 class="text-center mt-3">~治安ランキング~</h4>
             <% elsif params[:type] == 'recommend' %>
-              <h4 class="text-center mt-3">おすすめ度ランキング</h4>
+              <h4 class="text-center mt-3">~おすすめ度ランキング~</h4>
             <% elsif params[:type] == 'total-travel' %>
               <h4 class="text-center mt-3">~Total渡航数ランキング~</h4>
             <% elsif params[:type] == 'month-travel' %>
@@ -56,11 +59,11 @@
             <% elsif params[:type] == 'week-travel' %>
                <h4 class="text-center mt-3">~Week渡航数ランキング~</h4>
             <% elsif params[:type] == 'original' %>
-              <h4 class="text-center mt-3">オリジナルランキング</h4>
+              <h4 class="text-center mt-3">~オリジナルランキング~</h4>
             <% elsif params[:type] == 'average' %>
-              <h4 class="text-center mt-3">総合評価ランキング</h4>
+              <h4 class="text-center mt-3">~総合評価ランキング~</h4>
             <% else %>
-              <h4 class="text-center mt-3">総合評価ランキング</h4>
+              <h4 class="text-center mt-3">~総合評価ランキング~</h4>
             <% end %>
             <h4 class="text-center mt-1">「<%= @link.area %>」</h4>
             <% if params[:type] == "total-travel" || params[:type] == "month-travel" || params[:type] == "week-travel"%>

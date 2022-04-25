@@ -1,184 +1,205 @@
 <div class='container'>
   <div class='row justify-content-center'>
-    <div class='col-md-3'>
-      <table class='table'>
-        <tr>
-          <td>
+    <div class='col-md-3 mt-3'>
+      <div class='row justify-content-center'>
+        <div class='col-md-10 text-center '>
+          <table class='table'>
+            <tr>
+              <td>
+                <i class="flag-icon flag-icon-<%= @country.code.downcase %> show-ranking-icon"></i><br>
+                <span class="ranking-show-country-name"><%= @country.name_jp %></span>
+                <% if user_signed_in? %>
+                  <% if @experience.exists?(country_code: @country.name_jp)%>
+          	        <i class="fas fa-shoe-prints"></i><br>
+          	      <% else %>
+          	        <i class="show_like">
+                      <%= render "public/review_likes/like_show", review: @country, like: @like %>
+                    </i>
+                  <% end %>
+                <% end %>
+                <br>
+              </td>
+            </tr>
+            <% if @reviews.blank? %>
+              <tr>
+                <td>まだレビューがありません😭</td>
+              </tr>
+              </table></div></div></div></div></div>
+            <% else %>
+              <tr>
+                <th class="total-content">総合評価 <%= @reviews.average(:review_average).round(1) %><br>
+                <div id="average-rate"></div>
+                </th>
+              </tr>
+              <tr>
+                <td class="onother-content">楽しさ・娯楽 <%= @reviews.average(:amusement_rate).round(1) %><br>
+                  <span id="amusement-rate"></span>
+                  (<%= @reviews.count(:amusement_rate) %>)
+                </td>
+              </tr>
+              <tr>
+                <td class="onother-content">グルメ <%= @reviews.average(:gourmet_rate).round(1) %><br>
+                  <span id="gourmet-rate"></span>
+                  (<%= @reviews.count(:gourmet_rate) %>)
+                </td>
+              </tr>
+              <tr>
+                <td class="onother-content">治安 <%= @reviews.average(:security_rate).round(1) %><br>
+                  <span id="security-rate"></span>
+                  (<%= @reviews.count(:security_rate) %>)
+                </td>
+              </tr>
+              <tr>
+                <td class="onother-content">おすすめ度 <%= @reviews.average(:recommend_rate).round(1) %><br>
+                  <span id="recommend-rate"></span>
+                  (<%= @reviews.count(:recommend_rate) %>)
+                </td>
+              </tr>
 
-            <i class="flag-icon flag-icon-<%= @country.code.downcase %>"></i>
-            <%= @country.name_jp %>
-
-            <% if user_signed_in? %>
-              <% if @experience.exists?(country_code: @country.name_jp)%>
-      	        <i class="fas fa-shoe-prints"></i><br>
-      	      <% else %>
-      	        <p class="show_like">
-                  <%= render "public/review_likes/like_show", review: @country, like: @like %>
-                </p>
+              <% if @reviews.average(:original_rate).nil? %>
+                <tr>
+                  <td class="onother-content">オリジナルカテゴリー <br>
+                    <span id="original-rate0"></span>
+                    (<%= @reviews.count(:original_rate) %>)
+                  </td>
+                </tr>
+              <% else %>
+                <tr>
+                  <td class="onother-content">オリジナルカテゴリー <%= @reviews.average(:original_rate).round(1) %><br>
+                    <span id="original-rate"></span>
+                    (<%= @reviews.count(:original_rate) %>)
+                  </td>
+                </tr>
               <% end %>
-            <% end %>
+            </table>
 
-          </td>
-        </tr>
-        <% if @reviews.blank? %>
-          <tr>
-            <td><p>まだレビューがありません</p></td>
-          </tr>
-        <% else %>
-          <tr>
-            <td>総合評価 <%= @reviews.average(:review_average).round(1) %><br>
-            <div id="average-rate"></div>
-            </td>
-          </tr>
-          <tr>
-            <td>楽しさ・娯楽 <%= @reviews.average(:amusement_rate).round(1) %><br>
-              <span id="amusement-rate"></span>
-              (<%= @reviews.count(:amusement_rate) %>)
-            </td>
-          </tr>
-          <tr>
-            <td>グルメ <%= @reviews.average(:gourmet_rate).round(1) %><br>
-              <span id="gourmet-rate"></span>
-              (<%= @reviews.count(:gourmet_rate) %>)
-            </td>
-          </tr>
-          <tr>
-            <td>治安 <%= @reviews.average(:security_rate).round(1) %><br>
-              <span id="security-rate"></span>
-              (<%= @reviews.count(:security_rate) %>)
-            </td>
-          </tr>
-          <tr>
-            <td>おすすめ度 <%= @reviews.average(:recommend_rate).round(1) %><br>
-              <span id="recommend-rate"></span>
-              (<%= @reviews.count(:recommend_rate) %>)
-            </td>
-          </tr>
+            <div class="d-flex justify-content-around">
+              <div class="icon-button">
+                <i class="fas fa-shoe-prints ranking-show-shoe"></i><br>
+                <%= @travel_count.count%>
+              </div>
+              <div class="icon-button">
+                <i class="fa-solid fa-plane ranking-show-plane"></i><br>
+                <%= @wish_count.count%>
+              </div>
 
-          <% if @reviews.average(:original_rate).nil? %>
-            <tr>
-              <td>オリジナルカテゴリー <br>
-                <span id="original-rate0"></span>
-                (<%= @reviews.count(:original_rate) %>)
-              </td>
-            </tr>
-          <% else %>
-            <tr>
-              <td>オリジナルカテゴリー <%= @reviews.average(:original_rate).round(1) %><br>
-                <span id="original-rate"></span>
-                (<%= @reviews.count(:original_rate) %>)
-              </td>
-            </tr>
-          <% end %>
-        </table>
+              <%= link_to memory_search_path(@country) do %>
+                <div class="icon-button">
+                  <i class="fa-solid fa-camera ranking-show-camera"></i><br>
+                  <%= @memory_count.count%>
+                </div>
+              <% end %>
 
-        <%= link_to memory_search_path(@country) do %>
-          <p><%= @country.name_jp %>の思い出投稿(<%= @memory_count.count%>)</p>
-        <% end %>
-        <%= link_to hint_search_path(@country) do %>
-          <p><%= @country.name_jp %>のヒント投稿(<%= @hint_count.count%>)</p>
-        <% end %>
-        <p>総渡航数(<%= @travel_count.count%>)</p>
-        <p>行きたい合計数(<%= @wish_count.count%>)</p>
-
+              <%= link_to hint_search_path(@country, {'type': 'country'}) do %>
+                <div class="icon-button">
+                  <i class="fa-solid fa-lightbulb ranking-show-light"></i><br>
+                  <%= @hint_count.count%>
+                </div>
+              <% end %>
+            </div><br>
+          </div>
+        </div>
       </div>
 
 
-    <div class='col-md-7'>
-      <div>
-        <%= link_to '楽しさ・娯楽', review_path(@country, {'type': 'amusement'}), anchor: 'test' %><br>
-        <%= link_to 'グルメ', review_path(@country, {'type': 'gourmet'}) %><br>
-        <%= link_to '治安', review_path(@country, {'type': 'security'}) %><br>
-        <%= link_to 'おすすめ', review_path(@country, {'type': 'recommend'}), anchor: 'test' %><br>
-        <%= link_to 'オリジナル', review_path(@country, {'type': 'original'}) %>
-      </div>
-      <h3><みんなのレビュー></h3>
+    <div class='col-md-7 mt-3'>
+      <h3 class="text-center"><みんなのレビュー></h3>
+      <ul class="nav nav-tabs justify-content-between text-center">
+        <li class="nav-item">
+          <%= link_to '楽しさ・娯楽', review_path(@country, {'type': 'amusement'}), anchor: 'test', class:"nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'グルメ', review_path(@country, {'type': 'gourmet'}), class:"nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to '治安', review_path(@country, {'type': 'security'}) , class:"nav-link"%>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'おすすめ', review_path(@country, {'type': 'recommend'}), anchor: 'test', class:"nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'オリジナル', review_path(@country, {'type': 'original'}), class:"nav-link" %>
+        </li>
+      </ul>
 
       <div class='list jscroll'>
         <% @reviews.each do |f| %>
           <table class='table'>
             <tr>
               <td>
-                <%= link_to user_path(f.user_id) do %>
-                  <%= image_tag f.user.get_user_image(50,50) %>
-                  <%= f.user.user_name %>さんのレビュー
-                <% end %>
+                <div class="m-2 d-flex">
+                  <div>
+
+                    <%= link_to user_path(f.user_id) do %>
+                      <%= image_tag f.user.get_user_image(55,55), class: "user-img" %>
+                    <% end %>
+                  </div>
+                  <div>
+                    <div>
+                      <% country = Country.find_by(name_jp: f.user.country_code) %>
+                      <i class="flag-icon flag-icon-<%= country.code.downcase %> user-icon"></i>
+                      <%= f.user.user_name %>さんのレビュー
+                    </div>
+                    <% if params[:type] == 'amusement' %>
+                      <span id="amusement-rate<%= f.id %>"></span>
+                      <%= f.amusement_rate %><br>
+                      <%= f.amusement_voice %>
+                    <% elsif params[:type] == 'gourmet' %>
+                      <span id="gourmet-rate<%= f.id %>"></span>
+                      <%= f.gourmet_rate %><br>
+                      <%= f.gourmet_voice %>
+                    <% elsif params[:type] == 'security' %>
+                      <span id="security-rate<%= f.id %>"></span>
+                      <%= f.security_rate %><br>
+                      <%= f.security_voice %>
+                    <% elsif params[:type] == 'recommend' %>
+                      <span id="recommend-rate<%= f.id %>"></span>
+                      <%= f.recommend_rate %><br>
+                      <%= f.recommend_voice %>
+                    <% elsif params[:type] == 'original' %>
+                      <span class="ranking-original-category">「<%= f.original_category %>」</span><br>
+                      <span id="original-rate<%= f.id %>"></span>
+                      <%= f.original_rate %><br>
+                      <%= f.original_voice %>
+                    <% else %>
+                      <span id="amusement-rate<%= f.id %>"></span>
+                      <%= f.amusement_rate %><br>
+                      <%= f.amusement_voice %>
+                    <% end %>
+                  </div>
+                </div>
               </td>
-            </tr>
-            <tr>
-              <% if params[:type] == 'amusement' %>
-                  <td>
-                    <span id="amusement-rate<%= f.id %>"></span>
-                    <%= f.amusement_rate %>
-                    <%= f.amusement_voice %>
-                  </td>
-              <% elsif params[:type] == 'gourmet' %>
-                  <td>
-                    <span id="gourmet-rate<%= f.id %>"></span>
-                    <%= f.gourmet_rate %>
-                    <%= f.gourmet_voice %>
-                  </td>
-              <% elsif params[:type] == 'security' %>
-                  <td>
-                    <span id="security-rate<%= f.id %>"></span>
-                    <%= f.security_rate %>
-                    <%= f.security_voice %>
-                  </td>
-              <% elsif params[:type] == 'recommend' %>
-                  <td>
-                    <span id="recommend-rate<%= f.id %>"></span>
-                    <%= f.recommend_rate %>
-                    <%= f.recommend_voice %>
-                  </td>
-              <% elsif params[:type] == 'original' %>
-                  <td>
-                    <span id="original-rate<%= f.id %>"></span>
-                    <%= f.original_category %>
-                    <%= f.original_rate %>
-                    <%= f.original_voice %>
-                  </td>
-              <% else %>
-                  <td>
-                    <span id="amusement-rate<%= f.id %>"></span>
-                    <%= f.amusement_rate %>
-                    <%= f.amusement_voice %>
-                  </td>
-              <% end %>
             </tr>
           </table>
           <script>
             $('#amusement-rate<%= f.id %>').raty({
-              size      : 36,
-              starOff   : '<%= asset_path('star-off.png') %>',
-              starOn    : '<%= asset_path('star-on.png') %>',
-              starHalf : '<%= asset_path('star-half.png') %>',
+              starOff   : '<%= asset_path('star-off.1.png') %>',
+              starOn    : '<%= asset_path('star-on.1.png') %>',
+              starHalf : '<%= asset_path('star-half.1.png') %>',
               half      : true,
               readOnly: true,
               score: <%= f.amusement_rate %>
             });
             $('#gourmet-rate<%= f.id %>').raty({
-              size      : 36,
-              starOff   : '<%= asset_path('star-off.png') %>',
-              starOn    : '<%= asset_path('star-on.png') %>',
-              starHalf : '<%= asset_path('star-half.png') %>',
+              starOff   : '<%= asset_path('star-off.1.png') %>',
+              starOn    : '<%= asset_path('star-on.1.png') %>',
+              starHalf : '<%= asset_path('star-half.1.png') %>',
               half      : true,
               readOnly: true,
               score: <%= f.gourmet_rate %>
             });
             $('#security-rate<%= f.id %>').raty({
-              size      : 36,
-              starOff   : '<%= asset_path('star-off.png') %>',
-              starOn    : '<%= asset_path('star-on.png') %>',
-              starHalf : '<%= asset_path('star-half.png') %>',
+              starOff   : '<%= asset_path('star-off.1.png') %>',
+              starOn    : '<%= asset_path('star-on.1.png') %>',
+              starHalf : '<%= asset_path('star-half.1.png') %>',
               half      : true,
               readOnly: true,
               score: <%= f.security_rate %>
             });
             $('#recommend-rate<%= f.id %>').raty({
-              size      : 36,
-              starOff   : '<%= asset_path('star-off.png') %>',
-              starOn    : '<%= asset_path('star-on.png') %>',
-              starHalf : '<%= asset_path('star-half.png') %>',
+              starOff   : '<%= asset_path('star-off.1.png') %>',
+              starOn    : '<%= asset_path('star-on.1.png') %>',
+              starHalf : '<%= asset_path('star-half.1.png') %>',
               half      : true,
               readOnly: true,
               score: <%= f.recommend_rate %>
@@ -186,10 +207,9 @@
             <% if f.original_rate.nil?  %>
     	      <% else %>
               $('#original-rate<%= f.id %>').raty({
-                size      : 36,
-                starOff   : '<%= asset_path('star-off.png') %>',
-                starOn    : '<%= asset_path('star-on.png') %>',
-                starHalf : '<%= asset_path('star-half.png') %>',
+                starOff   : '<%= asset_path('star-off.1.png') %>',
+                starOn    : '<%= asset_path('star-on.1.png') %>',
+                starHalf : '<%= asset_path('star-half.1.png') %>',
                 half      : true,
                 readOnly: true,
                 score: <%= f.original_rate %>
@@ -205,7 +225,6 @@
 
 <script>
   $('#average-rate').raty({
-  size      : 36,
   starOff   : '<%= asset_path('star-off.png') %>',
   starOn    : '<%= asset_path('star-on.png') %>',
   starHalf : '<%= asset_path('star-half.png') %>',
@@ -215,7 +234,6 @@
   });
 
   $('#amusement-rate').raty({
-    size      : 36,
     starOff   : '<%= asset_path('star-off.png') %>',
     starOn    : '<%= asset_path('star-on.png') %>',
     starHalf : '<%= asset_path('star-half.png') %>',
@@ -225,7 +243,6 @@
   });
 
   $('#gourmet-rate').raty({
-    size      : 36,
     starOff   : '<%= asset_path('star-off.png') %>',
     starOn    : '<%= asset_path('star-on.png') %>',
     starHalf : '<%= asset_path('star-half.png') %>',
@@ -235,7 +252,6 @@
   });
 
   $('#security-rate').raty({
-    size      : 36,
     starOff   : '<%= asset_path('star-off.png') %>',
     starOn    : '<%= asset_path('star-on.png') %>',
     starHalf : '<%= asset_path('star-half.png') %>',
@@ -245,7 +261,6 @@
   });
 
   $('#recommend-rate').raty({
-    size      : 36,
     starOff   : '<%= asset_path('star-off.png') %>',
     starOn    : '<%= asset_path('star-on.png') %>',
     starHalf : '<%= asset_path('star-half.png') %>',
@@ -255,29 +270,25 @@
   });
 
   <% if @reviews.average(:original_rate).nil? %>
-  $('#original-rate0').raty({
-    size      : 36,
-    starOff   : '<%= asset_path('star-off.png') %>',
-    starOn    : '<%= asset_path('star-on.png') %>',
-    starHalf : '<%= asset_path('star-half.png') %>',
-    half      : true,
-    readOnly: true,
-    score: 0
-  });
+    $('#original-rate0').raty({
+      starOff   : '<%= asset_path('star-off.png') %>',
+      starOn    : '<%= asset_path('star-on.png') %>',
+      starHalf : '<%= asset_path('star-half.png') %>',
+      half      : true,
+      readOnly: true,
+      score: 0
+    });
   <% else %>
-  $('#original-rate').raty({
-    size      : 36,
-    starOff   : '<%= asset_path('star-off.png') %>',
-    starOn    : '<%= asset_path('star-on.png') %>',
-    starHalf : '<%= asset_path('star-half.png') %>',
-    half      : true,
-    readOnly: true,
-    score: <%= @reviews.average(:original_rate) %>
-  });
+    $('#original-rate').raty({
+      starOff   : '<%= asset_path('star-off.png') %>',
+      starOn    : '<%= asset_path('star-on.png') %>',
+      starHalf : '<%= asset_path('star-half.png') %>',
+      half      : true,
+      readOnly: true,
+      score: <%= @reviews.average(:original_rate) %>
+    });
   <% end %>
 
-</script>
-<script>
   $(function() {
     $('.jscroll').jscroll({
       contentSelector: '.list',
@@ -285,5 +296,14 @@
     });
   });
 </script>
+
+<!--<script>-->
+<!--  $(function() {-->
+<!--    $('.jscroll').jscroll({-->
+<!--      contentSelector: '.list',-->
+<!--      nextSelector: 'span.next:last a'-->
+<!--    });-->
+<!--  });-->
+<!--</script>-->
 
 <% end %>

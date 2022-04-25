@@ -3,6 +3,13 @@ class Public::MemoriesController < ApplicationController
     @memory = Memory.page(params[:page]).per(10)
     if user_signed_in?
       @following = Memory.where(user_id: [current_user.id,*current_user.follower_ids]).page(params[:page]).per(10)
+    
+      @review = Review.where(user_id: current_user.id).pluck(:country_code)
+      @traveled = Memory.where(country_code: @review).page(params[:page]).per(10)
+      
+      @country_like = Like.where(user_id: current_user.id).pluck(:review_id)
+      @want = Memory.where(country_code: @country_like).page(params[:page]).per(10)
+    
     end
     @q = Memory.ransack(params[:q])
     @search = @q.result(distinct: true).page(params[:page]).per(10)

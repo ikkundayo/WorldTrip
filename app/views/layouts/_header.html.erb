@@ -8,10 +8,10 @@
             <%= link_to '思い出', memories_path('type': 'link'), class: "hed_link" %>
             <%= link_to 'ヒント', hints_path('type': 'link'), class: "hed_link" %>
             <%= link_to 'マイページ', user_path(current_user), class: "hed_link" %>
+            <%= link_to 'NOTICE', notifications_path, class: "hed_link" %>
             <% if unchecked_notifications.any? %>
               <i class="fa-solid fa-circle" style='color: gold;'></i>
             <% end %>
-            <%= link_to 'NOTICE', notifications_path, class: "hed_link" %>
             <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "hed_link" %>
           <% elsif admin_signed_in? %>
             <%= link_to '会員一覧', admin_users_path('type': 'link'), class: "hed_link" %>
