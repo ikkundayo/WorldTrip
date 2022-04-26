@@ -3,20 +3,47 @@
     <div class='col-md-9'>
       <%= link_to "新規登録", new_hint_path %>
       <%= link_to "全体表示", hints_path %>
-      <% @tags.each do |tag| %>
-        <%= link_to tag, hint_search_path(@country, {tag_name: tag}) %>
+
+      <% if params[:hint_id] == 'hoge' %>
+        <% @tags.each do |tag| %>
+          <%= link_to tag, hint_search_path(@q.country_code_cont, {"type": "search-tag"}) %>
+        <% end %>
+      <% elsif params[:type] == 'search-tag' %>
+          <%= link_to "アドバイス", hint_search_path(@id, {"tag_name": "アドバイス", "type": "search-tag"}) %>
+          <%= link_to "現地の声", hint_search_path(@id, {"tag_name": "現地の声", "type": "search-tag"}) %>
+          <%= link_to "体験談", hint_search_path(@id, {"tag_name": "体験談", "type": "search-tag"}) %>
+          <%= link_to "質問", hint_search_path(@id, {"tag_name": "質問", "type": "search-tag"}) %>
+          <%= link_to "新型コロナウイルスについて", hint_search_path(@id, {"tag_name": "新型コロナウイルスについて", "type": "search-tag"}) %>
+          <%= link_to "その他", hint_search_path(@id, {"tag_name": "その他", "type": "search-tag"}) %>
+      <% else %>
+        <% @tags.each do |tag| %>
+          <%= link_to tag, hint_search_path(@country, {tag_name: tag}) %>
+        <% end %>
       <% end %>
 
-        <% if @hints.blank? %>
-          <h5>まだ投稿がありません😭</h5>
-        <% else %>
-          <% if params[:type] == 'country' %>
-            <h5><%= @country_name.country_code %>の投稿一覧</h5>
+
+
+          <% if params[:hint_id] == 'hoge' %>
+            <% if @hints.blank? %>
+              <h5>まだ「<%= @q.country_code_cont%>」の投稿がありません😭</h5>
+            <% else %>
+              <h5>「<%= @q.country_code_cont%>」の投稿一覧</h5>
+            <% end %>
+          <% elsif params[:type] == 'search-tag' %>
+            <% if @hints.blank? %>
+              <h5>まだ「<%= @id %>」の投稿がありません😭</h5>
+            <% else %>
+              <h5>「<%= @id %>」の投稿一覧</h5>
+            <% end %>
           <% else %>
-            <h5><%= @q.country_code_cont%>の投稿一覧</h5>
+            <% if @hints.blank? %>
+              <h5>まだ「<%= @country_name.country_code %>」の投稿がありません😭</h5>
+            <% else %>
+              <h5>「<%= @country_name.country_code %>」の投稿一覧</h5>
+            <% end %>
           <% end %>
-            <%= render 'public/hints/hint_index', hint: @hints %>
-        <% end %>
+
+          <%= render 'public/hints/hint_index', hint: @hints %>
     </div>
   </div>
 </div>

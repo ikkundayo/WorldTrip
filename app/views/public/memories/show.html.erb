@@ -1,43 +1,63 @@
-<table class='table'>
-  <tr>
-    <td>
-      <%= link_to user_path(@memory.user_id) do %>
-        <%= image_tag @memory.user.get_user_image(50,50) %><br>
-        <%= @memory.user.user_name %>
-        <i class="flag-icon flag-icon-<%= @country_user_logo.code.downcase %>"></i>
-      <% end %>
-    </td>
-    <td>
-      渡航国:<%= @memory.country_code %>
-      <%= link_to review_path(@country_logo.id) do %><i class="flag-icon flag-icon-<%= @country_logo.code.downcase %>"></i><% end %><br><br>
-      <%= @memory.memory_contents %><br>
-      <% if @memory.memory_image.present?%>
-        <%= image_tag @memory.get_memory_image(1000,1000) %><br>
-      <% end %>
-      <p class="memory_like_<%= @memory.id %>">
-        <%= render "public/memory_likes/like", memory: @memory %>
-      </p>
-      <%= time_ago_in_words(@memory.created_at) %> ago
-    </td>
-
-    <% if user_signed_in? %>
-      <% if @memory.user_id == current_user.id  %>
-        <td><%= link_to "Destroy", memory_path, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger" %></td>
-      <% end %>
-    <% elsif admin_signed_in? %>
-      <td><%= link_to "Destroy", memory_path, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger" %></td>
-    <% end %>
-  </tr>
-</table>
-<div>
-  <p class="comment-count">
-    <%= render "public/memory_comments/count", memory: @memory %>
-  </p>
-
-  <div class="comment-index">
-    <%= render "public/memory_comments/index", memory: @memory %>
-  </div>
+<div class="memory-show-title-box">
+  <%= link_to memories_path do %>
+    <i class="fa-solid fa-angle-left memory-show-left"></i>
+  <% end %>
+  <span class="memory-show-title">Detail</span>
 </div>
-<div>
-  <%= render "public/memory_comments/form", memory: @memory, memory_comment: @memory_comment %>
+
+<div class='container'>
+  <div class='row justify-content-center'>
+    <div class='col-md-10'>
+
+      <div class='memory-box-show'>
+        <div class="memory-user-box">
+        <%= link_to user_path(@memory.user_id) do %>
+          <%= image_tag @memory.user.get_user_image(50,50), class: "user-img" %>
+          <p class="memory-username"><%= @memory.user.user_name %></p>
+          <i class="flag-icon flag-icon-<%= @country_user_logo.code.downcase %> memory-user-icon"></i>
+        <% end %>
+        </div>
+
+        <div class="memory-country-box">
+          <span>渡航国:<%= @memory.country_code %></span>
+          <%= link_to review_path(@country_logo.id) do %><i class="flag-icon flag-icon-<%= @country_logo.code.downcase %>"></i><% end %><br>
+        </div>
+
+        <div class="memory-content-box">
+          <% if @memory.memory_image.present?%>
+            <%= image_tag @memory.get_memory_image(700,700) %><br>
+          <% end %>
+          <p class="mt-3"><%= @memory.memory_contents %></p>
+        </div>
+
+        <div class="memory-action-box">
+          <span class="memory_like_<%= @memory.id %> memory-show-action-content1">
+            <%= render "public/memory_likes/like", memory: @memory %>
+          </span>
+          <span class="memory-action-content3"><%= time_ago_in_words(@memory.created_at) %> ago</span>
+
+          <% if user_signed_in? %>
+            <% if @memory.user_id == current_user.id  %>
+              <h6 class="text-end mt-1"><%= link_to "Destroy", memory_path, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger" %></h6>
+            <% end %>
+          <% elsif admin_signed_in? %>
+            <h6 class="text-end mt-1"><%= link_to "Destroy", memory_path, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger" %></h6>
+          <% end %>
+        </div>
+      </div>
+
+      <p class="comment-count m-2">
+        <%= render "public/memory_comments/count", memory: @memory %>
+      </p>
+      <div>
+        <%= render "public/memory_comments/form", memory: @memory, memory_comment: @memory_comment %>
+      </div>
+      <div>
+        <div class="comment-index">
+          <%= render "public/memory_comments/index", memory: @memory %>
+        </div>
+      </div>
+
+    </div>
+  </div>
 </div>

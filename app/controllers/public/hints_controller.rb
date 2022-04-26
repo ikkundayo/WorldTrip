@@ -51,19 +51,35 @@ class Public::HintsController < ApplicationController
     @q = Hint.ransack(params[:q])
     @tags = ActsAsTaggableOn::Tag.order(id: "ASC").pluck(:name)
 
-    # if params[:hint_id] =~ /\A[0-9]+\z/
+    if params[:hint_id] == "hoge"
+      @search = @q.result(distinct: true).pluck(:country_code)
+      @hints = Hint.where(country_code: @search).page(params[:page]).per(10)
+
+    elsif params[:type] == "search-tag"
+      @id = params[:hint_id]
+
+      @search = Hint.where('country_code Like(?)', "%#{params[:hint_id]}%").pluck(:country_code)
+      @hints = Hint.where(country_code: @search).page(params[:page]).per(10)
+      if params[:tag_name] == "アドバイス" || params[:tag_name] == "体験談" || params[:tag_name] == "現地の声" || params[:tag_name] == "質問" || params[:tag_name] == "新型コロナウイルスについて" || params[:tag_name] == "その他"
+        @hints = @hints.tagged_with("#{params[:tag_name]}").page(params[:page]).per(10)
+      end
+    else
       @country = Country.find(params[:hint_id])
       @hints = Hint.where(country_code: @country.name_jp).page(params[:page]).per(10)
       @country_name = Hint.find_by(country_code: @country.name_jp)
+
+      if params[:tag_name]
+        @hints = @hints.tagged_with("#{params[:tag_name]}").page(params[:page]).per(10)
+      end
+    end
+
     # else
     #   @search = @q.result(distinct: true).pluck(:country_code)
     #   @country = Country.where(name_jp: @search)
     #   @hints = Hint.where(country_code: @search).page(params[:page]).per(10)
     # end
 
-    if params[:tag_name]
-      @hints = @hints.tagged_with("#{params[:tag_name]}").page(params[:page]).per(10)
-    end
+
   end
 
   private

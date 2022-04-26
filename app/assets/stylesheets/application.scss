@@ -57,7 +57,7 @@ nav.pagination {
 .nav_list{
   color: white;
 }
-.top_content{
+.link-change{
   color: black;
   text-decoration: none;
 }
@@ -355,3 +355,153 @@ nav.pagination {
   font-size: 13px;
 }
 
+.memory-nav-item {
+  width: 150px;
+  margin-top: 5px;
+}
+.memory-new-nav-item {
+  width: 50px;
+  margin-top: 5px;
+}
+.memory-plus {
+  font-size: 33px;
+  padding-top: 5px;
+}
+
+
+.memory-sho {
+  font-size: 27px;
+  color: black;
+}
+
+.memory-plane {
+  font-size: 20px;
+  background-color: #ff6666;
+  color: white;
+  padding: 5px;
+  border-radius: 7px;
+}
+.memory-nav-content {
+  font-size: 20px;
+  color: black;
+}
+
+.memory-box {
+  border-bottom: solid 1px #DEE2E6;
+  margin: 10px 90px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.memory-user-icon {
+  top: -56px;
+  font-size: 20px;
+}
+.memory-username {
+  text-align: center;
+  font-size: 12px;
+}
+
+.memory-user-box {
+  margin: 10px;
+  width: 60px;
+  height: 50px
+}
+.memory-country-box {
+  text-align: center;
+  width: 600px;
+  margin-right: 60px;
+  // position: absolute;
+}
+.memory-content-box {
+  text-align: center;
+  width: 550px;
+}
+.memory-action-box {
+ width: 100%;
+ margin: 5px;
+}
+.memory-action-content1 {
+  margin: 0px 20px;
+  font-size: 20px;
+  text-decoration: none;
+}
+.memory-action-content2 {
+  font-size: 19px;
+}
+.memory-comment-dots {
+  transform: scale(-1, 1);
+  margin-right: 3px;
+}
+.memory-action-content3 {
+  margin-left: 500px;
+}
+
+.memory-new1 {
+  margin: 16px;
+  font-size: 20px;
+}
+.memory-new2 {
+  margin: 5px 16px;
+  font-size: 20px;
+}
+
+.memory-box-show {
+  border-bottom: solid 1px #DEE2E6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+.memory-show-title-box {
+  border-bottom: solid 1px #DEE2E6;
+}
+.memory-show-left {
+  font-size: 40px;
+  margin-left: 75px;
+}
+.memory-show-title {
+  font-size: 35px;
+  margin-left: 580px;
+}
+.memory-show-action-content1 {
+  margin: 0px 160px;
+  font-size: 20px;
+  text-decoration: none;
+}
+.memory-textarea {
+  margin-left: 8px;
+}
+.memory-submit {
+  margin-left: 5px;
+}
+.user-img-comment {
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  border: 2px solid #dbbaba;
+  margin: 5px;
+  position: relative;
+  text-decoration: none;
+  color: white;
+}
+.memory-time {
+  width: 100%;
+  text-align: end;
+}
+.memory-comment-delete {
+  text-align: end;
+  margin-left: 20px;
+  margin-bottom: 5px;
+}
+.memory-comment-content {
+  margin-top: 32px;
+}
+
+.notice-user-icon {
+  top: -19px;
+  right: 2px;
+  font-size: 20px;
+}
