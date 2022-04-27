@@ -1,10 +1,17 @@
+<div class="memory-show-title-box">
+  <%= link_to user_path(current_user.id) do %>
+    <i class="fa-solid fa-angle-left memory-show-left"></i>
+  <% end %>
+  <span class="review-new-title">レビュー記録</span>
+</div>
+
 <div class="container">
    <div class="row justify-content-center">
      <div class="col-md-8">
        <div class="text-danger">
          <%= render 'layouts/errors', obj: @review %>
        </div>
-       <span class="bg-light px-2 h4">レビュー新規記録</span>
+
        <%= form_with model: @review, url: reviews_path, local:true do |f| %>
          <div class="form-group row mt-5">
            <%= f.label :"記録時期", class:"col-md-4 col-form-label text-md-right fw-bold" %>

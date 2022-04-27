@@ -1,5 +1,5 @@
 <div class="memory-show-title-box">
-  <%= link_to memories_path do %>
+  <%= link_to memories_path("type": "link") do %>
     <i class="fa-solid fa-angle-left memory-show-left"></i>
   <% end %>
   <span class="memory-show-title">Detail</span>
@@ -37,7 +37,7 @@
           <span class="memory-action-content3"><%= time_ago_in_words(@memory.created_at) %> ago</span>
 
           <% if user_signed_in? %>
-            <% if @memory.user_id == current_user.id  %>
+            <% if @.user_id == current_user.id  %>
               <h6 class="text-end mt-1"><%= link_to "Destroy", memory_path, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger" %></h6>
             <% end %>
           <% elsif admin_signed_in? %>
@@ -52,10 +52,8 @@
       <div>
         <%= render "public/memory_comments/form", memory: @memory, memory_comment: @memory_comment %>
       </div>
-      <div>
-        <div class="comment-index">
-          <%= render "public/memory_comments/index", memory: @memory %>
-        </div>
+      <div class="comment-index">
+        <%= render "public/memory_comments/index", memory: @memory %>
       </div>
 
     </div>

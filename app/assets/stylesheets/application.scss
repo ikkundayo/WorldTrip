@@ -505,3 +505,128 @@ nav.pagination {
   right: 2px;
   font-size: 20px;
 }
+
+.memory-unlogin-title {
+  margin-left: 20px;
+}
+
+.hint-nav-content {
+  font-size: 15px;
+  color: black;
+}
+.hint-nav-content-corona {
+  font-size: 13px;
+  color: black;
+  margin-top: 3px;
+}
+.hint-plus {
+  font-size: 30px;
+  position: absolute;
+  top: 111px;
+  right: 190px;
+}
+#hint_tag_list {
+  width: 360px;
+}
+
+.hint-box {
+  border-bottom: solid 1px #DEE2E6;
+  margin: 20px 157px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.user-img-hint {
+  border-radius: 50%;
+  width: 55px;
+  height: 55px;
+  border: 2px solid #dbbaba;
+  margin: 0px 5px;
+  position: relative;
+  text-decoration: none;
+  color: white;
+}
+
+.hint-nav-search {
+  margin-top: 38px;
+}
+
+.memory-new-title {
+  font-size: 30px;
+  margin-left: 570px;
+}
+
+.hint-country-box {
+  text-align: center;
+  width: 600px;
+  margin-right: 60px;
+  margin-top: 25px;
+}
+
+.mypage-title-box {
+  font-size: 33px;
+  margin-left: 520px;
+}
+
+.mypage-title {
+  font-size: 35px;
+  margin-left: 543px;
+}
+
+.notice-box {
+  margin: 0px 40px;
+}
+
+.follow-user-icon {
+  font-size: 20px;
+  top: 20px;
+  right: 202px;
+}
+.follow-text {
+  margin-left: 30px;
+}
+.follow-box {
+  border-bottom: solid 1px #DEE2E6;
+  text-align: center;
+  padding: 10px;
+}
+
+.map-box {
+  margin: 45px 0px;
+}
+
+.mypage-plus {
+  font-size: 40px;
+  position: absolute;
+  top: 100px;
+  right: 100px;
+  color: black;
+}
+.mypage-count {
+  font-family: 'Hurricane', cursive;
+  font-size: 40px;
+  position: absolute;
+  top: 720px;
+  font-weight: bold;
+}
+
+.line {
+    border-bottom: 3px solid #f6ba33;
+    width: 150px;
+    position: absolute;
+    top: 770px;
+}
+
+.notice-top {
+  text-align: center;
+  color: white;
+  font-size: 12px;
+  width: 100%;
+  background-color: cadetblue;
+}
+
+.review-new-title {
+    font-size: 30px;
+    margin-left: 540px;
+}

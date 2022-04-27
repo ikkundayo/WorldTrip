@@ -1,6 +1,13 @@
-<h2>Follow User</h2>
+<div class="memory-show-title-box">
+  <%= link_to user_path(@user) do %>
+    <i class="fa-solid fa-angle-left memory-show-left"></i>
+  <% end %>
+  <span class="mypage-title">Following</span>
+</div>
+
+
 <% if @users.present? %>
   <%= render 'public/users/follow_list', users: @users %>
 <% else %>
-  <p>ユーザーはいません</p>
+  <p>ユーザーはいません😭</p>
 <% end %>

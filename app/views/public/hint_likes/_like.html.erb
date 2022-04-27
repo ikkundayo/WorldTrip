@@ -1,13 +1,13 @@
 <% if user_signed_in? %>
   <% if hint.liked_by?(current_user) %>
-    <%= link_to hint_hint_likes_path(hint.id), method: :delete, remote: true do %>
-    ♥<%= hint.likes.count %> いいね
+    <%= link_to hint_hint_likes_path(hint.id), class: "memory-action-content1 link-change", method: :delete, remote: true do %>
+    ♥<%= hint.likes.count %>
     <% end %>
   <% else %>
-    <%= link_to hint_hint_likes_path(hint.id), method: :post, remote: true do %>
-      ♡<%= hint.likes.count %>いいね
+    <%= link_to hint_hint_likes_path(hint.id), class: "memory-action-content1 link-change", method: :post, remote: true do %>
+      ♡<%= hint.likes.count %>
     <% end %>
   <% end %>
 <% else %>
-   ♥<%= hint.likes.count %> いいね
+   ♥<%= hint.likes.count %>
 <% end %>

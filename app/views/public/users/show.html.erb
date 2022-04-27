@@ -2,8 +2,18 @@
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-md-5">
-      <h3>World <%= @country_progress.round(1) %>%</h3>
-      <%=link_to "レビュー登録", new_review_path %>
+      <span class="mypage-count">World <%= @country_progress.round(1) %>%</span>
+      <h2 class="line"></h2>
+
+      <% if user_signed_in? %>
+        <% if @user.id == current_user.id  %>
+          <%= link_to new_review_path do %>
+            <i class="fa-solid fa-circle-plus mypage-plus"></i>
+          <% end %>
+        <% end %>
+      <% end %>
+
+
 
       <% if @user == current_user %>
         <h1>マイページ</h1>
@@ -55,9 +65,9 @@
         <% end %>
 
         <tr>
-          <th>follows</th>
+          <th>following</th>
           <th><%= link_to @user.followers.count, followers_user_path(@user) %></th>
-          <th>followed</th>
+          <th>followers</th>
           <th><%= link_to @user.followeds.count, followed_user_path(@user) %></th>
         </tr>
 

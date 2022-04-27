@@ -1,43 +1,44 @@
+<div class="memory-show-title-box">
+  <%= link_to hints_path("type": "link") do %>
+    <i class="fa-solid fa-angle-left memory-show-left"></i>
+  <% end %>
+  <span class="memory-new-title">ヒント投稿</span>
+</div>
+
+
 <div class="container">
    <div class="row justify-content-center">
-     <div class="col-md-8">
-       <div class="text-danger">
+     <div class="col-lg-3">
+      <div class="text-danger">
          <%= render 'layouts/errors', obj: @hint %>
-       </div>
+      </div>
 
-       <span class="bg-light px-2 h4">助け合い投稿</span>
-       <%= form_with model: @hint, url: hints_path, local:true do |f| %>
-         <div class="form-group row mt-5">
-           <%= f.label :"Country", class:"col-md-4 col-form-label text-md-right fw-bold" %>
-           <div class="col-md-6 px-md-0">
-             <%= f.collection_select(:country_code, Country.order(:name_jp), :name_jp, :name_jp) %>
-           </div>
-         </div>
+      <div class="text-first">
+         <%= form_with model: @hint, url: hints_path, local:true do |f| %>
+            <div class="field mb-2">
+              <%= f.label :"Country", class: "memory-new1" %>
+              <%= f.collection_select(:country_code, Country.order(:name_jp), :name_jp, :name_jp) %>
+            </div>
 
-         <div class="form-group row mt-5">
-           <%= f.label :"Genre", class:"col-md-4 col-form-label text-md-right fw-bold" %>
-           <div class="col-md-6 px-md-0">
-             <%= f.collection_select(:tag_list, @tags, :name, :name) %>
-           </div>
-         </div>
+            <div class="field mb-2">
+               <%= f.label :"Genre", class: "memory-new2" %>
+               <%= f.collection_select(:tag_list, @tags, :name, :name) %>
+            </div>
 
-         <div class="form-group row mt-5">
-           <%= f.label :"Contents", class:"col-md-4 col-form-label text-md-right fw-bold" %>
-           <div class="col-md-6 px-md-0">
-             <%= f.text_area :hint_contents %>
-           </div>
-         </div>
+            <div class="field mb-2">
+              <%= f.label :"Contents", class: "memory-new2" %>
+              <%= f.text_area :hint_contents, size: "40x5" %>
+            </div>
 
-         <div class="form-group row mt-5">
-           <div class="col-md-6 px-md-0">
-             <%= f.file_field :hint_image, accept: "image/*" %>
-           </div>
-         </div>
+            <div class="field mb-3">
+               <%= f.file_field :hint_image, accept: "image/*" %>
+            </div>
 
-         <div class="form-group text-center mt-3">
-            <%= f.submit "新規登録", class:"btn btn-success btn-lg" %>
-         </div>
-      <% end %>
-    </div>
+            <div class="field mb-1">
+               <%= f.submit "新規登録", class: "btn btn-sm btn-primary text-light" %>
+            </div>
+         <% end %>
+      </div>
    </div>
- </div>
+  </div>
+</div>

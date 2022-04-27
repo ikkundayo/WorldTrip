@@ -1,3 +1,10 @@
+<div class="memory-show-title-box">
+  <%= link_to memories_path("type": "link") do %>
+    <i class="fa-solid fa-angle-left memory-show-left"></i>
+  <% end %>
+  <span class="memory-new-title">思い出投稿</span>
+</div>
+
 <div class="container">
    <div class="row justify-content-center">
       <div class="col-lg-3">
@@ -5,7 +12,6 @@
             <%= render 'layouts/errors', obj: @memory %>
          </div>
 
-         <h2 class="text-center my-4">思い出投稿</h2>
          <div class="text-first">
             <%= form_with model: @memory, url: memories_path, local:true do |f| %>
                <div class="field mb-2">

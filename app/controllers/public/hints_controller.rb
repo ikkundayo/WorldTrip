@@ -1,17 +1,17 @@
 class Public::HintsController < ApplicationController
   def index
     @tags = ActsAsTaggableOn::Tag.order(id: "ASC").pluck(:name)
-    @hints = Hint.page(params[:page]).per(10)
-    if user_signed_in?
-      @following = Hint.where(user_id: [current_user.id,*current_user.follower_ids]).page(params[:page]).per(10)
-    end
+    @hints = Hint.order(created_at: :desc).page(params[:page]).per(10)
+    # if user_signed_in?
+    #   @following = Hint.where(user_id: [current_user.id,*current_user.follower_ids]).page(params[:page]).per(10)
+    # end
 
     if params[:tag_name]
-      @hints = Hint.tagged_with("#{params[:tag_name]}").page(params[:page]).per(10)
-      @following = Hint.tagged_with("#{params[:tag_name]}").page(params[:page]).per(10)
+      @hints = Hint.tagged_with("#{params[:tag_name]}").order(created_at: :desc).page(params[:page]).per(10)
+      # @following = Hint.tagged_with("#{params[:tag_name]}").page(params[:page]).per(10)
     end
     @q = Hint.ransack(params[:q])
-    @search = @q.result(distinct: true).page(params[:page]).per(10)
+    @search = @q.result(distinct: true).order(created_at: :desc).page(params[:page]).per(10)
   end
 
   def show
@@ -53,23 +53,23 @@ class Public::HintsController < ApplicationController
 
     if params[:hint_id] == "hoge"
       @search = @q.result(distinct: true).pluck(:country_code)
-      @hints = Hint.where(country_code: @search).page(params[:page]).per(10)
+      @hints = Hint.where(country_code: @search).order(created_at: :desc).page(params[:page]).per(10)
 
     elsif params[:type] == "search-tag"
       @id = params[:hint_id]
 
       @search = Hint.where('country_code Like(?)', "%#{params[:hint_id]}%").pluck(:country_code)
-      @hints = Hint.where(country_code: @search).page(params[:page]).per(10)
+      @hints = Hint.where(country_code: @search).order(created_at: :desc).page(params[:page]).per(10)
       if params[:tag_name] == "アドバイス" || params[:tag_name] == "体験談" || params[:tag_name] == "現地の声" || params[:tag_name] == "質問" || params[:tag_name] == "新型コロナウイルスについて" || params[:tag_name] == "その他"
-        @hints = @hints.tagged_with("#{params[:tag_name]}").page(params[:page]).per(10)
+        @hints = @hints.tagged_with("#{params[:tag_name]}").order(created_at: :desc).page(params[:page]).per(10)
       end
     else
       @country = Country.find(params[:hint_id])
-      @hints = Hint.where(country_code: @country.name_jp).page(params[:page]).per(10)
+      @hints = Hint.where(country_code: @country.name_jp).order(created_at: :desc).page(params[:page]).per(10)
       @country_name = Hint.find_by(country_code: @country.name_jp)
 
       if params[:tag_name]
-        @hints = @hints.tagged_with("#{params[:tag_name]}").page(params[:page]).per(10)
+        @hints = @hints.tagged_with("#{params[:tag_name]}").order(created_at: :desc).page(params[:page]).per(10)
       end
     end
 
