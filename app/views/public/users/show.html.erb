@@ -1,85 +1,74 @@
 <%= render 'public/users/map' %>
 <div class="container">
   <div class="row justify-content-center">
-    <div class="col-md-5">
+    <div class="col-md-4 user-info-box">
       <span class="mypage-count">World <%= @country_progress.round(1) %>%</span>
       <h2 class="line"></h2>
 
       <% if user_signed_in? %>
-        <% if @user.id == current_user.id  %>
+        <% if @user == current_user  %>
           <%= link_to new_review_path do %>
             <i class="fa-solid fa-circle-plus mypage-plus"></i>
           <% end %>
         <% end %>
       <% end %>
 
+      <div class='mypage-box'>
+        <div>
+          <div><i class="flag-icon flag-icon-<%= @user_logo.code.downcase %> mypage-user-icon"></i></div>
+          <%= image_tag @user.get_user_image(150,150), class: "mypage-user-img" %>
+          <div class="mypage-username">
+            <span class="ms-5 me-1"><%= @user.user_name %></span>
 
+            <% if @user.gender == "男" %>
+              <i class="fa-solid fa-mars"></i>
+            <% elsif @user.gender == "女" %>
+              <i class="fa-solid fa-venus"></i>
+            <% end %>
 
-      <% if @user == current_user %>
-        <h1>マイページ</h1>
-      <% else %>
-        <h1><%= @user.user_name %>さんのページ</h1>
-      <% end %>
+            <%= @user_age %>
+          </div>
+        </div>
 
-      <table class='table'>
-        <tr><%= image_tag @user.get_user_image(100,100) %><br>
-          <i class="flag-icon flag-icon-<%= @user_logo.code.downcase %>"></i>
-        </tr>
-        <tr>
-      	  <th>name</th>
-      	  <th><%= @user.user_name %></th>
-        </tr>
-        <tr>
-      	  <th>母国(国旗image)</th>
-      	  <th><%= @user.country_code %></th>
-        </tr>
-        <tr>
-      	  <th>Gender</th>
-      	  <th><%= @user.gender %></th>
-        </tr>
-        <tr>
-      	  <th>Age</th>
-      	  <th><%= @user_age %></th>
-        </tr>
-        <tr>
-      	  <th>Introduction</th>
-      	  <th><%= @user.introduction %></th>
-        </tr>
+        <div class="mypage-introduction-box">
+           <%= @user.introduction %>
+        </div>
 
-        <% if user_signed_in? %>
-          <% if @user != current_user %>
-            <tr>
-          	  <th>
-          	    <% if @user.is_followed_by?(current_user) %>
-                  <%= link_to user_relationships_path(@user), method: :delete do %>
-                    <putton class="btn btn-danger">フォローを外す</putton>
-                  <% end %>
-                <% else %>
-                  <%= link_to user_relationships_path(@user), method: :post do %>
-                    <putton class="btn btn-primary">フォロー</putton>
-                  <% end %>
+        <div class="follow-box d-flex justify-content-center">
+          <div class="following">
+            <%= link_to @user.followers.count, followers_user_path(@user) %><br>
+            following
+          </div>
+          <div class="followers">
+            <%= link_to @user.followeds.count, followed_user_path(@user) %><br>
+            followers
+          </div>
+        </div>
+
+        <div class="button-box">
+          <% if user_signed_in? %>
+            <% if @user != current_user %>
+        	    <% if @user.is_followed_by?(current_user) %>
+                <%= link_to user_relationships_path(@user), method: :delete do %>
+                  <putton class="btn btn-danger mypage-button">フォローを外す</putton>
                 <% end %>
-              </th>
-            </tr>
+              <% else %>
+                <%= link_to user_relationships_path(@user), method: :post do %>
+                  <putton class="btn btn-primary mypage-button">フォロー</putton>
+                <% end %>
+              <% end %>
+            <% else %>
+              <%= link_to edit_user_path(current_user) do %>
+                <putton class="btn btn-success mypage-button">Edit</putton>
+               <% end %>
+            <% end %>
           <% end %>
-        <% end %>
+        </div>
 
-        <tr>
-          <th>following</th>
-          <th><%= link_to @user.followers.count, followers_user_path(@user) %></th>
-          <th>followers</th>
-          <th><%= link_to @user.followeds.count, followed_user_path(@user) %></th>
-        </tr>
-
-      </table>
-      <div>
-        <% if @user == current_user %>
-          <%= link_to 'Edit', edit_user_path(current_user) %>
-        <% end %>
       </div>
     </div>
 
-    <div class="col-md-5">
+    <div class="col-md-6 user-ranking-box">
       <%= render 'public/reviews/user_ranking', ranking: @ranking, user: @user %>
     </div>
   </div>

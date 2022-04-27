@@ -483,7 +483,6 @@ nav.pagination {
   height: 45px;
   border: 2px solid #dbbaba;
   margin: 5px;
-  position: relative;
   text-decoration: none;
   color: white;
 }
@@ -580,14 +579,13 @@ nav.pagination {
 
 .follow-user-icon {
   font-size: 20px;
-  top: 20px;
-  right: 202px;
+  top: 18px;
+  left: 26px;
 }
 .follow-text {
   margin-left: 30px;
 }
 .follow-box {
-  border-bottom: solid 1px #DEE2E6;
   text-align: center;
   padding: 10px;
 }
@@ -629,4 +627,89 @@ nav.pagination {
 .review-new-title {
     font-size: 30px;
     margin-left: 540px;
+}
+
+.review-new-box {
+  margin: 20px;
+  margin-left: 240px;
+}
+
+.new-original-category {
+  margin-left: 4px;
+}
+.review-new-button {
+  margin-right: 200px;
+}
+.review-edit-title {
+  font-size: 30px;
+  margin-left: 520px;
+}
+
+.user-info-box {
+  border-top: solid #DEE2E6;
+  width: 100%;
+}
+
+.user-ranking-box {
+  border-top: solid #DEE2E6;
+  padding-top: 20px;
+}
+
+.mypage-user-img {
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+  border: 2px solid #dbbaba;
+  text-decoration: none;
+  color: white;
+}
+.mypage-user-icon {
+  top: 155px;
+  font-size: 45px;
+  right: 5px;
+}
+.mypage-username {
+  text-align: center;
+  font-size: 20px;
+  margin-top: 10px;
+}
+.fa-mars {
+  color: lightblue;
+  font-size: 20px;
+
+}
+.fa-venus {
+  color: pink;
+  font-size: 20px;
+}
+.mypage-introduction-box {
+  text-align: center;
+  width: 300px;
+  margin-top: 10px;
+}
+.following {
+  text-align: center;
+  width: 100px;
+}
+.followers {
+  text-align: center;
+  width: 100px;
+}
+.follow-box {
+  width: 100%;
+}
+.mypage-button {
+  text-align: center;
+  width: 170px;
+}
+.button-box {
+  width: 100%;
+  text-align: center;
+}
+.mypage-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
 }

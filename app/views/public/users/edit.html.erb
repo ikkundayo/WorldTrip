@@ -1,20 +1,27 @@
+<div class="memory-show-title-box">
+  <%= link_to user_path(current_user.id) do %>
+    <i class="fa-solid fa-angle-left memory-show-left"></i>
+  <% end %>
+  <span class="review-edit-title">プロフィール編集</span>
+</div>
+
+
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-lg-3">
       <div class="text-danger">
         <%= render 'layouts/errors', obj: @user %>
       </div>
-      
-      <h2 class="text-center my-3">プロフィール編集</h2>
+
       <div class="text-first">
         <%= form_with model: @user, url: user_path, method: :patch do |f| %>
-          <div class="field mb-2">
-            <%= f.label :user_image, "プロフィールイメージ" %>
-            <%= f.file_field :user_image, accept: "image/*", size: "40x10" %>
-          </div>
-          <div class="field mb-2">
+          <div class="field my-4">
             <%= f.label :user_name, "User name" %><br>
             <%= f.text_field :user_name, size: "40x10" %>
+          </div>
+
+          <div class="field mb-3">
+            <%= f.file_field :user_image, accept: "image/*", size: "40x10" %>
           </div>
 
           <div class="field mb-2">

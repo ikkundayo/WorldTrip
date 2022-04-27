@@ -37,7 +37,7 @@
           <span class="memory-action-content3"><%= time_ago_in_words(@memory.created_at) %> ago</span>
 
           <% if user_signed_in? %>
-            <% if @.user_id == current_user.id  %>
+            <% if @memory.user_id == current_user.id  %>
               <h6 class="text-end mt-1"><%= link_to "Destroy", memory_path, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger" %></h6>
             <% end %>
           <% elsif admin_signed_in? %>

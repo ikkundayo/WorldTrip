@@ -5,7 +5,7 @@
 /*global $*/
 
 import Rails from "@rails/ujs"
-import Turbolinks from "turbolinks"
+// import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 import "jquery"
@@ -13,7 +13,7 @@ import "jquery"
 require('packs/raty')
 
 Rails.start()
-Turbolinks.start()
+// Turbolinks.start()
 ActiveStorage.start()
 
 window.$ = window.jQuery = require('jquery');
@@ -21,7 +21,7 @@ window.$ = window.jQuery = require('jquery');
 import Swiper from 'swiper/swiper-bundle.min'
 import 'swiper/swiper.min'
 
-$(document).on('turbolinks:load', function() {
+$(document).ready(function() {
   new Swiper('.swiper', {
     loop: true,
     speed: 2800,

@@ -3,11 +3,11 @@
     <div class="col-md-5">
       <% users.each do |user| %>
         <div class='follow-box'>
+          <% country = Country.find_by(name_jp: user.country_code) %>
+          <i class="flag-icon flag-icon-<%= country.code.downcase %> follow-user-icon"></i>
           <%= image_tag user.get_user_image(50,50), class: "user-img-comment" %>
           <span class="follow-text"><%= user.user_name %></span>
           <%= link_to 'Show', user_path(user), class: "follow-text" %>
-          <% country = Country.find_by(name_jp: user.country_code) %>
-          <i class="flag-icon flag-icon-<%= country.code.downcase %> follow-user-icon"></i>
         </div>
       <% end %>
     </div>
