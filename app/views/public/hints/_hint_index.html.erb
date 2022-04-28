@@ -20,7 +20,7 @@
       <div class="memory-content-box">
         <%= link_to hint_path(hint.id), class: "link-change" do %>
           <% if hint.hint_image.present?%>
-            <%= image_tag hint.get_hint_image(550,550) %><br>
+            <%= image_tag hint.get_hint_image(550,450) %><br>
           <% end %>
           <p class="mt-3"><%= hint.hint_contents.truncate(40) %></p>
         <% end %>

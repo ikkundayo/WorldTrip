@@ -22,14 +22,14 @@
 
         <div class="hint-country-box">
           <span>対象国:<%= @hint.country_code %></span>
-          <%= link_to review_path(@country_logo.id) do %><i class="flag-icon flag-icon-<%= @country_logo.code.downcase %>"></i><% end %><br>
+          <%= link_to review_path(@country_logo.id) do %><i class="flag-icon flag-icon-<%= @country_logo.code.downcase %> mb-2"></i><% end %><br>
           ジャンル:<%= @hint.tag_list %>
         </div>
 
 
-        <div class="memory-content-box">
+        <div class="memory-content-box mt-3">
           <% if @hint.hint_image.present?%>
-            <%= image_tag @hint.get_hint_image(700,700) %><br>
+            <%= image_tag @hint.get_hint_image(600,470) %><br>
           <% end %>
           <p class="mt-3"><%= @hint.hint_contents %></p>
         </div>

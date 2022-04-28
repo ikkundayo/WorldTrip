@@ -26,31 +26,31 @@ User.create!(
     {
       email: 'aaa@a',
       password: '111111',
-      user_name: 'ルフィ',
+      user_name: 'test1',
       country_code: 'アメリカ',
       gender: '男',
       birth_date: '2000-05-06',
-      introduction: '俺は海賊王になる',
+      introduction: '目標は世界一周',
       is_deleted: 'true'
     },
     {
       email: 'aaa@aa',
       password: '111111',
-      user_name: 'ゾロ',
+      user_name: 'test2',
       country_code: '日本',
       gender: '男',
       birth_date: '1996-10-06',
-      introduction: '世界一の大剣豪',
+      introduction: '全世界の人と友達になりたい',
       is_deleted: 'true'
     },
     {
       email: 'a@a',
       password: '111111',
-      user_name: 'ナミ',
+      user_name: 'test3',
       country_code: 'ルーマニア',
       gender: '女',
       birth_date: '2000-01-01',
-      introduction: '泥棒猫',
+      introduction: 'いつか日本に行きたい',
       is_deleted: 'true'
     }
   ]
