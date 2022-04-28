@@ -49,12 +49,15 @@
       <p class="comment-count m-2">
         <%= render "public/memory_comments/count", memory: @memory %>
       </p>
-      <div>
-        <%= render "public/memory_comments/form", memory: @memory, memory_comment: @memory_comment %>
-      </div>
-      <div class="comment-index">
-        <%= render "public/memory_comments/index", memory: @memory %>
-      </div>
+
+      <% if user_signed_in? %>
+        <div>
+          <%= render "public/memory_comments/form", memory: @memory, memory_comment: @memory_comment %>
+        </div>
+      <% end %>
+        <div class="comment-index">
+          <%= render "public/memory_comments/index", memory: @memory %>
+        </div>
 
     </div>
   </div>

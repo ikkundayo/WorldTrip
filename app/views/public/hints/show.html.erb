@@ -52,9 +52,11 @@
       <p class="comment-count m-2">
         <%= render "public/hint_comments/count", hint: @hint %>
       </p>
-      <div>
-      <%= render "public/hint_comments/form", hint: @hint, hint_comment: @hint_comment %>
-      </div>
+      <% if user_signed_in? %>
+        <div>
+        <%= render "public/hint_comments/form", hint: @hint, hint_comment: @hint_comment %>
+        </div>
+      <% end %>
       <div class="comment-index">
         <%= render "public/hint_comments/index", hint: @hint, country_logo: @country_logo %>
       </div>

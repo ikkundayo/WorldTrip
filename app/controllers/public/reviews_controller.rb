@@ -71,7 +71,7 @@ class Public::ReviewsController < ApplicationController
     end
     if @review.save
 
-      redirect_to user_path(current_user)
+      redirect_to user_path(current_user), notice: "You have created memory successfully."
     else
       render 'new'
     end

@@ -16,16 +16,21 @@ class User < ApplicationRecord
 
   has_many :reverse_of_relationships, class_name: 'Relationship', foreign_key: :followed_id, dependent: :destroy
   has_many :followeds, through: :reverse_of_relationships, source: :follower
-  
+
   has_many :active_notifications, class_name: "Notification", foreign_key: "visiter_id", dependent: :destroy
   has_many :passive_notifications, class_name: "Notification", foreign_key: "visited_id", dependent: :destroy
 
-def is_followed_by?(user)
+  def is_followed_by?(user)
     reverse_of_relationships.find_by(follower_id: user.id).present?
-end
-
+  end
 
   has_one_attached :user_image
+
+  validates :user_name, presence: true
+  validates :country_code, presence: true
+  validates :gender, presence: true
+  validates :birth_date, presence: true
+
 
 
   def get_user_image(width, height)
@@ -35,8 +40,8 @@ end
     end
       user_image.variant(resize_to_limit: [width, height]).processed
   end
-  
-  
+
+
   def create_notification_follow!(current_user)
     temp = Notification.where(["visiter_id = ? and visited_id = ? and action = ? ",current_user.id, id, 'follow'])
     if temp.blank?
@@ -47,7 +52,7 @@ end
       notification.save if notification.valid?
     end
   end
-  
+
 
 
 

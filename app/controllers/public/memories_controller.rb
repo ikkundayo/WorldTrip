@@ -36,8 +36,9 @@ class Public::MemoriesController < ApplicationController
     @memory = Memory.new(memory_params)
     @memory.user_id = current_user.id
     if @memory.save
-      redirect_to memories_path
+      redirect_to memories_path('type': 'link'), notice: "You have created memory successfully."
     else
+      @review = current_user.reviews
       render 'new'
     end
   end
@@ -45,7 +46,7 @@ class Public::MemoriesController < ApplicationController
   def destroy
     @memory = Memory.find(params[:id])
     @memory.destroy
-    redirect_to memories_path
+    redirect_to memories_path('type': 'link'), notice: "The memory was deleted."
   end
 
   def search

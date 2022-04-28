@@ -5,6 +5,8 @@ class Hint < ApplicationRecord
 
   has_many :notifications, dependent: :destroy
 
+  validates :hint_contents, presence: true
+
   has_one_attached :hint_image
   acts_as_taggable
 

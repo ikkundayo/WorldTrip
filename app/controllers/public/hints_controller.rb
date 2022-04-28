@@ -35,8 +35,9 @@ class Public::HintsController < ApplicationController
     @hint = Hint.new(hint_params)
     @hint.user_id = current_user.id
     if @hint.save
-      redirect_to hints_path
+      redirect_to hints_path('type': 'link'), notice: "You have created hint successfully."
     else
+      @tags = ActsAsTaggableOn::Tag.all
       render 'new'
     end
   end
@@ -44,7 +45,7 @@ class Public::HintsController < ApplicationController
   def destroy
     @hint = Hint.find(params[:id])
     @hint.destroy
-    redirect_to hints_path
+    redirect_to hints_path('type': 'link'), notice: "The hint was deleted."
   end
 
   def search

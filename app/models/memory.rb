@@ -5,6 +5,8 @@ class Memory < ApplicationRecord
 
   has_many :notifications, dependent: :destroy
 
+  validates :memory_contents, presence: true
+
   def liked_by?(user)
     likes.exists?(user_id: user.id)
   end

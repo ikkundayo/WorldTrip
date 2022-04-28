@@ -1,3 +1,10 @@
+<div class="memory-show-title-box">
+  <%= link_to reviews_path("type": "link") do %>
+    <i class="fa-solid fa-angle-left memory-show-left"></i>
+  <% end %>
+  <span class="review-show-title"><レビュー詳細></span>
+</div>
+
 <div class='container'>
   <div class='row justify-content-center'>
     <div class='col-md-3 mt-3'>
@@ -103,7 +110,6 @@
 
 
     <div class='col-md-7 mt-3'>
-      <h3 class="text-center"><みんなのレビュー></h3>
       <ul class="nav nav-tabs justify-content-between text-center">
         <li class="nav-item">
           <%= link_to '楽しさ・娯楽', review_path(@country, {'type': 'amusement'}), anchor: 'test', class:"nav-link" %>

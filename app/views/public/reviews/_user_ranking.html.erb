@@ -5,7 +5,7 @@
 <% ranking.each do |reviews| %>
   <div class='mypage-ranking-box'>
     <% country = Country.find_by(name_jp: reviews.country_code) %>
-    <%= link_to user_path(user, {'type': 'review'}) do %>
+    <%= link_to user_path(user, {'type': 'review', anchor: 'nav_menu'}) do %>
       <i class="flag-icon flag-icon-<%= country.code.downcase %> mypage-country-icon"></i>
     <% end %>
     <span class="mypage-ranking-country-name mx-4"><%= reviews.country_code %></span>

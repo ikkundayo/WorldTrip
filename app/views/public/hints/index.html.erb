@@ -45,9 +45,10 @@
           <% end %>
         </li>
        </ul>
-
-      <%= link_to new_hint_path do %>
-        <i class="fa-solid fa-circle-plus hint-plus"></i>
+      <% if user_signed_in?%>
+        <%= link_to new_hint_path do %>
+          <i class="fa-solid fa-circle-plus hint-plus"></i>
+        <% end %>
       <% end %>
       <%# if user_signed_in? %>
         <%#= link_to "フォローのみ表示", hints_path('type': 'follwing') %>
