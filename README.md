@@ -33,10 +33,12 @@ coming soon
 
 ## 実装機能リスト一覧
 https://docs.google.com/spreadsheets/d/1mq8V6BIVx-ly7MtgPXr2z35Xwej0aG3UT-m__FbjgM0/edit#gid=1091086188
+## 実装フレームワーク
+https://app.diagrams.net/#G1ndo8KqdqZk3zCFYNebd6mwvGw99wds6Y
 
 ## 開発環境
 - OS：Linux(CentOS)
 - 言語：HTML,CSS,JavaScript,Ruby,SQL
-- フレームワーク：Ruby on Rails,Bootstrap5
+- フレームワーク：Ruby on Rails,Bootstrap5,Font Awesome6.1.1
 - JSライブラリ：jQuery
 - IDE：Cloud9
