@@ -1,22 +1,27 @@
+<i class="fa-solid fa-crown mypage-crown-one"></i><i class="fa-solid fa-crown mypage-crown-two"></i><i class="fa-solid fa-crown mypage-crown-three"></i>
+<h5 class="mypage-no-one">No.1</h5><h5 class="myapge-no-two">No.2</h5><h5 class="mypage-no-three">No.3</h5>
 <h2 class="text-center"><%= user.user_name %>さんのベスト3!</h2>
-<% ranking.each.with_index(1) do |reviews, index| %>
-  <table class='table'>
-    <tr>
-      <% country = Country.find_by(name_jp: reviews.country_code) %>
 
-      <th><%= index %>位  <%= link_to user_path(user, {'type': 'review'}) do %><i class="flag-icon flag-icon-<%= country.code.downcase %>"></i><% end %><%= reviews.country_code %> <span class="review_average<%= reviews.id%>"></span><%= reviews.review_average.round(1) %> </th>
+<% ranking.each do |reviews| %>
+  <div class='mypage-ranking-box'>
+    <% country = Country.find_by(name_jp: reviews.country_code) %>
+    <%= link_to user_path(user, {'type': 'review'}) do %>
+      <i class="flag-icon flag-icon-<%= country.code.downcase %> mypage-country-icon"></i>
+    <% end %>
+    <span class="mypage-ranking-country-name mx-4"><%= reviews.country_code %></span>
+    <span class="review_average<%= reviews.id%> mypage-rate"></span><span style="margin-top: 10px;"><%= reviews.review_average.round(1) %></span>
 
-    </tr>
-  </table>
-  <script>
-    $('.review_average<%= reviews.id%>').raty({
-    size      : 36,
-    starOff   : '<%= asset_path('star-off.png') %>',
-    starOn    : '<%= asset_path('star-on.png') %>',
-    starHalf : '<%= asset_path('star-half.png') %>',
-    half      : true,
-    readOnly: true,
-    score: <%= reviews.review_average %>
-    });
-  </script>
+
+    <script>
+      $('.review_average<%= reviews.id%>').raty({
+      size      : 36,
+      starOff   : '<%= asset_path('star-off.png') %>',
+      starOn    : '<%= asset_path('star-on.png') %>',
+      starHalf : '<%= asset_path('star-half.png') %>',
+      half      : true,
+      readOnly: true,
+      score: <%= reviews.review_average %>
+      });
+    </script>
+  </div>
 <% end %>

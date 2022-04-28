@@ -607,6 +607,7 @@ nav.pagination {
   position: absolute;
   top: 720px;
   font-weight: bold;
+  left: 200px;
 }
 
 .line {
@@ -614,6 +615,7 @@ nav.pagination {
     width: 150px;
     position: absolute;
     top: 770px;
+    left: 200px;
 }
 
 .notice-top {
@@ -645,13 +647,16 @@ nav.pagination {
   margin-left: 520px;
 }
 
-.user-info-box {
+.user-info-ranking-box {
   border-top: solid #DEE2E6;
+  width: 100%;
+  padding: 30px 0px;
+}
+.user-info-box {
   width: 100%;
 }
 
 .user-ranking-box {
-  border-top: solid #DEE2E6;
   padding-top: 20px;
 }
 
@@ -712,4 +717,100 @@ nav.pagination {
   align-items: center;
   flex-wrap: wrap;
   margin-bottom: 10px;
+}
+.mypage-ranking-box {
+  display: flex;
+  // justify-content: center;
+  // align-items: center;
+  flex-wrap: wrap;
+  margin: 30px 0px 60px 120px;
+  border-bottom: 1px solid #dbbaba;
+  padding-bottom: 5px;
+}
+.mypage-country-icon {
+  font-size: 45px;
+  border: solid 1px black;
+}
+.mypage-ranking-country-name {
+  font-size: 20px;
+  margin-top: 10px;
+}
+.mypage-rate {
+  margin-top: 10px;
+}
+.mypage-crown-one {
+  font-size: 60px;
+  color: gold;
+  top: 933px;
+  left: 630px;
+  position: absolute;
+}
+.mypage-no-one {
+  position: absolute;
+  top: 962px;
+  left: 645px;
+}
+.mypage-crown-two {
+    position: absolute;
+    font-size: 60px;
+    color: silver;
+    top: 1046px;
+    left: 630px;
+    position: absolute;
+}
+.myapge-no-two {
+  position: absolute;
+  top: 1075px;
+  left: 643px;
+}
+
+.mypage-crown-three {
+  font-size: 60px;
+  color: #815a2b;
+  top: 1159px;
+  left: 630px;
+  position: absolute;
+}
+.mypage-no-three {
+  position: absolute;
+  top: 1189px;
+  left: 643px;
+}
+
+.mypage-sho {
+  font-size: 35px;
+  color: black;
+  margin-top: 3px;
+}
+.mypage-plane {
+  font-size: 30px;
+  background-color: #ff6666;
+  color: white;
+  padding: 5px;
+  border-radius: 7px;
+}
+.mypage-camera {
+  font-size: 37px;
+  color: black;
+  margin-top: 2px;
+}
+.mypage-light {
+  font-size: 37px;
+  color: yellow;
+  margin-top: 2px;
+}
+.mypage-nav-item {
+  background-color: gainsboro;
+}
+
+.mypage-review-index {
+  margin: 20px 250px;
+}
+.mypage-render-icon {
+  font-size: 100px;
+  margin-bottom: 5px;
+}
+
+.mypage-want-index {
+  margin: 20px 250px;
 }
