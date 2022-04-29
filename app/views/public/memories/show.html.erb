@@ -11,11 +11,11 @@
 
       <div class='memory-box-show'>
         <div class="memory-user-box">
-        <%= link_to user_path(@memory.user_id) do %>
-          <%= image_tag @memory.user.get_user_image(50,50), class: "user-img" %>
-          <p class="memory-username"><%= @memory.user.user_name %></p>
-          <i class="flag-icon flag-icon-<%= @country_user_logo.code.downcase %> memory-user-icon"></i>
-        <% end %>
+          <%= link_to user_path(@memory.user_id) do %>
+            <%= image_tag @memory.user.get_user_image(50,50), class: "user-img" %>
+            <p class="memory-username"><%= @memory.user.user_name %></p>
+            <i class="flag-icon flag-icon-<%= @country_user_logo.code.downcase %> memory-user-icon"></i>
+          <% end %>
         </div>
 
         <div class="memory-country-box">

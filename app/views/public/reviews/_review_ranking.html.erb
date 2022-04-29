@@ -6,35 +6,35 @@
   	    <td>
   	      <%= link_to review_path(review.country_id) do %>
   	        <% country = Country.find_by(name_jp: review.country_code) %>
-  	          <i class="flag-icon flag-icon-<%= country.code.downcase %> index-ranking-icon"></i><br>
-
+            <i class="flag-icon flag-icon-<%= country.code.downcase %> index-ranking-icon"></i><br>
     	      <span class="ranking-country-name"><%= review.country_code %></span>
     	    <% end %>
-  	        <% if user_signed_in? %>
-              <% if @experience.exists?(country_code: review.country_code)%>
-                <i class="fas fa-shoe-prints ranking-shoe"></i><br>
-              <% else %>
-                <i id="review_like_<%= review.country_code %>">
-                  <%= render "public/review_likes/like", review: review, like: @like %>
-                </i>
-              <% end %>
+
+	        <% if user_signed_in? %>
+            <% if @experience.exists?(country_code: review.country_code)%>
+              <i class="fas fa-shoe-prints ranking-shoe"></i><br>
             <% else %>
-              <i class="fa-solid fa-plane tranking-plane1"></i>
+              <i id="review_like_<%= review.country_code %>">
+                <%= render "public/review_likes/like", review: review, like: @like %>
+              </i>
             <% end %>
+          <% else %>
+            <i class="fa-solid fa-plane tranking-plane1"></i>
+          <% end %>
 
-           <div class="mt-1">
-             <span id="average-rate<%= review.country_id %>"></span>
-           <% if review.avg.nil?  %>
-    	      <% else %>
-    	        <%= review.avg.round(1) %>
-    	      <% end %>
+          <div class="mt-1">
+            <span id="average-rate<%= review.country_id %>"></span>
+            <% if review.avg.nil?  %>
+            <% else %>
+              <%= review.avg.round(1) %>
+            <% end %>
             <% counts = Review.where(country_id: review.country_id).count %>
-              (<%= counts %>)
-            </div>
-
+            (<%= counts %>)
+          </div>
   	    </td>
   	  </tr>
     </table>
+
     <script>
       $('#average-rate<%= review.country_id %>').raty({
         size      : 36,
@@ -48,8 +48,9 @@
       });
     </script>
   <% end %>
-<%= paginate reviews %>
+  <%= paginate reviews %>
 </div>
+
 
 <script>
   $(function() {
@@ -59,48 +60,3 @@
     });
   });
 </script>
-
-
-<!--  <%# end %>-->
-<!--<%#= paginate reviews %>-->
-<!--</div>-->
-
-<!--<script>-->
-<!--  <%# reviews[0..9].each do |review| %>-->
-<!--    $('#average-rate<%#= review.country_id %>').empty;-->
-<!--    $('#average-rate<%#= review.country_id %>').raty({-->
-<!--      size      : 36,-->
-<!--      starOff   : '<%#= asset_path('star-off.png') %>',-->
-<!--      starOn    : '<%#= asset_path('star-on.png') %>',-->
-<!--      starHalf : '<%#= asset_path('star-half.png') %>',-->
-<!--      half      : true,-->
-<!--      readOnly: true,-->
-<!--      return :1,-->
-<!--      score: <%#= review.avg %>-->
-<!--    });-->
-<!--  <%# end %>-->
-
-<!--  // $(document).on('turbolinks:load', function() {-->
-<!--    $('.jscroll').jscroll({-->
-<!--    contentSelector: '.list',-->
-<!--    nextSelector: 'span.next a',-->
-<!--    // callback: function(data) {-->
-      <%# if reviews.count > 9 %>
-        <%# reviews[10..].each do |review| %>
-          <!--// $('#average-rate<%#= review.country_id %>').empty;-->
-          <!--// $('#average-rate<%#= review.country_id %>').raty({-->
-<!--          //   size      : 36,-->
-          <!--//   starOff   : '<%#= asset_path('star-off.png') %>',-->
-          <!--//   starOn    : '<%#= asset_path('star-on.png') %>',-->
-          <!--//   starHalf : '<%#= asset_path('star-half.png') %>',-->
-<!--          //   half      : true,-->
-<!--          //   readOnly: true,-->
-<!--          //   return :1,-->
-          <!--//   score: <%#= review.avg %>-->
-<!--          });-->
-        <%# end %>
-      <%# end %>
-<!--  //   }-->
-<!--  //   });-->
-<!--  // });-->
-<!--</script>-->

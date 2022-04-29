@@ -5,13 +5,11 @@
   <span class="memory-show-title">Detail</span>
 </div>
 
-
 <div class='container'>
   <div class='row justify-content-center'>
     <div class='col-md-10'>
 
       <div class='memory-box-show'>
-
         <div class="memory-user-box">
           <%= link_to user_path(@hint.user_id) do %>
             <%= image_tag @hint.user.get_user_image(50,50), class: "user-img" %>
@@ -54,7 +52,7 @@
       </p>
       <% if user_signed_in? %>
         <div>
-        <%= render "public/hint_comments/form", hint: @hint, hint_comment: @hint_comment %>
+          <%= render "public/hint_comments/form", hint: @hint, hint_comment: @hint_comment %>
         </div>
       <% end %>
       <div class="comment-index">

@@ -2,13 +2,13 @@ class Hint < ApplicationRecord
   belongs_to :user
   has_many :likes, dependent: :destroy
   has_many :comments, dependent: :destroy
-
   has_many :notifications, dependent: :destroy
 
   validates :hint_contents, presence: true
 
   has_one_attached :hint_image
   acts_as_taggable
+
 
   def liked_by?(user)
     likes.exists?(user_id: user.id)
@@ -19,8 +19,6 @@ class Hint < ApplicationRecord
       hint_image.variant(resize_to_limit: [width, height]).processed
     end
   end
-
-  validates :hint_contents, presence: true
 
   def create_notification_like!(current_user)
     # すでに「いいね」されているか検索
@@ -39,7 +37,6 @@ class Hint < ApplicationRecord
       notification.save if notification.valid?
     end
   end
-
 
 
   def create_notification_comment!(current_user, comment_id)

@@ -76,8 +76,8 @@
               <div class="hint-nav-content">その他</div>
             <% end %>
           </li>
-        <% else %>
 
+        <% else %>
           <li class="nav-item hint-nav-item">
             <%= link_to hints_path('type': 'link'), class: "nav-link" do %>
               <div class="hint-nav-content mt-1">全体</div>
@@ -119,29 +119,27 @@
         <i class="fa-solid fa-circle-plus hint-plus"></i>
       <% end %>
 
+      <% if params[:hint_id] == 'hoge' %>
+        <% if @hints.blank? %>
+          <h5 class="text-center mt-3">まだ「<%= @q.country_code_cont%>」の投稿がありません😭</h5>
+        <% else %>
+          <h5 class="text-center mt-3">「<%= @q.country_code_cont%>」の投稿一覧</h5>
+        <% end %>
+      <% elsif params[:type] == 'search-tag' %>
+        <% if @hints.blank? %>
+          <h5 class="text-center mt-3">まだ「<%= @id %>」の投稿がありません😭</h5>
+        <% else %>
+          <h5 class="text-center mt-3">「<%= @id %>」の投稿一覧</h5>
+        <% end %>
+      <% else %>
+        <% if @hints.blank? %>
+          <h5 class="text-center mt-3">まだ投稿がありません😭</h5>
+        <% else %>
+          <h5 class="text-center mt-3">「<%= @country_name.country_code %>」の投稿一覧</h5>
+        <% end %>
+      <% end %>
 
-
-          <% if params[:hint_id] == 'hoge' %>
-            <% if @hints.blank? %>
-              <h5 class="text-center mt-3">まだ「<%= @q.country_code_cont%>」の投稿がありません😭</h5>
-            <% else %>
-              <h5 class="text-center mt-3">「<%= @q.country_code_cont%>」の投稿一覧</h5>
-            <% end %>
-          <% elsif params[:type] == 'search-tag' %>
-            <% if @hints.blank? %>
-              <h5 class="text-center mt-3">まだ「<%= @id %>」の投稿がありません😭</h5>
-            <% else %>
-              <h5 class="text-center mt-3">「<%= @id %>」の投稿一覧</h5>
-            <% end %>
-          <% else %>
-            <% if @hints.blank? %>
-              <h5 class="text-center mt-3">まだ投稿がありません😭</h5>
-            <% else %>
-              <h5 class="text-center mt-3">「<%= @country_name.country_code %>」の投稿一覧</h5>
-            <% end %>
-          <% end %>
-
-          <%= render 'public/hints/hint_index', hint: @hints %>
+      <%= render 'public/hints/hint_index', hint: @hints %>
     </div>
   </div>
 </div>

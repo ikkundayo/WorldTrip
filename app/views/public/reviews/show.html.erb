@@ -35,7 +35,7 @@
             <% else %>
               <tr>
                 <th class="total-content">総合評価 <%= @reviews.average(:review_average).round(1) %><br>
-                <div id="average-rate"></div>
+                  <div id="average-rate"></div>
                 </th>
               </tr>
               <tr>
@@ -78,36 +78,37 @@
                   </td>
                 </tr>
               <% end %>
-            </table>
+            <% end %>
+          </table>
 
-            <div class="d-flex justify-content-around">
+          <div class="d-flex justify-content-around">
+            <div class="icon-button">
+              <i class="fas fa-shoe-prints ranking-show-shoe"></i><br>
+              <%= @travel_count.count%>
+            </div>
+            <div class="icon-button">
+              <i class="fa-solid fa-plane ranking-show-plane"></i><br>
+              <%= @wish_count.count%>
+            </div>
+
+            <%= link_to memory_search_path(@country) do %>
               <div class="icon-button">
-                <i class="fas fa-shoe-prints ranking-show-shoe"></i><br>
-                <%= @travel_count.count%>
+                <i class="fa-solid fa-camera ranking-show-camera"></i><br>
+                <%= @memory_count.count%>
               </div>
+            <% end %>
+
+            <%= link_to hint_search_path(@country, {'type': 'country'}) do %>
               <div class="icon-button">
-                <i class="fa-solid fa-plane ranking-show-plane"></i><br>
-                <%= @wish_count.count%>
+                <i class="fa-solid fa-lightbulb ranking-show-light"></i><br>
+                <%= @hint_count.count%>
               </div>
+            <% end %>
+          </div><br>
 
-              <%= link_to memory_search_path(@country) do %>
-                <div class="icon-button">
-                  <i class="fa-solid fa-camera ranking-show-camera"></i><br>
-                  <%= @memory_count.count%>
-                </div>
-              <% end %>
-
-              <%= link_to hint_search_path(@country, {'type': 'country'}) do %>
-                <div class="icon-button">
-                  <i class="fa-solid fa-lightbulb ranking-show-light"></i><br>
-                  <%= @hint_count.count%>
-                </div>
-              <% end %>
-            </div><br>
-          </div>
         </div>
       </div>
-
+    </div>
 
     <div class='col-md-7 mt-3'>
       <ul class="nav nav-tabs justify-content-between text-center">
@@ -135,11 +136,11 @@
               <td>
                 <div class="m-2 d-flex">
                   <div>
-
                     <%= link_to user_path(f.user_id) do %>
                       <%= image_tag f.user.get_user_image(55,55), class: "user-img" %>
                     <% end %>
                   </div>
+
                   <div>
                     <div>
                       <% country = Country.find_by(name_jp: f.user.country_code) %>
@@ -177,6 +178,7 @@
               </td>
             </tr>
           </table>
+
           <script>
             $('#amusement-rate<%= f.id %>').raty({
               starOff   : '<%= asset_path('star-off.1.png') %>',
@@ -223,7 +225,7 @@
             <% end %>
           </script>
         <% end %>
-      <%= paginate @reviews %>
+        <%= paginate @reviews %>
       </div>
     </div>
   </div>
@@ -231,12 +233,12 @@
 
 <script>
   $('#average-rate').raty({
-  starOff   : '<%= asset_path('star-off.png') %>',
-  starOn    : '<%= asset_path('star-on.png') %>',
-  starHalf : '<%= asset_path('star-half.png') %>',
-  half      : true,
-  readOnly: true,
-  score: <%= @reviews.average(:review_average) %>
+    starOff   : '<%= asset_path('star-off.png') %>',
+    starOn    : '<%= asset_path('star-on.png') %>',
+    starHalf : '<%= asset_path('star-half.png') %>',
+    half      : true,
+    readOnly: true,
+    score: <%= @reviews.average(:review_average) %>
   });
 
   $('#amusement-rate').raty({
@@ -312,4 +314,3 @@
 <!--  });-->
 <!--</script>-->
 
-<% end %>

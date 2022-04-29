@@ -15,8 +15,6 @@ class Public::UsersController < ApplicationController
     @map = @user.reviews
 
     @like = Like.where(user_id: params[:id]).page(params[:page]).per(10)
-
-
   end
 
   def edit
@@ -47,6 +45,7 @@ class Public::UsersController < ApplicationController
     @user = User.find(params[:id])
     @users = @user.followeds
   end
+
 
   private
 

@@ -13,8 +13,8 @@
 
       <div class="memory-country-box">
         <span>渡航国:<%= memory.country_code %></span>
-         <% country = Country.find_by(name_jp: memory.country_code) %>
-          <%= link_to review_path(country.id) do %><i class="flag-icon flag-icon-<%= country.code.downcase %>"></i><% end %><br>
+        <% country = Country.find_by(name_jp: memory.country_code) %>
+        <%= link_to review_path(country.id) do %><i class="flag-icon flag-icon-<%= country.code.downcase %>"></i><% end %><br>
       </div>
 
       <div class="memory-content-box">
@@ -36,13 +36,12 @@
         <span class="memory-action-content3"><%= time_ago_in_words(memory.created_at) %> ago</span>
       </div>
     </div>
-
   <% end %>
+
   <div class="paginate-memory">
     <%= paginate memory %>
   </div>
- </div>
-
+</div>
 
 
 <script>

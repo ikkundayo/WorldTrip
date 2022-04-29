@@ -44,7 +44,7 @@
             <div class="hint-nav-content">その他</div>
           <% end %>
         </li>
-       </ul>
+      </ul>
       <% if user_signed_in?%>
         <%= link_to new_hint_path do %>
           <i class="fa-solid fa-circle-plus hint-plus"></i>
@@ -53,9 +53,6 @@
       <%# if user_signed_in? %>
         <%#= link_to "フォローのみ表示", hints_path('type': 'follwing') %>
       <%# end %>
-
-
-
 
       <% if params[:type] == 'link' || params[:tag_name] == 'アドバイス' || params[:tag_name] == '現地の声' || params[:tag_name] == '体験談' || params[:tag_name] == '質問' || params[:tag_name] == '新型コロナウイルスについて' || params[:tag_name] == 'その他' %>
         <%= render 'public/hints/hint_index', hint: @hints %>

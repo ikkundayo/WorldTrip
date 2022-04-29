@@ -7,4 +7,4 @@
   <%= notification_form(notification) %><span class="moderate-font"><%= " (#{time_ago_in_words(notification.created_at)} 前)" %></span>
 </div>
 <% country = Country.find_by(name_jp: visiter.country_code) %>
-  <i class="flag-icon flag-icon-<%= country.code.downcase %> notice-user-icon"></i>
+<i class="flag-icon flag-icon-<%= country.code.downcase %> notice-user-icon"></i>

@@ -21,7 +21,7 @@
               <%= image_tag @user.get_user_image(150,150), class: "mypage-user-img" %>
               <div class="mypage-username">
                 <span class="ms-5 me-1"><%= @user.user_name %></span>
-
+                
                 <% if @user.gender == "男" %>
                   <i class="fa-solid fa-mars"></i>
                 <% elsif @user.gender == "女" %>
@@ -68,7 +68,6 @@
             </div>
           </div>
         </div>
-
 
         <div class="col-md-7 user-ranking-box">
           <%= render 'public/reviews/user_ranking', ranking: @ranking, user: @user %>

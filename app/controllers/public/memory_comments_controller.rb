@@ -22,8 +22,8 @@ class Public::MemoryCommentsController < ApplicationController
     Comment.find(params[:id]).destroy
   end
 
-  private
 
+  private
 
   def memory_comment_params
     params.require(:comment).permit(:comment)

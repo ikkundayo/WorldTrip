@@ -1,4 +1,5 @@
 class Public::MemoriesController < ApplicationController
+
   def index
     @memory = Memory.order(created_at: :desc).page(params[:page]).per(10)
     if user_signed_in?
@@ -9,7 +10,6 @@ class Public::MemoriesController < ApplicationController
 
       @country_like = Like.where(user_id: current_user.id).pluck(:review_id)
       @want = Memory.where(country_code: @country_like).order(created_at: :desc).page(params[:page]).per(10)
-
     end
     @q = Memory.ransack(params[:q])
     @search = @q.result(distinct: true).order(created_at: :desc).page(params[:page]).per(10)

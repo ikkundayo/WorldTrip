@@ -15,4 +15,5 @@ class Public::ReviewLikesController < ApplicationController
     @like.destroy
     @like = Like.where(user_id: current_user.id)
   end
+
 end

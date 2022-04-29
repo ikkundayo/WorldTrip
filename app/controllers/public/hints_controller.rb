@@ -1,4 +1,5 @@
 class Public::HintsController < ApplicationController
+
   def index
     @tags = ActsAsTaggableOn::Tag.order(id: "ASC").pluck(:name)
     @hints = Hint.order(created_at: :desc).page(params[:page]).per(10)
@@ -73,14 +74,6 @@ class Public::HintsController < ApplicationController
         @hints = @hints.tagged_with("#{params[:tag_name]}").order(created_at: :desc).page(params[:page]).per(10)
       end
     end
-
-    # else
-    #   @search = @q.result(distinct: true).pluck(:country_code)
-    #   @country = Country.where(name_jp: @search)
-    #   @hints = Hint.where(country_code: @search).page(params[:page]).per(10)
-    # end
-
-
   end
 
   private

@@ -12,5 +12,4 @@ class Public::HintLikesController < ApplicationController
     like.destroy
   end
 
-  
 end

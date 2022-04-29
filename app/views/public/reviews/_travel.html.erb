@@ -5,21 +5,22 @@
   	    <td>
   	      <%= link_to review_path(review.country_id) do %>
   	        <% country = Country.find_by(name_jp: review.country_code) %>
-  	          <i class="flag-icon flag-icon-<%= country.code.downcase %> index-ranking-icon"></i><br>
+            <i class="flag-icon flag-icon-<%= country.code.downcase %> index-ranking-icon"></i><br>
     	      <span class="ranking-country-name"><%= review.country_code %></span>
     	    <% end %>
 
-  	    <% if user_signed_in? %>
-          <% if @experience.exists?(country_code: review.country_code)%>
-            <i class="fas fa-shoe-prints ranking-shoe"></i><br>
+    	    <% if user_signed_in? %>
+            <% if @experience.exists?(country_code: review.country_code)%>
+              <i class="fas fa-shoe-prints ranking-shoe"></i><br>
+            <% else %>
+              <i id="review_like_<%= review.country_code %>">
+                <%= render "public/review_likes/like", review: review, like: @like %>
+              </i>
+            <% end %>
           <% else %>
-            <i id="review_like_<%= review.country_code %>">
-              <%= render "public/review_likes/like", review: review, like: @like %>
-            </i>
+            <i class="fa-solid fa-plane tranking-plane1"></i>
           <% end %>
-        <% else %>
-          <i class="fa-solid fa-plane tranking-plane1"></i>
-        <% end %>
+
           <div class="mt-1">
             <% if params[:type] == 'total-travel' %>
               <% counts = Review.where(country_id: review.country_id).count %>
@@ -34,8 +35,9 @@
   	  </tr>
     </table>
   <% end %>
-<%= paginate reviews %>
+  <%= paginate reviews %>
 </div>
+
 
 <script>
   $(function() {

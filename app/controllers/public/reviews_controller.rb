@@ -41,9 +41,6 @@ class Public::ReviewsController < ApplicationController
     @hint_count = Hint.where(country_code: @country.name_jp)
     @travel_count = Review.where(country_code: @country.name_jp)
     @wish_count = Like.where(review_id: @country.name_jp)
-
-
-
   end
 
   def new
@@ -99,8 +96,8 @@ class Public::ReviewsController < ApplicationController
     end
   end
 
-  private
 
+  private
 
   def review_params
     params.require(:review).permit(

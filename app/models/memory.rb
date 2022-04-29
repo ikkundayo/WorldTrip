@@ -2,23 +2,22 @@ class Memory < ApplicationRecord
   belongs_to :user
   has_many :likes, dependent: :destroy
   has_many :comments, dependent: :destroy
-
   has_many :notifications, dependent: :destroy
 
   validates :memory_contents, presence: true
 
+  has_one_attached :memory_image
+
+
   def liked_by?(user)
     likes.exists?(user_id: user.id)
   end
-
-  has_one_attached :memory_image
 
   def get_memory_image(width, height)
     if memory_image.present?
       memory_image.variant(resize_to_limit: [width, height]).processed
     end
   end
-
 
   def create_notification_like!(current_user)
     # すでに「いいね」されているか検索
@@ -37,8 +36,6 @@ class Memory < ApplicationRecord
       notification.save if notification.valid?
     end
   end
-
-
 
   def create_notification_comment!(current_user, comment_id)
     # 自分以外にコメントしている人をすべて取得し、全員に通知を送る
@@ -64,6 +61,5 @@ class Memory < ApplicationRecord
     end
     notification.save if notification.valid?
   end
-
 
 end
