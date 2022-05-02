@@ -1,20 +1,20 @@
 class Public::UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
-    @review = @user.reviews.order(review_average: :desc).page(params[:page]).per(10)
-    @memory = @user.memories.page(params[:page]).per(10)
-    @hint = @user.hints.page(params[:page]).per(10)
+    @reviews = @user.reviews.order(review_average: :desc).page(params[:page]).per(10)
+    @memories = @user.memories.page(params[:page]).per(10)
+    @hints = @user.hints.page(params[:page]).per(10)
     if params[:tag_name]
-      @hint = Hint.tagged_with("#{params[:tag_name]}")
+      @hints = Hint.tagged_with("#{params[:tag_name]}")
     end
     @user_logo = Country.find_by(name_jp: @user.country_code)
     @user_age = (Date.today.strftime("%Y%m%d").to_i - @user.birth_date.strftime("%Y%m%d").to_i)/10000
     @ranking = @user.reviews.order(review_average: :desc).limit(3)
-    @reviews = @user.reviews
-    @country_progress = (@reviews.count.to_f / 260.to_f) * 100.to_f
+    @review = @user.reviews
+    @country_progress = (@review.count.to_f / 260.to_f) * 100.to_f
     @map = @user.reviews
 
-    @like = Like.where(user_id: params[:id]).page(params[:page]).per(10)
+    @likes = Like.where(user_id: params[:id]).page(params[:page]).per(10)
   end
 
   def edit

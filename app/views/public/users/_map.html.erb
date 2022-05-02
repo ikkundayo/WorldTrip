@@ -13,9 +13,9 @@
 
           const country = [
             <% if @map.present? %>
-              <% @map.each do |v| %>
+              <% @map.each do |map| %>
                 ['Country', 'Name_JP'],
-                ['<%= v.country.code %>', '<%= v.country.name_jp %>'],
+                ['<%= map.country.code %>', '<%= map.country.name_jp %>'],
               <% end %>
             <% else %>
               ['Country']

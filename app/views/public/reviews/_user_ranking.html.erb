@@ -2,25 +2,25 @@
 <h5 class="mypage-no-one">No.1</h5><h5 class="myapge-no-two">No.2</h5><h5 class="mypage-no-three">No.3</h5>
 <h2 class="text-center"><%= user.user_name %>さんのベスト3!</h2>
 
-<% ranking.each do |reviews| %>
+<% ranking.each do |review| %>
   <div class='mypage-ranking-box'>
-    <% country = Country.find_by(name_jp: reviews.country_code) %>
+    <% country = Country.find_by(name_jp: review.country_code) %>
     <%= link_to user_path(user, {'type': 'review', anchor: 'nav_menu'}) do %>
       <i class="flag-icon flag-icon-<%= country.code.downcase %> mypage-country-icon"></i>
     <% end %>
-    <span class="mypage-ranking-country-name mx-4"><%= reviews.country_code %></span>
-    <span class="review_average<%= reviews.id%> mypage-rate"></span><span style="margin-top: 10px;"><%= reviews.review_average.round(1) %></span>
+    <span class="mypage-ranking-country-name mx-4"><%= review.country_code %></span>
+    <span class="review_average<%= review.id%> mypage-rate"></span><span style="margin-top: 10px;"><%= review.review_average.round(1) %></span>
 
 
     <script>
-      $('.review_average<%= reviews.id%>').raty({
+      $('.review_average<%= review.id%>').raty({
       size      : 36,
       starOff   : '<%= asset_path('star-off.png') %>',
       starOn    : '<%= asset_path('star-on.png') %>',
       starHalf : '<%= asset_path('star-half.png') %>',
       half      : true,
       readOnly: true,
-      score: <%= reviews.review_average %>
+      score: <%= review.review_average %>
       });
     </script>
   </div>

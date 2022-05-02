@@ -1,60 +1,60 @@
 <div class='list jscroll'>
-  <% reviews.each do |reviews| %>
+  <% reviews.each do |review| %>
     <table class='table'>
       <tr style="text-align: center;">
-        <% country = Country.find_by(name_jp: reviews.country_code) %>
+        <% country = Country.find_by(name_jp: review.country_code) %>
         <td><%= link_to review_path(country.id) do %><i class="flag-icon flag-icon-<%= country.code.downcase %> mypage-render-icon"></i><% end %><br>
-          <%= reviews.country_code %>
+          <%= review.country_code %>
         </td>
       </tr>
       <tr>
-        <td>総合評価 <%= reviews.review_average.round(1) %><br>
-          <div id="average-rate<%= reviews.id%>"></div>
+        <td>総合評価 <%= review.review_average.round(1) %><br>
+          <div id="average-rate<%= review.id%>"></div>
         </td>
       </tr>
       <tr>
         <td>楽しさ・娯楽<br>
-          <span id="amusement-rate<%= reviews.id%>"></span>
-          <%= reviews.amusement_rate %><br>
-          <%= reviews.amusement_voice %>
+          <span id="amusement-rate<%= review.id%>"></span>
+          <%= review.amusement_rate %><br>
+          <%= review.amusement_voice %>
         </td>
       </tr>
       <tr>
         <td>グルメ<br>
-          <span id="gourmet-rate<%= reviews.id%>"></span>
-          <%= reviews.gourmet_rate %><br>
-          <%= reviews.gourmet_voice %>
+          <span id="gourmet-rate<%= review.id%>"></span>
+          <%= review.gourmet_rate %><br>
+          <%= review.gourmet_voice %>
         </td>
       </tr>
       <tr>
         <td>治安<br>
-          <span id="security-rate<%= reviews.id%>"></span>
-          <%= reviews.security_rate %><br>
-          <%= reviews.security_voice %>
+          <span id="security-rate<%= review.id%>"></span>
+          <%= review.security_rate %><br>
+          <%= review.security_voice %>
         </td>
       </tr>
       <tr>
         <td>おすすめ度<br>
-          <span id="recommend-rate<%= reviews.id%>"></span>
-          <%= reviews.recommend_rate %><br>
-          <%= reviews.recommend_voice %>
+          <span id="recommend-rate<%= review.id%>"></span>
+          <%= review.recommend_rate %><br>
+          <%= review.recommend_voice %>
         </td>
       </tr>
-      <% if reviews.original_category.present?%>
+      <% if review.original_category.present?%>
         <tr>
-          <td><%= reviews.original_category %><br>
-            <span id="original-rate<%= reviews.id%>"></span>
-            <%= reviews.original_rate %><br>
-            <%= reviews.original_voice %>
+          <td><%= review.original_category %><br>
+            <span id="original-rate<%= review.id%>"></span>
+            <%= review.original_rate %><br>
+            <%= review.original_voice %>
           </td>
         </tr>
       <% end %>
     </table>
     <div class="text-end mb-5">
-      <%= time_ago_in_words(reviews.created_at) %> ago
+      <%= time_ago_in_words(review.created_at) %> ago
       <% if user_signed_in? %>
-        <% if reviews.user_id == current_user.id %>
-          <%= link_to "Destroy", review_path(reviews), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger" %>
+        <% if review.user_id == current_user.id %>
+          <%= link_to "Destroy", review_path(review), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger" %>
         <% end %>
       <% end %>
     </div>
@@ -63,71 +63,71 @@
 </div>
 
 <script>
-  <% @reviews[0..9].each do |reviews| %>
-    $('#average-rate<%= reviews.id%>').empty;
-    $('#average-rate<%= reviews.id%>').raty({
+  <% reviews[0..9].each do |review| %>
+    $('#average-rate<%= review.id%>').empty;
+    $('#average-rate<%= review.id%>').raty({
       size      : 36,
       starOff   : '<%= asset_path('star-off.png') %>',
       starOn    : '<%= asset_path('star-on.png') %>',
       starHalf : '<%= asset_path('star-half.png') %>',
       half      : true,
       readOnly: true,
-      score: <%= reviews.review_average %>
+      score: <%= review.review_average %>
     });
 
-    $('#amusement-rate<%= reviews.id%>').empty;
-    $('#amusement-rate<%= reviews.id%>').raty({
+    $('#amusement-rate<%= review.id%>').empty;
+    $('#amusement-rate<%= review.id%>').raty({
       size      : 36,
       starOff   : '<%= asset_path('star-off.png') %>',
       starOn    : '<%= asset_path('star-on.png') %>',
       starHalf : '<%= asset_path('star-half.png') %>',
       half      : true,
       readOnly: true,
-      score: <%= reviews.amusement_rate %>
+      score: <%= review.amusement_rate %>
     });
 
-    $('#gourmet-rate<%= reviews.id%>').empty;
-    $('#gourmet-rate<%= reviews.id%>').raty({
+    $('#gourmet-rate<%= review.id%>').empty;
+    $('#gourmet-rate<%= review.id%>').raty({
       size      : 36,
       starOff   : '<%= asset_path('star-off.png') %>',
       starOn    : '<%= asset_path('star-on.png') %>',
       starHalf : '<%= asset_path('star-half.png') %>',
       half      : true,
       readOnly: true,
-      score: <%= reviews.gourmet_rate %>
+      score: <%= review.gourmet_rate %>
     });
 
-    $('#security-rate<%= reviews.id%>').empty;
-    $('#security-rate<%= reviews.id%>').raty({
+    $('#security-rate<%= review.id%>').empty;
+    $('#security-rate<%= review.id%>').raty({
       size      : 36,
       starOff   : '<%= asset_path('star-off.png') %>',
       starOn    : '<%= asset_path('star-on.png') %>',
       starHalf : '<%= asset_path('star-half.png') %>',
       half      : true,
       readOnly: true,
-      score: <%= reviews.security_rate %>
+      score: <%= review.security_rate %>
     });
 
-    $('#recommend-rate<%= reviews.id%>').empty;
-    $('#recommend-rate<%= reviews.id%>').raty({
+    $('#recommend-rate<%= review.id%>').empty;
+    $('#recommend-rate<%= review.id%>').raty({
       size      : 36,
       starOff   : '<%= asset_path('star-off.png') %>',
       starOn    : '<%= asset_path('star-on.png') %>',
       starHalf : '<%= asset_path('star-half.png') %>',
       half      : true,
       readOnly: true,
-      score: <%= reviews.recommend_rate %>
+      score: <%= review.recommend_rate %>
     });
 
-    $('#original-rate<%= reviews.id%>').empty;
-    $('#original-rate<%= reviews.id%>').raty({
+    $('#original-rate<%= review.id%>').empty;
+    $('#original-rate<%= review.id%>').raty({
       size      : 36,
       starOff   : '<%= asset_path('star-off.png') %>',
       starOn    : '<%= asset_path('star-on.png') %>',
       starHalf : '<%= asset_path('star-half.png') %>',
       half      : true,
       readOnly: true,
-      score: <%= reviews.original_rate.presence || "0" %>
+      score: <%= review.original_rate.presence || "0" %>
     });
   <% end %>
 
@@ -136,72 +136,72 @@
       contentSelector: '.list',
       nextSelector: 'span.next a',
       callback: function(data) {
-        <% if @reviews.count > 9 %>
-          <% @reviews[10..].each do |reviews| %>
-            $('#average-rate<%= reviews.id%>').empty;
-            $('#average-rate<%= reviews.id%>').raty({
+        <% if reviews.count > 9 %>
+          <% reviews[10..].each do |review| %>
+            $('#average-rate<%= review.id%>').empty;
+            $('#average-rate<%= review.id%>').raty({
               size      : 36,
               starOff   : '<%= asset_path('star-off.png') %>',
               starOn    : '<%= asset_path('star-on.png') %>',
               starHalf : '<%= asset_path('star-half.png') %>',
               half      : true,
               readOnly: true,
-              score: <%= reviews.review_average %>
+              score: <%= review.review_average %>
             });
 
-            $('#amusement-rate<%= reviews.id%>').empty;
-            $('#amusement-rate<%= reviews.id%>').raty({
+            $('#amusement-rate<%= review.id%>').empty;
+            $('#amusement-rate<%= review.id%>').raty({
               size      : 36,
               starOff   : '<%= asset_path('star-off.png') %>',
               starOn    : '<%= asset_path('star-on.png') %>',
               starHalf : '<%= asset_path('star-half.png') %>',
               half      : true,
               readOnly: true,
-              score: <%= reviews.amusement_rate %>
+              score: <%= review.amusement_rate %>
             });
 
-            $('#gourmet-rate<%= reviews.id%>').empty;
-            $('#gourmet-rate<%= reviews.id%>').raty({
+            $('#gourmet-rate<%= review.id%>').empty;
+            $('#gourmet-rate<%= review.id%>').raty({
               size      : 36,
               starOff   : '<%= asset_path('star-off.png') %>',
               starOn    : '<%= asset_path('star-on.png') %>',
               starHalf : '<%= asset_path('star-half.png') %>',
               half      : true,
               readOnly: true,
-              score: <%= reviews.gourmet_rate %>
+              score: <%= review.gourmet_rate %>
             });
 
-            $('#security-rate<%= reviews.id%>').empty;
-            $('#security-rate<%= reviews.id%>').raty({
+            $('#security-rate<%= review.id%>').empty;
+            $('#security-rate<%= review.id%>').raty({
               size      : 36,
               starOff   : '<%= asset_path('star-off.png') %>',
               starOn    : '<%= asset_path('star-on.png') %>',
               starHalf : '<%= asset_path('star-half.png') %>',
               half      : true,
               readOnly: true,
-              score: <%= reviews.security_rate %>
+              score: <%= review.security_rate %>
             });
 
-            $('#recommend-rate<%= reviews.id%>').empty;
-            $('#recommend-rate<%= reviews.id%>').raty({
+            $('#recommend-rate<%= review.id%>').empty;
+            $('#recommend-rate<%= review.id%>').raty({
               size      : 36,
               starOff   : '<%= asset_path('star-off.png') %>',
               starOn    : '<%= asset_path('star-on.png') %>',
               starHalf : '<%= asset_path('star-half.png') %>',
               half      : true,
               readOnly: true,
-              score: <%= reviews.recommend_rate %>
+              score: <%= review.recommend_rate %>
             });
 
-            $('#original-rate<%= reviews.id%>').empty;
-            $('#original-rate<%= reviews.id%>').raty({
+            $('#original-rate<%= review.id%>').empty;
+            $('#original-rate<%= review.id%>').raty({
               size      : 36,
               starOff   : '<%= asset_path('star-off.png') %>',
               starOn    : '<%= asset_path('star-on.png') %>',
               starHalf : '<%= asset_path('star-half.png') %>',
               half      : true,
               readOnly: true,
-              score: <%= reviews.original_rate.presence || "0" %>
+              score: <%= review.original_rate.presence || "0" %>
             });
           <% end %>
         <% end %>

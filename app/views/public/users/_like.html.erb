@@ -1,5 +1,5 @@
 <div class='list jscroll'>
-  <% like.each do |like| %>
+  <% likes.each do |like| %>
     <% if like.review_id.present? %>
       <table class='table'>
         <th style="text-align: center;">
@@ -12,7 +12,7 @@
       </table>
     <% end %>
   <% end %>
-  <%= paginate like %>
+  <%= paginate likes %>
 </div>
 
 

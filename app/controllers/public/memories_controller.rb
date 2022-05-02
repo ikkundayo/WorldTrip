@@ -1,13 +1,11 @@
 class Public::MemoriesController < ApplicationController
 
   def index
-    @memory = Memory.order(created_at: :desc).page(params[:page]).per(10)
+    @memories = Memory.order(created_at: :desc).page(params[:page]).per(10)
     if user_signed_in?
       @following = Memory.where(user_id: [current_user.id,*current_user.follower_ids]).order(created_at: :desc).page(params[:page]).per(10)
-
       @review = Review.where(user_id: current_user.id).pluck(:country_code)
       @traveled = Memory.where(country_code: @review).page(params[:page]).per(10)
-
       @country_like = Like.where(user_id: current_user.id).pluck(:review_id)
       @want = Memory.where(country_code: @country_like).order(created_at: :desc).page(params[:page]).per(10)
     end
@@ -51,8 +49,8 @@ class Public::MemoriesController < ApplicationController
 
   def search
     @country = Country.find(params[:memory_id])
-    @memory = Memory.where(country_code: @country.name_jp).order(created_at: :desc).page(params[:page]).per(10)
-    @memorys = Memory.find_by(country_code: @country.name_jp)
+    @memories = Memory.where(country_code: @country.name_jp).order(created_at: :desc).page(params[:page]).per(10)
+    @search = Memory.find_by(country_code: @country.name_jp)
   end
 
 

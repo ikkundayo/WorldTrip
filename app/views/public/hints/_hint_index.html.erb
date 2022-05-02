@@ -1,5 +1,5 @@
 <div class='list jscroll'>
-  <% hint.each do |hint| %>
+  <% hints.each do |hint| %>
     <div class='hint-box'>
       <div class="memory-user-box">
         <%= link_to user_path(hint.user_id) do %>
@@ -38,7 +38,7 @@
 
     </div>
   <% end %>
-  <%= paginate hint %>
+  <%= paginate hints %>
 </div>
 
 
