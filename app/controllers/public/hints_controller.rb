@@ -34,6 +34,9 @@ class Public::HintsController < ApplicationController
 
   def create
     @hint = Hint.new(hint_params)
+
+    @hint.score = Language.get_data(hint_params[:hint_contents])
+
     @hint.user_id = current_user.id
     if @hint.save
       redirect_to hints_path('type': 'link'), notice: "You have created hint successfully."

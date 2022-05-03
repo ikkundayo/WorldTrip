@@ -64,6 +64,17 @@
                     <putton class="btn btn-success mypage-button">Edit</putton>
                    <% end %>
                 <% end %>
+              <% elsif admin_signed_in? %>
+                <% if @memory_score.nil? %>
+                  <div class="sentiment-score">まだ思い出スコアがありません</div>
+                <% else %>
+                  <div class="sentiment-score">思い出平均スコア (<%= @memory_score.round(1) %>)</div>
+                <% end %>
+                <% if  @hint_score.nil? %>
+                  <div class="sentiment-score">まだヒントスコアがありません</div>
+                <% else %>
+                  <div class="sentiment-score">ヒント平均スコア (<%= @hint_score.round(1) %>)</div>
+                <% end %>
               <% end %>
             </div>
           </div>

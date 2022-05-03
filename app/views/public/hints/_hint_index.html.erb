@@ -34,6 +34,9 @@
           <i class="fa-regular fa-comment-dots memory-comment-dots"></i><%= hint.comments.count%>
         <% end %>
         <span class="memory-action-content3"><%= time_ago_in_words(hint.created_at) %> ago</span>
+        <% if admin_signed_in? %>
+          <div class="sentiment-score text-end">感情分析スコア (<%= hint.score %>)</div>
+        <% end %>
       </div>
 
     </div>

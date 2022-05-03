@@ -32,6 +32,9 @@ class Public::MemoriesController < ApplicationController
 
   def create
     @memory = Memory.new(memory_params)
+
+    @memory.score = Language.get_data(memory_params[:memory_contents])
+
     @memory.user_id = current_user.id
     if @memory.save
       redirect_to memories_path('type': 'link'), notice: "You have created memory successfully."

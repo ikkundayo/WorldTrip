@@ -15,6 +15,9 @@ class Public::UsersController < ApplicationController
     @map = @user.reviews
 
     @likes = Like.where(user_id: params[:id]).page(params[:page]).per(10)
+    @memory_score = @user.memories.average(:score)
+    @hint_score = @user.hints.average(:score)
+    # binding.pry
   end
 
   def edit

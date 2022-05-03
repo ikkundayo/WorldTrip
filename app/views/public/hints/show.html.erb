@@ -42,6 +42,7 @@
               <h6 class="text-end mt-1"><%= link_to "Destroy", hint_path, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger" %></h6>
             <% end %>
           <% elsif admin_signed_in? %>
+            <div class="sentiment-score text-end">感情分析スコア (<%= @hint.score %>)</div>
             <h6 class="text-end mt-1"><%= link_to "Destroy", hint_path, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger" %></h6>
           <% end %>
         </div>
