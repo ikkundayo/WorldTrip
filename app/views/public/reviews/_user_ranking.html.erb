@@ -1,6 +1,9 @@
-<i class="fa-solid fa-crown mypage-crown-one"></i><i class="fa-solid fa-crown mypage-crown-two"></i><i class="fa-solid fa-crown mypage-crown-three"></i>
-<h5 class="mypage-no-one">No.1</h5><h5 class="myapge-no-two">No.2</h5><h5 class="mypage-no-three">No.3</h5>
+
 <h2 class="text-center"><%= user.user_name %>さんのベスト3!</h2>
+<div style="height: 0px">
+  <i class="fa-solid fa-crown mypage-crown-one"></i><i class="fa-solid fa-crown mypage-crown-two"></i><i class="fa-solid fa-crown mypage-crown-three"></i>
+  <span class="mypage-no-one">No.1</span><span class="myapge-no-two">No.2</span><span class="mypage-no-three">No.3</span>
+</div>
 
 <% ranking.each do |review| %>
   <div class='mypage-ranking-box'>

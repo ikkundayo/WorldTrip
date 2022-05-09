@@ -78,17 +78,14 @@
     <div class='col-md-7'>
       <div class='row justify-content-center'>
         <div class='col-md-7 text-center '>
-          <i class="fa-solid fa-crown ranking-crown-one"></i><i class="fa-solid fa-crown ranking-crown-two"></i><i class="fa-solid fa-crown ranking-crown-three"></i>
-          <h5 class="ranking-no-one">No.1</h5><h5 class="ranking-no-two">No.2</h5><h5 class="ranking-no-three">No.3</h5>
-
           <% if params[:type] == 'amusement' %>
-            <h4 class="text-center">~楽しさ・娯楽ランキング~</h4>
+            <h4 class="text-center mb-4">~楽しさ・娯楽ランキング~</h4>
           <% elsif params[:type] == 'gourmet' %>
-            <h4 class="text-center">~グルメランキング~</h4>
+            <h4 class="text-center mb-4">~グルメランキング~</h4>
           <% elsif params[:type] == 'security' %>
-            <h4 class="text-center">~治安ランキング~</h4>
+            <h4 class="text-center mb-4">~治安ランキング~</h4>
           <% elsif params[:type] == 'recommend' %>
-            <h4 class="text-center">~おすすめ度ランキング~</h4>
+            <h4 class="text-center mb-4">~おすすめ度ランキング~</h4>
           <% elsif params[:type] == 'total-travel' %>
             <h4 class="text-center">~Total渡航数ランキング~</h4>
             <div class="text-center">
@@ -111,13 +108,13 @@
                <%= link_to 'Week', reviews_path('type': 'week-travel') %>
              </div>
           <% elsif params[:type] == 'original' %>
-            <h4 class="text-center">~オリジナルランキング~</h4>
+            <h4 class="text-center mb-4">~オリジナルランキング~</h4>
           <% elsif params[:type] == 'link' %>
-            <h4 class="text-center">~総合評価ランキング~</h4>
+            <h4 class="text-center mb-4">~総合評価ランキング~</h4>
           <% elsif params[:type] == 'average' %>
-            <h4 class="text-center">~総合評価ランキング~</h4>
+            <h4 class="text-center mb-4">~総合評価ランキング~</h4>
           <% else %>
-            <h4 class="text-center">~総合評価ランキング~</h4>
+            <h4 class="text-center mb-4">~総合評価ランキング~</h4>
           <% end %>
 
           <% if params[:type] == 'amusement' %>

@@ -98,43 +98,46 @@ nav.pagination {
 }
 
 .crown-one {
-  position: absolute;
   font-size: 60px;
   color: gold;
-  top: 800px;
-  left: 295px;
-  position: absolute;
+  top: -5px;
+  left: 116px;
+  position: relative;
 }
 .crown-two {
-  position: absolute;
   font-size: 60px;
   color: silver;
-  top: 800px;
-  left: 686px;
-  position: absolute;
+  position: relative;
+  top: -5px;
+  left: 436px;
+
+  position: relative;
 }
 .crown-three {
-  position: absolute;
-  font-size: 60px;
-  color: #815a2b;
-  top: 800px;
-  left: 1077px;
-  position: absolute;
+    font-size: 60px;
+    color: #815a2b;
+    position: relative;
+    top: -5px;
+    left: 760px;
 }
 .no-one {
-  position: absolute;
-  top: 828px;
-  left: 309px;
+  position: relative;
+  top: -8px;
+  right: 75px;
+  font-size: 20px;
 }
 .no-two {
-  position: absolute;
-  top: 828px;
-  left: 699px;
+  position: relative;
+  top: -8px;
+  left: 272px;
+  font-size: 20px;
+
 }
 .no-three {
-  position: absolute;
-  top: 828px;
-  left: 1090px;
+  position: relative;
+  top: -8px;
+  left: 622px;
+  font-size: 20px;
 }
 
 .index-ranking-icon {
@@ -195,83 +198,43 @@ nav.pagination {
 }
 
 .ranking-crown-one {
-  position: absolute;
+  position: relative;
   font-size: 60px;
   color: gold;
-  top: 170px;
-  left: 630px;
-  position: absolute;
+  right: 35px;
+  top: 40px;
 }
 .ranking-crown-two {
-  position: absolute;
+  position: relative;
   font-size: 60px;
   color: silver;
-  top: 400px;
-  left: 630px;
-  position: absolute;
+  right: 102px;
+  top: 265px;
 }
 .ranking-crown-three {
-  position: absolute;
+  position: relative;
   font-size: 60px;
   color: #815a2b;
-  top: 615px;
-  left: 630px;
-  position: absolute;
+  right: 170px;
+  top: 493px;
 }
 .ranking-no-one {
-  position: absolute;
-  top: 199px;
-  left: 644px;
+  position: relative;
+  right: 227px;
+  font-size: 20px;
+  top: 37px;
 }
 .ranking-no-two {
-  position: absolute;
-  top: 430px;
-  left: 643px;
+  position: relative;
+  top: 262px;
+  right: 266px;
+  font-size: 20px;
 }
 .ranking-no-three {
-  position: absolute;
-  top: 645px;
-  left: 643px;
-}
-
-.search-crown-one {
-  position: absolute;
-  font-size: 60px;
-  color: gold;
-  top: 193px;
-  left: 630px;
-  position: absolute;
-}
-.search-crown-two {
-  position: absolute;
-  font-size: 60px;
-  color: silver;
-  top: 423px;
-  left: 630px;
-  position: absolute;
-}
-.search-crown-three {
-  position: absolute;
-  font-size: 60px;
-  color: #815a2b;
-  top: 638px;
-  left: 630px;
-  position: absolute;
-}
-.search-no-one {
-  position: absolute;
-  top: 223px;
-  left: 644px;
-}
-.search-no-two {
-  position: absolute;
-  top: 454px;
-  left: 643px;
-}
-.search-no-three {
-  position: absolute;
-  top: 669px;
-  left: 643px;
+  position: relative;
+  top: 490px;
+  right: 307px;
+  font-size: 20px;
 }
 
 
@@ -290,6 +253,7 @@ nav.pagination {
 
 .seach-count {
   font-size: 20px;
+  height: 23px;
 }
 
 .total-content {
@@ -742,40 +706,41 @@ nav.pagination {
 .mypage-crown-one {
   font-size: 60px;
   color: gold;
-  top: 933px;
-  left: 630px;
-  position: absolute;
+  top: 20px;
+  left: 30px;
+  position: relative;
 }
 .mypage-no-one {
-  position: absolute;
-  top: 962px;
-  left: 645px;
+  top: 17px;
+  right: 161px;
+  font-size: 20px;
+  position: relative;
 }
 .mypage-crown-two {
-    position: absolute;
-    font-size: 60px;
-    color: silver;
-    top: 1046px;
-    left: 630px;
-    position: absolute;
+  font-size: 60px;
+  color: silver;
+  top: 133px;
+  right: 37px;
+  position: relative;
 }
 .myapge-no-two {
-  position: absolute;
-  top: 1075px;
-  left: 643px;
+  top: 129px;
+  right: 201px;
+  font-size: 20px;
+  position: relative;
 }
-
 .mypage-crown-three {
   font-size: 60px;
   color: #815a2b;
-  top: 1159px;
-  left: 630px;
-  position: absolute;
+  top: 246px;
+  right: 105px;
+  position: relative;
 }
 .mypage-no-three {
-  position: absolute;
-  top: 1189px;
-  left: 643px;
+  top: 243px;
+  right: 243px;
+  font-size: 20px;
+  position: relative;
 }
 
 .mypage-sho {
