@@ -6,7 +6,7 @@
       <% if @memories.blank? %>
         <h5 class="text-center">まだ投稿がありません😭</h5>
       <% else %>
-        <h5 class="text-center">「<%= @search_word.country_code %>」の投稿一覧</h5>
+        <h5 class="text-center">「<%= @search.country_code %>」の投稿一覧</h5>
         <%= render 'public/memories/memory_index', memories: @memories %>
       <% end %>
     </div>

@@ -2,19 +2,21 @@
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-md-10 user-info-ranking-box">
-      
+
       <div class="row justify-content-center">
         <div class="col-md-4 user-info-box">
-          <span class="mypage-count">World <%= @country_progress.round(1) %>%</span>
-          <h2 class="line"></h2>
+          <div style="height: 0px">
+            <span class="mypage-count">World <%= @country_progress.round(1) %>%</span>
+            <h2 class="line"></h2>
 
-          <% if user_signed_in? %>
-            <% if @user == current_user  %>
-              <%= link_to new_review_path do %>
-                <i class="fa-solid fa-circle-plus mypage-plus"></i>
+            <% if user_signed_in? %>
+              <% if @user == current_user  %>
+                <%= link_to new_review_path do %>
+                  <i class="fa-solid fa-circle-plus mypage-plus"></i>
+                <% end %>
               <% end %>
             <% end %>
-          <% end %>
+          </div>
 
           <div class='mypage-box'>
             <div>
