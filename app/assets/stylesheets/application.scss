@@ -66,6 +66,8 @@ nav.pagination {
   text-decoration: none;
   color: white;
   margin-left: 40px;
+  display: block;
+  line-height: 60px;
 }
 
 .toppage_icon {
@@ -428,7 +430,7 @@ nav.pagination {
 }
 .memory-show-title {
   font-size: 35px;
-  margin-left: 580px;
+  margin-left: 40%;
 }
 .memory-show-action-content1 {
   margin: 0px 160px;
@@ -794,169 +796,573 @@ nav.pagination {
   margin: 15px 30px;
 }
 
+header {
+  height: 62.4px;
+  width: 100%;
+  padding: 0px 15px;
+  background-color: #212529;
+  top: 0;
+  z-index: 10;
+  display: flex;
+}
+
+.logo {
+  font-size: 35px;
+}
+
+.header-nav {
+  margin: 0 0 0 auto;
+}
+
+.header-ul {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sm {
+  display: none;
+}
+
+
 @media (max-width: 1400px){
-.crown-two {
-  left: 363px;
-}
-.no-two {
-  left: 199px;
-}
-.crown-three {
-  left: 612px;
-}
-.no-three {
-  left: 473px;
-}
+  .memory-show-action-content1 {
+    margin: 0px 6%;
+  }
+  .memory-action-content3 {
+    margin-left: 50%;
+  }
+  .memory-textarea {
+    margin-left: initial;
+    width: 100%;
+  }
+  .memory-submit {
+    margin-left: initial;
+    margin-bottom: 5px;
+  }
+  .crown-two {
+    left: 363px;
+  }
+  .no-two {
+    left: 199px;
+  }
+  .crown-three {
+    left: 612px;
+  }
+  .no-three {
+    left: 473px;
+  }
 
-.review-show-title {
-  margin-left: 410px;
-}
-.nav-item {
-  width: initial;
-}
-.review-side-box {
-  margin: 15px 0px;
-}
+  .review-show-title {
+    margin-left: 36%;
+  }
+  .nav-item {
+    width: initial;
+  }
+  .review-side-box {
+    margin: 15px 0px;
+  }
 
-.memory-box {
-  margin: initial;
-}
+  .memory-box {
+    margin: initial;
+  }
 
-.hint-box {
-  margin: initial;
-}
-.memory-action-content1 {
-  margin: 0px 50px;
-}
+  .hint-box {
+    margin: initial;
+  }
+  .memory-action-content1 {
+    margin: 0px 50px;
+  }
 
-.mypage-plus {
-  top: -724px;
-  left: 846px;
-}
+  .mypage-plus {
+    top: -724px;
+    left: 846px;
+  }
 
-.notice-box {
-  margin: initial;
-}
+  .notice-box {
+    margin: initial;
+  }
 }
 
 @media (max-width: 1200px){
-.toppage_icon{
-  font-size: 120px;
-}
-.crown-one {
-  font-size: 50px;
-  left: 100px;
-}
-.crown-two {
-  font-size: 50px;
-  left: 305px;
-}
-.crown-three {
-  font-size: 50px;
-  left: 510px;
-}
-.no-one {
-  right: 61px;
-  font-size: 17px;
-}
-.no-two {
-  left: 166px;
-  font-size: 17px;
-}
-.no-three {
-  left: 392px;
-  font-size: 17px;
-}
-.top-memory-box {
-  width: initial;
-  padding: 0px 10px;
-}
-.top_hint_width {
-  width: 40%;
-}
-
-.ranking-crown-one {
-  right: 80px;
-}
-.ranking-no-one {
-  right: 106px;
-  top: 6px;
-}
-.ranking-crown-two {
-  right: 148px;
-}
-.ranking-no-two {
-  top: 232px;
-  right: 146px;
-}
-.ranking-crown-three {
-  right: 216px;
-}
-.ranking-no-three {
-  top: 460px;
-  right: 188px;
-}
-.show-ranking-icon {
-    font-size: 150px;
-}
-.icon-button {
-  width: 50px;
-}
-
-.memory-user-box {
-  margin: 10px 10px 35px 10px;
-}
-.memory-country-box {
-  width: 400px;
-}
-.mypage-plus {
-  top: -630px;
-  left: 700px;
-}
-
-.mypage-country-icon {
-    font-size: 40px;
-}
-.mypage-ranking-country-name {
-  font-size: 17px;
-}
-.mypage-ranking-box {
-  margin: 30px 0px 60px 70px;
-}
-.mypage-crown-one {
-  font-size: 50px;
-  top: 25px;
-  left: 0px;
-}
-.mypage-no-one {
-  font-size: 17px;
-  right: 161px;
-  top: 22px;
-}
-.mypage-crown-two {
+  .notice-user-icon {
+    top: -44px
+  }
+  .memory-show-title {
+    margin-left: 38%;
+  }
+  .toppage_icon{
+    font-size: 120px;
+  }
+  .crown-one {
     font-size: 50px;
-    top: 133px;
-    right: 56px;
-}
-.myapge-no-two {
-  font-size: 17px;
-  top: 131px;
-  right: 196px;
-}
-.mypage-crown-three {
-  font-size: 50px;
-  top: 242px;
-  right: 113px;
-}
-.mypage-no-three {
-  font-size: 17px;
-  top: 240px;
-  right: 232px;
-}
+    left: 100px;
+  }
+  .crown-two {
+    font-size: 50px;
+    left: 305px;
+  }
+  .crown-three {
+    font-size: 50px;
+    left: 510px;
+  }
+  .no-one {
+    right: 61px;
+    font-size: 17px;
+  }
+  .no-two {
+    left: 166px;
+    font-size: 17px;
+  }
+  .no-three {
+    left: 392px;
+    font-size: 17px;
+  }
+  .top-memory-box {
+    width: initial;
+    padding: 0px 10px;
+  }
+  .top_hint_width {
+    width: 40%;
+  }
+
+  .ranking-crown-one {
+    right: 80px;
+  }
+  .ranking-no-one {
+    right: 106px;
+    top: 6px;
+  }
+  .ranking-crown-two {
+    right: 148px;
+  }
+  .ranking-no-two {
+    top: 232px;
+    right: 146px;
+  }
+  .ranking-crown-three {
+    right: 216px;
+  }
+  .ranking-no-three {
+    top: 460px;
+    right: 188px;
+  }
+  .show-ranking-icon {
+      font-size: 150px;
+  }
+  .icon-button {
+    width: 50px;
+  }
+
+  .memory-user-box {
+    margin: 10px 10px 35px 10px;
+  }
+  .memory-country-box {
+    width: 400px;
+  }
+  .mypage-plus {
+    top: -630px;
+    left: 700px;
+  }
+
+  .mypage-country-icon {
+      font-size: 40px;
+  }
+  .mypage-ranking-country-name {
+    font-size: 17px;
+  }
+  .mypage-ranking-box {
+    margin: 30px 0px 60px 70px;
+  }
+  .mypage-crown-one {
+    font-size: 50px;
+    top: 25px;
+    left: 0px;
+  }
+  .mypage-no-one {
+    font-size: 17px;
+    right: 161px;
+    top: 22px;
+  }
+  .mypage-crown-two {
+      font-size: 50px;
+      top: 133px;
+      right: 56px;
+  }
+  .myapge-no-two {
+    font-size: 17px;
+    top: 131px;
+    right: 196px;
+  }
+  .mypage-crown-three {
+    font-size: 50px;
+    top: 242px;
+    right: 113px;
+  }
+  .mypage-no-three {
+    font-size: 17px;
+    top: 240px;
+    right: 232px;
+  }
 }
 
 @media (max-width: 992px){
-.swiper {
-  height: 250px;
+  .mypage-ranking-box {
+    margin: 21px 10px 30px 83px;
+  }
+  .mypage-plus {
+    top: -510px;
+    left: 530px;
+    font-size: 27px;
+  }
+  .memory-action-content3 {
+    margin-left: 55%;
+  }
+  .icon-button {
+    width: 40px;
+  }
+  .review-show-title {
+    margin-left: 30%;
+    font-size: 27px;
+  }
+  .show-ranking-icon {
+    font-size: 100px;
+  }
+  .sm-category-title {
+    font-size: 18px;
+    margin-top: 30px;
+  }
+  .table-active {
+    font-size: 13px;
+  }
+  .side_link {
+    font-size: 13px;
+  }
+  // topページ
+  .crown-one {
+    left: 255px;
+    top: 5px;
+  }
+  .crown-two {
+    left: 200px;
+    top: 229px;
+  }
+  .crown-three {
+    left: 142px;
+    top: 451px;
+  }
+  .no-one {
+    top: 3px;
+    left: 94px;
+  }
+  .no-two {
+    top: 227px;
+    left: 61px;
+  }
+
+  .no-three {
+    top: 448px;
+    left: 22px;
+  }
+
+
+  .swiper {
+    height: 265px;
+  }
+  .logo {
+  font-size: 27px;
+  }
+  .sm-top-icon-box {
+    height: 0px;
+  }
+  .sm-top-ranking {
+    width: 100%;
+    margin-top: 60px;
+  }
+
+  .sm-memory-box {
+    width: 100%;
+    padding: 10px 15% 10px 15%;
+  }
+  .sm-hint-title {
+    font-size: 11px;
+  }
+
+  // ランキングページ
+  .sm-ranking-table {
+    margin-top: 10px;
+  }
+
+  .memory-show-left {
+    font-size: 35px;
+    margin-left: 20px;
+  }
+  .sm-ranking-title {
+    margin: 0px 27px;
+  }
+  .memory-nav-content {
+    font-size: 17px;
+    color: black;
+  }
+  .memory-plus {
+    padding-top: 8px;
+  }
+  .memory-user-box {
+    margin: 10px;
+    height: 0px;
+    margin-right: 300px;
+  }
+  .memory-country-box {
+    width: 100%;
+    margin: 10px 0px 40px 0px;
+    margin-right: initial;
+    padding-left: initial;
+  }
+  .sm-img {
+    width: 100%;
+  }
+  .memory-action-content1 {
+    margin: 0px 10px;
+  }
+  .memory-show-title {
+    font-size: 27px;
+    margin-left: 30%;
+  }
+  .hint-plus {
+    font-size: 30px;
+    position: relative;
+    top: -40px;
+    left: 330px;
+  }
+  .hint-country-box {
+    margin-right: initial;
+    margin-top: initial;
+    margin-bottom: 5px;
+  }
+
+  .mypage-count {
+    font-size: 25px;
+    top: -78px;
+    right: 0px;
+  }
+  .line {
+    width: 100px;
+    top: -85px;
+    right: 5px;
+  }
+  .user-ranking-box {
+    padding-top: 40px;
+  }
+  .mypage-crown-one {
+    top: 30px;
+    left: 13px;
+  }
+  .mypage-no-one {
+    right: 149px;
+    top: 27px;
+  }
+  .mypage-crown-two {
+    top: 142px;
+    right: 43px;
+  }
+  .myapge-no-two {
+    top: 140px;
+    right: 183px;
+  }
+  .mypage-crown-three {
+    top: 256px;
+    right: 100px;
+  }
+  .mypage-no-three {
+    top: 255px;
+    right: 220px;
+  }
+  .mypage-review-index {
+    margin: 20px 50px;
+  }
+  .mypage-want-index {
+    margin: 20px 50px;
+  }
+  /**********************************
+  以下、ハンバーガーメニューの設定
+  ************************************/
+  .pc {
+      display: none;
+    }
+  #hamburger {
+    background-color: transparent;
+    position: relative;
+    cursor: pointer;
+    margin: 0 0 0 auto;
+    height: 60px;
+    width: 60px;
+  }
+  .icon span {
+    position: absolute;
+    left: 15px;
+    width: 30px;
+    height: 4px;
+    background-color: white;
+    border-radius: 8px;
+    transition: ease 0.75s;
+  }
+  .icon span:nth-of-type(1) {
+    top: 16px;
+  }
+  .icon span:nth-of-type(2) {
+    top: 28px;
+  }
+  .icon span:nth-of-type(3) {
+    bottom: 16px;
+  }
+  .close span:nth-of-type(1) {
+    transform: rotate(45deg);
+    top: 28px;
+  }
+  .close span:nth-of-type(2) {
+    opacity: 0;
+  }
+  .close span:nth-of-type(3) {
+    transform: rotate(-45deg);
+    top: 28px;
+  }
+  .sm {
+    top: 60px;
+    left: 0px;
+    position: absolute;
+    z-index: 10;
+    width: 100%;
+    background-color: rgba(34, 49, 52, 0.9);
+  }
+  .hed_link {
+    text-align: center;
+    border-top: solid 0.5px rgba(255, 255, 255, 0.6);
+    text-decoration: none;
+    margin-left: initial;
+  }
+  .header-ul {
+    display: initial;
+  }
 }
+
+@media (max-width: 768px){
+  .notice-user-icon {
+    top: -20px;
+  }
+  .mypage-plus {
+    top: -460px;
+    left: 500px;
+  }
+  .mypage-introduction-box {
+    width: 100%;
+  }
+  .mypage-ranking-box {
+    margin: 20px 10px 30px 120px;
+    width: 280px;
+  }
+  .icon-button {
+    width: 80px;
+  }
+  .show-ranking-icon {
+    font-size: 150px;
+  }
+  .sm-category-title {
+    font-size: 25px;
+  }
+  .table-active {
+    font-size: 20px;
+  }
+  .side_link {
+    font-size: 20px;
+  }
+  .crown-one {
+    left: 230px;
+  }
+  .no-one {
+    left: 69px;
+  }
+  .crown-two {
+    left: 173px;
+  }
+  .no-two {
+    left: 34px;
+  }
+  .crown-three {
+    left: 117px;
+  }
+  .no-three {
+    left: -2px;
+  }
+  .ranking-crown-one {
+    right: 10px;
+  }
+  .ranking-no-one {
+    right: 202px;
+    top: 36px;
+  }
+  .ranking-crown-two {
+    right: 78px;
+  }
+  .ranking-no-two {
+    top: 262px;
+    right: 242px;
+  }
+  .ranking-crown-three {
+    right: 145px;
+  }
+  .ranking-no-three {
+    top: 490px;
+    right: 283px;
+  }
 }
+@media (max-width: 576px){
+  .notice-user-icon {
+    top: -45px;
+  }
+  .mypage-ranking-box {
+    margin: 20px 30px 30px 105px;
+  }
+  .mypage-plus {
+    top: -450px;
+    left: 450px;
+  }
+  .memory-action-content3 {
+    margin-left: 40%;
+  }
+  .review-show-title {
+    margin-left: 15%;
+  }
+  .crown-one {
+    left: 154px;
+  }
+  .no-one {
+    left: -8px;
+  }
+  .crown-two {
+    left: 98px;
+  }
+  .no-two {
+    left: -41px;
+  }
+  .crown-three {
+    left: 41px;
+  }
+  .no-three {
+    left: -78px;
+  }
+  .memory-unlogin-title {
+    margin-left: initial;
+    margin-top: 10px;
+  }
+}
+
+@media (max-width: 440px){
+  .mypage-plus {
+    top: -390px;
+    left: 343px;
+  }
+}
+
+
+
