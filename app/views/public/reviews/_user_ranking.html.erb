@@ -11,7 +11,7 @@
     <%= link_to user_path(user, {'type': 'review', anchor: 'nav_menu'}) do %>
       <i class="flag-icon flag-icon-<%= country.code.downcase %> mypage-country-icon"></i>
     <% end %>
-    <span class="mypage-ranking-country-name mx-4"><%= review.country_code %></span>
+    <span class="mypage-ranking-country-name"><%= review.country_code %></span>
     <span class="review_average<%= review.id%> mypage-rate"></span><span style="margin-top: 10px;"><%= review.review_average.round(1) %></span>
 
 

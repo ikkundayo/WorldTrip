@@ -19,7 +19,13 @@ class Public::ReviewsController < ApplicationController
       @like = Like.where(user_id: current_user.id)
     end
 
-    @travel = Review.group(:country_code).order('count(country_code) desc').page(params[:page]).per(20)
+    if params[:type] == 'month-travel'
+      @travel = Review.group(:country_code).where(season: true, created_at: Time.current.all_month).order('count(country_code) desc').page(params[:page]).per(20)
+    elsif params[:type] == 'week-travel'
+      @travel = Review.group(:country_code).where(season: true, created_at: Time.current.all_week).order('count(country_code) desc').page(params[:page]).per(20)
+    else
+      @travel = Review.group(:country_code).order('count(country_code) desc').page(params[:page]).per(20)
+    end
   end
 
 
@@ -89,7 +95,16 @@ class Public::ReviewsController < ApplicationController
     @security = @area.select('AVG(security_rate) as avg ,country_code, country_id').group(:country_code).order(avg: :DESC).page(params[:page]).per(20)
     @recommend = @area.select('AVG(recommend_rate) as avg ,country_code, country_id').group(:country_code).order(avg: :DESC).page(params[:page]).per(20)
     @original = @area.select('AVG(original_rate) as avg ,country_code, country_id').group(:country_code).order(avg: :DESC).page(params[:page]).per(20)
-    @travel = @area.group(:country_code).order('count(country_code) desc').page(params[:page]).per(20)
+
+    if params[:type] == 'month-travel'
+      @travel = @area.group(:country_code).where(season: true, created_at: Time.current.all_month).order('count(country_code) desc').page(params[:page]).per(20)
+
+    elsif params[:type] == 'week-travel'
+      @travel = @area.group(:country_code).where(season: true, created_at: Time.current.all_week).order('count(country_code) desc').page(params[:page]).per(20)
+    else
+      @travel = @area.group(:country_code).order('count(country_code) desc').page(params[:page]).per(20)
+    end
+
     if user_signed_in?
       @experience = Review.where(user_id: current_user.id)
       @like = Like.where(user_id: current_user.id)

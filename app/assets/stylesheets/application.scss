@@ -13,6 +13,10 @@
  *= require_tree .
  *= require_self
  */
+  .input-box {
+    border: solid;
+    border-color: #767676;
+  }
   #review_country_id {
     width: 80%;
   }
@@ -717,7 +721,7 @@ nav.pagination {
 }
 .mypage-ranking-country-name {
   font-size: 20px;
-  margin-top: 10px;
+  margin: 10px 28px;
 }
 .mypage-rate {
   margin-top: 10px;
@@ -1032,6 +1036,9 @@ header {
 }
 
 @media (max-width: 992px){
+  .hint-tag-list {
+    font-size: 14px;
+  }
   .review-new-box {
     margin: initial;
     margin-left: 90px;
@@ -1180,7 +1187,7 @@ header {
   .line {
     width: 100px;
     top: -85px;
-    right: 5px;
+    right: 0px;
   }
   .user-ranking-box {
     padding-top: 40px;
@@ -1278,6 +1285,9 @@ header {
 }
 
 @media (max-width: 768px){
+  .user-ranking-box {
+    height: 380px;
+  }
   #review_original_category {
     width: 73%;
     margin-left: 12px;
