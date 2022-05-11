@@ -1290,8 +1290,12 @@ header {
 }
 
 @media (max-width: 768px){
+  .mypage-ranking-country-name {
+    margin: 10px 0px 10px 30px;
+    width: 150px;
+  }
   .user-ranking-box {
-    height: 380px;
+    height: 420px;
   }
   #review_original_category {
     width: 73%;
