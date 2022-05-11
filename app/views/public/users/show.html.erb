@@ -20,7 +20,7 @@
 
           <div class='mypage-box'>
             <div>
-              <div><i class="flag-icon flag-icon-<%= @user_logo.code.downcase %> mypage-user-icon"></i></div>
+              <div class="sm-mypage-area"><i class="flag-icon flag-icon-<%= @user_logo.code.downcase %> mypage-user-icon"></i></div>
               <%= image_tag @user.get_user_image(150,150), class: "mypage-user-img" %>
               <div class="mypage-username">
                 <span class="ms-5 me-1"><%= @user.user_name %></span>

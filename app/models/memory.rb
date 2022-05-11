@@ -4,9 +4,12 @@ class Memory < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :notifications, dependent: :destroy
 
-  validates :memory_contents, presence: true
-
   has_one_attached :memory_image
+
+  validates :memory_contents, presence: true
+  validates :memory_image, presence: true
+
+
 
 
   def liked_by?(user)

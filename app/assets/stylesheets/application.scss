@@ -13,6 +13,24 @@
  *= require_tree .
  *= require_self
  */
+  #review_country_id {
+    width: 80%;
+  }
+  #user_country_code {
+    width: 100%;
+  }
+  #memory_country_code {
+    width: 100%;
+  }
+  #hint_country_code {
+    width: 100%;
+  }
+  .sm-textarea {
+    width: 100%;
+  }
+  .sm-textarea-review {
+    width: 80%;
+  }
 
  .tab {
   width: 100%;
@@ -491,7 +509,7 @@ nav.pagination {
   right: 190px;
 }
 #hint_tag_list {
-  width: 360px;
+  width: 100%;
 }
 
 .hint-box {
@@ -519,7 +537,7 @@ nav.pagination {
 
 .memory-new-title {
   font-size: 30px;
-  margin-left: 570px;
+  margin-left: 544px;
 }
 
 .hint-country-box {
@@ -534,9 +552,9 @@ nav.pagination {
   margin-left: 520px;
 }
 
-.mypage-title {
+.mypage-follow-title {
   font-size: 35px;
-  margin-left: 543px;
+  margin-left: 38%;
 }
 
 .notice-box {
@@ -599,12 +617,12 @@ nav.pagination {
 
 .review-new-box {
   margin: 20px;
-  margin-left: 240px;
+  margin-left: 178px;
 }
 
 .new-original-category {
-  margin-left: 4px;
-}
+    margin-left: 25px;
+  }
 .review-new-button {
   margin-right: 200px;
 }
@@ -787,10 +805,6 @@ nav.pagination {
   margin-left: 525px;
 }
 
-.text-first {
-  margin-left: -15px;
-}
-
 .review-side-box {
   text-align: center;
   margin: 15px 30px;
@@ -856,6 +870,16 @@ header {
 
   .review-show-title {
     margin-left: 36%;
+  }
+  .memory-new-title {
+    margin-left: 37%;
+  }
+  // .mypage-follow-title {
+  //   font-size: 23px;
+  //   margin-left: 28%;
+  // }
+  .review-edit-title {
+    margin-left: 37%;
   }
   .nav-item {
     width: initial;
@@ -1008,6 +1032,13 @@ header {
 }
 
 @media (max-width: 992px){
+  .review-new-box {
+    margin: initial;
+    margin-left: 90px;
+  }
+  .memory-new2 {
+    width: 100%;
+  }
   .mypage-ranking-box {
     margin: 21px 10px 30px 83px;
   }
@@ -1247,6 +1278,19 @@ header {
 }
 
 @media (max-width: 768px){
+  #review_original_category {
+    width: 73%;
+    margin-left: 12px;
+  }
+  .new-original-category {
+    margin-left: initial;
+  }
+  .sm-mypage-area {
+    height: 0px;
+  }
+  .mypage-user-icon {
+    top: 110px;
+  }
   .notice-user-icon {
     top: -20px;
   }
@@ -1317,6 +1361,9 @@ header {
   }
 }
 @media (max-width: 576px){
+  .review-new-box {
+    margin-left: 65px;
+  }
   .notice-user-icon {
     top: -45px;
   }
@@ -1331,6 +1378,18 @@ header {
     margin-left: 40%;
   }
   .review-show-title {
+    margin-left: 15%;
+  }
+  .memory-new-title {
+    font-size: 23px;
+    margin-left: 22%;
+  }
+  .mypage-follow-title {
+    font-size: 23px;
+    margin-left: 28%;
+  }
+  .review-edit-title {
+    font-size: 23px;
     margin-left: 15%;
   }
   .crown-one {
@@ -1359,8 +1418,8 @@ header {
 
 @media (max-width: 440px){
   .mypage-plus {
-    top: -390px;
-    left: 343px;
+    top: -380px;
+    left: 330px;
   }
 }
 

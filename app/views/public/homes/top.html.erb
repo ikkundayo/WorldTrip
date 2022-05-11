@@ -41,7 +41,7 @@
           <%= link_to memory_path(memory),class: 'link-change sm-memory-box' do %>
             <div class='text-center top-memory-box'>
               <% if memory.memory_image.present?%>
-                <div class="top-memory-img"><%= image_tag memory.get_memory_image(230,230) %></div>
+                <div class="top-memory-img"><%= image_tag memory.get_memory_image(230,180) %></div>
               <% end %>
               <h6 class="mb-3">渡航国:<%= memory.country_code %></h6>
               <div class="top-memory-content">

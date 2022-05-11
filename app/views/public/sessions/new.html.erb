@@ -2,22 +2,22 @@
   <div class="row justify-content-center">
     <div class="col-lg-3">
       <h2 class="text-center mt-2">Log in</h2>
-      <div class="text-first">
+      <div>
         <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
           <div class="field mb-2">
             <%= f.label :email %><br />
-            <%= f.email_field :email, autofocus: true, autocomplete: "email", size: "40x10" %>
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "sm-textarea" %>
           </div>
 
           <div class="field mb-2">
             <%= f.label :password %><br />
-            <%= f.password_field :password, autocomplete: "current-password", size: "40x10" %>
+            <%= f.password_field :password, autocomplete: "current-password", class: "sm-textarea" %>
           </div>
 
           <% if devise_mapping.rememberable? %>
             <div class="field mb-2">
               <%= f.check_box :remember_me %>
-              <%= f.label :remember_me, size: "40x10" %>
+              <%= f.label :remember_me %>
             </div>
           <% end %>
 

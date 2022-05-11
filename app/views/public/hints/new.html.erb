@@ -13,7 +13,7 @@
         <%= render 'layouts/errors', obj: @hint %>
       </div>
 
-      <div class="text-first">
+      <div>
         <%= form_with model: @hint, url: hints_path, local:true do |f| %>
           <div class="field mb-2">
             <%= f.label :"Country", class: "memory-new1" %>
@@ -27,7 +27,7 @@
 
           <div class="field mb-2">
             <%= f.label :"Contents", class: "memory-new2" %>
-            <%= f.text_area :hint_contents, size: "40x5" %>
+            <%= f.text_area :hint_contents, size: "40x5", class: "sm-textarea" %>
           </div>
 
           <div class="field mb-3">
