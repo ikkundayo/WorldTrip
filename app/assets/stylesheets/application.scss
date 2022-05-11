@@ -13,6 +13,7 @@
  *= require_tree .
  *= require_self
  */
+
   .input-box {
     border: solid;
     border-color: #767676;
@@ -1221,6 +1222,10 @@ header {
   }
   .mypage-want-index {
     margin: 20px 50px;
+  }
+  .sm-circle {
+    color: gold;
+    margin-left: 5px;
   }
   /**********************************
   以下、ハンバーガーメニューの設定

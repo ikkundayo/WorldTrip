@@ -21,10 +21,16 @@
         <li><%= link_to '思い出', memories_path('type': 'link'), class: "hed_link" %></li>
         <li><%= link_to 'ヒント', hints_path('type': 'link'), class: "hed_link" %></li>
         <li><%= link_to 'マイページ', user_path(current_user), class: "hed_link" %></li>
-        <li><%= link_to 'NOTICE', notifications_path, class: "hed_link" %></li>
         <% if unchecked_notifications.any? %>
-          <li><i class="fa-solid fa-circle" style='color: gold;'></i></li>
+          <li>
+            <%= link_to notifications_path, class: "hed_link ms-3" do %>
+              NOTICE<i class="fa-solid fa-circle sm-circle"></i>
+            <% end %>
+          </li>
+        <% else %>
+          <li><%= link_to "NOTICE", notifications_path, class: "hed_link" %></li>
         <% end %>
+
         <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "hed_link" %></li>
       <% elsif admin_signed_in? %>
         <li><%= link_to '会員一覧', admin_users_path('type': 'link'), class: "hed_link" %></li>
