@@ -3,7 +3,7 @@
     <span class="text-end mt-2">
       <%= search_form_for @q, url: reviews_path, class:"search-form" do |f| %>
         <%= f.search_field :country_code_cont, placeholder: '国名から探す', class:'input-box' %>
-        <%= f.button type: "submit", class:"search-button" %>
+        <%= f.submit "search" %>
       <% end %>
     </span>
 
