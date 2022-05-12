@@ -1,0 +1,47 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-10">
+      <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+      <script type="text/javascript">
+        google.charts.load('current', {
+          'packages':['geochart'],
+          'mapsApiKey': 'AIzaSyCmkRT6Jq9wnHLusWz2s5b_Gx9dgMlO2kU'
+        });
+        google.charts.setOnLoadCallback(drawRegionsMap);
+
+        function drawRegionsMap() {
+
+          const country = [
+            <% if @map.present? %>
+              <% @map.each do |map| %>
+                ['Country', 'Name_JP'],
+                ['<%= map.country.code %>', '<%= map.country.name_jp %>'],
+              <% end %>
+            <% else %>
+              ['Country']
+            <% end %>
+              ];
+
+          const data = google.visualization.arrayToDataTable(country);
+          //描画オプション：描画地域などを設定できる。
+          const options = {
+            // backgroundColor: '#81d4fa',
+            // defaultColor: '#F08A00'
+          };
+          //地図を描画するための要素を指定する。
+          const chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
+          //地図を描画する
+          chart.draw(data, options);
+
+          google.visualization.events.addListener(chart, 'regionClick', selectHandler);
+
+      		function selectHandler(reg) {
+      		  console.log(reg);
+      		  window.location.href = '/reviews/' + reg.region;
+      		}
+        };
+      </script>
+      <div class="map-box"><div id="regions_div"></div></div>
+    </div>
+  </div>
+</div>

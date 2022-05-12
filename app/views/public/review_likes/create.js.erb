@@ -1,0 +1,6 @@
+<% if @review.blank? %>
+  $(".show_like").html("<%= j(render "public/review_likes/like_show", review: @country, like: @like) %>");
+<% else %>
+  $("#review_like_<%= @review.country_code %>").html("<%= j(render "public/review_likes/like", review: @review, like: @like) %>");
+  $(".show_like").html("<%= j(render "public/review_likes/like_show", review: @country, like: @like) %>");
+<% end %>

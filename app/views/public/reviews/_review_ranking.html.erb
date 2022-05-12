@@ -1,0 +1,66 @@
+<!--<div class='list jscroll'>-->
+<div>
+  <div style="height: 0px">
+    <i class="fa-solid fa-crown ranking-crown-one"></i><i class="fa-solid fa-crown ranking-crown-two"></i><i class="fa-solid fa-crown ranking-crown-three"></i>
+    <span class="ranking-no-one">No.1</span><span class="ranking-no-two">No.2</span><span class="ranking-no-three">No.3</span>
+  </div>
+  <% reviews.each do |review| %>
+    <table class='table'>
+      <tr>
+  	    <td>
+  	      <%= link_to review_path(review.country_id) do %>
+  	        <% country = Country.find_by(name_jp: review.country_code) %>
+            <i class="flag-icon flag-icon-<%= country.code.downcase %> index-ranking-icon"></i><br>
+    	      <span class="ranking-country-name"><%= review.country_code %></span>
+    	    <% end %>
+
+	        <% if user_signed_in? %>
+            <% if @experience.exists?(country_code: review.country_code)%>
+              <i class="fas fa-shoe-prints ranking-shoe"></i><br>
+            <% else %>
+              <i id="review_like_<%= review.country_code %>">
+                <%= render "public/review_likes/like", review: review, like: @like %>
+              </i>
+            <% end %>
+          <% else %>
+            <i class="fa-solid fa-plane tranking-plane1"></i>
+          <% end %>
+
+          <div class="mt-1">
+            <span id="average-rate<%= review.country_id %>"></span>
+            <% if review.avg.nil?  %>
+            <% else %>
+              <%= review.avg.round(1) %>
+            <% end %>
+            <% counts = Review.where(country_id: review.country_id).count %>
+            (<%= counts %>)
+          </div>
+  	    </td>
+  	  </tr>
+    </table>
+
+    <script>
+      $('#average-rate<%= review.country_id %>').raty({
+        size      : 36,
+        starOff   : '<%= asset_path('star-off.png') %>',
+        starOn    : '<%= asset_path('star-on.png') %>',
+        starHalf : '<%= asset_path('star-half.png') %>',
+        half      : true,
+        readOnly: true,
+        return :1,
+        score: <%= review.avg %>
+      });
+    </script>
+  <% end %>
+  <%= paginate reviews %>
+</div>
+
+
+<script>
+  $(function() {
+    $('.jscroll').jscroll({
+      contentSelector: '.list',
+      nextSelector: 'span.next:last a'
+    });
+  });
+</script>

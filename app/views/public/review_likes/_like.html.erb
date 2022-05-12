@@ -1,0 +1,9 @@
+<% if like.exists?(review_id: review.country_code) %>
+  <%= link_to review_review_likes_path(review.country_code), method: :delete, remote: true do %>
+    <i class="fa-solid fa-plane tranking-plane2"></i><br>
+  <% end %>
+<% else %>
+  <%= link_to review_review_likes_path(review.country_code), method: :post, remote: true do %>
+    <i class="fa-solid fa-plane tranking-plane1"></i><br>
+  <% end %>
+<% end %>

@@ -1,0 +1,38 @@
+<div class="memory-show-title-box">
+  <%= link_to memories_path("type": "link") do %>
+      <i class="fa-solid fa-angle-left memory-show-left"></i>
+  <% end %>
+  <span class="memory-new-title">思い出投稿</span>
+</div>
+
+<div class="container">
+   <div class="row justify-content-center">
+      <div class="col-lg-3">
+         <div class="text-danger">
+            <%= render 'layouts/errors', obj: @memory %>
+         </div>
+
+         <div>
+            <%= form_with model: @memory, url: memories_path, local:true do |f| %>
+               <div class="field mb-2">
+                  <%= f.label :"Country", class: "memory-new1" %>
+                  <%= f.collection_select(:country_code, @review, :country_code, :country_code) %>
+               </div>
+
+               <div class="field mb-2">
+                 <%= f.label :"Contents", class: "memory-new2" %>
+                 <%= f.text_area :memory_contents, size: "40x5", class: "sm-textarea" %>
+               </div>
+
+               <div class="field mb-3">
+                  <%= f.file_field :memory_image, accept: "image/*" %>
+               </div>
+
+               <div class="field mb-1">
+                  <%= f.submit "新規登録", class: "btn btn-sm btn-primary text-light" %>
+               </div>
+            <% end %>
+         </div>
+      </div>
+   </div>
+</div>

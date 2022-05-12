@@ -1,0 +1,88 @@
+<header>
+<!--▽▽ヘッダーロゴ▽▽-->
+  <div class="logo">
+    <%= link_to 'Worldtrip', root_path, class: "hed_link" %>
+  </div>
+
+<!--▽▽ハンバーガーメニュー▽▽-->
+  <div id="hamburger">
+    <div class="icon">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+
+<!--▽▽ハンバーガーメニューのリスト▽▽-->
+  <nav class="sm">
+    <ul class="header-ul">
+      <% if user_signed_in? %>
+        <li><%= link_to 'ランキング一覧', reviews_path('type': 'link'), class: "hed_link" %></li>
+        <li><%= link_to '思い出', memories_path('type': 'link'), class: "hed_link" %></li>
+        <li><%= link_to 'ヒント', hints_path('type': 'link'), class: "hed_link" %></li>
+        <li><%= link_to 'マイページ', user_path(current_user), class: "hed_link" %></li>
+        <% if unchecked_notifications.any? %>
+          <li>
+            <%= link_to notifications_path, class: "hed_link ms-3" do %>
+              NOTICE<i class="fa-solid fa-circle sm-circle"></i>
+            <% end %>
+          </li>
+        <% else %>
+          <li><%= link_to "NOTICE", notifications_path, class: "hed_link" %></li>
+        <% end %>
+
+        <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "hed_link" %></li>
+      <% elsif admin_signed_in? %>
+        <li><%= link_to '会員一覧', admin_users_path('type': 'link'), class: "hed_link" %></li>
+        <li><%= link_to 'ランキング一覧', reviews_path('type': 'link'), class: "hed_link" %></li>
+        <li><%= link_to '思い出', memories_path('type': 'link'), class: "hed_link" %></li>
+        <li><%= link_to 'ヒント', hints_path('type': 'link'), class: "hed_link" %></li>
+        <li><%= link_to 'ログアウト', destroy_admin_session_path, method: :delete, class: "hed_link" %></li>
+      <% else %>
+        <li><%= link_to 'ランキング一覧', reviews_path('type': 'link'), class: "hed_link" %></li>
+        <li><%= link_to '思い出', memories_path('type': 'link'), class: "hed_link" %></li>
+        <li><%= link_to 'ヒント', hints_path('type': 'link'), class: "hed_link" %></li>
+        <li><%= link_to 'Join', new_user_registration_path, class: "hed_link" %></li>
+        <li><%= link_to 'Log-in', new_user_session_path, class: "hed_link" %></li>
+      <% end %>
+    </ul>
+  </nav>
+
+<!--▽▽ヘッダーリスト▽▽-->
+  <nav class="pc header-nav">  <!--pcクラスを追記-->
+    <ul class="header-ul">
+      <% if user_signed_in? %>
+        <li><%= link_to 'ランキング一覧', reviews_path('type': 'link'), class: "hed_link" %></li>
+        <li><%= link_to '思い出', memories_path('type': 'link'), class: "hed_link" %></li>
+        <li><%= link_to 'ヒント', hints_path('type': 'link'), class: "hed_link" %></li>
+        <li><%= link_to 'マイページ', user_path(current_user), class: "hed_link" %></li>
+        <li><%= link_to 'NOTICE', notifications_path, class: "hed_link" %></li>
+        <% if unchecked_notifications.any? %>
+          <li><i class="fa-solid fa-circle" style='color: gold;'></i></li>
+        <% end %>
+        <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "hed_link" %></li>
+      <% elsif admin_signed_in? %>
+        <li><%= link_to '会員一覧', admin_users_path('type': 'link'), class: "hed_link" %></li>
+        <li><%= link_to 'ランキング一覧', reviews_path('type': 'link'), class: "hed_link" %></li>
+        <li><%= link_to '思い出', memories_path('type': 'link'), class: "hed_link" %></li>
+        <li><%= link_to 'ヒント', hints_path('type': 'link'), class: "hed_link" %></li>
+        <li><%= link_to 'ログアウト', destroy_admin_session_path, method: :delete, class: "hed_link" %></li>
+      <% else %>
+        <li><%= link_to 'ランキング一覧', reviews_path('type': 'link'), class: "hed_link" %></li>
+        <li><%= link_to '思い出', memories_path('type': 'link'), class: "hed_link" %></li>
+        <li><%= link_to 'ヒント', hints_path('type': 'link'), class: "hed_link" %></li>
+        <li><%= link_to 'Join', new_user_registration_path, class: "hed_link" %></li>
+        <li><%= link_to 'Log-in', new_user_session_path, class: "hed_link" %></li>
+      <% end %>
+    </ul>
+  </nav>
+</header>
+
+
+<!--▽▽jQuery▽▽-->
+<script>
+  $('#hamburger').on('click', function(){
+  $('.icon').toggleClass('close');
+  $('.sm').slideToggle();
+  });
+</script>

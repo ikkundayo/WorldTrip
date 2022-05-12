@@ -1,0 +1,71 @@
+<div class='container'>
+  <div class='row justify-content-center'>
+    <span class="text-end mt-2">
+      <%= search_form_for @q, url: hint_search_path(:hoge), class:"search-form" do |f| %>
+        <%= f.search_field :country_code_cont, required: true, placeholder: '国名から探す', class:'input-box' %>
+        <%= f.submit "search" %>
+      <% end %>
+    </span>
+
+    <div class='col-md-10'>
+      <ul class="nav nav-tabs justify-content-center text-center">
+        <li class="nav-item hint-nav-item">
+          <%= link_to hints_path('type': 'link'), class: "nav-link" do %>
+            <div class="hint-nav-content mt-1">全体</div>
+          <% end %>
+        </li>
+        <li class="nav-item hint-nav-item">
+          <%= link_to hints_path(tag_name: "アドバイス"), class: "nav-link" do %>
+            <div class="hint-nav-content mt-1">アドバイス</div>
+          <% end %>
+        </li>
+        <li class="nav-item memory-nav-item">
+          <%= link_to hints_path(tag_name: "現地の声"), class: "nav-link" do %>
+            <div class="hint-nav-content">現地の声</div>
+          <% end %>
+        </li>
+        <li class="nav-item memory-nav-item">
+          <%= link_to hints_path(tag_name: "体験談"), class: "nav-link" do %>
+            <div class="hint-nav-content">体験談</div>
+          <% end %>
+        </li>
+        <li class="nav-item memory-nav-item">
+          <%= link_to hints_path(tag_name: "質問"), class: "nav-link" do %>
+            <div class="hint-nav-content">質問</div>
+          <% end %>
+        </li>
+        <li class="nav-item memory-nav-item">
+          <%= link_to hints_path(tag_name: "新型コロナウイルスについて"), class: "nav-link" do %>
+            <div class="hint-nav-content-corona">新型コロナウイルス</div>
+          <% end %>
+        </li>
+        <li class="nav-item memory-nav-item">
+          <%= link_to hints_path(tag_name: "その他"), class: "nav-link" do %>
+            <div class="hint-nav-content">その他</div>
+          <% end %>
+        </li>
+      </ul>
+      <% if user_signed_in?%>
+        <%= link_to new_hint_path do %>
+          <i class="fa-solid fa-circle-plus hint-plus"></i>
+        <% end %>
+      <% end %>
+      <%# if user_signed_in? %>
+        <%#= link_to "フォローのみ表示", hints_path('type': 'follwing') %>
+      <%# end %>
+
+      <% if params[:type] == 'link' || params[:tag_name] == 'アドバイス' || params[:tag_name] == '現地の声' || params[:tag_name] == '体験談' || params[:tag_name] == '質問' || params[:tag_name] == '新型コロナウイルスについて' || params[:tag_name] == 'その他' %>
+        <%= render 'public/hints/hint_index', hints: @hints %>
+      <% elsif params[:type] == 'follwing' %>
+        <%= render 'public/hints/hint_index', hints: @following %>
+      <% else %>
+        <% if @search.blank? %>
+          <p>まだ投稿がありません😭</p>
+        <% else %>
+          <%= render 'public/hints/hint_index', hints: @search %>
+        <% end %>
+      <% end %>
+
+    </div>
+  </div>
+</div>
