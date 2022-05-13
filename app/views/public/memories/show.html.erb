@@ -1,8 +1,8 @@
-<div class="memory-show-title-box">
+<div class="show-title-box">
   <%= link_to memories_path("type": "link") do %>
-    <i class="fa-solid fa-angle-left memory-show-left"></i>
+    <div class="space"><i class="fa-solid fa-angle-left memory-show-left"></i></div>
   <% end %>
-  <span class="memory-show-title">Detail</span>
+  <div class="show-title-en">Detail</div>
 </div>
 
 <div class='container'>
@@ -31,10 +31,12 @@
         </div>
 
         <div class="memory-action-box">
-          <span class="memory_like_<%= @memory.id %> memory-show-action-content1">
-            <%= render "public/memory_likes/like", memory: @memory %>
-          </span>
-          <span class="memory-action-content3"><%= time_ago_in_words(@memory.created_at) %> ago</span>
+          <div class="space">
+            <span class="memory_like_<%= @memory.id %> memory-show-action-content1">
+              <%= render "public/memory_likes/like", memory: @memory %>
+            </span>
+          </div>
+          <div class="post-time"><%= time_ago_in_words(@memory.created_at) %> ago</div>
 
           <% if user_signed_in? %>
             <% if @memory.user_id == current_user.id  %>

@@ -1,8 +1,8 @@
-<div class="memory-show-title-box">
+<div class="show-title-box">
   <%= link_to user_path(@user) do %>
-    <i class="fa-solid fa-angle-left memory-show-left"></i>
+    <div class="space"><i class="fa-solid fa-angle-left memory-show-left"></i></div>
   <% end %>
-  <span class="mypage-follow-title">Followers</span>
+  <div class="show-title-en">Followers</div>
 </div>
 
 <% if @users.present? %>

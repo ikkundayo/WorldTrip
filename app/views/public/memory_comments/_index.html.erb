@@ -1,5 +1,5 @@
 
-<% memory.comments.each do |memory_comment| %>
+<% memory.comments.order(created_at: :desc).each do |memory_comment| %>
   <div class='memory-box-show'>
 
     <div class="memory-user-box">

@@ -1,4 +1,4 @@
-<% hint.comments.each do |hint_comment| %>
+<% hint.comments.order(created_at: :desc).each do |hint_comment| %>
   <div class='memory-box-show'>
 
     <div class="memory-user-box">

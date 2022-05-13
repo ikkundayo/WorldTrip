@@ -27,13 +27,15 @@
       </div>
 
       <div class="memory-action-box">
-        <span class="memory_like_<%= memory.id %> memory-action-content1">
-          <%= render "public/memory_likes/like", memory: memory %>
-        </span>
-        <%= link_to memory_path(memory.id), class: "memory-action-content2 link-change" do %>
-          <i class="fa-regular fa-comment-dots memory-comment-dots"></i><%= memory.comments.count%>
-        <% end %>
-        <span class="memory-action-content3"><%= time_ago_in_words(memory.created_at) %> ago</span>
+        <div class="space">
+          <span class="memory_like_<%= memory.id %> memory-action-content1">
+            <%= render "public/memory_likes/like", memory: memory %>
+          </span>
+          <%= link_to memory_path(memory.id), class: "memory-action-content2 link-change" do %>
+            <i class="fa-regular fa-comment-dots memory-comment-dots"></i><%= memory.comments.count%>
+          <% end %>
+        </div>
+        <div class="post-time"><%= time_ago_in_words(memory.created_at) %> ago</div>
         <% if admin_signed_in? %>
           <div class="sentiment-score text-end">感情分析スコア (<%= memory.score %>)</div>
         <% end %>

@@ -8,7 +8,98 @@
     </span>
 
     <div class='col-md-2'>
-      <table class='table sm-ranking-table'>
+
+
+      <div class="review-hamburger1">
+        <div class="review-icon1">
+          カテゴリー別
+        </div>
+      </div>
+
+      <div class="review-sm1">
+        <table class="table sm-ranking-table">
+          <tr>
+            <td><%= link_to '総合評価', reviews_path('type': 'average'), class: "side_link" %></td>
+          </tr>
+          <tr>
+            <td><%= link_to '楽しさ・娯楽', reviews_path('type': 'amusement'), class: "side_link" %></td>
+          </tr>
+          <tr>
+            <td><%= link_to 'グルメ', reviews_path('type': 'gourmet'), class: "side_link" %></td>
+          </tr>
+          <tr>
+            <td><%= link_to '治安', reviews_path('type': 'security'), class: "side_link" %></td>
+          </tr>
+          <tr>
+            <td><%= link_to 'おすすめ度', reviews_path('type': 'recommend'), class: "side_link" %></td>
+          </tr>
+          <tr>
+            <td><%= link_to '渡航数', reviews_path('type': 'total-travel'), class: "side_link" %></td>
+          </tr>
+          <tr>
+            <td><%= link_to 'オリジナル・その他', reviews_path('type': 'original'), class: "side_link" %></td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="review-hamburger2">
+        <div class="review-icon2">
+          地域別
+        </div>
+      </div>
+
+      <div class="review-sm2">
+        <table class='table mt-2'>
+          <tr>
+            <td><%= link_to 'アジア', review_search_path(:アジア), class: "side_link" %></td>
+          </tr>
+          <tr>
+            <td><%= link_to 'アフリカ', review_search_path(:アフリカ), class: "side_link" %></td>
+          </tr>
+          <tr>
+            <td><%= link_to 'オセアニア', review_search_path(:オセアニア), class: "side_link" %></td>
+          </tr>
+          <tr>
+            <td><%= link_to '欧州', review_search_path(:欧州), class: "side_link" %></td>
+          </tr>
+          <tr>
+            <td><%= link_to '中南米', review_search_path(:中南米), class: "side_link" %></td>
+          </tr>
+          <tr>
+            <td><%= link_to '中央アジア', review_search_path(:中央アジア), class: "side_link" %></td>
+          </tr>
+          <tr>
+            <td><%= link_to '中米', review_search_path(:中米), class: "side_link" %></td>
+          </tr>
+          <tr>
+            <td><%= link_to '中近東', review_search_path(:中近東), class: "side_link" %></td>
+          </tr>
+          <tr>
+            <td><%= link_to '東欧', review_search_path(:東欧), class: "side_link" %></td>
+          </tr>
+          <tr>
+            <td><%= link_to '北米', review_search_path(:北米), class: "side_link" %></td>
+          </tr>
+          <tr>
+            <td><%= link_to 'その他', review_search_path(:その他), class: "side_link" %></td>
+          </tr>
+        </table>
+      </div>
+
+
+      <script>
+        $('.review-hamburger1').on('click', function(){
+          $('.review-icon1').toggleClass('close');
+          $('.review-sm1').slideToggle();
+        });
+        $('.review-hamburger2').on('click', function(){
+          $('.review-icon2').toggleClass('close');
+          $('.review-sm2').slideToggle();
+        });
+      </script>
+
+
+      <table class='review-pc table sm-ranking-table'>
         <tr>
           <th class="table-active">カテゴリー別</th>
         </tr>
@@ -35,7 +126,7 @@
         </tr>
       </table>
 
-      <table class='table mt-2'>
+      <table class='review-pc table mt-2'>
         <tr>
           <th class="table-active">地域別</th>
         </tr>

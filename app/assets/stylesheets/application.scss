@@ -14,6 +14,43 @@
  *= require_self
  */
 
+  .bottom-nuv-box {
+    display: none;
+  }
+  .review-hamburger1 {
+    display: none;
+  }
+  .review-sm1 {
+    display: none;
+  }
+  .review-hamburger2 {
+    display: none;
+  }
+  .review-sm2 {
+    display: none;
+  }
+  .toppage-title-border {
+    text-align: center;
+    font-size: 30px;
+    border-bottom: double 5px #FFC778;
+  }
+  .show-title-box {
+    border-bottom: solid 1px #DEE2E6;
+    height: 50px;
+  }
+  .post-time-sm {
+    text-align: end;
+    font-size: 13px;
+    margin-right: 3%;
+  }
+  .post-time {
+    text-align: end;
+    font-size: 17px;
+    margin-right: 3%;
+  }
+  .space {
+    height: 0px;
+  }
   .input-box {
     border: solid;
     border-color: #767676;
@@ -423,9 +460,6 @@ nav.pagination {
   transform: scale(-1, 1);
   margin-right: 3px;
 }
-.memory-action-content3 {
-  margin-left: 500px;
-}
 
 .memory-new1 {
   margin: 16px;
@@ -444,16 +478,10 @@ nav.pagination {
   flex-wrap: wrap;
   margin-bottom: 10px;
 }
-.memory-show-title-box {
-  border-bottom: solid 1px #DEE2E6;
-}
 .memory-show-left {
   font-size: 40px;
   margin-left: 75px;
-}
-.memory-show-title {
-  font-size: 35px;
-  margin-left: 40%;
+  margin-top: 5px;
 }
 .memory-show-action-content1 {
   margin: 0px 160px;
@@ -540,21 +568,11 @@ nav.pagination {
   margin-top: 38px;
 }
 
-.memory-new-title {
-  font-size: 30px;
-  margin-left: 544px;
-}
-
 .hint-country-box {
   text-align: center;
   width: 600px;
   margin-right: 60px;
   margin-top: 25px;
-}
-
-.mypage-title-box {
-  font-size: 33px;
-  margin-left: 520px;
 }
 
 .mypage-follow-title {
@@ -630,10 +648,6 @@ nav.pagination {
   }
 .review-new-button {
   margin-right: 200px;
-}
-.review-edit-title {
-  font-size: 30px;
-  margin-left: 520px;
 }
 
 .user-info-ranking-box {
@@ -805,9 +819,15 @@ nav.pagination {
   margin: 20px 250px;
 }
 
-.review-show-title {
+.show-title {
   font-size: 30px;
-  margin-left: 525px;
+  text-align: center;
+  line-height: 50px;
+}
+.show-title-en {
+  font-size: 35px;
+  text-align: center;
+  line-height: 50px;
 }
 
 .review-side-box {
@@ -849,9 +869,6 @@ header {
   .memory-show-action-content1 {
     margin: 0px 6%;
   }
-  .memory-action-content3 {
-    margin-left: 50%;
-  }
   .memory-textarea {
     margin-left: initial;
     width: 100%;
@@ -871,20 +888,6 @@ header {
   }
   .no-three {
     left: 473px;
-  }
-
-  .review-show-title {
-    margin-left: 36%;
-  }
-  .memory-new-title {
-    margin-left: 37%;
-  }
-  // .mypage-follow-title {
-  //   font-size: 23px;
-  //   margin-left: 28%;
-  // }
-  .review-edit-title {
-    margin-left: 37%;
   }
   .nav-item {
     width: initial;
@@ -917,9 +920,6 @@ header {
 @media (max-width: 1200px){
   .notice-user-icon {
     top: -44px
-  }
-  .memory-show-title {
-    margin-left: 38%;
   }
   .toppage_icon{
     font-size: 120px;
@@ -1055,15 +1055,14 @@ header {
     left: 530px;
     font-size: 27px;
   }
-  .memory-action-content3 {
-    margin-left: 55%;
-  }
   .icon-button {
     width: 40px;
   }
-  .review-show-title {
-    margin-left: 30%;
-    font-size: 27px;
+  .show-title {
+    font-size: 25px;
+  }
+  .show-title-en {
+    font-size: 30px;
   }
   .show-ranking-icon {
     font-size: 100px;
@@ -1164,10 +1163,6 @@ header {
   .memory-action-content1 {
     margin: 0px 10px;
   }
-  .memory-show-title {
-    font-size: 27px;
-    margin-left: 30%;
-  }
   .hint-plus {
     font-size: 30px;
     position: relative;
@@ -1182,12 +1177,12 @@ header {
 
   .mypage-count {
     font-size: 25px;
-    top: -78px;
+    top: -95px;
     right: 0px;
   }
   .line {
     width: 100px;
-    top: -85px;
+    top: -100px;
     right: 0px;
   }
   .user-ranking-box {
@@ -1378,6 +1373,34 @@ header {
     top: 490px;
     right: 283px;
   }
+
+
+
+  .review-pc {
+    display: none;
+    }
+  .review-hamburger1 {
+    display: initial;
+  }
+  .review-icon1 {
+    font-size: 20px;
+    background-color: #E5E5E5;
+    margin: 10px;
+    text-align: center;
+  }
+  .review-hamburger2 {
+    display: initial;
+  }
+  .review-icon2 {
+    font-size: 20px;
+    background-color: #E5E5E5;
+    margin: 10px;
+    text-align: center;
+  }
+
+
+
+
 }
 @media (max-width: 576px){
   .review-new-box {
@@ -1393,24 +1416,7 @@ header {
     top: -450px;
     left: 450px;
   }
-  .memory-action-content3 {
-    margin-left: 40%;
-  }
-  .review-show-title {
-    margin-left: 15%;
-  }
-  .memory-new-title {
-    font-size: 23px;
-    margin-left: 22%;
-  }
-  .mypage-follow-title {
-    font-size: 23px;
-    margin-left: 28%;
-  }
-  .review-edit-title {
-    font-size: 23px;
-    margin-left: 15%;
-  }
+
   .crown-one {
     left: 154px;
   }
@@ -1433,11 +1439,41 @@ header {
     margin-left: initial;
     margin-top: 10px;
   }
+
+
+  .sm-bottom {
+    margin-bottom: 60px;
+  }
+  .bottom-nuv-box {
+    display: initial;
+  }
+  .footer {
+    margin-bottom: 60px;
+  }
+  .bottom-nuv {
+  	position: fixed;
+  	left: 0;
+  	bottom: 0;
+  	background: white;
+  	width: 100%;
+  	margin: initial;
+  	padding: initial;
+  	directory: initial;
+  }
+  .nav-item {
+    width: 20%;
+  }
+  .fa-ranking-star {
+    font-size: 20px;
+  }
+
+
+
 }
 
 @media (max-width: 440px){
   .mypage-plus {
-    top: -380px;
+    top: -395px;
     left: 330px;
   }
 }
