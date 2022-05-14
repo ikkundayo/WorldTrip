@@ -155,7 +155,7 @@
 }
 
 .top_hint_width {
-  width: 35%;
+  width: 380px;
   height: 220px;
 }
 
@@ -957,13 +957,9 @@ header {
     font-size: 17px;
   }
   .top-memory-box {
-    width: initial;
+    width: 250px;
     padding: 0px 10px;
   }
-  .top_hint_width {
-    width: 40%;
-  }
-
   .ranking-crown-one {
     right: 80px;
   }
@@ -1045,6 +1041,12 @@ header {
 }
 
 @media (max-width: 992px){
+  .top_hint_width {
+    margin-bottom: 10px;
+  }
+  .top-memory-box {
+    width: initial;
+  }
   .search-result {
   font-size: 25px;
  }
@@ -1136,9 +1138,6 @@ header {
   .sm-memory-box {
     width: 100%;
     padding: 10px 15% 10px 15%;
-  }
-  .sm-hint-title {
-    font-size: 11px;
   }
 
   // ランキングページ
@@ -1411,6 +1410,10 @@ header {
 
 }
 @media (max-width: 576px){
+  .top_hint_width {
+    width: 100%;
+    margin: 0px 15px 10px 15px;
+  }
   .sm-bottom-circle {
     color: gold;
     font-size: 10px;

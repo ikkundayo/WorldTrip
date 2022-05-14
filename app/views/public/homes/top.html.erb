@@ -65,7 +65,7 @@
         </div>
 
         <div class='top_hint_width card'>
-          <h5 class='text-center card-header bg-info sm-hint-title'>新型コロナウイルスについて</h5>
+          <h5 class='text-center card-header bg-info'>新型コロナウイルスについて</h5>
           <% @hints_coronas.shuffle.first(3).each do |hint| %>
             <%= link_to hint_path(hint),class: 'link-change' do %>
               <h6 class='mx-3 mt-3 card-text'>・<%= hint.hint_contents.truncate(40) %></h6>
