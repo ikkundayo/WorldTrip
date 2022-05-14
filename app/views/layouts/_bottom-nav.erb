@@ -23,7 +23,8 @@
     <% if unchecked_notifications.any? %>
       <li class="nav-item bottom-nav-item">
         <%= link_to notifications_path, class: "nav_link ms-3" do %>
-          <i class="fa-solid fa-circle sm-circle"></i>
+          <i class="fa-solid fa-bell"></i>
+          <i class="fa-solid fa-circle sm-bottom-circle"></i>
         <% end %>
       </li>
     <% else %>

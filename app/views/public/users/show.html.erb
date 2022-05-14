@@ -122,7 +122,7 @@
 
 <div class="container">
   <div class="row justify-content-center">
-    <div class="col-md-10">
+    <div class="col-md-10" id="nav_menu">
       <% if params[:type] == 'hint' %>
         <h2 class="text-center">「ヒント」</h2>
         <%= render 'public/hints/hint_index', hints: @hints %>
