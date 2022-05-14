@@ -115,22 +115,22 @@
       </div>
     </div>
 
-    <div class='col-md-7 mt-3'>
+    <div class='col-md-7 mt-3' id="category_menu">
       <ul class="nav nav-tabs justify-content-between text-center">
         <li class="nav-item">
-          <%= link_to '楽しさ・娯楽', review_path(@country, {'type': 'amusement'}), anchor: 'test', class:"nav-link" %>
+          <%= link_to '楽しさ・娯楽', review_path(@country, {'type': 'amusement', anchor: 'category_menu'}), class:"nav-link" %>
         </li>
         <li class="nav-item">
-          <%= link_to 'グルメ', review_path(@country, {'type': 'gourmet'}), class:"nav-link" %>
+          <%= link_to 'グルメ', review_path(@country, {'type': 'gourmet', anchor: 'category_menu'}), class:"nav-link" %>
         </li>
         <li class="nav-item">
-          <%= link_to '治安', review_path(@country, {'type': 'security'}) , class:"nav-link"%>
+          <%= link_to '治安', review_path(@country, {'type': 'security', anchor: 'category_menu'}) , class:"nav-link"%>
         </li>
         <li class="nav-item">
-          <%= link_to 'おすすめ', review_path(@country, {'type': 'recommend'}), anchor: 'test', class:"nav-link sm-ranking-title" %>
+          <%= link_to 'おすすめ', review_path(@country, {'type': 'recommend', anchor: 'category_menu'}), class:"nav-link sm-ranking-title" %>
         </li>
         <li class="nav-item">
-          <%= link_to 'オリジナル', review_path(@country, {'type': 'original'}), class:"nav-link sm-ranking-title" %>
+          <%= link_to 'オリジナル', review_path(@country, {'type': 'original', anchor: 'category_menu'}), class:"nav-link sm-ranking-title" %>
         </li>
       </ul>
 
