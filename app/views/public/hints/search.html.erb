@@ -6,35 +6,35 @@
         <% if params[:hint_id] == 'hoge' %>
           <li class="nav-item hint-nav-item">
             <%= link_to hints_path('type': 'link'), class: "nav-link" do %>
-              <div class="hint-nav-content mt-1">全体</div>
+              <div class="hint-nav-content">全体</div>
             <% end %>
           </li>
           <li class="nav-item hint-nav-item">
             <%= link_to hint_search_path(@q.country_code_cont, {"type": "search-tag"}), class: "nav-link" do %>
-              <div class="hint-nav-content mt-1">アドバイス</div>
+              <div class="hint-nav-content">アドバイス</div>
             <% end %>
           </li>
-          <li class="nav-item memory-nav-item">
+          <li class="nav-item hint-nav-item">
             <%= link_to hint_search_path(@q.country_code_cont, {"type": "search-tag"}), class: "nav-link" do %>
               <div class="hint-nav-content">現地の声</div>
             <% end %>
           </li>
-          <li class="nav-item memory-nav-item">
+          <li class="nav-item hint-nav-item">
             <%= link_to hint_search_path(@q.country_code_cont, {"type": "search-tag"}), class: "nav-link" do %>
               <div class="hint-nav-content">体験談</div>
             <% end %>
           </li>
-          <li class="nav-item memory-nav-item">
+          <li class="nav-item hint-nav-item">
             <%= link_to hint_search_path(@q.country_code_cont, {"type": "search-tag"}), class: "nav-link" do %>
               <div class="hint-nav-content">質問</div>
             <% end %>
           </li>
-          <li class="nav-item memory-nav-item">
+          <li class="nav-item hint-nav-item">
             <%= link_to hint_search_path(@q.country_code_cont, {"type": "search-tag"}), class: "nav-link" do %>
               <div class="hint-nav-content-corona">新型コロナウイルス</div>
             <% end %>
           </li>
-          <li class="nav-item memory-nav-item">
+          <li class="nav-item hint-nav-item">
             <%= link_to hint_search_path(@q.country_code_cont, {"type": "search-tag"}), class: "nav-link" do %>
               <div class="hint-nav-content">その他</div>
             <% end %>
@@ -43,35 +43,35 @@
         <% elsif params[:type] == 'search-tag' %>
           <li class="nav-item hint-nav-item">
             <%= link_to hints_path('type': 'link'), class: "nav-link" do %>
-              <div class="hint-nav-content mt-1">全体</div>
+              <div class="hint-nav-content">全体</div>
             <% end %>
           </li>
           <li class="nav-item hint-nav-item">
             <%= link_to hint_search_path(@id, {"tag_name": "アドバイス", "type": "search-tag"}), class: "nav-link" do %>
-              <div class="hint-nav-content mt-1">アドバイス</div>
+              <div class="hint-nav-content">アドバイス</div>
             <% end %>
           </li>
-          <li class="nav-item memory-nav-item">
+          <li class="nav-item hint-nav-item">
             <%= link_to hint_search_path(@id, {"tag_name": "現地の声", "type": "search-tag"}), class: "nav-link" do %>
               <div class="hint-nav-content">現地の声</div>
             <% end %>
           </li>
-          <li class="nav-item memory-nav-item">
+          <li class="nav-item hint-nav-item">
             <%= link_to hint_search_path(@id, {"tag_name": "体験談", "type": "search-tag"}), class: "nav-link" do %>
               <div class="hint-nav-content">体験談</div>
             <% end %>
           </li>
-          <li class="nav-item memory-nav-item">
+          <li class="nav-item hint-nav-item">
             <%= link_to hint_search_path(@id, {"tag_name": "質問", "type": "search-tag"}), class: "nav-link" do %>
               <div class="hint-nav-content">質問</div>
             <% end %>
           </li>
-          <li class="nav-item memory-nav-item">
+          <li class="nav-item hint-nav-item">
             <%= link_to hint_search_path(@id, {"tag_name": "新型コロナウイルスについて", "type": "search-tag"}), class: "nav-link" do %>
               <div class="hint-nav-content-corona">新型コロナウイルス</div>
             <% end %>
           </li>
-          <li class="nav-item memory-nav-item">
+          <li class="nav-item hint-nav-item">
             <%= link_to hint_search_path(@id, {"tag_name": "その他", "type": "search-tag"}), class: "nav-link" do %>
               <div class="hint-nav-content">その他</div>
             <% end %>
@@ -80,44 +80,48 @@
         <% else %>
           <li class="nav-item hint-nav-item">
             <%= link_to hints_path('type': 'link'), class: "nav-link" do %>
-              <div class="hint-nav-content mt-1">全体</div>
+              <div class="hint-nav-content">全体</div>
             <% end %>
           </li>
           <li class="nav-item hint-nav-item">
             <%= link_to hint_search_path(@country, {tag_name: "アドバイス"}), class: "nav-link" do %>
-              <div class="hint-nav-content mt-1">アドバイス</div>
+              <div class="hint-nav-content">アドバイス</div>
             <% end %>
           </li>
-          <li class="nav-item memory-nav-item">
+          <li class="nav-item hint-nav-item">
             <%= link_to hint_search_path(@country, {tag_name: "現地の声"}), class: "nav-link" do %>
               <div class="hint-nav-content">現地の声</div>
             <% end %>
           </li>
-          <li class="nav-item memory-nav-item">
+          <li class="nav-item hint-nav-item">
             <%= link_to hint_search_path(@country, {tag_name: "体験談"}), class: "nav-link" do %>
               <div class="hint-nav-content">体験談</div>
             <% end %>
           </li>
-          <li class="nav-item memory-nav-item">
+          <li class="nav-item hint-nav-item">
             <%= link_to hint_search_path(@country, {tag_name: "質問"}), class: "nav-link" do %>
               <div class="hint-nav-content">質問</div>
             <% end %>
           </li>
-          <li class="nav-item memory-nav-item">
+          <li class="nav-item hint-nav-item">
             <%= link_to hint_search_path(@country, {tag_name: "新型コロナウイルスについて"}), class: "nav-link" do %>
               <div class="hint-nav-content-corona">新型コロナウイルス</div>
             <% end %>
           </li>
-          <li class="nav-item memory-nav-item">
+          <li class="nav-item hint-nav-item">
             <%= link_to hint_search_path(@country, {tag_name: "その他"}), class: "nav-link" do %>
               <div class="hint-nav-content">その他</div>
             <% end %>
           </li>
         <% end %>
+        <% if user_signed_in? %>
+          <li class="plus-nuv">
+            <%= link_to new_hint_path do %>
+              <i class="fa-solid fa-circle-plus hint-plus"></i>
+            <% end %>
+          </li>
+        <% end %>
       </ul>
-      <%= link_to new_hint_path do %>
-        <i class="fa-solid fa-circle-plus hint-plus"></i>
-      <% end %>
 
       <% if params[:hint_id] == 'hoge' %>
         <% if @hints.blank? %>

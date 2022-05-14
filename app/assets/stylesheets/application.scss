@@ -13,6 +13,16 @@
  *= require_tree .
  *= require_self
  */
+ .search-result {
+  font-size: 30px;
+  text-align: center;
+  border-bottom: solid 1px #DEE2E6;
+ }
+
+ .search-title {
+   height: 0px;
+   line-height: 46px;
+ }
  .plus-nuv {
    width: 0px;
  }
@@ -1039,6 +1049,12 @@ header {
 }
 
 @media (max-width: 992px){
+  .search-result {
+  font-size: 25px;
+ }
+ .search-title {
+   line-height: 38.5px;
+ }
   .hint-tag-list {
     font-size: 14px;
   }
