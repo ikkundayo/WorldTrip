@@ -1,8 +1,15 @@
 <div class='container'>
   <div class='row justify-content-center'>
+    <span class="text-end mt-2">
+      <%= search_form_for @q, url: hint_search_path(:hoge), class:"search-form" do |f| %>
+        <%= f.search_field :country_code_cont, required: true, placeholder: '国名から探す', class:'input-box' %>
+        <%= f.submit "search" %>
+      <% end %>
+    </span>
+
     <div class='col-md-10'>
 
-      <ul class="nav nav-tabs justify-content-center text-center hint-nav-search">
+      <ul class="nav nav-tabs justify-content-center text-center">
         <% if params[:hint_id] == 'hoge' %>
           <li class="nav-item hint-nav-item">
             <%= link_to hints_path('type': 'link'), class: "nav-link" do %>
