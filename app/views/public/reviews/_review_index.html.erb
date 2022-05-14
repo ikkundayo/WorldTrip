@@ -1,4 +1,4 @@
-<div class='list jscroll'>
+<div>
   <% reviews.each do |review| %>
     <table class='table'>
       <tr style="text-align: center;">
@@ -59,12 +59,12 @@
       <% end %>
     </div>
   <% end %>
-  <%= paginate reviews %>
+  <div class="text-center mb-2"><%= paginate reviews %></div>
 </div>
 
 <script>
-  <% reviews[0..9].each do |review| %>
-    $('#average-rate<%= review.id%>').empty;
+  <% reviews.each do |review| %>
+    // $('#average-rate<%#= review.id%>').empty;
     $('#average-rate<%= review.id%>').raty({
       size      : 36,
       starOff   : '<%= asset_path('star-off.png') %>',
@@ -75,7 +75,7 @@
       score: <%= review.review_average %>
     });
 
-    $('#amusement-rate<%= review.id%>').empty;
+    // $('#amusement-rate<%#= review.id%>').empty;
     $('#amusement-rate<%= review.id%>').raty({
       size      : 36,
       starOff   : '<%= asset_path('star-off.png') %>',
@@ -86,7 +86,7 @@
       score: <%= review.amusement_rate %>
     });
 
-    $('#gourmet-rate<%= review.id%>').empty;
+    // $('#gourmet-rate<%#= review.id%>').empty;
     $('#gourmet-rate<%= review.id%>').raty({
       size      : 36,
       starOff   : '<%= asset_path('star-off.png') %>',
@@ -97,7 +97,7 @@
       score: <%= review.gourmet_rate %>
     });
 
-    $('#security-rate<%= review.id%>').empty;
+    // $('#security-rate<%#= review.id%>').empty;
     $('#security-rate<%= review.id%>').raty({
       size      : 36,
       starOff   : '<%= asset_path('star-off.png') %>',
@@ -108,7 +108,7 @@
       score: <%= review.security_rate %>
     });
 
-    $('#recommend-rate<%= review.id%>').empty;
+    // $('#recommend-rate<%#= review.id%>').empty;
     $('#recommend-rate<%= review.id%>').raty({
       size      : 36,
       starOff   : '<%= asset_path('star-off.png') %>',
@@ -119,7 +119,7 @@
       score: <%= review.recommend_rate %>
     });
 
-    $('#original-rate<%= review.id%>').empty;
+    // $('#original-rate<%#= review.id%>').empty;
     $('#original-rate<%= review.id%>').raty({
       size      : 36,
       starOff   : '<%= asset_path('star-off.png') %>',
@@ -131,81 +131,81 @@
     });
   <% end %>
 
-  $(document).ready(function() {
-    $('.jscroll').jscroll({
-      contentSelector: '.list',
-      nextSelector: 'span.next a',
-      callback: function(data) {
-        <% if reviews.count > 9 %>
-          <% reviews[10..].each do |review| %>
-            $('#average-rate<%= review.id%>').empty;
-            $('#average-rate<%= review.id%>').raty({
-              size      : 36,
-              starOff   : '<%= asset_path('star-off.png') %>',
-              starOn    : '<%= asset_path('star-on.png') %>',
-              starHalf : '<%= asset_path('star-half.png') %>',
-              half      : true,
-              readOnly: true,
-              score: <%= review.review_average %>
-            });
+  // $(document).ready(function() {
+  //   $('.jscroll').jscroll({
+  //     contentSelector: '.list',
+  //     nextSelector: 'span.next a',
+  //     callback: function(data) {
+  //       <%# if reviews.count > 9 %>
+  //         <%# reviews[10..].each do |review| %>
+  //           $('#average-rate<%#= review.id%>').empty;
+  //           $('#average-rate<%#= review.id%>').raty({
+  //             size      : 36,
+  //             starOff   : '<%#= asset_path('star-off.png') %>',
+  //             starOn    : '<%#= asset_path('star-on.png') %>',
+  //             starHalf : '<#%= asset_path('star-half.png') %>',
+  //             half      : true,
+  //             readOnly: true,
+  //             score: <%#= review.review_average %>
+  //           });
 
-            $('#amusement-rate<%= review.id%>').empty;
-            $('#amusement-rate<%= review.id%>').raty({
-              size      : 36,
-              starOff   : '<%= asset_path('star-off.png') %>',
-              starOn    : '<%= asset_path('star-on.png') %>',
-              starHalf : '<%= asset_path('star-half.png') %>',
-              half      : true,
-              readOnly: true,
-              score: <%= review.amusement_rate %>
-            });
+  //           $('#amusement-rate<%#= review.id%>').empty;
+  //           $('#amusement-rate<%#= review.id%>').raty({
+  //             size      : 36,
+  //             starOff   : '<%#= asset_path('star-off.png') %>',
+  //             starOn    : '<%#= asset_path('star-on.png') %>',
+  //             starHalf : '<%#= asset_path('star-half.png') %>',
+  //             half      : true,
+  //             readOnly: true,
+  //             score: <%#= review.amusement_rate %>
+  //           });
 
-            $('#gourmet-rate<%= review.id%>').empty;
-            $('#gourmet-rate<%= review.id%>').raty({
-              size      : 36,
-              starOff   : '<%= asset_path('star-off.png') %>',
-              starOn    : '<%= asset_path('star-on.png') %>',
-              starHalf : '<%= asset_path('star-half.png') %>',
-              half      : true,
-              readOnly: true,
-              score: <%= review.gourmet_rate %>
-            });
+  //           $('#gourmet-rate<%#= review.id%>').empty;
+  //           $('#gourmet-rate<%#= review.id%>').raty({
+  //             size      : 36,
+  //             starOff   : '<%#= asset_path('star-off.png') %>',
+  //             starOn    : '<%#= asset_path('star-on.png') %>',
+  //             starHalf : '<%#= asset_path('star-half.png') %>',
+  //             half      : true,
+  //             readOnly: true,
+  //             score: <%#= review.gourmet_rate %>
+  //           });
 
-            $('#security-rate<%= review.id%>').empty;
-            $('#security-rate<%= review.id%>').raty({
-              size      : 36,
-              starOff   : '<%= asset_path('star-off.png') %>',
-              starOn    : '<%= asset_path('star-on.png') %>',
-              starHalf : '<%= asset_path('star-half.png') %>',
-              half      : true,
-              readOnly: true,
-              score: <%= review.security_rate %>
-            });
+  //           $('#security-rate<%#= review.id%>').empty;
+  //           $('#security-rate<%#= review.id%>').raty({
+  //             size      : 36,
+  //             starOff   : '<%#= asset_path('star-off.png') %>',
+  //             starOn    : '<%#= asset_path('star-on.png') %>',
+  //             starHalf : '<%#= asset_path('star-half.png') %>',
+  //             half      : true,
+  //             readOnly: true,
+  //             score: <%#= review.security_rate %>
+  //           });
 
-            $('#recommend-rate<%= review.id%>').empty;
-            $('#recommend-rate<%= review.id%>').raty({
-              size      : 36,
-              starOff   : '<%= asset_path('star-off.png') %>',
-              starOn    : '<%= asset_path('star-on.png') %>',
-              starHalf : '<%= asset_path('star-half.png') %>',
-              half      : true,
-              readOnly: true,
-              score: <%= review.recommend_rate %>
-            });
+  //           $('#recommend-rate<%#= review.id%>').empty;
+  //           $('#recommend-rate<%#= review.id%>').raty({
+  //             size      : 36,
+  //             starOff   : '<%#= asset_path('star-off.png') %>',
+  //             starOn    : '<%#= asset_path('star-on.png') %>',
+  //             starHalf : '<%#= asset_path('star-half.png') %>',
+  //             half      : true,
+  //             readOnly: true,
+  //             score: <%#= review.recommend_rate %>
+  //           });
 
-            $('#original-rate<%= review.id%>').empty;
-            $('#original-rate<%= review.id%>').raty({
-              size      : 36,
-              starOff   : '<%= asset_path('star-off.png') %>',
-              starOn    : '<%= asset_path('star-on.png') %>',
-              starHalf : '<%= asset_path('star-half.png') %>',
-              half      : true,
-              readOnly: true,
-              score: <%= review.original_rate.presence || "0" %>
-            });
-          <% end %>
-        <% end %>
-      }
-    });
-  });
+  //           $('#original-rate<%#= review.id%>').empty;
+  //           $('#original-rate<%#= review.id%>').raty({
+  //             size      : 36,
+  //             starOff   : '<%#= asset_path('star-off.png') %>',
+  //             starOn    : '<%#= asset_path('star-on.png') %>',
+  //             starHalf : '<%#= asset_path('star-half.png') %>',
+  //             half      : true,
+  //             readOnly: true,
+  //             score: <%#= review.original_rate.presence || "0" %>
+  //           });
+  //         <%# end %>
+  //       <%# end %>
+  //     }
+  //   });
+  // });
 </script>

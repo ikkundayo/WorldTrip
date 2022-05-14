@@ -39,15 +39,5 @@
   	  </tr>
     </table>
   <% end %>
-  <%= paginate reviews %>
+  <div class="text-center mb-2"><%= paginate reviews %></div>
 </div>
-
-
-<script>
-  $(function() {
-    $('.jscroll').jscroll({
-      contentSelector: '.list',
-      nextSelector: 'span.next:last a'
-    });
-  });
-</script>

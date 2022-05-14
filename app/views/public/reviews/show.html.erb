@@ -134,7 +134,7 @@
         </li>
       </ul>
 
-      <div class='list jscroll'>
+      <div>
         <% @reviews.order(created_at: :desc).each do |review| %>
           <table class='table'>
             <tr>
@@ -231,7 +231,6 @@
             <% end %>
           </script>
         <% end %>
-        <%= paginate @reviews %>
       </div>
     </div>
   </div>
@@ -302,25 +301,9 @@
       score: <%= @reviews.average(:original_rate) %>
     });
   <% end %>
-
-  $(function() {
-    $('.jscroll').jscroll({
-      contentSelector: '.list',
-      nextSelector: 'span.next:last a'
-    });
-  });
 </script>
 
 <% end %>
 <!--↑30行目のレビューがない時のend-->
 
-
-<!--<script>-->
-<!--  $(function() {-->
-<!--    $('.jscroll').jscroll({-->
-<!--      contentSelector: '.list',-->
-<!--      nextSelector: 'span.next:last a'-->
-<!--    });-->
-<!--  });-->
-<!--</script>-->
 

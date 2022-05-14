@@ -13,7 +13,10 @@
  *= require_tree .
  *= require_self
  */
- 
+  nav.pagination {
+  display: initial;
+  margin-bottom: 3px;
+  }
   .mypage-ranking-comment {
     font-size: 13px;
     margin-top: 5px;
@@ -114,10 +117,9 @@
   border: solid 1px  black;
 }
 
-nav.pagination {
+.paginate-hidden {
   display: none;
 }
-
 .nav_list{
   color: white;
 }
@@ -1449,7 +1451,7 @@ header {
     display: initial;
   }
   .footer {
-    margin-bottom: 60px;
+    margin-bottom: 49.5px;
   }
   .bottom-nuv {
   	position: fixed;
@@ -1461,7 +1463,8 @@ header {
   	padding: initial;
   	directory: initial;
   }
-  .nav-item {
+  .bottom-nav-item {
+    background-color: gainsboro;
     width: 20%;
     color: #3598dc;
   }
