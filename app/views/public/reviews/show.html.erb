@@ -36,30 +36,34 @@
             </table></div></div></div></div>
           <% else %>
             <tr>
-              <th class="total-content">総合評価 <%= @reviews.average(:review_average).round(1) %><br>
+              <th>【総合評価】 <%= @reviews.average(:review_average).round(1) %><br>
                 <div id="average-rate"></div>
               </th>
             </tr>
             <tr>
-              <td class="onother-content">楽しさ・娯楽 <%= @reviews.average(:amusement_rate).round(1) %><br>
+              <td>
+                <div class="onother-content">【楽しさ・娯楽】 <%= @reviews.average(:amusement_rate).round(1) %></div>
                 <span id="amusement-rate"></span>
                 (<%= @reviews.count(:amusement_rate) %>)
               </td>
             </tr>
             <tr>
-              <td class="onother-content">グルメ <%= @reviews.average(:gourmet_rate).round(1) %><br>
+              <td>
+                <div class="onother-content">【グルメ】 <%= @reviews.average(:gourmet_rate).round(1) %></div>
                 <span id="gourmet-rate"></span>
                 (<%= @reviews.count(:gourmet_rate) %>)
               </td>
             </tr>
             <tr>
-              <td class="onother-content">治安 <%= @reviews.average(:security_rate).round(1) %><br>
+              <td>
+                <div class="onother-content">【治安】 <%= @reviews.average(:security_rate).round(1) %></div>
                 <span id="security-rate"></span>
                 (<%= @reviews.count(:security_rate) %>)
               </td>
             </tr>
             <tr>
-              <td class="onother-content">おすすめ度 <%= @reviews.average(:recommend_rate).round(1) %><br>
+              <td>
+                <div class="onother-content">【おすすめ度】 <%= @reviews.average(:recommend_rate).round(1) %></div>
                 <span id="recommend-rate"></span>
                 (<%= @reviews.count(:recommend_rate) %>)
               </td>
@@ -67,14 +71,16 @@
 
             <% if @reviews.average(:original_rate).nil? %>
               <tr>
-                <td class="onother-content">オリジナルカテゴリー <br>
+                <td>
+                  <div class="onother-content">【オリジナルカテゴリー】</div>
                   <span id="original-rate0"></span>
                   (<%= @reviews.count(:original_rate) %>)
                 </td>
               </tr>
             <% else %>
               <tr>
-                <td class="onother-content">オリジナルカテゴリー <%= @reviews.average(:original_rate).round(1) %><br>
+                <td>
+                  <div class="onother-content">【オリジナルカテゴリー】 <%= @reviews.average(:original_rate).round(1) %></div>
                   <span id="original-rate"></span>
                   (<%= @reviews.count(:original_rate) %>)
                 </td>
