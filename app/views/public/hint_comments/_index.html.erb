@@ -1,23 +1,37 @@
-<% hint.comments.each do |hint_comment| %>
-  <div class='memory-box-show'>
+<div class='list jscroll'>
+  <% hint.comments.order(created_at: :desc).page(params[:page]).per(10).each do |hint_comment| %>
+    <div class='memory-box-show'>
 
-    <div class="memory-user-box">
-      <%= link_to user_path(hint_comment.user_id) do %>
-        <%= image_tag hint_comment.user.get_user_image(50,50), class: "user-img-comment" %>
-        <p class="memory-username"><%= hint_comment.user.user_name %></p>
-        <% country = Country.find_by(name_jp: hint_comment.user.country_code) %>
-        <i class="flag-icon flag-icon-<%= country.code.downcase %> memory-user-icon"></i>
-      <% end %>
-    </div>
+      <div class="memory-user-box">
+        <%= link_to user_path(hint_comment.user_id) do %>
+          <%= image_tag hint_comment.user.get_user_image(50,50), class: "user-img-comment" %>
+          <p class="memory-username"><%= hint_comment.user.user_name %></p>
+          <% country = Country.find_by(name_jp: hint_comment.user.country_code) %>
+          <i class="flag-icon flag-icon-<%= country.code.downcase %> memory-user-icon"></i>
+        <% end %>
+      </div>
 
-    <div class="memory-content-box">
-      <p class="memory-comment-content"><%= hint_comment.comment %></p>
-    </div>
+      <div class="memory-content-box">
+        <p class="memory-comment-content"><%= hint_comment.comment %></p>
+      </div>
 
-    <div class="memory-time"><%= time_ago_in_words(hint_comment.created_at) %> ago
-      <% if hint_comment.user == current_user or admin_signed_in? %>
-        <%= link_to "削除", hint_hint_comment_path(hint_comment.hint_id, hint_comment), class: "memory-comment-delete", method: :delete, remote: true, data: { confirm: '本当に消しますか？' } %>
-      <% end %>
+      <div class="memory-time"><%= time_ago_in_words(hint_comment.created_at) %> ago
+        <% if hint_comment.user == current_user or admin_signed_in? %>
+          <%= link_to "削除", hint_hint_comment_path(hint_comment.hint_id, hint_comment), class: "memory-comment-delete", method: :delete, remote: true, data: { confirm: '本当に消しますか？' } %>
+        <% end %>
+      </div>
     </div>
+  <% end %>
+  <div class="paginate-hidden">
+    <%= paginate hint.comments.order(created_at: :desc).page(params[:page]).per(10) %>
   </div>
-<% end %>
+</div>
+
+<script>
+  $(function() {
+    $('.jscroll').jscroll({
+      contentSelector: '.list',
+      nextSelector: 'span.next:last a',
+    });
+  })
+</script>

@@ -1,8 +1,8 @@
-<div class="memory-show-title-box">
+<div class="show-title-box">
   <%= link_to hints_path("type": "link") do %>
-    <i class="fa-solid fa-angle-left memory-show-left"></i>
+    <div class="space"><i class="fa-solid fa-angle-left memory-show-left"></i></div>
   <% end %>
-  <span class="memory-show-title">Detail</span>
+  <div class="show-title-en">Detail</div>
 </div>
 
 <div class='container'>
@@ -33,10 +33,12 @@
         </div>
 
         <div class="memory-action-box">
-          <span class="hint_like_<%= @hint.id %> memory-show-action-content1">
-            <%= render "public/hint_likes/like", hint: @hint %>
-          </span>
-          <span class="memory-action-content3"><%= time_ago_in_words(@hint.created_at) %> ago</span>
+          <div class="space">
+            <span class="hint_like_<%= @hint.id %> memory-show-action-content1">
+              <%= render "public/hint_likes/like", hint: @hint %>
+            </span>
+          </div>
+          <div class="post-time"><%= time_ago_in_words(@hint.created_at) %> ago</div>
           <% if user_signed_in? %>
             <% if @hint.user_id == current_user.id %>
               <h6 class="text-end mt-1"><%= link_to "Destroy", hint_path, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger" %></h6>

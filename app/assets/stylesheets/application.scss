@@ -13,7 +13,64 @@
  *= require_tree .
  *= require_self
  */
+ .search-result {
+  font-size: 30px;
+  text-align: center;
+  border-bottom: solid 1px #DEE2E6;
+ }
 
+ .search-title {
+   height: 0px;
+   line-height: 46px;
+ }
+ .plus-nuv {
+   width: 0px;
+ }
+  nav.pagination {
+  display: initial;
+  margin-bottom: 3px;
+  }
+  .mypage-ranking-comment {
+    font-size: 13px;
+    margin-top: 5px;
+  }
+  .bottom-nuv-box {
+    display: none;
+  }
+  .review-hamburger1 {
+    display: none;
+  }
+  .review-sm1 {
+    display: none;
+  }
+  .review-hamburger2 {
+    display: none;
+  }
+  .review-sm2 {
+    display: none;
+  }
+  .toppage-title-border {
+    text-align: center;
+    font-size: 30px;
+    border-bottom: double 5px #FFC778;
+  }
+  .show-title-box {
+    border-bottom: solid 1px #DEE2E6;
+    height: 50px;
+  }
+  .post-time-sm {
+    text-align: end;
+    font-size: 13px;
+    margin-right: 3%;
+  }
+  .post-time {
+    text-align: end;
+    font-size: 17px;
+    margin-right: 3%;
+  }
+  .space {
+    height: 0px;
+  }
   .input-box {
     border: solid;
     border-color: #767676;
@@ -73,10 +130,9 @@
   border: solid 1px  black;
 }
 
-nav.pagination {
+.paginate-hidden {
   display: none;
 }
-
 .nav_list{
   color: white;
 }
@@ -99,8 +155,8 @@ nav.pagination {
 }
 
 .top_hint_width {
-  width: 35%;
-  height: 200px;
+  width: 380px;
+  height: 220px;
 }
 
 .all_container {
@@ -279,12 +335,9 @@ nav.pagination {
   font-size: 20px;
   height: 23px;
 }
-
-.total-content {
-  font-size: 16px;
-}
 .onother-content {
   font-size: 14px;
+  font-weight: bold;
 }
 
 .icon-button {
@@ -319,10 +372,6 @@ nav.pagination {
     padding-top: 30px;
 }
 
-.nav-item {
-  width: 130px;
-}
-
 .user-img {
   border-radius: 50%;
   width: 55px;
@@ -344,12 +393,12 @@ nav.pagination {
 }
 
 .memory-nav-item {
-  width: 150px;
+  width: 20%;
   margin-top: 5px;
 }
-.memory-new-nav-item {
-  width: 50px;
+.hint-nav-item {
   margin-top: 5px;
+  width: 14%;
 }
 .memory-plus {
   font-size: 33px;
@@ -423,9 +472,6 @@ nav.pagination {
   transform: scale(-1, 1);
   margin-right: 3px;
 }
-.memory-action-content3 {
-  margin-left: 500px;
-}
 
 .memory-new1 {
   margin: 16px;
@@ -444,16 +490,10 @@ nav.pagination {
   flex-wrap: wrap;
   margin-bottom: 10px;
 }
-.memory-show-title-box {
-  border-bottom: solid 1px #DEE2E6;
-}
 .memory-show-left {
   font-size: 40px;
   margin-left: 75px;
-}
-.memory-show-title {
-  font-size: 35px;
-  margin-left: 40%;
+  margin-top: 5px;
 }
 .memory-show-action-content1 {
   margin: 0px 160px;
@@ -465,6 +505,7 @@ nav.pagination {
 }
 .memory-submit {
   margin-left: 5px;
+  margin-bottom: 5px;
 }
 .user-img-comment {
   border-radius: 50%;
@@ -509,9 +550,8 @@ nav.pagination {
 }
 .hint-plus {
   font-size: 30px;
-  position: absolute;
-  top: 111px;
-  right: 190px;
+  position: relative;
+  top: 8px;
 }
 #hint_tag_list {
   width: 100%;
@@ -536,25 +576,11 @@ nav.pagination {
   color: white;
 }
 
-.hint-nav-search {
-  margin-top: 38px;
-}
-
-.memory-new-title {
-  font-size: 30px;
-  margin-left: 544px;
-}
-
 .hint-country-box {
   text-align: center;
   width: 600px;
   margin-right: 60px;
   margin-top: 25px;
-}
-
-.mypage-title-box {
-  font-size: 33px;
-  margin-left: 520px;
 }
 
 .mypage-follow-title {
@@ -630,10 +656,6 @@ nav.pagination {
   }
 .review-new-button {
   margin-right: 200px;
-}
-.review-edit-title {
-  font-size: 30px;
-  margin-left: 520px;
 }
 
 .user-info-ranking-box {
@@ -805,9 +827,15 @@ nav.pagination {
   margin: 20px 250px;
 }
 
-.review-show-title {
+.show-title {
   font-size: 30px;
-  margin-left: 525px;
+  text-align: center;
+  line-height: 50px;
+}
+.show-title-en {
+  font-size: 35px;
+  text-align: center;
+  line-height: 50px;
 }
 
 .review-side-box {
@@ -846,11 +874,12 @@ header {
 
 
 @media (max-width: 1400px){
+  .hint-nav-item {
+    width: initial;
+  }
+
   .memory-show-action-content1 {
     margin: 0px 6%;
-  }
-  .memory-action-content3 {
-    margin-left: 50%;
   }
   .memory-textarea {
     margin-left: initial;
@@ -858,7 +887,6 @@ header {
   }
   .memory-submit {
     margin-left: initial;
-    margin-bottom: 5px;
   }
   .crown-two {
     left: 363px;
@@ -871,23 +899,6 @@ header {
   }
   .no-three {
     left: 473px;
-  }
-
-  .review-show-title {
-    margin-left: 36%;
-  }
-  .memory-new-title {
-    margin-left: 37%;
-  }
-  // .mypage-follow-title {
-  //   font-size: 23px;
-  //   margin-left: 28%;
-  // }
-  .review-edit-title {
-    margin-left: 37%;
-  }
-  .nav-item {
-    width: initial;
   }
   .review-side-box {
     margin: 15px 0px;
@@ -918,9 +929,6 @@ header {
   .notice-user-icon {
     top: -44px
   }
-  .memory-show-title {
-    margin-left: 38%;
-  }
   .toppage_icon{
     font-size: 120px;
   }
@@ -949,13 +957,9 @@ header {
     font-size: 17px;
   }
   .top-memory-box {
-    width: initial;
+    width: 250px;
     padding: 0px 10px;
   }
-  .top_hint_width {
-    width: 40%;
-  }
-
   .ranking-crown-one {
     right: 80px;
   }
@@ -1037,6 +1041,18 @@ header {
 }
 
 @media (max-width: 992px){
+  .top_hint_width {
+    margin-bottom: 10px;
+  }
+  .top-memory-box {
+    width: initial;
+  }
+  .search-result {
+  font-size: 25px;
+ }
+ .search-title {
+   line-height: 38.5px;
+ }
   .hint-tag-list {
     font-size: 14px;
   }
@@ -1055,15 +1071,14 @@ header {
     left: 530px;
     font-size: 27px;
   }
-  .memory-action-content3 {
-    margin-left: 55%;
-  }
   .icon-button {
     width: 40px;
   }
-  .review-show-title {
-    margin-left: 30%;
-    font-size: 27px;
+  .show-title {
+    font-size: 25px;
+  }
+  .show-title-en {
+    font-size: 30px;
   }
   .show-ranking-icon {
     font-size: 100px;
@@ -1124,9 +1139,6 @@ header {
     width: 100%;
     padding: 10px 15% 10px 15%;
   }
-  .sm-hint-title {
-    font-size: 11px;
-  }
 
   // ランキングページ
   .sm-ranking-table {
@@ -1164,16 +1176,6 @@ header {
   .memory-action-content1 {
     margin: 0px 10px;
   }
-  .memory-show-title {
-    font-size: 27px;
-    margin-left: 30%;
-  }
-  .hint-plus {
-    font-size: 30px;
-    position: relative;
-    top: -40px;
-    left: 330px;
-  }
   .hint-country-box {
     margin-right: initial;
     margin-top: initial;
@@ -1182,12 +1184,12 @@ header {
 
   .mypage-count {
     font-size: 25px;
-    top: -78px;
+    top: -95px;
     right: 0px;
   }
   .line {
     width: 100px;
-    top: -85px;
+    top: -100px;
     right: 0px;
   }
   .user-ranking-box {
@@ -1378,8 +1380,46 @@ header {
     top: 490px;
     right: 283px;
   }
+
+
+
+  .review-pc {
+    display: none;
+    }
+  .review-hamburger1 {
+    display: initial;
+  }
+  .review-icon1 {
+    font-size: 20px;
+    background-color: #E5E5E5;
+    margin: 10px;
+    text-align: center;
+  }
+  .review-hamburger2 {
+    display: initial;
+  }
+  .review-icon2 {
+    font-size: 20px;
+    background-color: #E5E5E5;
+    margin: 10px;
+    text-align: center;
+  }
+
+
+
+
 }
 @media (max-width: 576px){
+  .top_hint_width {
+    width: 100%;
+    margin: 0px 15px 10px 15px;
+  }
+  .sm-bottom-circle {
+    color: gold;
+    font-size: 10px;
+    position: relative;
+    top: -17px;
+  }
   .review-new-box {
     margin-left: 65px;
   }
@@ -1393,24 +1433,7 @@ header {
     top: -450px;
     left: 450px;
   }
-  .memory-action-content3 {
-    margin-left: 40%;
-  }
-  .review-show-title {
-    margin-left: 15%;
-  }
-  .memory-new-title {
-    font-size: 23px;
-    margin-left: 22%;
-  }
-  .mypage-follow-title {
-    font-size: 23px;
-    margin-left: 28%;
-  }
-  .review-edit-title {
-    font-size: 23px;
-    margin-left: 15%;
-  }
+
   .crown-one {
     left: 154px;
   }
@@ -1433,11 +1456,64 @@ header {
     margin-left: initial;
     margin-top: 10px;
   }
+
+
+  .sm-bottom {
+    margin-bottom: 60px;
+  }
+  .bottom-nuv-box {
+    display: initial;
+  }
+  .footer {
+    margin-bottom: 49.5px;
+  }
+  .bottom-nuv {
+  	position: fixed;
+  	left: 0;
+  	bottom: 0;
+  	background: white;
+  	width: 100%;
+  	margin: initial;
+  	padding: initial;
+  	directory: initial;
+  }
+  .bottom-nav-item {
+    background-color: gainsboro;
+    width: 20%;
+    color: #3598dc;
+  }
+  .fa-ranking-star {
+    font-size: 24px;
+    color: #3598dc;
+    margin-top: 3px;
+  }
+  .fa-circle-user {
+    font-size: 28px;
+    margin-top: 1px;
+    color: #3598dc;
+  }
+  .fa-bell {
+    font-size: 23px;
+    margin-top: 13px;
+    color: #3598dc;
+  }
+  .mypage-camera-bottom {
+    font-size: 27px;
+    color: #3598dc;
+    margin-top: 2px;
+  }
+  .mypage-light-bottom {
+    font-size: 27px;
+    color: #3598dc;
+    margin-top: 2px;
+  }
+
+
 }
 
 @media (max-width: 440px){
   .mypage-plus {
-    top: -380px;
+    top: -395px;
     left: 330px;
   }
 }

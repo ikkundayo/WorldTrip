@@ -11,45 +11,49 @@
       <ul class="nav nav-tabs justify-content-center text-center">
         <li class="nav-item hint-nav-item">
           <%= link_to hints_path('type': 'link'), class: "nav-link" do %>
-            <div class="hint-nav-content mt-1">全体</div>
+            <div class="hint-nav-content">全体</div>
           <% end %>
         </li>
         <li class="nav-item hint-nav-item">
           <%= link_to hints_path(tag_name: "アドバイス"), class: "nav-link" do %>
-            <div class="hint-nav-content mt-1">アドバイス</div>
+            <div class="hint-nav-content">アドバイス</div>
           <% end %>
         </li>
-        <li class="nav-item memory-nav-item">
+        <li class="nav-item hint-nav-item">
           <%= link_to hints_path(tag_name: "現地の声"), class: "nav-link" do %>
             <div class="hint-nav-content">現地の声</div>
           <% end %>
         </li>
-        <li class="nav-item memory-nav-item">
+        <li class="nav-item hint-nav-item">
           <%= link_to hints_path(tag_name: "体験談"), class: "nav-link" do %>
             <div class="hint-nav-content">体験談</div>
           <% end %>
         </li>
-        <li class="nav-item memory-nav-item">
+        <li class="nav-item hint-nav-item">
           <%= link_to hints_path(tag_name: "質問"), class: "nav-link" do %>
             <div class="hint-nav-content">質問</div>
           <% end %>
         </li>
-        <li class="nav-item memory-nav-item">
+        <li class="nav-item hint-nav-item">
           <%= link_to hints_path(tag_name: "新型コロナウイルスについて"), class: "nav-link" do %>
             <div class="hint-nav-content-corona">新型コロナウイルス</div>
           <% end %>
         </li>
-        <li class="nav-item memory-nav-item">
+        <li class="nav-item hint-nav-item">
           <%= link_to hints_path(tag_name: "その他"), class: "nav-link" do %>
             <div class="hint-nav-content">その他</div>
           <% end %>
         </li>
-      </ul>
-      <% if user_signed_in?%>
-        <%= link_to new_hint_path do %>
-          <i class="fa-solid fa-circle-plus hint-plus"></i>
+        <% if user_signed_in?%>
+          <li class="plus-nuv">
+            <%= link_to new_hint_path do %>
+              <i class="fa-solid fa-circle-plus hint-plus"></i>
+            <% end %>
+          </li>
         <% end %>
-      <% end %>
+
+      </ul>
+
       <%# if user_signed_in? %>
         <%#= link_to "フォローのみ表示", hints_path('type': 'follwing') %>
       <%# end %>

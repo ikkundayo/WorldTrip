@@ -1,7 +1,7 @@
 class Public::UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
-    @reviews = @user.reviews.order(review_average: :desc).page(params[:page]).per(10)
+    @reviews = @user.reviews.order(review_average: :desc).page(params[:page]).per(20)
     @memories = @user.memories.page(params[:page]).per(10)
     @hints = @user.hints.page(params[:page]).per(10)
     if params[:tag_name]

@@ -27,13 +27,15 @@
       </div>
 
       <div class="memory-action-box">
-        <span class="hint_like_<%= hint.id %> memory-action-content1">
-          <%= render "public/hint_likes/like", hint: hint %>
-        </span>
-        <%= link_to hint_path(hint.id), class: "memory-action-content2 link-change" do %>
-          <i class="fa-regular fa-comment-dots memory-comment-dots"></i><%= hint.comments.count%>
-        <% end %>
-        <span class="memory-action-content3"><%= time_ago_in_words(hint.created_at) %> ago</span>
+        <div class="space">
+          <span class="hint_like_<%= hint.id %> memory-action-content1">
+            <%= render "public/hint_likes/like", hint: hint %>
+          </span>
+          <%= link_to hint_path(hint.id), class: "memory-action-content2 link-change" do %>
+            <i class="fa-regular fa-comment-dots memory-comment-dots"></i><%= hint.comments.count%>
+          <% end %>
+        </div>
+        <div class="post-time"><%= time_ago_in_words(hint.created_at) %> ago</div>
         <% if admin_signed_in? %>
           <div class="sentiment-score text-end">感情分析スコア (<%= hint.score %>)</div>
         <% end %>
@@ -41,7 +43,9 @@
 
     </div>
   <% end %>
-  <%= paginate hints %>
+  <div class="paginate-hidden">
+    <%= paginate hints %>
+  </div>
 </div>
 
 
