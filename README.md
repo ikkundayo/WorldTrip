@@ -32,12 +32,12 @@
 <実装機能リスト一覧>
 https://docs.google.com/spreadsheets/d/1mq8V6BIVx-ly7MtgPXr2z35Xwej0aG3UT-m__FbjgM0/edit#gid=1091086188  
 <実装予定フレームワーク>  
-https://app.diagrams.net/#G1ndo8KqdqZk3zCFYNebd6mwvGw99wds6Y
-https://app.diagrams.net/#G18H35TNSi9saoO3KARX5qO2-0XbjJ1uO1
-<UI Flows>
-https://app.diagrams.net/#G1K2cUbqntOgrp6OTOY-ZSnreh2YNxkkv4
-<ER図>
-https://app.diagrams.net/#G1dpDOFSLh34EMwHV1_MglM5BEqJrv6U3B
+https://app.diagrams.net/#G1ndo8KqdqZk3zCFYNebd6mwvGw99wds6Y  
+https://app.diagrams.net/#G18H35TNSi9saoO3KARX5qO2-0XbjJ1uO1  
+<UI Flows>  
+https://app.diagrams.net/#G1K2cUbqntOgrp6OTOY-ZSnreh2YNxkkv4  
+<ER図>  
+https://app.diagrams.net/#G1dpDOFSLh34EMwHV1_MglM5BEqJrv6U3B  
 
 ## 開発環境
 - OS：Linux(CentOS)
