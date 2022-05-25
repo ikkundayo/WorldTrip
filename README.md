@@ -40,4 +40,4 @@ https://app.diagrams.net/#G18H35TNSi9saoO3KARX5qO2-0XbjJ1uO1
 - 言語：HTML,CSS,JavaScript,Ruby,SQL
 - フレームワーク：Ruby on Rails,Bootstrap5,Font Awesome6.1.1
 - JSライブラリ：jQuery
-- IDE：Cloud9
+- IDE：Cloud9　
