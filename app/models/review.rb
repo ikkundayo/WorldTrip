@@ -11,13 +11,13 @@ class Review < ApplicationRecord
   validates :recommend_rate, presence: true
 
 
+  before_save :review_averages
+  
   def review_averages
-    if amusement_rate.present?
-      if original_rate == nil
-        (amusement_rate + gourmet_rate + security_rate + recommend_rate) / 4
-      else
-        (amusement_rate + gourmet_rate + security_rate + recommend_rate + original_rate) / 5
-      end
+    if original_rate == nil
+      self.review_average = (self.amusement_rate + self.gourmet_rate + self.security_rate + self.recommend_rate) / 4
+    else
+      self.review_average = (self.amusement_rate + self.gourmet_rate + self.security_rate + self.recommend_rate + self.original_rate) / 5
     end
   end
 

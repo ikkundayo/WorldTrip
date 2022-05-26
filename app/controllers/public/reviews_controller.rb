@@ -64,8 +64,6 @@ class Public::ReviewsController < ApplicationController
     @review.country_code = Country.find(params[:review][:country_id]).name_jp
     @review.area = Country.find(params[:review][:country_id]).area
     @review.code = Country.find(params[:review][:country_id]).code
-    @total = @review.review_averages
-    @review.review_average = @total
     @like = Like.find_by(user_id: current_user.id, review_id: @review.country_code)
     if @like.present?
       if @review.country_code == @like.review_id
@@ -73,7 +71,6 @@ class Public::ReviewsController < ApplicationController
       end
     end
     if @review.save
-
       redirect_to user_path(current_user), notice: "You have created memory successfully."
     else
       render 'new'
