@@ -1,0 +1,59 @@
+<div class='list jscroll'>
+  <% memories.each do |memory| %>
+    <div class='memory-box'>
+
+      <div class="memory-user-box">
+        <%= link_to user_path(memory.user_id) do %>
+          <%= image_tag memory.user.get_user_image(50,50), class: "user-img" %>
+          <p class="memory-username"><%= memory.user.user_name %></p>
+          <% country = Country.find_by(name_jp: memory.user.country_code) %>
+          <i class="flag-icon flag-icon-<%= country.code.downcase %> memory-user-icon"></i>
+        <% end %>
+      </div>
+
+      <div class="memory-country-box">
+        <span>渡航国:<%= memory.country_code %></span>
+        <% country = Country.find_by(name_jp: memory.country_code) %>
+        <%= link_to review_path(country.id) do %><i class="flag-icon flag-icon-<%= country.code.downcase %>"></i><% end %><br>
+      </div>
+
+      <div class="memory-content-box">
+        <%= link_to memory_path(memory.id), class: "link-change" do %>
+          <% if memory.memory_image.present?%>
+            <%= image_tag memory.get_memory_image(550,450), class: "sm-img" %><br>
+          <% end %>
+          <p class="mt-3"><%= memory.memory_contents.truncate(40) %></p>
+        <% end %>
+      </div>
+
+      <div class="memory-action-box">
+        <div class="space">
+          <span class="memory_like_<%= memory.id %> memory-action-content1">
+            <%= render "public/memory_likes/like", memory: memory %>
+          </span>
+          <%= link_to memory_path(memory.id), class: "memory-action-content2 link-change" do %>
+            <i class="fa-regular fa-comment-dots memory-comment-dots"></i><%= memory.comments.count%>
+          <% end %>
+        </div>
+        <div class="post-time"><%= time_ago_in_words(memory.created_at) %> ago</div>
+        <% if admin_signed_in? %>
+          <div class="sentiment-score text-end">感情分析スコア (<%= memory.score %>)</div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="paginate-hidden">
+    <%= paginate memories %>
+  </div>
+</div>
+
+
+<script>
+  $(function() {
+    $('.jscroll').jscroll({
+      contentSelector: '.list',
+      nextSelector: 'span.next:last a',
+    });
+  })
+</script>

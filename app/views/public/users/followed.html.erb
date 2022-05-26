@@ -1,0 +1,14 @@
+<div class="show-title-box">
+  <%= link_to user_path(@user) do %>
+    <div class="space"><i class="fa-solid fa-angle-left memory-show-left"></i></div>
+  <% end %>
+  <div class="show-title-en">
+    <%= @user.user_name %>'s Followers Lists
+  </div>
+</div>
+
+<% if @users.present? %>
+  <%= render 'public/users/follow_list', users: @users %>
+<% else %>
+  <p class="text-center mt-4 h5">まだユーザーがいません😭</p>
+<% end %>

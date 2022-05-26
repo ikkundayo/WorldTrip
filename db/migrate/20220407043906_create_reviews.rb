@@ -3,6 +3,7 @@ class CreateReviews < ActiveRecord::Migration[6.1]
     create_table :reviews do |t|
 
       t.integer  :user_id, null: false
+      t.integer  :country_id, null: false
       t.boolean :season, null: false
       t.string :country_code, null: false, unique: true
       t.float  :amusement_rate, null: false
@@ -16,6 +17,10 @@ class CreateReviews < ActiveRecord::Migration[6.1]
       t.string :original_category
       t.float  :original_rate
       t.string :original_voice
+      t.float  :review_average
+      t.string :area
+      t.string :code
+
 
       t.timestamps
     end

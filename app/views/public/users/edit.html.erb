@@ -1,27 +1,40 @@
+<div class="show-title-box">
+  <%= link_to user_path(current_user.id) do %>
+    <div class="space"><i class="fa-solid fa-angle-left memory-show-left"></i></div>
+  <% end %>
+  <div class="show-title">プロフィール編集</div>
+</div>
+
+
 <div class="container">
-   <div class="row justify-content-center">
-     <div class="col-md-8">
-       <%= render 'layouts/errors', obj: @user %>
+  <div class="row justify-content-center">
+    <div class="col-lg-3">
+      <div class="text-danger">
+        <%= render 'layouts/errors', obj: @user %>
+      </div>
 
-      <h1>プロフィール編集</h1>
-      <%= form_with model: @user, url: user_path, method: :patch do |f| %>
-        <div>
-          <%= f.label :user_image, "変更" %>
-          <%= f.file_field :user_image, accept: "image/*" %>
-        </div>
-        <div>
-          <%= f.label :user_name, "User name" %>
-          <%= f.text_field :user_name %>
-        </div>
+      <div class="text-first">
+        <%= form_with model: @user, url: user_path, method: :patch do |f| %>
+          <div class="field my-4">
+            <%= f.label :user_name, "User name" %><br>
+            <%= f.text_field :user_name, class: "sm-textarea" %>
+          </div>
 
-        <div>
-          <%= f.label :introduction, "紹介文" %>
-          <%= f.text_area :introduction %>
-        </div>
-        <%= f.submit "編集内容を保存する", class: "btn btn-sm btn-primary text-light col-md-3" %>
-      <% end %>
+          <div class="field mb-3">
+            <%= f.file_field :user_image, accept: "image/*", size: "40x10" %>
+          </div>
 
-      <%= link_to "退会する", {action: :update, quit_button: true}, method: :patch, "data-confirm" => "退会するとこれまでのデータが閲覧できなくなります。\n本当によろしいですか？" %>
+          <div class="field mb-2">
+            <%= f.label :introduction, "紹介文" %><br>
+            <%= f.text_area :introduction, size: "40x10", class: "sm-textarea" %>
+          </div>
+
+          <div class="field mb-1">
+            <%= f.submit "編集内容を保存する", class: "btn btn-sm btn-primary text-light" %>
+          </div>
+        <% end %>
+        <%= link_to "退会する", {action: :update, quit_button: true}, method: :patch, "data-confirm" => "退会するとこれまでのデータが閲覧できなくなります。\n本当によろしいですか？" %>
+      </div>
     </div>
   </div>
 </div>

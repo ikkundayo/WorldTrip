@@ -1,6 +1,10 @@
 class Admin::UsersController < ApplicationController
+  before_action :authenticate_admin!
+
   def index
-    @users = User.all
+    @users = User.page(params[:page]).per(10)
+    @q = User.ransack(params[:q])
+    @search = @q.result(distinct: true).page(params[:page]).per(10)
   end
 
   def update

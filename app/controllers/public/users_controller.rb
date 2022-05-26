@@ -1,19 +1,23 @@
 class Public::UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
+    @reviews = @user.reviews.order(review_average: :desc).page(params[:page]).per(20)
+    @memories = @user.memories.page(params[:page]).per(10)
+    @hints = @user.hints.page(params[:page]).per(10)
+    if params[:tag_name]
+      @hints = Hint.tagged_with("#{params[:tag_name]}")
+    end
+    @user_logo = Country.find_by(name_jp: @user.country_code)
     @user_age = (Date.today.strftime("%Y%m%d").to_i - @user.birth_date.strftime("%Y%m%d").to_i)/10000
-    @reviews = @user.reviews
+    @ranking = @user.reviews.order(review_average: :desc).limit(3)
+    @review = @user.reviews
+    @country_progress = (@review.count.to_f / 260.to_f) * 100.to_f
+    @map = @user.reviews
 
-
-    # @amusement = @reviews.average(:amusement_rate)
-    # @gourmet = @reviews.average(:gourmet_rate)
-    # @security = @reviews.average(:security_rate)
-    # @recommend = @reviews.average(:recommend_rate)
-    # @original = @reviews.average(:original_rate)
-
-    # @average = (@amusement + @gourmet + @security + @recommend + @original) / 5
-
-
+    @likes = Like.where(user_id: params[:id]).page(params[:page]).per(10)
+    @memory_score = @user.memories.average(:score)
+    @hint_score = @user.hints.average(:score)
+    # binding.pry
   end
 
   def edit
@@ -34,6 +38,17 @@ class Public::UsersController < ApplicationController
       end
     end
   end
+
+  def followers
+    @user = User.find(params[:id])
+    @users = @user.followers
+  end
+
+  def followed
+    @user = User.find(params[:id])
+    @users = @user.followeds
+  end
+
 
   private
 

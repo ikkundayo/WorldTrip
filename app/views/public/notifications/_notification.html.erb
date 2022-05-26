@@ -1,0 +1,10 @@
+<% visiter = notification.visiter %>
+
+<div>
+  <%= link_to user_path(notification.visiter) do %>
+    <%= image_tag visiter.get_user_image(40,40), class: "user-img-comment" %>
+  <% end %>
+  <%= notification_form(notification) %><span class="moderate-font"><%= " (#{time_ago_in_words(notification.created_at)} 前)" %></span>
+</div>
+<% country = Country.find_by(name_jp: visiter.country_code) %>
+<i class="flag-icon flag-icon-<%= country.code.downcase %> notice-user-icon"></i>

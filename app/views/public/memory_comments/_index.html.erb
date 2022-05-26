@@ -1,0 +1,38 @@
+<div class='list jscroll'>
+  <% memory.comments.order(created_at: :desc).page(params[:page]).per(10).each do |memory_comment| %>
+    <div class='memory-box-show'>
+
+      <div class="memory-user-box">
+        <%= link_to user_path(memory_comment.user_id) do %>
+          <%= image_tag memory_comment.user.get_user_image(50,50), class: "user-img-comment" %>
+          <p class="memory-username"><%= memory_comment.user.user_name %></p>
+          <% country = Country.find_by(name_jp: memory_comment.user.country_code) %>
+          <i class="flag-icon flag-icon-<%= country.code.downcase %> memory-user-icon"></i>
+        <% end %>
+      </div>
+
+      <div class="memory-content-box">
+        <p class="memory-comment-content"><%= memory_comment.comment %></p>
+      </div>
+
+
+      <div class="memory-time"><%= time_ago_in_words(memory_comment.created_at) %> ago
+        <% if memory_comment.user == current_user or admin_signed_in? %>
+          <%= link_to "削除", memory_memory_comment_path(memory_comment.memory_id, memory_comment), class: "memory-comment-delete", method: :delete, remote: true, data: { confirm: '本当に消しますか？' } %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+  <div class="paginate-hidden">
+    <%= paginate memory.comments.order(created_at: :desc).page(params[:page]).per(10) %>
+  </div>
+</div>
+
+<script>
+  $(function() {
+    $('.jscroll').jscroll({
+      contentSelector: '.list',
+      nextSelector: 'span.next:last a',
+    });
+  })
+</script>

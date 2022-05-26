@@ -1,0 +1,59 @@
+<div class='list jscroll'>
+  <% hints.each do |hint| %>
+    <div class='hint-box'>
+      <div class="memory-user-box">
+        <%= link_to user_path(hint.user_id) do %>
+          <%= image_tag hint.user.get_user_image(50,50), class: "user-img-hint" %>
+          <p class="memory-username"><%= hint.user.user_name %></p>
+          <% country = Country.find_by(name_jp: hint.user.country_code) %>
+          <i class="flag-icon flag-icon-<%= country.code.downcase %> memory-user-icon"></i>
+        <% end %>
+      </div>
+
+      <div class="memory-country-box">
+        <span>対象国:<%= hint.country_code %></span>
+        <% country = Country.find_by(name_jp: hint.country_code) %>
+        <%= link_to review_path(country.id) do %><i class="flag-icon flag-icon-<%= country.code.downcase %>"></i><% end %><br>
+        ジャンル:<%= render 'public/hints/tag_list', tag_list: hint.tag_list %>
+      </div>
+
+      <div class="memory-content-box">
+        <%= link_to hint_path(hint.id), class: "link-change" do %>
+          <% if hint.hint_image.present?%>
+            <%= image_tag hint.get_hint_image(550,450), class: "sm-img" %><br>
+          <% end %>
+          <p class="mt-3"><%= hint.hint_contents.truncate(40) %></p>
+        <% end %>
+      </div>
+
+      <div class="memory-action-box">
+        <div class="space">
+          <span class="hint_like_<%= hint.id %> memory-action-content1">
+            <%= render "public/hint_likes/like", hint: hint %>
+          </span>
+          <%= link_to hint_path(hint.id), class: "memory-action-content2 link-change" do %>
+            <i class="fa-regular fa-comment-dots memory-comment-dots"></i><%= hint.comments.count%>
+          <% end %>
+        </div>
+        <div class="post-time"><%= time_ago_in_words(hint.created_at) %> ago</div>
+        <% if admin_signed_in? %>
+          <div class="sentiment-score text-end">感情分析スコア (<%= hint.score %>)</div>
+        <% end %>
+      </div>
+
+    </div>
+  <% end %>
+  <div class="paginate-hidden">
+    <%= paginate hints %>
+  </div>
+</div>
+
+
+<script>
+  $(function() {
+    $('.jscroll').jscroll({
+      contentSelector: '.list',
+      nextSelector: 'span.next:last a'
+    });
+  });
+</script>

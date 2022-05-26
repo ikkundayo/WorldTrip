@@ -1,29 +1,75 @@
 <div class='container'>
-  <div class='row'>
-    <div class='col-md-9'>
-      <%= link_to "新規登録", new_hint_path %>
-      <% @hints.each do |hint| %>
-	    <table class='table'>
-    	  <tr>
-            <td>
-              <%= link_to user_path(hint.user_id) do %>
-                <%= image_tag hint.user.get_user_image(50,50) %><br>
-                <%= hint.user.user_name %>
-              <% end %>
-            </td>
-            <td>
-              対象国:<%= hint.country.name %><br>
-              <%= link_to hint_path(hint.id) do %>
-                <%= hint.hint_contents %><br>
-                <% if hint.hint_image.present?%>
-                  <%= image_tag hint.get_hint_image(500,500) %><br>
-                <% end %>
-              <% end %>
-              <%= time_ago_in_words(hint.created_at) %> ago
-            </td>
-          </tr>
-        </table>
+  <div class='row justify-content-center'>
+    <span class="text-end mt-2">
+      <%= search_form_for @q, url: hint_search_path(:hoge), class:"search-form" do |f| %>
+        <%= f.search_field :country_code_cont, required: true, placeholder: '国名から探す', class:'input-box' %>
+        <%= f.submit "search" %>
       <% end %>
+    </span>
+
+    <div class='col-md-10'>
+      <ul class="nav nav-tabs justify-content-center text-center">
+        <li class="nav-item hint-nav-item">
+          <%= link_to hints_path('type': 'link'), class: "nav-link" do %>
+            <div class="hint-nav-content">全体</div>
+          <% end %>
+        </li>
+        <li class="nav-item hint-nav-item">
+          <%= link_to hints_path(tag_name: "アドバイス"), class: "nav-link" do %>
+            <div class="hint-nav-content">アドバイス</div>
+          <% end %>
+        </li>
+        <li class="nav-item hint-nav-item">
+          <%= link_to hints_path(tag_name: "現地の声"), class: "nav-link" do %>
+            <div class="hint-nav-content">現地の声</div>
+          <% end %>
+        </li>
+        <li class="nav-item hint-nav-item">
+          <%= link_to hints_path(tag_name: "体験談"), class: "nav-link" do %>
+            <div class="hint-nav-content">体験談</div>
+          <% end %>
+        </li>
+        <li class="nav-item hint-nav-item">
+          <%= link_to hints_path(tag_name: "質問"), class: "nav-link" do %>
+            <div class="hint-nav-content">質問</div>
+          <% end %>
+        </li>
+        <li class="nav-item hint-nav-item">
+          <%= link_to hints_path(tag_name: "新型コロナウイルスについて"), class: "nav-link" do %>
+            <div class="hint-nav-content-corona">新型コロナウイルス</div>
+          <% end %>
+        </li>
+        <li class="nav-item hint-nav-item">
+          <%= link_to hints_path(tag_name: "その他"), class: "nav-link" do %>
+            <div class="hint-nav-content">その他</div>
+          <% end %>
+        </li>
+        <% if user_signed_in?%>
+          <li class="plus-nuv">
+            <%= link_to new_hint_path do %>
+              <i class="fa-solid fa-circle-plus hint-plus"></i>
+            <% end %>
+          </li>
+        <% end %>
+
+      </ul>
+
+      <%# if user_signed_in? %>
+        <%#= link_to "フォローのみ表示", hints_path('type': 'follwing') %>
+      <%# end %>
+
+      <% if params[:type] == 'link' || params[:tag_name] == 'アドバイス' || params[:tag_name] == '現地の声' || params[:tag_name] == '体験談' || params[:tag_name] == '質問' || params[:tag_name] == '新型コロナウイルスについて' || params[:tag_name] == 'その他' %>
+        <%= render 'public/hints/hint_index', hints: @hints %>
+      <% elsif params[:type] == 'follwing' %>
+        <%= render 'public/hints/hint_index', hints: @following %>
+      <% else %>
+        <% if @search.blank? %>
+          <p>まだ投稿がありません😭</p>
+        <% else %>
+          <%= render 'public/hints/hint_index', hints: @search %>
+        <% end %>
+      <% end %>
+
     </div>
   </div>
 </div>

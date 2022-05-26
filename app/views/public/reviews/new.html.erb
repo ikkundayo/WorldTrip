@@ -1,133 +1,141 @@
+<div class="show-title-box">
+  <%= link_to user_path(current_user.id) do %>
+    <div class="space"><i class="fa-solid fa-angle-left memory-show-left"></i></div>
+  <% end %>
+  <div class="show-title">レビュー記録</div>
+</div>
+
 <div class="container">
-   <div class="row justify-content-center">
-     <div class="col-md-8">
-       <div class="text-danger">
-         <%= render 'layouts/errors', obj: @review %>
-       </div>
-       <span class="bg-light px-2 h4">レビュー新規記録</span>
-       <%= form_with model: @review, url: reviews_path, local:true do |f| %>
-         <div class="form-group row mt-5">
-           <%= f.label :"記録時期", class:"col-md-4 col-form-label text-md-right fw-bold" %>
-           <div class="col-md-6 px-md-0">
-             <%= f.radio_button :season, :true %>
-             <%= f.label :"直近の記録" %>
-             <%= f.radio_button :season, :false %>
-             <%= f.label :"昔の記録" %>
-           </div>
-         </div>
+  <div class="row justify-content-center">
+    <div class="col-md-7">
+      <div class="text-danger">
+        <%= render 'layouts/errors', obj: @review %>
+      </div>
 
-         <div class="form-group row mt-5">
-           <%= f.label :"Country", class:"col-md-3 col-form-label text-md-right fw-bold" %>
-           <div class="col-md-6 px-md-0">
-             <%= f.country_select :country_code %>
-           </div>
-         </div>
+      <%= form_with model: @review, url: reviews_path, local:true do |f| %>
+        <div class="review-new-box">
+          <div class="form-group row mt-3">
+            <%= f.label :"記録時期", class:"col-md-6 col-form-label text-md-right fw-bold" %>
+            <div class="px-md-0">
+              <%= f.radio_button :season, :true %>
+              <span class="me-3"><%= f.label :"直近の記録" %></span>
+              <%= f.radio_button :season, :false %>
+              <%= f.label :"昔の記録" %>
+            </div>
+          </div>
 
-         <div class="form-group row mt-5">
-           <%= f.label :"楽しさ・娯楽", class:"col-md-3 col-form-label text-md-right fw-bold" %>
-           <div class="col-md-3 px-md-0" id= "amusement_star">
-             <%= f.hidden_field :amusement_rate %>
-           </div>
-           <div class="col-md-3 px-md-0">
-             <%= f.text_field :amusement_voice %>
-           </div>
-         </div>
+          <div class="form-group row mt-3">
+            <%= f.label :"Country", class:"col-md-6 col-form-label text-md-right fw-bold" %>
+            <div class=" px-md-0">
+              <%= f.collection_select(:country_id, Country.order(:name_jp), :id, :name_jp, selected: "日本") %>
+            </div>
+          </div>
 
-         <div class="form-group row mt-5">
-           <%= f.label :"グルメ", class:"col-md-3 col-form-label text-md-right fw-bold" %>
-           <div class="col-md-3 px-md-0" id= "gourmet_star">
-             <%= f.hidden_field :gourmet_rate %>
-           </div>
-           <div class="col-md-3 px-md-0">
-             <%= f.text_field :gourmet_voice %>
-           </div>
-         </div>
+          <div class="form-group row mt-4">
+            <%= f.label :"楽しさ・娯楽", class:"col-md-6 col-form-label text-md-right fw-bold" %>
+            <div class="col-md-6 px-md-0 py-1" id= "amusement_star">
+              <%= f.hidden_field :amusement_rate %>
+            </div>
+            <div class="px-md-0">
+              <%= f.text_field :amusement_voice, class: "sm-textarea-review" %>
+            </div>
+          </div>
 
-         <div class="form-group row mt-5">
-           <%= f.label :"治安", class:"col-md-3 col-form-label text-md-right fw-bold" %>
-           <div class="col-md-3 px-md-0" id= "security_star">
-             <%= f.hidden_field :security_rate %>
-           </div>
-           <div class="col-md-3 px-md-0">
-             <%= f.text_field :security_voice %>
-           </div>
-         </div>
+          <div class="form-group row mt-4">
+            <%= f.label :"グルメ", class:"col-md-6 col-form-label text-md-right fw-bold" %>
+            <div class="col-md-6 px-md-0 py-1" id= "gourmet_star">
+              <%= f.hidden_field :gourmet_rate %>
+            </div>
+            <div class="px-md-0">
+              <%= f.text_field :gourmet_voice, class: "sm-textarea-review" %>
+            </div>
+          </div>
 
-         <div class="form-group row mt-5">
-           <%= f.label :"おすすめ度", class:"col-md-3 col-form-label text-md-right fw-bold" %>
-           <div class="col-md-3 px-md-0" id= "recommend_star">
-             <%= f.hidden_field :recommend_rate %>
-           </div>
-           <div class="col-md-3 px-md-0">
-             <%= f.text_field :recommend_voice %>
-           </div>
-         </div>
+          <div class="form-group row mt-4">
+            <%= f.label :"治安", class:"col-md-6 col-form-label text-md-right fw-bold" %>
+            <div class="col-md-6 px-md-0 py-1" id= "security_star">
+              <%= f.hidden_field :security_rate %>
+            </div>
+            <div class="px-md-0">
+              <%= f.text_field :security_voice, class: "sm-textarea-review" %>
+            </div>
+          </div>
 
-         <div class="form-group row mt-5">
-           <%= f.label :"オリジナルカテゴリー", class:"col-md-3 col-form-label text-md-right fw-bold" %>
-         </div>
-         <div class="form-group row ">
-           <%= f.text_field :original_category, class:"col-md-3"%>
-           <div class="col-md-3 px-md-0" id= "original_star">
-             <%= f.hidden_field :original_rate %>
-           </div>
-           <div class="col-md-3 px-md-0">
-             <%= f.text_field :original_voice %>
-           </div>
-         </div>
+          <div class="form-group row mt-4">
+            <%= f.label :"おすすめ度", class:"col-md-6 col-form-label text-md-right fw-bold" %>
+            <div class="col-md-6 px-md-0 py-1" id= "recommend_star">
+              <%= f.hidden_field :recommend_rate %>
+            </div>
+            <div class="px-md-0">
+              <%= f.text_field :recommend_voice, class: "sm-textarea-review" %>
+            </div>
+          </div>
 
-         <div class="form-group text-center mt-3">
-            <%= f.submit "新規登録", class:"btn btn-success btn-lg" %>
-         </div>
+          <div class="form-group row mt-4">
+            <%= f.label :"オリジナルカテゴリー", class:"col-form-label text-md-right fw-bold" %>
+          </div>
+          <div class="form-group row ">
+            <%= f.text_field :original_category, class:"col-md-5 test111"%>
+            <div class="col-md-6 new-original-category py-1" id= "original_star">
+              <%= f.hidden_field :original_rate %>
+            </div>
+            <div class="px-md-0 mt-1">
+              <%= f.text_field :original_voice, class: "sm-textarea-review " %>
+            </div>
+          </div>
 
-            <script>
-              $('#amusement_star').raty({
-                size     : 36,
-                starOff:  '<%= asset_path('star-off.png') %>',
-                starOn : '<%= asset_path('star-on.png') %>',
-                starHalf : '<%= asset_path('star-half.png') %>',
-                scoreName: 'review[amusement_rate]',
-                half: true,
-              });
+          <div class="field mb-1 mt-4">
+            <%= f.submit "新規登録", class:"btn btn-sm btn-primary text-light" %>
+          </div>
 
-              $('#gourmet_star').raty({
-                size     : 36,
-                starOff:  '<%= asset_path('star-off.png') %>',
-                starOn : '<%= asset_path('star-on.png') %>',
-                starHalf : '<%= asset_path('star-half.png') %>',
-                scoreName: 'review[gourmet_rate]',
-                half: true,
-              });
+          <script>
+            $('#amusement_star').raty({
+              size     : 36,
+              starOff:  '<%= asset_path('star-off.png') %>',
+              starOn : '<%= asset_path('star-on.png') %>',
+              starHalf : '<%= asset_path('star-half.png') %>',
+              scoreName: 'review[amusement_rate]',
+              half: true
+            });
 
-              $('#security_star').raty({
-                size     : 36,
-                starOff:  '<%= asset_path('star-off.png') %>',
-                starOn : '<%= asset_path('star-on.png') %>',
-                starHalf : '<%= asset_path('star-half.png') %>',
-                scoreName: 'review[security_rate]',
-                half: true,
-              });
+            $('#gourmet_star').raty({
+              size     : 36,
+              starOff:  '<%= asset_path('star-off.png') %>',
+              starOn : '<%= asset_path('star-on.png') %>',
+              starHalf : '<%= asset_path('star-half.png') %>',
+              scoreName: 'review[gourmet_rate]',
+              half: true
+            });
 
-              $('#recommend_star').raty({
-                size     : 36,
-                starOff:  '<%= asset_path('star-off.png') %>',
-                starOn : '<%= asset_path('star-on.png') %>',
-                starHalf : '<%= asset_path('star-half.png') %>',
-                scoreName: 'review[recommend_rate]',
-                half: true,
-              });
+            $('#security_star').raty({
+              size     : 36,
+              starOff:  '<%= asset_path('star-off.png') %>',
+              starOn : '<%= asset_path('star-on.png') %>',
+              starHalf : '<%= asset_path('star-half.png') %>',
+              scoreName: 'review[security_rate]',
+              half: true
+            });
 
-               $('#original_star').raty({
-                size     : 36,
-                starOff:  '<%= asset_path('star-off.png') %>',
-                starOn : '<%= asset_path('star-on.png') %>',
-                starHalf : '<%= asset_path('star-half.png') %>',
-                scoreName: 'review[original_rate]',
-                half: true,
-              });
-            </script>
+            $('#recommend_star').raty({
+              size     : 36,
+              starOff:  '<%= asset_path('star-off.png') %>',
+              starOn : '<%= asset_path('star-on.png') %>',
+              starHalf : '<%= asset_path('star-half.png') %>',
+              scoreName: 'review[recommend_rate]',
+              half: true
+            });
 
-        <% end %>
+             $('#original_star').raty({
+              size     : 36,
+              starOff:  '<%= asset_path('star-off.png') %>',
+              starOn : '<%= asset_path('star-on.png') %>',
+              starHalf : '<%= asset_path('star-half.png') %>',
+              scoreName: 'review[original_rate]',
+              half: true
+            });
+          </script>
+        </div>
+      <% end %>
     </div>
-   </div>
- </div>
+  </div>
+</div>

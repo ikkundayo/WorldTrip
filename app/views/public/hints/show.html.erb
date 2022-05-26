@@ -1,26 +1,66 @@
-<table class='table'>
-  <tr>
-    <td>
-      <%= link_to user_path(@hint.user_id) do %>
-        <%= image_tag @hint.user.get_user_image(50,50) %><br>
-        <%= @hint.user.user_name %>
-      <% end %>
-    </td>
-    <td>
-      対象国:<%= @hint.country_code %><br><br>
-      <%= @hint.hint_contents %><br>
-      <% if @hint.hint_image.present?%>
-        <%= image_tag @hint.get_hint_image(500,500) %><br>
-      <% end %>
-      <%= time_ago_in_words(@hint.created_at) %> ago
-    </td>
-    <% if user_signed_in? %>
-        <% if @hint.user_id == current_user.id %>
-          <td>
-            <%= link_to "Destroy", hint_path, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger" %>
-          </td>
-        <% end %>
-    <% end %>
+<div class="show-title-box">
+  <%= link_to hints_path("type": "link") do %>
+    <div class="space"><i class="fa-solid fa-angle-left memory-show-left"></i></div>
+  <% end %>
+  <div class="show-title-en">Detail</div>
+</div>
 
-  </tr>
-</table>
+<div class='container'>
+  <div class='row justify-content-center'>
+    <div class='col-md-10'>
+
+      <div class='memory-box-show'>
+        <div class="memory-user-box">
+          <%= link_to user_path(@hint.user_id) do %>
+            <%= image_tag @hint.user.get_user_image(50,50), class: "user-img" %>
+            <p class="memory-username"><%= @hint.user.user_name %></p>
+            <i class="flag-icon flag-icon-<%= @country_user_logo.code.downcase %> memory-user-icon"></i>
+          <% end %>
+        </div>
+
+        <div class="hint-country-box">
+          <span>対象国:<%= @hint.country_code %></span>
+          <%= link_to review_path(@country_logo.id) do %><i class="flag-icon flag-icon-<%= @country_logo.code.downcase %> mb-2"></i><% end %><br>
+          ジャンル:<%= @hint.tag_list %>
+        </div>
+
+
+        <div class="memory-content-box mt-3">
+          <% if @hint.hint_image.present?%>
+            <%= image_tag @hint.get_hint_image(600,470), class: "sm-img" %><br>
+          <% end %>
+          <p class="mt-3"><%= @hint.hint_contents %></p>
+        </div>
+
+        <div class="memory-action-box">
+          <div class="space">
+            <span class="hint_like_<%= @hint.id %> memory-show-action-content1">
+              <%= render "public/hint_likes/like", hint: @hint %>
+            </span>
+          </div>
+          <div class="post-time"><%= time_ago_in_words(@hint.created_at) %> ago</div>
+          <% if user_signed_in? %>
+            <% if @hint.user_id == current_user.id %>
+              <h6 class="text-end mt-1"><%= link_to "Destroy", hint_path, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger" %></h6>
+            <% end %>
+          <% elsif admin_signed_in? %>
+            <div class="sentiment-score text-end">感情分析スコア (<%= @hint.score %>)</div>
+            <h6 class="text-end mt-1"><%= link_to "Destroy", hint_path, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger" %></h6>
+          <% end %>
+        </div>
+      </div>
+
+      <p class="comment-count m-2">
+        <%= render "public/hint_comments/count", hint: @hint %>
+      </p>
+      <% if user_signed_in? %>
+        <div>
+          <%= render "public/hint_comments/form", hint: @hint, hint_comment: @hint_comment %>
+        </div>
+      <% end %>
+      <div class="comment-index">
+        <%= render "public/hint_comments/index", hint: @hint, country_logo: @country_logo %>
+      </div>
+    </div>
+  </div>
+</div>

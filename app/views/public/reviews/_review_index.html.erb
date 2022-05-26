@@ -1,0 +1,211 @@
+<div>
+  <% reviews.each do |review| %>
+    <table class='table'>
+      <tr style="text-align: center;">
+        <% country = Country.find_by(name_jp: review.country_code) %>
+        <td><%= link_to review_path(country.id) do %><i class="flag-icon flag-icon-<%= country.code.downcase %> mypage-render-icon"></i><% end %><br>
+          <%= review.country_code %>
+        </td>
+      </tr>
+      <tr>
+        <th>【総合評価】 <%= review.review_average.round(1) %><br>
+          <div id="average-rate<%= review.id%>"></div>
+        </th>
+      </tr>
+      <tr>
+        <td><div class="onother-content">【楽しさ・娯楽】</div>
+          <span id="amusement-rate<%= review.id%>"></span>
+          <%= review.amusement_rate %>
+          <div class="mypage-ranking-comment"><%= review.amusement_voice %></div>
+        </td>
+      </tr>
+      <tr>
+        <td><div class="onother-content">【グルメ】</div>
+          <span id="gourmet-rate<%= review.id%>"></span>
+          <%= review.gourmet_rate %>
+          <div class="mypage-ranking-comment"><%= review.gourmet_voice %></div>
+        </td>
+      </tr>
+      <tr>
+        <td><div class="onother-content">【治安】</div>
+          <span id="security-rate<%= review.id%>"></span>
+          <%= review.security_rate %>
+          <div class="mypage-ranking-comment"><%= review.security_voice %></div>
+        </td>
+      </tr>
+      <tr>
+        <td><div class="onother-content">【おすすめ度】</div>
+          <span id="recommend-rate<%= review.id%>"></span>
+          <%= review.recommend_rate %>
+          <div class="mypage-ranking-comment"><%= review.recommend_voice %></div>
+        </td>
+      </tr>
+      <% if review.original_category.present?%>
+        <tr>
+          <td><div class="onother-content">【<%= review.original_category %>】</div>
+            <span id="original-rate<%= review.id%>"></span>
+            <%= review.original_rate %>
+            <div class="mypage-ranking-comment"><%= review.original_voice %></div>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+    <div class="text-end mb-5">
+      <%= time_ago_in_words(review.created_at) %> ago
+      <% if user_signed_in? %>
+        <% if review.user_id == current_user.id %>
+          <%= link_to "Destroy", review_path(review), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger" %>
+        <% end %>
+      <% end %>
+    </div>
+  <% end %>
+  <div class="text-center mb-2"><%= paginate reviews %></div>
+</div>
+
+<script>
+  <% reviews.each do |review| %>
+    // $('#average-rate<%#= review.id%>').empty;
+    $('#average-rate<%= review.id%>').raty({
+      size      : 36,
+      starOff   : '<%= asset_path('star-off.png') %>',
+      starOn    : '<%= asset_path('star-on.png') %>',
+      starHalf : '<%= asset_path('star-half.png') %>',
+      half      : true,
+      readOnly: true,
+      score: <%= review.review_average %>
+    });
+
+    // $('#amusement-rate<%#= review.id%>').empty;
+    $('#amusement-rate<%= review.id%>').raty({
+      size      : 36,
+      starOff   : '<%= asset_path('star-off.png') %>',
+      starOn    : '<%= asset_path('star-on.png') %>',
+      starHalf : '<%= asset_path('star-half.png') %>',
+      half      : true,
+      readOnly: true,
+      score: <%= review.amusement_rate %>
+    });
+
+    // $('#gourmet-rate<%#= review.id%>').empty;
+    $('#gourmet-rate<%= review.id%>').raty({
+      size      : 36,
+      starOff   : '<%= asset_path('star-off.png') %>',
+      starOn    : '<%= asset_path('star-on.png') %>',
+      starHalf : '<%= asset_path('star-half.png') %>',
+      half      : true,
+      readOnly: true,
+      score: <%= review.gourmet_rate %>
+    });
+
+    // $('#security-rate<%#= review.id%>').empty;
+    $('#security-rate<%= review.id%>').raty({
+      size      : 36,
+      starOff   : '<%= asset_path('star-off.png') %>',
+      starOn    : '<%= asset_path('star-on.png') %>',
+      starHalf : '<%= asset_path('star-half.png') %>',
+      half      : true,
+      readOnly: true,
+      score: <%= review.security_rate %>
+    });
+
+    // $('#recommend-rate<%#= review.id%>').empty;
+    $('#recommend-rate<%= review.id%>').raty({
+      size      : 36,
+      starOff   : '<%= asset_path('star-off.png') %>',
+      starOn    : '<%= asset_path('star-on.png') %>',
+      starHalf : '<%= asset_path('star-half.png') %>',
+      half      : true,
+      readOnly: true,
+      score: <%= review.recommend_rate %>
+    });
+
+    // $('#original-rate<%#= review.id%>').empty;
+    $('#original-rate<%= review.id%>').raty({
+      size      : 36,
+      starOff   : '<%= asset_path('star-off.png') %>',
+      starOn    : '<%= asset_path('star-on.png') %>',
+      starHalf : '<%= asset_path('star-half.png') %>',
+      half      : true,
+      readOnly: true,
+      score: <%= review.original_rate.presence || "0" %>
+    });
+  <% end %>
+
+  // $(document).ready(function() {
+  //   $('.jscroll').jscroll({
+  //     contentSelector: '.list',
+  //     nextSelector: 'span.next a',
+  //     callback: function(data) {
+  //       <%# if reviews.count > 9 %>
+  //         <%# reviews[10..].each do |review| %>
+  //           $('#average-rate<%#= review.id%>').empty;
+  //           $('#average-rate<%#= review.id%>').raty({
+  //             size      : 36,
+  //             starOff   : '<%#= asset_path('star-off.png') %>',
+  //             starOn    : '<%#= asset_path('star-on.png') %>',
+  //             starHalf : '<#%= asset_path('star-half.png') %>',
+  //             half      : true,
+  //             readOnly: true,
+  //             score: <%#= review.review_average %>
+  //           });
+
+  //           $('#amusement-rate<%#= review.id%>').empty;
+  //           $('#amusement-rate<%#= review.id%>').raty({
+  //             size      : 36,
+  //             starOff   : '<%#= asset_path('star-off.png') %>',
+  //             starOn    : '<%#= asset_path('star-on.png') %>',
+  //             starHalf : '<%#= asset_path('star-half.png') %>',
+  //             half      : true,
+  //             readOnly: true,
+  //             score: <%#= review.amusement_rate %>
+  //           });
+
+  //           $('#gourmet-rate<%#= review.id%>').empty;
+  //           $('#gourmet-rate<%#= review.id%>').raty({
+  //             size      : 36,
+  //             starOff   : '<%#= asset_path('star-off.png') %>',
+  //             starOn    : '<%#= asset_path('star-on.png') %>',
+  //             starHalf : '<%#= asset_path('star-half.png') %>',
+  //             half      : true,
+  //             readOnly: true,
+  //             score: <%#= review.gourmet_rate %>
+  //           });
+
+  //           $('#security-rate<%#= review.id%>').empty;
+  //           $('#security-rate<%#= review.id%>').raty({
+  //             size      : 36,
+  //             starOff   : '<%#= asset_path('star-off.png') %>',
+  //             starOn    : '<%#= asset_path('star-on.png') %>',
+  //             starHalf : '<%#= asset_path('star-half.png') %>',
+  //             half      : true,
+  //             readOnly: true,
+  //             score: <%#= review.security_rate %>
+  //           });
+
+  //           $('#recommend-rate<%#= review.id%>').empty;
+  //           $('#recommend-rate<%#= review.id%>').raty({
+  //             size      : 36,
+  //             starOff   : '<%#= asset_path('star-off.png') %>',
+  //             starOn    : '<%#= asset_path('star-on.png') %>',
+  //             starHalf : '<%#= asset_path('star-half.png') %>',
+  //             half      : true,
+  //             readOnly: true,
+  //             score: <%#= review.recommend_rate %>
+  //           });
+
+  //           $('#original-rate<%#= review.id%>').empty;
+  //           $('#original-rate<%#= review.id%>').raty({
+  //             size      : 36,
+  //             starOff   : '<%#= asset_path('star-off.png') %>',
+  //             starOn    : '<%#= asset_path('star-on.png') %>',
+  //             starHalf : '<%#= asset_path('star-half.png') %>',
+  //             half      : true,
+  //             readOnly: true,
+  //             score: <%#= review.original_rate.presence || "0" %>
+  //           });
+  //         <%# end %>
+  //       <%# end %>
+  //     }
+  //   });
+  // });
+</script>
