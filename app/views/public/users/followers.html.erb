@@ -2,7 +2,9 @@
   <%= link_to user_path(@user) do %>
     <div class="space"><i class="fa-solid fa-angle-left memory-show-left"></i></div>
   <% end %>
-  <div class="show-title-en">Following</div>
+  <div class="show-title-en">
+    <%= @user.user_name %>'s Following Lists
+  </div>
 </div>
 
 
