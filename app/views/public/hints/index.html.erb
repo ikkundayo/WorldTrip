@@ -59,12 +59,16 @@
       <%# end %>
 
       <% if params[:type] == 'link' || params[:tag_name] == 'アドバイス' || params[:tag_name] == '現地の声' || params[:tag_name] == '体験談' || params[:tag_name] == '質問' || params[:tag_name] == '新型コロナウイルスについて' || params[:tag_name] == 'その他' %>
-        <%= render 'public/hints/hint_index', hints: @hints %>
-      <% elsif params[:type] == 'follwing' %>
-        <%= render 'public/hints/hint_index', hints: @following %>
+        <% if @hints.blank? %>
+          <h5 class="text-center mt-3">まだ投稿がありません😭</h5>
+        <% else %>
+          <%= render 'public/hints/hint_index', hints: @hints %>
+        <% end %>
+      <%# elsif params[:type] == 'follwing' %>
+        <%#= render 'public/hints/hint_index', hints: @following %>
       <% else %>
         <% if @search.blank? %>
-          <p>まだ投稿がありません😭</p>
+          <h5 class="text-center mt-3">まだ投稿がありません😭</h5>
         <% else %>
           <%= render 'public/hints/hint_index', hints: @search %>
         <% end %>

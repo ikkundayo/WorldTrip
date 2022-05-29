@@ -1,8 +1,48 @@
 <div class='container'>
   <div class='row justify-content-center'>
     <% if @link.present? %>
-      <div class='col-md-2 mt-5'>
-        <table class='table'>
+      <div class='col-md-2 search-col-box'>
+
+        <div class="review-hamburger1">
+          <div class="review-icon1">
+            カテゴリー別
+          </div>
+        </div>
+
+        <div class="review-sm1">
+          <table class='table sm-ranking-table'>
+            <tr>
+              <td><%= link_to '総合評価', review_search_path(@link.area, {'type': 'average'}), class: "side_link" %></td>
+            </tr>
+            <tr>
+              <td><%= link_to '楽しさ・娯楽', review_search_path(@link.area, {'type': 'amusement'}), class: "side_link" %></td>
+            </tr>
+            <tr>
+              <td><%= link_to 'グルメ', review_search_path(@link.area, {'type': 'gourmet'}), class: "side_link" %></td>
+            </tr>
+            <tr>
+              <td><%= link_to '治安', review_search_path(@link.area, {'type': 'security'}), class: "side_link" %></td>
+            </tr>
+            <tr>
+              <td><%= link_to 'おすすめ度', review_search_path(@link.area, {'type': 'recommend'}), class: "side_link" %></td>
+            </tr>
+            <tr>
+            <td><%= link_to '渡航数', review_search_path(@link.area, {'type': 'total-travel'}), class: "side_link" %></td>
+            </tr>
+            <tr>
+              <td><%= link_to 'オリジナル・その他', review_search_path(@link.area, {'type': 'original'}), class: "side_link" %></td>
+            </tr>
+          </table>
+        </div>
+
+        <script>
+          $('.review-hamburger1').on('click', function(){
+            $('.review-icon1').toggleClass('close');
+            $('.review-sm1').slideToggle();
+          });
+        </script>
+
+        <table class='table review-pc'>
           <tr>
             <th class="table-active">カテゴリー別</th>
           </tr>
@@ -28,12 +68,14 @@
             <td><%= link_to 'オリジナル・その他', review_search_path(@link.area, {'type': 'original'}), class: "side_link" %></td>
           </tr>
         </table>
-        <%= link_to "全体へ戻る", reviews_path, class: "mx-2" %>
+
+        <div class="text-end mx-2"><%= link_to "全体へ戻る", reviews_path %></div>
+
       </div>
     <% else %>
       <div class="text-center mt-3">
         <h5>まだレビューがありません😭</h5>
-        <%= link_to "全体へ戻る", reviews_path, class: "mx-2" %>
+        <div class="text-end mx-2"><%= link_to "全体へ戻る", reviews_path %></div>
       </div>
     <% end %>
 

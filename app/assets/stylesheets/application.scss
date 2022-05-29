@@ -317,12 +317,25 @@
   font-size: 20px;
 }
 
-
 .side_link {
   text-decoration: none;
   color: black;
   display: block;
 }
+
+.review-pc td:hover {
+  background-color: #0E61E2;
+}
+.side_link:hover {
+  color: white;
+}
+.nav-item:hover {
+  background-color: #DEE2E6;
+}
+.search-col-box {
+  padding-top: 38px;
+}
+
 .ranking-country-name {
   margin-left: 27px;
 }
@@ -1052,6 +1065,7 @@ header {
  }
  .search-title {
    line-height: 38.5px;
+   margin-top: 10px;
  }
   .hint-tag-list {
     font-size: 14px;
@@ -1292,6 +1306,9 @@ header {
 }
 
 @media (max-width: 768px){
+  .search-col-box {
+  padding-top: 10px;
+  }
   .mypage-ranking-country-name {
     margin: 10px 0px 10px 30px;
     width: 150px;
@@ -1516,6 +1533,12 @@ header {
     top: -395px;
     left: 330px;
   }
+  .search-title {
+   line-height: 32.5px;
+ }
+ .search-result {
+    font-size: 21px;
+}
 }
 
 
